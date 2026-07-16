@@ -1,0 +1,6 @@
+audit.db
+.tmp_*.md
+.seed_*.md
+__pycache__/
+*.pyc
+*.json
