@@ -38,19 +38,38 @@ header h1 { font-size: 1.6em; }
 .hd-last { color: var(--text-muted); font-size: 0.78em; margin-bottom: 4px; }
 
 /* tabs */
-.tabs { display: flex; gap: 0; margin-top: 12px; border-bottom: 1px solid var(--border); }
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 14px;
+  padding: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
 .tab {
   display: inline-block;
-  padding: 8px 16px;
+  padding: 7px 18px;
   font-size: 0.85em;
   font-weight: 500;
   color: var(--text-muted);
-  border-bottom: 2px solid transparent;
+  border-radius: 8px;
   transition: all 0.15s;
-  margin-bottom: -1px;
+  white-space: nowrap;
 }
-.tab:hover { color: var(--text); border-bottom-color: var(--text-muted); text-decoration: none; }
-.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab:hover {
+  color: var(--text);
+  background: var(--bg-hover);
+  text-decoration: none;
+}
+.tab.active {
+  color: #fff;
+  background: var(--accent);
+}
+.tab.active:hover {
+  background: #4090e0;
+}
 
 /* main */
 main { max-width: 800px; margin: 0 auto; padding: 16px 20px; }
@@ -217,7 +236,7 @@ footer a { color: var(--text-muted); }
 @media (max-width: 600px) {
   header { padding: 20px 12px 0; }
   main { padding: 12px; }
-  .tab { padding: 6px 10px; font-size: 0.78em; }
+  .tab { padding: 5px 10px; font-size: 0.78em; }
   .entry-card { padding: 10px 12px; }
   .holdings-summary { gap: 8px; }
   .hsum-row { padding: 8px 12px; min-width: 80px; }
