@@ -75,6 +75,43 @@ header h1 { font-size: 1.6em; }
 main { max-width: 800px; margin: 0 auto; padding: 16px 20px; }
 .section-title { font-size: 1.1em; font-weight: 600; margin-bottom: 12px; color: var(--text-muted); }
 
+/* snapshot date selector */
+.snap-selector {
+  margin-bottom: 16px;
+}
+.snap-selector label {
+  display: block;
+  font-size: 0.82em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.snap-list {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.snap-btn {
+  display: inline-block;
+  padding: 5px 14px;
+  font-size: 0.82em;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+.snap-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+.snap-btn.active {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
 /* entry cards */
 .entry-card {
   display: block;
