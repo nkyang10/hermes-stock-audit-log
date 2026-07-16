@@ -112,6 +112,15 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 20px; }
   border-color: var(--accent);
 }
 
+/* iframe for holdings page */
+.snap-iframe {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  min-height: 500px;
+}
+
 /* entry cards */
 .entry-card {
   display: block;
