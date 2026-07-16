@@ -121,6 +121,45 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 20px; }
   min-height: 500px;
 }
 
+/* date switcher */
+.date-switcher {
+  margin: 10px 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.date-switcher label {
+  font-size: 0.8em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.date-list {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.date-btn {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 0.78em;
+  font-weight: 500;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+.date-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+.date-btn.active {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
 /* entry cards */
 .entry-card {
   display: block;
