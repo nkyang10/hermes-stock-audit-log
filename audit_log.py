@@ -175,9 +175,9 @@ def date_switcher_html(all_dates, curr_date, prefix=''):
     html += '</div></div>'
     return html
 
-def page_head_html(title, header_kw, prefix='', sel_all='', sel_hld='', sel_dec='', sel_stu='', curr_date=None, all_dates=None):
+def page_head_html(title, header_kw, prefix='', sel_all='', sel_hld='', sel_dec='', sel_stu='', curr_date=None, all_dates=None, hide_date_switcher=False):
     """Generate full page header with tabs and date switcher."""
-    ds = date_switcher_html(all_dates or [], curr_date, prefix) if all_dates else ''
+    ds = '' if hide_date_switcher else (date_switcher_html(all_dates or [], curr_date, prefix) if all_dates else '')
     kw = dict(header_kw, title=title, prefix=prefix,
               sel_all=sel_all, sel_hld=sel_hld, sel_dec=sel_stu, sel_stu=sel_stu,
               date_switcher=ds)
@@ -376,9 +376,9 @@ def build_site(entries):
     # Collect unique dates
     all_dates = sorted(set(e['created_at'][:10] for e in entries if e['created_at']), reverse=True)
 
-    def write_page(path, title, content, sel_all='', sel_hld='', sel_dec='', sel_stu='', curr_date=None, prefix=''):
+    def write_page(path, title, content, sel_all='', sel_hld='', sel_dec='', sel_stu='', curr_date=None, prefix='', hide_date_switcher=False):
         html = page_head_html(title, header_kw, prefix=prefix, curr_date=curr_date,
-                              all_dates=all_dates,
+                              all_dates=all_dates, hide_date_switcher=hide_date_switcher,
                               sel_all=sel_all, sel_hld=sel_hld, sel_dec=sel_dec, sel_stu=sel_stu)
         html += content + PAGE_FOOT
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -445,7 +445,7 @@ document.getElementById('tlDateList').addEventListener('click', function(e) {{
 }});
 </script>'''
     write_page(DOCS / 'index.html', '📊 股票審計記錄', index_js,
-               sel_all='active', curr_date=None, prefix='')
+               sel_all='active', curr_date=None, prefix='', hide_date_switcher=True)
 
     # Holdings with JS date selector (replaces static per-date holdings)
     snapshots_json = json.dumps(snapshots_by_date, ensure_ascii=False)
@@ -517,7 +517,7 @@ if (dates.length) renderHoldings(dates[0]);
 </script>'''
     write_page(DOCS / 'holdings.html', '💼 持倉',
                f'<h2 class="section-title">💼 持倉</h2>\n{holdings_js}',
-               sel_hld='active', curr_date=None, prefix='')
+               sel_hld='active', curr_date=None, prefix='', hide_date_switcher=True)
 
     # Decisions
     write_page(DOCS / 'decisions.html', '🎯 決策 — 全部',
@@ -564,7 +564,7 @@ document.getElementById('tlDateList').innerHTML = '<a href="../index.html" class
 filterTimeline({dt_json});
 </script>'''
         write_page(day_dir / 'index.html', f'📊 {dt} — 股票審計記錄',
-                   day_html, curr_date=dt, prefix='../', sel_all='')
+                   day_html, curr_date=dt, prefix='../', sel_all='', hide_date_switcher=True)
 
     # ── Detail pages ── (entries live at root for now)
     detail_entries = entries  # all entries get detail pages at root
