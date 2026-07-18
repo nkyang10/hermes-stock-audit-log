@@ -411,10 +411,14 @@ def build_site(entries):
             })
 
     # ── Root pages (all dates) ──
-    # Index with JS date filter
-    all_cards_html = make_cards(entries)
-    all_dates_json = json.dumps(all_dates, ensure_ascii=False)
-    index_js = f'''<h2 class="section-title">📋 時間線</h2>
+    # Index with JS date filter — only buy/sell decisions
+    action_entries = [e for e in entries if e['entry_type'] == 'decision']
+    all_cards_html = make_cards(action_entries)
+    all_dates_json = json.dumps(
+        sorted(set(e['created_at'][:10] for e in action_entries if e['created_at']), reverse=True),
+        ensure_ascii=False
+    )
+    index_js = f'''<h2 class="section-title">📋 時間線（買賣記錄）</h2>
 <div class="snap-selector">
   <label>📅 日期：</label>
   <div class="snap-list" id="tlDateList"></div>

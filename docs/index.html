@@ -18,7 +18,7 @@
       <span class="stat">5 隻股票</span>
     </div>
     <div class="hd-tickers"><span class="tkr-mini" style="--tkr-c:#555555">AAPL</span>, <span class="tkr-mini" style="--tkr-c:#4285f4">GOOGL</span>, <span class="tkr-mini" style="--tkr-c:#0668e1">META</span>, <span class="tkr-mini" style="--tkr-c:#00a4ef">MSFT</span>, <span class="tkr-mini" style="--tkr-c:#76b900">NVDA</span></div>
-    <div class="hd-last">更新於 2026-07-18 13:34</div>
+    <div class="hd-last">更新於 2026-07-18 13:37</div>
   </div>
   
   <nav class="tabs">
@@ -29,28 +29,12 @@
   </nav>
 </header>
 <main>
-<h2 class="section-title">📋 時間線</h2>
+<h2 class="section-title">📋 時間線（買賣記錄）</h2>
 <div class="snap-selector">
   <label>📅 日期：</label>
   <div class="snap-list" id="tlDateList"></div>
 </div>
 <div id="tlCards" class="tab-content">
-    <a href="2026-07-18/entry-16.html" class="entry-card" data-date="2026-07-18">
-      <div class="entry-meta">
-        <span class="entry-time">2026-07-18 12:42 HKT</span>
-        <div class="entry-badges"><span class="type-badge type-analysis">分析</span><span class="pnl pnl-pos">+,423</span></div>
-      </div>
-      <div class="entry-title">Sim-Trader 持倉分析 · Jul 18</div>
-      <div class="entry-tags"><span class="tag">sim-trader</span><span class="tag">analysis</span></div>
-    </a>
-    <a href="2026-07-18/entry-15.html" class="entry-card" data-date="2026-07-18">
-      <div class="entry-meta">
-        <span class="entry-time">2026-07-18 12:41 HKT</span>
-        <div class="entry-badges"><span class="type-badge type-snapshot">快照</span></div>
-      </div>
-      <div class="entry-title">持倉快照 · 2026-07-18 收市</div>
-      <div class="entry-tags"></div>
-    </a>
     <a href="2026-07-17/entry-2.html" class="entry-card" data-date="2026-07-17">
       <div class="entry-meta">
         <span class="entry-time">2026-07-17 00:39 HKT</span>
@@ -91,41 +75,9 @@
       <div class="entry-title">HOLD GOOGL — HOLD — GOOGL essentially flat at $371</div>
       <div class="entry-tags"><span class="tag">decision</span></div>
     </a>
-    <a href="2026-07-17/entry-7.html" class="entry-card" data-date="2026-07-17">
-      <div class="entry-meta">
-        <span class="entry-time">2026-07-17 00:39 HKT</span>
-        <div class="entry-badges"><span class="type-badge type-study">研究</span></div>
-      </div>
-      <div class="entry-title">Semi Sector Rotation Study — Memory Rout Analysis</div>
-      <div class="entry-tags"><span class="tag">semi</span><span class="tag">memory</span><span class="tag">rout</span><span class="tag">study</span></div>
-    </a>
-    <a href="2026-07-17/entry-12.html" class="entry-card" data-date="2026-07-17">
-      <div class="entry-meta">
-        <span class="entry-time">2026-07-17 00:18 HKT</span>
-        <div class="entry-badges"><span class="type-badge type-snapshot">快照</span><span class="pnl pnl-pos">+$5,997</span></div>
-      </div>
-      <div class="entry-title">持倉快照 · 2026-07-17</div>
-      <div class="entry-tags"><span class="tag">latest</span></div>
-    </a>
-    <a href="2026-07-16/entry-14.html" class="entry-card" data-date="2026-07-16">
-      <div class="entry-meta">
-        <span class="entry-time">2026-07-16 20:18 HKT</span>
-        <div class="entry-badges"><span class="type-badge type-snapshot">快照</span><span class="pnl pnl-pos">+$6,197</span></div>
-      </div>
-      <div class="entry-title">持倉快照 · 2026-07-16 收市</div>
-      <div class="entry-tags"><span class="tag">historical</span><span class="tag">2026-07-16</span></div>
-    </a>
-    <a href="2026-07-16/entry-13.html" class="entry-card" data-date="2026-07-16">
-      <div class="entry-meta">
-        <span class="entry-time">2026-07-16 10:18 HKT</span>
-        <div class="entry-badges"><span class="type-badge type-snapshot">快照</span><span class="pnl pnl-pos">+$5,590</span></div>
-      </div>
-      <div class="entry-title">持倉快照 · 2026-07-16 早市</div>
-      <div class="entry-tags"><span class="tag">historical</span><span class="tag">2026-07-16</span></div>
-    </a>
 </div>
 <script>
-const TL_DATES = ["2026-07-18", "2026-07-17", "2026-07-16"];
+const TL_DATES = ["2026-07-17"];
 const tlData = {};
 document.querySelectorAll('#tlCards .entry-card').forEach(c => {
   const d = c.dataset.date;
