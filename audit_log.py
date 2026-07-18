@@ -264,7 +264,7 @@ def make_cards(entries, prefix='', curr_date=None):
         else:
             entry_path = f'entry-{e["id"]}.html'
         cards.append(f'''\
-    <a href="{entry_path}" class="entry-card">
+    <a href="{entry_path}" class="entry-card" data-date="{dt}">
       <div class="entry-meta">
         <span class="entry-time">{fmt_dt(e['created_at'])}</span>
         <div class="entry-badges">{type_badge(e['entry_type'])}{tkr_badge(e['ticker']) if e['ticker'] else ''}{pnl_badge(e['pnl'])}</div>
@@ -411,9 +411,40 @@ def build_site(entries):
             })
 
     # ── Root pages (all dates) ──
-    # Index
-    write_page(DOCS / 'index.html', '📊 股票審計記錄',
-               '<div class="tab-content">\n' + make_cards(entries) + '\n</div>',
+    # Index with JS date filter
+    all_cards_html = make_cards(entries)
+    all_dates_json = json.dumps(all_dates, ensure_ascii=False)
+    index_js = f'''<div class="snap-selector">
+  <label>📅 日期：</label>
+  <div class="snap-list" id="tlDateList"></div>
+</div>
+<div id="tlCards" class="tab-content">
+{all_cards_html}
+</div>
+<script>
+const TL_DATES = {all_dates_json};
+const tlData = {{}};
+document.querySelectorAll('#tlCards .entry-card').forEach(c => {{
+  const d = c.dataset.date;
+  if (d) {{ if (!tlData[d]) tlData[d] = []; tlData[d].push(c); }}
+}});
+function filterTimeline(date) {{
+  document.querySelectorAll('#tlCards .entry-card').forEach(c => c.style.display = 'none');
+  if (!date || date === 'all') {{
+    document.querySelectorAll('#tlCards .entry-card').forEach(c => c.style.display = 'block');
+  }} else if (tlData[date]) {{
+    tlData[date].forEach(c => c.style.display = 'block');
+  }}
+  document.querySelectorAll('#tlDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
+}}
+document.getElementById('tlDateList').innerHTML = '<a href="#" class="snap-btn active" data-date="all">全部</a>' +
+  TL_DATES.map(d => '<a href="#" class="snap-btn" data-date="'+d+'">'+d+'</a>').join('');
+document.getElementById('tlDateList').addEventListener('click', function(e) {{
+  const btn = e.target.closest('.snap-btn');
+  if (btn) {{ filterTimeline(btn.dataset.date); e.preventDefault(); }}
+}});
+</script>'''
+    write_page(DOCS / 'index.html', '📊 股票審計記錄', index_js,
                sel_all='active', curr_date=None, prefix='')
 
     # Holdings with JS date selector (replaces static per-date holdings)
@@ -500,30 +531,40 @@ if (dates.length) renderHoldings(dates[0]);
                make_cards([e for e in entries if e['entry_type'] in ('study','analysis')]),
                sel_stu='active', curr_date=None, prefix='')
 
-    # ── Date folder pages ──
+    # ── Date folder pages ── (JS timeline with auto-filter for date)
     for dt in all_dates:
-        day_entries = [e for e in entries if e['created_at'].startswith(dt)]
         day_dir = DOCS / dt
         day_dir.mkdir(parents=True, exist_ok=True)
-
-        # Holdings for this day
-        if dt in snapshots_by_date:
-            day_hld_html = render_holdings_table(snapshots_by_date[dt][-1]['holdings'])
-        else:
-            day_hld_html = '<p class="empty">呢日冇持倉快照</p>'
-
-        # Day index: entries + holdings
-        day_content = ''
-        if day_hld_html:
-            day_content += f'<h2 class="section-title">💼 持倉</h2>\n{day_hld_html}\n'
-        day_entries_html = make_cards(day_entries, curr_date=dt)
-        if day_entries_html:
-            day_content += f'<h2 class="section-title">📋 記錄</h2>\n{day_entries_html}\n'
-
+        dt_json = json.dumps(dt)
+        day_html = f'''<div class="snap-selector">
+  <label>📅 日期：</label>
+  <div class="snap-list" id="tlDateList"></div>
+</div>
+<div id="tlCards" class="tab-content">
+{all_cards_html}
+</div>
+<script>
+const TL_DATES = {all_dates_json};
+const tlData = {{}};
+document.querySelectorAll('#tlCards .entry-card').forEach(c => {{
+  const d = c.dataset.date;
+  if (d) {{ if (!tlData[d]) tlData[d] = []; tlData[d].push(c); }}
+}});
+function filterTimeline(date) {{
+  document.querySelectorAll('#tlCards .entry-card').forEach(c => c.style.display = 'none');
+  if (!date || date === 'all') {{
+    document.querySelectorAll('#tlCards .entry-card').forEach(c => c.style.display = 'block');
+  }} else if (tlData[date]) {{
+    tlData[date].forEach(c => c.style.display = 'block');
+  }}
+  document.querySelectorAll('#tlDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
+}}
+document.getElementById('tlDateList').innerHTML = '<a href="../index.html" class="snap-btn" data-date="all">全部</a>' +
+  TL_DATES.map(d => '<a href="../'+(d===TL_DATES[0]?'index.html':d+'/index.html')+'" class="snap-btn'+(d==={dt_json}?' active':'')+'" data-date="'+d+'">'+d+'</a>').join('');
+filterTimeline({dt_json});
+</script>'''
         write_page(day_dir / 'index.html', f'📊 {dt} — 股票審計記錄',
-                   day_content, curr_date=dt, prefix='../',
-                   sel_all='active' if not day_hld_html else '',
-                   sel_hld='active' if day_hld_html else '')
+                   day_html, curr_date=dt, prefix='../', sel_all='')
 
     # ── Detail pages ── (entries live at root for now)
     detail_entries = entries  # all entries get detail pages at root
