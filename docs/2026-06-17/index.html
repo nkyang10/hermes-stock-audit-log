@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎯 決策 — 全部</title>
-<link rel="stylesheet" href="assets/style.css">
+<title>📊 2026-06-17 — 股票審計記錄</title>
+<link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 <header>
@@ -22,19 +22,18 @@
   </div>
   
   <nav class="tabs">
-    <a href="index.html" class="tab ">📋 時間線</a>
-    <a href="holdings.html" class="tab ">💼 持倉</a>
-    <a href="decisions.html" class="tab active">🎯 決策</a>
-    <a href="studies.html" class="tab ">📚 研究</a>
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../decisions.html" class="tab ">🎯 決策</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
   </nav>
 </header>
 <main>
-<h2 class="section-title">🎯 交易決策</h2>
 <div class="snap-selector">
   <label>📅 日期：</label>
-  <div class="snap-list" id="decDateList"></div>
+  <div class="snap-list" id="tlDateList"></div>
 </div>
-<div id="decCards" class="tab-content">
+<div id="tlCards" class="tab-content">
     <a href="2026-07-17/entry-34.html" class="entry-card" data-date="2026-07-17">
       <div class="entry-meta">
         <span class="entry-time">2026-07-17 02:18 HKT</span>
@@ -58,46 +57,6 @@
       </div>
       <div class="entry-title">ADD AMZN — +? shares @ 55.05</div>
       <div class="entry-tags"><span class="tag">sim-trader</span><span class="tag">historical</span><span class="tag">add</span></div>
-    </a>
-    <a href="2026-07-17/entry-2.html" class="entry-card" data-date="2026-07-17">
-      <div class="entry-meta">
-        <span class="entry-time">2026-07-17 00:39 HKT</span>
-        <div class="entry-badges"><span class="type-badge type-decision">決策</span><span class="tkr" style="--tkr-c:#76b900">NVDA</span><span class="pnl pnl-pos">+$356</span></div>
-      </div>
-      <div class="entry-title">HOLD NVDA — HOLD — NVDA -2</div>
-      <div class="entry-tags"><span class="tag">decision</span></div>
-    </a>
-    <a href="2026-07-17/entry-3.html" class="entry-card" data-date="2026-07-17">
-      <div class="entry-meta">
-        <span class="entry-time">2026-07-17 00:39 HKT</span>
-        <div class="entry-badges"><span class="type-badge type-decision">決策</span><span class="tkr" style="--tkr-c:#555555">AAPL</span><span class="pnl pnl-pos">+$2,674</span></div>
-      </div>
-      <div class="entry-title">HOLD AAPL — HOLD — AAPL +1</div>
-      <div class="entry-tags"><span class="tag">decision</span></div>
-    </a>
-    <a href="2026-07-17/entry-4.html" class="entry-card" data-date="2026-07-17">
-      <div class="entry-meta">
-        <span class="entry-time">2026-07-17 00:39 HKT</span>
-        <div class="entry-badges"><span class="type-badge type-decision">決策</span><span class="tkr" style="--tkr-c:#00a4ef">MSFT</span><span class="pnl pnl-pos">+$1,473</span></div>
-      </div>
-      <div class="entry-title">HOLD MSFT — HOLD — MSFT +1</div>
-      <div class="entry-tags"><span class="tag">decision</span></div>
-    </a>
-    <a href="2026-07-17/entry-5.html" class="entry-card" data-date="2026-07-17">
-      <div class="entry-meta">
-        <span class="entry-time">2026-07-17 00:39 HKT</span>
-        <div class="entry-badges"><span class="type-badge type-decision">決策</span><span class="tkr" style="--tkr-c:#0668e1">META</span><span class="pnl pnl-pos">+$1,375</span></div>
-      </div>
-      <div class="entry-title">HOLD META — HOLD — META -1</div>
-      <div class="entry-tags"><span class="tag">decision</span></div>
-    </a>
-    <a href="2026-07-17/entry-6.html" class="entry-card" data-date="2026-07-17">
-      <div class="entry-meta">
-        <span class="entry-time">2026-07-17 00:39 HKT</span>
-        <div class="entry-badges"><span class="type-badge type-decision">決策</span><span class="tkr" style="--tkr-c:#4285f4">GOOGL</span><span class="pnl pnl-pos">+$59</span></div>
-      </div>
-      <div class="entry-title">HOLD GOOGL — HOLD — GOOGL essentially flat at $371</div>
-      <div class="entry-tags"><span class="tag">decision</span></div>
     </a>
     <a href="2026-07-16/entry-32.html" class="entry-card" data-date="2026-07-16">
       <div class="entry-meta">
@@ -405,27 +364,19 @@
     </a>
 </div>
 <script>
-const DEC_DATES = ["2026-07-17", "2026-07-16", "2026-07-15", "2026-07-11", "2026-07-02", "2026-07-01", "2026-06-29", "2026-06-25", "2026-06-24", "2026-06-23", "2026-06-22", "2026-06-19", "2026-06-17", "2026-06-15", "2026-06-10"];
-const decData = {};
-document.querySelectorAll('#decCards .entry-card').forEach(c => {
-  const d = c.dataset.date;
-  if (d) { if (!decData[d]) decData[d] = []; decData[d].push(c); }
-});
-function filterDec(date) {
-  document.querySelectorAll('#decCards .entry-card').forEach(c => c.style.display = 'none');
+const TL_DATES = ["2026-07-17", "2026-07-16", "2026-07-15", "2026-07-11", "2026-07-02", "2026-07-01", "2026-06-29", "2026-06-25", "2026-06-24", "2026-06-23", "2026-06-22", "2026-06-19", "2026-06-17", "2026-06-15", "2026-06-10"];
+function filterTimeline(date) {
+  document.querySelectorAll('#tlCards .entry-card').forEach(c => c.style.display = 'none');
   if (!date || date === 'all') {
-    document.querySelectorAll('#decCards .entry-card').forEach(c => c.style.display = 'block');
-  } else if (decData[date]) {
-    decData[date].forEach(c => c.style.display = 'block');
+    document.querySelectorAll('#tlCards .entry-card').forEach(c => c.style.display = 'block');
+  } else {
+    document.querySelectorAll('#tlCards .entry-card[data-date="'+date+'"]').forEach(c => c.style.display = 'block');
   }
-  document.querySelectorAll('#decDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
+  document.querySelectorAll('#tlDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
 }
-document.getElementById('decDateList').innerHTML = '<a href="#" class="snap-btn active" data-date="all">全部</a>' +
-  DEC_DATES.map(d => '<a href="#" class="snap-btn" data-date="'+d+'">'+d+'</a>').join('');
-document.getElementById('decDateList').addEventListener('click', function(e) {
-  const btn = e.target.closest('.snap-btn');
-  if (btn) { filterDec(btn.dataset.date); e.preventDefault(); }
-});
+document.getElementById('tlDateList').innerHTML = '<a href="../index.html" class="snap-btn" data-date="all">全部</a>' +
+  TL_DATES.map(d => '<a href="../'+(d===TL_DATES[0]?'index.html':d+'/index.html')+'" class="snap-btn'+(d==="2026-06-17"?' active':'')+'" data-date="'+d+'">'+d+'</a>').join('');
+filterTimeline("2026-06-17");
 </script></main>
 <footer>
   <p>由 audit_log.py 自動生成 · <a href="https://github.com/nkyang10/hermes-stock-audit-log">GitHub 原始碼</a></p>
