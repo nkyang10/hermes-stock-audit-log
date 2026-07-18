@@ -253,11 +253,16 @@ def get_latest_holdings(entries):
 
 # ── generate pages ──
 
-def make_cards(entries, prefix=''):
+def make_cards(entries, prefix='', curr_date=None):
     cards = []
     for e in entries:
         dt = e['created_at'][:10] if e['created_at'] else ''
-        entry_path = f'{prefix}{dt}/entry-{e["id"]}.html' if dt else f'entry-{e["id"]}.html'
+        if curr_date and dt == curr_date:
+            entry_path = f'{prefix}entry-{e["id"]}.html'
+        elif dt:
+            entry_path = f'{prefix}{dt}/entry-{e["id"]}.html'
+        else:
+            entry_path = f'entry-{e["id"]}.html'
         cards.append(f'''\
     <a href="{entry_path}" class="entry-card">
       <div class="entry-meta">
@@ -452,7 +457,7 @@ def build_site(entries):
         day_content = ''
         if day_hld_html:
             day_content += f'<h2 class="section-title">💼 持倉</h2>\n{day_hld_html}\n'
-        day_entries_html = make_cards(day_entries)
+        day_entries_html = make_cards(day_entries, curr_date=dt)
         if day_entries_html:
             day_content += f'<h2 class="section-title">📋 記錄</h2>\n{day_entries_html}\n'
 
