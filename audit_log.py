@@ -689,15 +689,20 @@ def generate_detail(e, all_dates=None):
     dt = e['created_at'][:10] if e['created_at'] else ''
     prefix = '../' if dt else ''
 
-    ds = date_switcher_html(all_dates or [], dt, prefix)
-    kw2 = dict(title=f"#{e['id']} — {escape(e['title'])} | 股票審計記錄",
-               count=0, decisions=0, snapshots=0, studies=0, tickers_n=0,
-               ticker_row='', now='', prefix=prefix,
-               sel_all='', sel_hld='', sel_dec='', sel_stu='',
-               date_switcher=ds)
-    page_head = PAGE_HEAD.format(**kw2)
+    # Use page_head_html like all other pages
+    detail_header_kw = dict(
+        title=f"#{e['id']} — {escape(e['title'])}",
+        count=e.get('_total_count', 0), decisions=0, snapshots=0, studies=0,
+        tickers_n=0, ticker_row='', now=''
+    )
+    page_head = page_head_html(
+        f"#{e['id']} — {escape(e['title'])}", detail_header_kw,
+        prefix=prefix, all_dates=all_dates, hide_date_switcher=True,
+        curr_date=dt
+    )
 
     html = f'''{page_head}
+  <a href="{prefix}index.html" class="back-link">← 返去時間線</a>
   <div class="detail-entry">
     <div class="detail-meta">
       <div class="detail-time">{fmt_dt(e['created_at'])}</div>
@@ -716,7 +721,7 @@ def generate_detail(e, all_dates=None):
   {portfolio_html}
 </main>
 <footer>
-  <p><a href="{prefix}index.html">← 返去時間線</a> · 記錄 #{e['id']}</p>
+  <p>📊 <a href="{prefix}index.html">返回時間線</a> · 記錄 #{e['id']} · {fmt_dt(e['created_at'])}</p>
 </footer>
 </body>
 </html>'''
