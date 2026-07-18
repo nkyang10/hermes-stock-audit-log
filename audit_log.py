@@ -435,7 +435,7 @@ def build_site(entries):
 
     groups_html = '\n'.join(
         fmt_date_header(d) + '\n'.join(
-            f'<a href="entry-{e["id"]}.html" class="entry-card" data-date="{d}">\n'
+            f'<a href="{d}/entry-{e["id"]}.html" class="entry-card" data-date="{d}">\n'
             f'  <span class="entry-time">{e["created_at"][11:16]}</span>\n'
             f'  <span class="entry-badges">'
             f'    {type_badge(e["entry_type"])}'
