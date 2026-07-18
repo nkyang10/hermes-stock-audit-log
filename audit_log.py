@@ -411,8 +411,13 @@ def build_site(entries):
             })
 
     # ── Root pages (all dates) ──
-    # Index with JS date filter — only buy/sell decisions
-    action_entries = [e for e in entries if e['entry_type'] == 'decision']
+    # Index with JS date filter — only buy/sell/add/trim (not HOLD/no_action)
+    skip_prefixes = ('HOLD', 'no_action', 'skip', 'PASS', 'MONITOR', 'hold_review', 'none', 'hold_all')
+    action_entries = [
+        e for e in entries
+        if e['entry_type'] == 'decision'
+        and not any(e['title'].upper().startswith(p.upper()) for p in skip_prefixes)
+    ]
     all_cards_html = make_cards(action_entries)
     all_dates_json = json.dumps(
         sorted(set(e['created_at'][:10] for e in action_entries if e['created_at']), reverse=True),
