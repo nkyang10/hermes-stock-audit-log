@@ -4,32 +4,10 @@ Stock Audit Log — record every trade decision, study, and portfolio snapshot
 as readable HTML, served via GitHub Pages.
 
 Usage:
-  # Log a decision/study/snapshot
-  python3 audit_log.py log --type decision --ticker NVDA \\
-      --title "HOLD NVDA — semi sector dip recovery" \\
-      --reasoning "NVDA recovered from -3% intraday lows..." \\
-      --price 212.50 --tags semi,recovery,morgan-stanley
-
-  # Log a portfolio snapshot
-  python3 audit_log.py log --type snapshot --title "EOD 2026-07-16" \\
-      --portfolio portfolio.json --pnl "+$4,877"
-
-  # Log a study/analysis
-  python3 audit_log.py log --type study --title "Semi sector rotation analysis" \\
-      --reasoning study.md --tags sector-rotation,memory
-
-  # Build HTML site
+  python3 audit_log.py log --type decision --ticker NVDA --title "..." --reasoning "..."
   python3 audit_log.py build
-
-  # Push to GitHub
-  python3 audit_log.py push "Add portfolio snapshot 2026-07-16"
-
-  # One-shot: log + build + push
-  python3 audit_log.py commit --type decision --ticker NVDA \\
-      --title "..." --reasoning "..."
-
-SAFETY: This tool is designed for SIM-TRADING data ONLY.
-Real IBKR portfolio data must NEVER be logged here.
+  python3 audit_log.py push "message"
+  python3 audit_log.py commit --type snapshot --title "EOD" --portfolio pf.json
 """
 
 import argparse, json, os, re, sqlite3, shutil, subprocess, sys, textwrap
@@ -43,8 +21,6 @@ DOCS = HERE / "docs"
 ASSETS = DOCS / "assets"
 
 TZ_HK = timezone(timedelta(hours=8))
-
-# ── schema ──────────────────────────────────────────────
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS entries (
@@ -71,25 +47,21 @@ def get_db():
     conn.executescript(SCHEMA)
     return conn
 
-# ── log ─────────────────────────────────────────────────
+# ── log ──
 
 def cmd_log(args):
+    portfolio_raw = args.portfolio
     if args.portfolio and args.portfolio != '{}':
         try:
             with open(args.portfolio) as f:
-                portfolio_data = json.load(f)
-            # SAFETY: detect real portfolio by large values
-            portfolio_raw = json.dumps(portfolio_data, indent=2)
+                json.load(f)  # validate
+            portfolio_raw = args.portfolio
         except Exception as e:
             print(f"⚠ Cannot read portfolio file: {e}")
             portfolio_raw = '{}'
-    else:
-        portfolio_raw = args.portfolio
 
     reasoning = args.reasoning
     if reasoning and reasoning.strip():
-        # Check if reasoning is a file path or inline text
-        # Use existence check that won't fail on long strings
         try:
             maybe_path = reasoning.strip()
             if len(maybe_path) < 512:
@@ -97,15 +69,25 @@ def cmd_log(args):
                 if p.exists():
                     reasoning = p.read_text().strip()
         except (OSError, ValueError):
-            pass  # too long for a path, treat as inline text
+            pass
+
+    # If portfolio is a file path, read it
+    if portfolio_raw and portfolio_raw != '{}':
+        try:
+            p = Path(portfolio_raw)
+            if p.exists():
+                portfolio_raw = p.read_text()
+        except:
+            pass
 
     conn = get_db()
     conn.execute(
-        """INSERT INTO entries (entry_type, title, ticker, reasoning, price, pnl, portfolio, tags, source)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        """INSERT INTO entries (entry_type, title, ticker, reasoning, price, pnl, portfolio, tags, source, created_at)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
         (args.type, args.title, args.ticker or '',
          reasoning, args.price, args.pnl or '',
-         portfolio_raw, args.tags or '', args.source or '')
+         portfolio_raw, args.tags or '', args.source or '',
+         args.datetime or datetime.now(TZ_HK).strftime('%Y-%m-%d %H:%M:%S'))
     )
     conn.commit()
     entry_id = conn.execute("SELECT last_insert_rowid()").fetchone()[0]
@@ -113,38 +95,32 @@ def cmd_log(args):
     print(f"✓ Logged entry #{entry_id}: {args.type} — {args.title}")
     return entry_id
 
-# ── build ───────────────────────────────────────────────
+# ── rendering helpers ──
 
-def render_markdown(text):
-    """Very basic markdown→HTML for reasoning fields."""
+def render_md(text):
     if not text:
         return ""
     text = escape(text)
-    # code blocks
     text = re.sub(r'```(\w*)\n(.*?)```', r'<pre><code>\2</code></pre>', text, flags=re.DOTALL)
-    # inline code
     text = re.sub(r'`([^`]+)`', r'<code>\1</code>', text)
-    # bold
     text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
-    # italic
     text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
-    # bullet lines
     lines = []
     for line in text.split('\n'):
-        if line.strip().startswith('- ') or line.strip().startswith('* '):
-            lines.append(f'<li>{line.strip()[2:]}</li>')
-        elif line.strip().startswith('  - ') or line.strip().startswith('  * '):
-            lines.append(f'<li class="sub">{line.strip()[3:]}</li>')
-        elif re.match(r'^\d+\.\s', line.strip()):
-            lines.append(f'<li class="num">{line.strip()}</li>')
-        elif line.strip() == '':
+        s = line.strip()
+        if s.startswith('- ') or s.startswith('* '):
+            lines.append(f'<li>{s[2:]}</li>')
+        elif s.startswith('  - ') or s.startswith('  * '):
+            lines.append(f'<li class="sub">{s[3:]}</li>')
+        elif re.match(r'^\d+\.\s', s):
+            lines.append(f'<li class="num">{s}</li>')
+        elif s == '':
             lines.append('<br>')
         else:
             lines.append(f'<p>{line}</p>')
     return '\n'.join(lines)
 
 def fmt_num(n):
-    """Format number with commas."""
     if n is None: return '—'
     return f'{n:,.2f}'
 
@@ -155,7 +131,7 @@ def fmt_dt(iso_str):
     except:
         return iso_str
 
-TICKER_COLORS = {
+TKR_C = {
     'NVDA': '#76b900', 'AAPL': '#555555', 'MSFT': '#00a4ef',
     'META': '#0668e1', 'GOOGL': '#4285f4', 'AMZN': '#ff9900',
     'AMD': '#ed1c24', 'INTC': '#0071c5', 'TSLA': '#e82127',
@@ -163,105 +139,366 @@ TICKER_COLORS = {
     'STX': '#5dade2', 'AMKR': '#d4af37',
 }
 
-def generate_index(entries):
-    """Generate index.html — reverse chronological timeline."""
-    count = len(entries)
-    now = datetime.now(TZ_HK).strftime('%Y-%m-%d %H:%M')
-    # summary stats
-    decisions = sum(1 for e in entries if e['entry_type'] == 'decision')
-    snapshots = sum(1 for e in entries if e['entry_type'] == 'snapshot')
-    studies = sum(1 for e in entries if e['entry_type'] == 'study')
-    tickers = sorted(set(e['ticker'] for e in entries if e['ticker']))
+def tkr_html(t):
+    c = TKR_C.get(t.upper(), '#666')
+    return f'<span class="tkr-mini" style="--tkr-c:{c}">{escape(t)}</span>'
 
-    rows = []
-    for e in entries:
-        tag_html = ''
-        if e['tags']:
-            for t in e['tags'].split(','):
-                t = t.strip()
-                tag_html += f'<span class="tag">{escape(t)}</span>'
-        type_badge = f'<span class="type-badge type-{e["entry_type"]}">{e["entry_type"]}</span>'
-        ticker_badge = ''
-        if e['ticker']:
-            tc = TICKER_COLORS.get(e['ticker'].upper(), '#666')
-            ticker_badge = f'<span class="tkr" style="--tkr-c:{tc}">{escape(e["ticker"])}</span>'
-        pnl_badge = ''
-        if e['pnl']:
-            cls = 'pnl-pos' if e['pnl'].startswith('+') else 'pnl-neg' if e['pnl'].startswith('-') else ''
-            pnl_badge = f'<span class="pnl {cls}">{escape(e["pnl"])}</span>'
+def tkr_badge(t):
+    c = TKR_C.get(t.upper(), '#666')
+    return f'<span class="tkr" style="--tkr-c:{c}">{escape(t)}</span>'
 
-        rows.append(f'''\
-    <a href="entry-{e['id']}.html" class="entry-card">
-      <div class="entry-meta">
-        <span class="entry-time">{fmt_dt(e['created_at'])}</span>
-        <div class="entry-badges">{type_badge}{ticker_badge}{pnl_badge}</div>
-      </div>
-      <div class="entry-title">{escape(e['title'])}</div>
-      <div class="entry-tags">{tag_html}</div>
-    </a>''')
+def tag_html(tags):
+    if not tags: return ''
+    return ''.join(f'<span class="tag">{escape(t.strip())}</span>' for t in tags.split(','))
 
-    cards = '\n'.join(rows)
-    ticker_list = ', '.join(f'<span class="tkr-mini" style="--tkr-c:{TICKER_COLORS.get(t,"#666")}">{t}</span>' for t in tickers)
+def pnl_badge(pnl):
+    if not pnl: return ''
+    cls = 'pnl-pos' if pnl.startswith('+') else 'pnl-neg' if pnl.startswith('-') else ''
+    return f'<span class="pnl {cls}">{escape(pnl)}</span>'
 
-    html = f'''<!DOCTYPE html>
-<html lang="en">
+TYPE_LABELS = {'decision': '決策', 'snapshot': '快照', 'study': '研究', 'analysis': '分析'}
+
+def type_badge(t):
+    label = TYPE_LABELS.get(t, t)
+    return f'<span class="type-badge type-{t}">{label}</span>'
+
+# ── header / footer / nav / date switcher templates ──
+
+def date_switcher_html(all_dates, curr_date, prefix=''):
+    """Generate date switcher dropdown. curr_date=None means '全部'."""
+    html = '<div class="date-switcher"><label>📅 日期：</label><div class="date-list">'
+    sel = 'active' if curr_date is None else ''
+    html += f'<a href="{prefix}index.html" class="date-btn {sel}">全部</a>'
+    for d in all_dates:
+        sel = 'active' if d == curr_date else ''
+        html += f'<a href="{prefix}{d}/index.html" class="date-btn {sel}">{d}</a>'
+    html += '</div></div>'
+    return html
+
+def page_head_html(title, header_kw, prefix='', sel_all='', sel_hld='', sel_dec='', sel_stu='', curr_date=None, all_dates=None):
+    """Generate full page header with tabs and date switcher."""
+    ds = date_switcher_html(all_dates or [], curr_date, prefix) if all_dates else ''
+    kw = dict(header_kw, title=title, prefix=prefix,
+              sel_all=sel_all, sel_hld=sel_hld, sel_dec=sel_stu, sel_stu=sel_stu,
+              date_switcher=ds)
+    return PAGE_HEAD.format(**kw)
+
+PAGE_HEAD = '''<!DOCTYPE html>
+<html lang="zh-HK">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stock Audit Log</title>
-<link rel="stylesheet" href="assets/style.css">
+<title>{title}</title>
+<link rel="stylesheet" href="{prefix}assets/style.css">
 </head>
 <body>
 <header>
   <div class="hd-inner">
-    <h1>📊 Stock Audit Log</h1>
-    <div class="hd-sub">Sim-Trading Decision Journal · {count} entries</div>
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 {count} 條記錄</div>
     <div class="hd-stats">
-      <span class="stat">{decisions} decisions</span>
-      <span class="stat">{snapshots} snapshots</span>
-      <span class="stat">{studies} studies</span>
-      <span class="stat">{len(tickers)} tickers</span>
+      <span class="stat">{decisions} 項決策</span>
+      <span class="stat">{snapshots} 項快照</span>
+      <span class="stat">{studies} 項研究</span>
+      <span class="stat">{tickers_n} 隻股票</span>
     </div>
-    {f'<div class="hd-tickers">{ticker_list}</div>' if ticker_list else ''}
-    <div class="hd-last">Updated {now}</div>
+    {ticker_row}
+    <div class="hd-last">更新於 {now}</div>
   </div>
+  {date_switcher}
+  <nav class="tabs">
+    <a href="{prefix}index.html" class="tab {sel_all}">📋 時間線</a>
+    <a href="{prefix}holdings.html" class="tab {sel_hld}">💼 持倉</a>
+    <a href="{prefix}decisions.html" class="tab {sel_dec}">🎯 決策</a>
+    <a href="{prefix}studies.html" class="tab {sel_stu}">📚 研究</a>
+  </nav>
 </header>
 <main>
-  {cards}
-</main>
+'''
+
+PAGE_FOOT = '''</main>
 <footer>
-  <p>Generated by audit_log.py · <a href="https://github.com/nkyang10/hermes-stock-audit-log">View on GitHub</a></p>
+  <p>由 audit_log.py 自動生成 · <a href="https://github.com/nkyang10/hermes-stock-audit-log">GitHub 原始碼</a></p>
 </footer>
 </body>
 </html>'''
-    (DOCS / 'index.html').write_text(html)
-    return len(rows)
 
-def generate_detail(e):
-    """Generate entry-NNNNN.html for a single entry."""
+# ── extract latest portfolio snapshot ──
+
+def get_latest_holdings(entries):
+    """Return dict of {ticker: pos} from the most recent snapshot with data, or empty dict."""
+    for e in entries:
+        if e['entry_type'] != 'snapshot':
+            continue
+        pf = e.get('portfolio', '{}')
+        if isinstance(pf, str) and pf.strip():
+            try:
+                data = json.loads(pf)
+            except:
+                continue
+        elif isinstance(pf, dict):
+            data = pf
+        else:
+            continue
+        holdings = data.get('holdings', data)
+        if isinstance(holdings, dict):
+            clean = {}
+            for k, v in holdings.items():
+                sym = k.replace('NASDAQ:', '').replace('NYSE:', '')
+                clean[sym] = v
+            if clean:
+                return clean
+        return {}
+    return {}
+
+# ── generate pages ──
+
+def make_cards(entries, prefix=''):
+    cards = []
+    for e in entries:
+        dt = e['created_at'][:10] if e['created_at'] else ''
+        entry_path = f'{prefix}{dt}/entry-{e["id"]}.html' if dt else f'entry-{e["id"]}.html'
+        cards.append(f'''\
+    <a href="{entry_path}" class="entry-card">
+      <div class="entry-meta">
+        <span class="entry-time">{fmt_dt(e['created_at'])}</span>
+        <div class="entry-badges">{type_badge(e['entry_type'])}{tkr_badge(e['ticker']) if e['ticker'] else ''}{pnl_badge(e['pnl'])}</div>
+      </div>
+      <div class="entry-title">{escape(e['title'])}</div>
+      <div class="entry-tags">{tag_html(e['tags'])}</div>
+    </a>''')
+    return '\n'.join(cards)
+
+# ── holdings table renderer ──
+
+def render_holdings_table(holdings, cash=0, total_value=0):
+    """Render a full holdings table + summary cards. Returns HTML string."""
+    if not holdings:
+        return '<p class="empty">未有持倉數據</p>'
+    rows = []
+    total_mv = 0
+    grand_cost = 0
+    for sym, pos in sorted(holdings.items()):
+        shares = pos.get('shares', 0)
+        cost = pos.get('avg_cost', pos.get('entry', 0))
+        price = pos.get('current_price', pos.get('current', 0))
+        chg = pos.get('chg_pct', pos.get('change_pct', ''))
+        pnl = pos.get('pnl', pos.get('unrealized_pnl', 0))
+        mv = pos.get('market_value', pos.get('mv_usd', 0))
+        wt = pos.get('wt', pos.get('concentration_pct', ''))
+        total_mv += mv
+        grand_cost += shares * cost
+        chg_cls = ''
+        if isinstance(chg, (int, float)):
+            chg_cls = 'pnl-pos' if chg >= 0 else 'pnl-neg'
+        pnl_cls = ''
+        if isinstance(pnl, (int, float)):
+            pnl_cls = 'pnl-pos' if pnl >= 0 else 'pnl-neg'
+        rows.append(f'''\
+          <tr>
+            <td>{tkr_badge(sym)}</td>
+            <td class="r">{shares}</td>
+            <td class="r">${fmt_num(cost)}</td>
+            <td class="r">${fmt_num(price)}</td>
+            <td class="r {chg_cls}">{chg}%</td>
+            <td class="r {pnl_cls}">${fmt_num(pnl)}</td>
+            <td class="r">${fmt_num(mv)}</td>
+            <td class="r">{wt}%</td>
+          </tr>''')
+    total_pnl = total_mv - grand_cost
+    pnl_cls = 'pnl-pos' if total_pnl >= 0 else 'pnl-neg'
+    return f'''\
+    <div class="holdings-summary">
+      <div class="hsum-row">
+        <span class="hsum-label">總值</span>
+        <span class="hsum-val">${fmt_num(total_mv)}</span>
+      </div>
+      <div class="hsum-row {pnl_cls}">
+        <span class="hsum-label">總盈虧</span>
+        <span class="hsum-val">{'+' if total_pnl >= 0 else ''}${fmt_num(total_pnl)}</span>
+      </div>
+      <div class="hsum-row">
+        <span class="hsum-label">持倉數目</span>
+        <span class="hsum-val">{len(holdings)}</span>
+      </div>
+    </div>
+    <div class="pf-section">
+      <table class="pf-table">
+        <thead><tr><th>股票</th><th>股數</th><th>平均成本</th><th>現價</th><th>變幅</th><th>盈虧</th><th>市值</th><th>佔比</th></tr></thead>
+        <tbody>{''.join(rows)}</tbody>
+      </table>
+    </div>'''
+
+def gen_snapshot_holdings_page(snap_data, header_kw, all_dates=None, curr_date=None):
+    """Generate a standalone holdings page for one specific snapshot."""
+    sid = snap_data['id']
+    dt_label = curr_date or fmt_dt(snap_data.get('created_at', '')).replace(' HKT', '')
+    prefix = '../' if curr_date else ''
+    kw = dict(header_kw, sel_all='', sel_hld='active', sel_dec='', sel_stu='')
+    kw['title'] = f'💼 持倉 · {dt_label}'
+
+    # Use the new page_head_html with date switcher
+    ds = date_switcher_html(all_dates or [], curr_date, prefix)
+    kw2 = dict(header_kw, title=kw['title'], prefix=prefix,
+               sel_all='', sel_hld='active', sel_dec='', sel_stu='',
+               date_switcher=ds)
+    page_head = PAGE_HEAD.format(**kw2)
+
+    hld_html = render_holdings_table(snap_data['holdings'], snap_data.get('cash', 0), snap_data.get('total_value', 0))
+    html = page_head + f'<h2 class="section-title">💼 持倉 · {dt_label}</h2>\n' + hld_html + PAGE_FOOT
+    out_dir = DOCS / curr_date if curr_date else DOCS
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_path = out_dir / f'holdings.html'
+    out_path.write_text(html)
+
+def build_site(entries):
+    DOCS.mkdir(parents=True, exist_ok=True)
+    ASSETS.mkdir(parents=True, exist_ok=True)
+    (DOCS / '.nojekyll').write_text('')
+
+    now = datetime.now(TZ_HK).strftime('%Y-%m-%d %H:%M')
+    count = len(entries)
+    n_dec = sum(1 for e in entries if e['entry_type'] == 'decision')
+    n_snp = sum(1 for e in entries if e['entry_type'] == 'snapshot')
+    n_stu = sum(1 for e in entries if e['entry_type'] in ('study','analysis'))
+    tickers = sorted(set(e['ticker'] for e in entries if e['ticker']))
+    tkr_row = '<div class="hd-tickers">' + ', '.join(tkr_html(t) for t in tickers) + '</div>' if tickers else ''
+
+    header_kw = dict(title='📊 股票審計記錄', count=count,
+                     decisions=n_dec, snapshots=n_snp, studies=n_stu,
+                     tickers_n=len(tickers), ticker_row=tkr_row, now=now)
+
+    # Collect unique dates
+    all_dates = sorted(set(e['created_at'][:10] for e in entries if e['created_at']), reverse=True)
+
+    def write_page(path, title, content, sel_all='', sel_hld='', sel_dec='', sel_stu='', curr_date=None, prefix=''):
+        html = page_head_html(title, header_kw, prefix=prefix, curr_date=curr_date,
+                              all_dates=all_dates,
+                              sel_all=sel_all, sel_hld=sel_hld, sel_dec=sel_dec, sel_stu=sel_stu)
+        html += content + PAGE_FOOT
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(html)
+
+    # Collect snapshot data per date
+    snapshots_by_date = {}
+    for e in entries:
+        if e['entry_type'] != 'snapshot':
+            continue
+        dt = e['created_at'][:10]
+        pf = e.get('portfolio', '{}')
+        try:
+            data = json.loads(pf) if isinstance(pf, str) else {}
+        except:
+            continue
+        hld = data.get('holdings', data) if isinstance(data, dict) else {}
+        if isinstance(hld, dict) and hld:
+            clean = {}
+            for k, v in hld.items():
+                sym = k.replace('NASDAQ:', '').replace('NYSE:', '')
+                clean[sym] = v
+            if dt not in snapshots_by_date:
+                snapshots_by_date[dt] = []
+            snapshots_by_date[dt].append({
+                'id': e['id'], 'holdings': clean,
+                'cash': data.get('cash', 0),
+                'total_value': data.get('total_value', 0)
+            })
+
+    # ── Root pages (all dates) ──
+    # Index
+    write_page(DOCS / 'index.html', '📊 股票審計記錄',
+               '<div class="tab-content">\n' + make_cards(entries) + '\n</div>',
+               sel_all='active', curr_date=None, prefix='')
+
+    # Holdings (latest snapshot)
+    latest_holdings = ''
+    if snapshots_by_date:
+        latest_dt = list(snapshots_by_date.keys())[0]
+        latest_snap = snapshots_by_date[latest_dt][0]
+        latest_holdings = render_holdings_table(latest_snap['holdings'])
+    write_page(DOCS / 'holdings.html', '💼 持倉 — 全部',
+               f'<h2 class="section-title">💼 持倉</h2>\n{latest_holdings}',
+               sel_hld='active', curr_date=None, prefix='')
+
+    # Decisions
+    write_page(DOCS / 'decisions.html', '🎯 決策 — 全部',
+               '<h2 class="section-title">🎯 交易決策</h2>\n' +
+               make_cards([e for e in entries if e['entry_type'] == 'decision']),
+               sel_dec='active', curr_date=None, prefix='')
+
+    # Studies
+    write_page(DOCS / 'studies.html', '📚 研究 — 全部',
+               '<h2 class="section-title">📚 研究分析</h2>\n' +
+               make_cards([e for e in entries if e['entry_type'] in ('study','analysis')]),
+               sel_stu='active', curr_date=None, prefix='')
+
+    # ── Date folder pages ──
+    for dt in all_dates:
+        day_entries = [e for e in entries if e['created_at'].startswith(dt)]
+        day_dir = DOCS / dt
+        day_dir.mkdir(parents=True, exist_ok=True)
+
+        # Holdings for this day
+        day_hld_html = ''
+        if dt in snapshots_by_date:
+            day_hld_html = render_holdings_table(snapshots_by_date[dt][-1]['holdings'])
+            # Also generate per-snapshot pages
+            for snap in snapshots_by_date[dt]:
+                gen_snapshot_holdings_page(snap, header_kw, all_dates, dt)
+        else:
+            day_hld_html = '<p class="empty">呢日冇持倉快照</p>'
+
+        # Day index: entries + holdings
+        day_content = ''
+        if day_hld_html:
+            day_content += f'<h2 class="section-title">💼 持倉</h2>\n{day_hld_html}\n'
+        day_entries_html = make_cards(day_entries)
+        if day_entries_html:
+            day_content += f'<h2 class="section-title">📋 記錄</h2>\n{day_entries_html}\n'
+
+        write_page(day_dir / 'index.html', f'📊 {dt} — 股票審計記錄',
+                   day_content, curr_date=dt, prefix='../',
+                   sel_all='active' if not day_hld_html else '',
+                   sel_hld='active' if day_hld_html else '')
+
+    # ── Detail pages ── (entries live at root for now)
+    detail_entries = entries  # all entries get detail pages at root
+    for e in detail_entries:
+        generate_detail(e, all_dates)
+
+    return count
+
+# ── detail page ──
+
+def generate_detail(e, all_dates=None):
     portfolio_html = ''
-    pf = json.loads(e['portfolio']) if isinstance(e['portfolio'], str) else e.get('portfolio', {})
-    if pf and pf != '{}':
-        rows = []
-        total = 0
-        for sym, pos in pf.items():
-            mv = pos.get('market_value', pos.get('mv_usd', 0))
-            total += mv
-            sym_clean = sym.replace('NASDAQ:', '')
-            tc = TICKER_COLORS.get(sym_clean, '#666')
-            chg = pos.get('chg_pct', pos.get('change_pct', ''))
-            chg_cls = ''
-            if isinstance(chg, (int, float)) and chg != 0:
-                chg_cls = 'pnl-pos' if chg > 0 else 'pnl-neg'
-            pnl = pos.get('pnl', pos.get('unrealized_pnl', ''))
-            pnl_cls = ''
-            if isinstance(pnl, (int, float)):
-                pnl_cls = 'pnl-pos' if pnl > 0 else 'pnl-neg'
-            # SAFETY: if any stock position is > 500 shares, flag as possible real data
-            shares = pos.get('shares', 0)
-            if isinstance(shares, (int, float)) and shares > 500:
-                sym_clean += ' ⚠'
-            rows.append(f'''\
+    pf_raw = e.get('portfolio', '{}')
+    if pf_raw and pf_raw != '{}':
+        try:
+            pf = json.loads(pf_raw) if isinstance(pf_raw, str) else pf_raw
+        except:
+            pf = {}
+        holdings = pf.get('holdings', pf)
+        if isinstance(holdings, dict) and holdings:
+            rows = []
+            total = 0
+            for sym, pos in holdings.items():
+                mv = pos.get('market_value', pos.get('mv_usd', 0))
+                total += mv
+                sym_clean = sym.replace('NASDAQ:', '')
+                tc = TKR_C.get(sym_clean, '#666')
+                chg = pos.get('chg_pct', pos.get('change_pct', ''))
+                chg_cls = ''
+                if isinstance(chg, (int, float)):
+                    chg_cls = 'pnl-pos' if chg >= 0 else 'pnl-neg'
+                pnl = pos.get('pnl', pos.get('unrealized_pnl', ''))
+                pnl_cls = ''
+                if isinstance(pnl, (int, float)):
+                    pnl_cls = 'pnl-pos' if pnl >= 0 else 'pnl-neg'
+                shares = pos.get('shares', 0)
+                if isinstance(shares, (int, float)) and shares > 500:
+                    sym_clean += ' ⚠'
+                rows.append(f'''\
           <tr>
             <td><span class="tkr-mini" style="--tkr-c:{tc}">{escape(sym_clean)}</span></td>
             <td class="r">{pos.get("shares", "—")}</td>
@@ -272,93 +509,59 @@ def generate_detail(e):
             <td class="r">${fmt_num(mv)}</td>
             <td class="r">{pos.get("wt", pos.get("concentration_pct", ""))}%</td>
           </tr>''')
-        portfolio_html = f'''\
+            portfolio_html = f'''\
       <div class="pf-section">
-        <h3>Portfolio</h3>
-        <div class="pf-total">Total: <strong>${fmt_num(total)}</strong></div>
+        <h3>Snapshot 當時嘅持倉</h3>
+        <div class="pf-total">總值: <strong>${fmt_num(total)}</strong></div>
         <table class="pf-table">
-          <thead><tr><th>Ticker</th><th>Shares</th><th>Avg Cost</th><th>Price</th><th>Chg%</th><th>P&L</th><th>Value</th><th>Wt%</th></tr></thead>
+          <thead><tr><th>股票</th><th>股數</th><th>平均成本</th><th>現價</th><th>變幅</th><th>盈虧</th><th>市值</th><th>佔比</th></tr></thead>
           <tbody>{''.join(rows)}</tbody>
         </table>
       </div>'''
 
-    ticker_badge = ''
-    if e['ticker']:
-        tc = TICKER_COLORS.get(e['ticker'].upper(), '#666')
-        ticker_badge = f'<span class="tkr" style="--tkr-c:{tc}">{escape(e["ticker"])}</span>'
-    tag_html = ''
-    if e['tags']:
-        for t in e['tags'].split(','):
-            t = t.strip()
-            tag_html += f'<span class="tag">{escape(t)}</span>'
-    pnl_badge = ''
-    if e['pnl']:
-        cls = 'pnl-pos' if e['pnl'].startswith('+') else 'pnl-neg' if e['pnl'].startswith('-') else ''
-        pnl_badge = f'<span class="big-pnl {cls}">{escape(e["pnl"])}</span>'
+    reasoning_html = render_md(e['reasoning'])
+    dt = e['created_at'][:10] if e['created_at'] else ''
+    prefix = '../' if dt else ''
 
-    reasoning_html = render_markdown(e['reasoning'])
+    ds = date_switcher_html(all_dates or [], dt, prefix)
+    kw2 = dict(title=f"#{e['id']} — {escape(e['title'])} | 股票審計記錄",
+               count=0, decisions=0, snapshots=0, studies=0, tickers_n=0,
+               ticker_row='', now='', prefix=prefix,
+               sel_all='', sel_hld='', sel_dec='', sel_stu='',
+               date_switcher=ds)
+    page_head = PAGE_HEAD.format(**kw2)
 
-    html = f'''<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>#{e['id']} — {escape(e['title'])} | Stock Audit Log</title>
-<link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
-<header class="detail-hd">
-  <div class="hd-inner">
-    <a href="index.html" class="back-link">← Back to timeline</a>
+    html = f'''{page_head}
+  <div class="detail-entry">
     <div class="detail-meta">
       <div class="detail-time">{fmt_dt(e['created_at'])}</div>
       <div class="entry-badges">
-        <span class="type-badge type-{e['entry_type']}">{e['entry_type']}</span>
-        {ticker_badge}
-        {pnl_badge}
+        {type_badge(e['entry_type'])}
+        {tkr_badge(e['ticker']) if e['ticker'] else ''}
+        {pnl_badge(e['pnl'])}
       </div>
     </div>
     <h1>{escape(e['title'])}</h1>
-    <div class="entry-tags">{tag_html}</div>
+    <div class="entry-tags">{tag_html(e['tags'])}</div>
   </div>
-</header>
-<main>
   <div class="reasoning">
     {reasoning_html}
   </div>
   {portfolio_html}
 </main>
 <footer>
-  <p><a href="index.html">← Back to timeline</a> · Entry #{e['id']} · Generated by audit_log.py</p>
+  <p><a href="{prefix}index.html">← 返去時間線</a> · 記錄 #{e['id']}</p>
 </footer>
 </body>
 </html>'''
-    (DOCS / f"entry-{e['id']}.html").write_text(html)
+    out_dir = (DOCS / dt) if dt else DOCS
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / f"entry-{e['id']}.html").write_text(html)
 
-def cmd_build(args):
-    DOCS.mkdir(parents=True, exist_ok=True)
-    ASSETS.mkdir(parents=True, exist_ok=True)
-    (DOCS / '.nojekyll').write_text('')  # GitHub Pages: serve _underscore files
-
-    # write CSS
-    write_css()
-
-    conn = get_db()
-    rows = conn.execute(
-        "SELECT * FROM entries ORDER BY created_at DESC"
-    ).fetchall()
-    conn.close()
-
-    entries = [dict(r) for r in rows]
-    n = generate_index(entries)
-    for e in entries:
-        generate_detail(e)
-
-    print(f"✓ Built {n} entries → {DOCS}/")
-    print(f"  index.html + {n} detail pages")
+# ── CSS ──
 
 def write_css():
-    css = '''/* ── Stock Audit Log Theme ─────────────────────── */
+    css = '''/* ── Stock Audit Log v2 (Tabs) ────────────────── */
 :root {
   --bg: #0d1117;
   --bg-card: #161b22;
@@ -387,25 +590,147 @@ a:hover { text-decoration: underline; }
 header {
   border-bottom: 1px solid var(--border);
   background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
-  padding: 32px 20px 24px;
+  padding: 28px 20px 0;
 }
 .hd-inner { max-width: 800px; margin: 0 auto; }
-header h1 { font-size: 1.8em; margin-bottom: 4px; }
-.hd-sub { color: var(--text-muted); font-size: 0.9em; margin-bottom: 6px; }
-.hd-stats { display: flex; gap: 16px; flex-wrap: wrap; margin: 8px 0; }
-.stat { background: var(--bg-card); padding: 2px 10px; border-radius: 12px; font-size: 0.85em; border: 1px solid var(--border); }
-.hd-tickers { margin: 6px 0; display: flex; gap: 4px; flex-wrap: wrap; }
-.hd-last { color: var(--text-muted); font-size: 0.8em; margin-top: 4px; }
+header h1 { font-size: 1.6em; }
+.hd-sub { color: var(--text-muted); font-size: 0.85em; margin: 2px 0 6px; }
+.hd-stats { display: flex; gap: 12px; flex-wrap: wrap; margin: 6px 0; }
+.stat { background: var(--bg-card); padding: 2px 10px; border-radius: 12px; font-size: 0.82em; border: 1px solid var(--border); }
+.hd-tickers { margin: 4px 0; display: flex; gap: 4px; flex-wrap: wrap; }
+.hd-last { color: var(--text-muted); font-size: 0.78em; margin-bottom: 4px; }
+
+/* tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 14px;
+  padding: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.tab {
+  display: inline-block;
+  padding: 7px 18px;
+  font-size: 0.85em;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-radius: 8px;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.tab:hover {
+  color: var(--text);
+  background: var(--bg-hover);
+  text-decoration: none;
+}
+.tab.active {
+  color: #fff;
+  background: var(--accent);
+}
+.tab.active:hover {
+  background: #4090e0;
+}
+
+/* main */
+main { max-width: 800px; margin: 0 auto; padding: 16px 20px; }
+.section-title { font-size: 1.1em; font-weight: 600; margin-bottom: 12px; color: var(--text-muted); }
+
+/* snapshot date selector */
+.snap-selector {
+  margin-bottom: 16px;
+}
+.snap-selector label {
+  display: block;
+  font-size: 0.82em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.snap-list {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.snap-btn {
+  display: inline-block;
+  padding: 5px 14px;
+  font-size: 0.82em;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+.snap-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+.snap-btn.active {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* iframe for holdings page */
+.snap-iframe {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  min-height: 500px;
+}
+
+/* date switcher */
+.date-switcher {
+  margin: 10px 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.date-switcher label {
+  font-size: 0.8em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.date-list {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.date-btn {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 0.78em;
+  font-weight: 500;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+.date-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+.date-btn.active {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
 
 /* entry cards */
-main { max-width: 800px; margin: 0 auto; padding: 20px; }
 .entry-card {
   display: block;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 16px 20px;
-  margin-bottom: 10px;
+  padding: 14px 18px;
+  margin-bottom: 8px;
   transition: background 0.15s, border-color 0.15s;
   color: var(--text);
 }
@@ -418,13 +743,13 @@ main { max-width: 800px; margin: 0 auto; padding: 20px; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
   flex-wrap: wrap;
   gap: 4px;
 }
-.entry-time { color: var(--text-muted); font-size: 0.8em; }
+.entry-time { color: var(--text-muted); font-size: 0.78em; }
 .entry-badges { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
-.entry-title { font-size: 1.05em; font-weight: 600; margin-bottom: 4px; }
+.entry-title { font-size: 1.02em; font-weight: 600; margin-bottom: 4px; }
 .entry-tags { display: flex; gap: 4px; flex-wrap: wrap; }
 
 /* badges */
@@ -432,7 +757,7 @@ main { max-width: 800px; margin: 0 auto; padding: 20px; }
   display: inline-block;
   padding: 1px 8px;
   border-radius: 10px;
-  font-size: 0.72em;
+  font-size: 0.7em;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -446,18 +771,14 @@ main { max-width: 800px; margin: 0 auto; padding: 20px; }
   display: inline-block;
   padding: 1px 8px;
   border-radius: 10px;
-  font-size: 0.8em;
+  font-size: 0.78em;
   font-weight: 700;
   background: color-mix(in srgb, var(--tkr-c) 15%, transparent);
   color: var(--tkr-c);
   border: 1px solid color-mix(in srgb, var(--tkr-c) 40%, transparent);
 }
-.tkr-mini {
-  display: inline-block;
-  font-weight: 700;
-  color: var(--tkr-c);
-}
-.pnl { font-size: 0.82em; font-weight: 600; padding: 1px 6px; border-radius: 6px; }
+.tkr-mini { display: inline-block; font-weight: 700; color: var(--tkr-c); }
+.pnl { font-size: 0.8em; font-weight: 600; padding: 1px 6px; border-radius: 6px; }
 .pnl-pos { color: var(--green); }
 .pnl-neg { color: var(--red); }
 
@@ -465,63 +786,85 @@ main { max-width: 800px; margin: 0 auto; padding: 20px; }
   display: inline-block;
   padding: 1px 7px;
   border-radius: 8px;
-  font-size: 0.72em;
+  font-size: 0.7em;
   font-weight: 500;
   background: var(--bg);
   border: 1px solid var(--border);
   color: var(--text-muted);
 }
 
+/* holdings page */
+.holdings-summary {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.hsum-row {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 18px;
+  text-align: center;
+  flex: 1;
+  min-width: 120px;
+}
+.hsum-label { display: block; font-size: 0.78em; color: var(--text-muted); margin-bottom: 4px; }
+.hsum-val { display: block; font-size: 1.3em; font-weight: 700; }
+.hsum-row.pnl-pos .hsum-val { color: var(--green); }
+.hsum-row.pnl-neg .hsum-val { color: var(--red); }
+
 /* detail page */
-.detail-hd { padding-bottom: 20px; }
-.detail-hd h1 { font-size: 1.5em; margin-top: 8px; }
+.detail-hd { padding-bottom: 16px; }
+.detail-hd .tabs { margin-top: 0; }
+.detail-hd h1 { font-size: 1.4em; margin-top: 8px; }
 .detail-meta { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
-.detail-time { color: var(--text-muted); font-size: 0.85em; }
-.back-link { display: inline-block; margin-bottom: 8px; font-size: 0.9em; }
-.big-pnl { font-size: 1.1em; font-weight: 700; }
+.detail-time { color: var(--text-muted); font-size: 0.82em; }
+.back-link { display: inline-block; margin-bottom: 8px; font-size: 0.85em; }
 
 .reasoning {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 18px;
+  margin-bottom: 16px;
 }
-.reasoning p { margin-bottom: 10px; }
-.reasoning li { margin-bottom: 4px; margin-left: 20px; }
-.reasoning li.sub { list-style-type: circle; margin-left: 36px; color: var(--text-muted); }
-.reasoning li.num { list-style-type: decimal; margin-left: 20px; }
+.reasoning p { margin-bottom: 8px; }
+.reasoning li { margin-bottom: 3px; margin-left: 18px; }
+.reasoning li.sub { list-style-type: circle; margin-left: 32px; color: var(--text-muted); }
+.reasoning li.num { list-style-type: decimal; margin-left: 18px; }
 .reasoning pre {
   background: #0d1117;
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 12px;
+  padding: 10px;
   overflow-x: auto;
-  font-size: 0.85em;
-  margin: 10px 0;
+  font-size: 0.83em;
+  margin: 8px 0;
 }
 .reasoning code {
   background: #0d1117;
   padding: 1px 5px;
   border-radius: 4px;
-  font-size: 0.85em;
+  font-size: 0.83em;
 }
 .reasoning br { display: none; }
 .reasoning strong { color: #f0f6fc; }
+.empty { color: var(--text-muted); font-style: italic; padding: 20px; text-align: center; }
 
 /* portfolio table */
 .pf-section {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 18px;
+  margin-bottom: 16px;
 }
-.pf-section h3 { margin-bottom: 8px; font-size: 1em; }
-.pf-total { text-align: right; margin-bottom: 10px; font-size: 1em; color: var(--text-muted); }
-.pf-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
-.pf-table th { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); color: var(--text-muted); font-weight: 500; }
-.pf-table td { padding: 6px 8px; border-bottom: 1px solid var(--border); }
+.pf-section h3 { margin-bottom: 8px; font-size: 0.95em; color: var(--text-muted); }
+.pf-total { text-align: right; margin-bottom: 8px; font-size: 0.95em; color: var(--text-muted); }
+.pf-table { width: 100%; border-collapse: collapse; font-size: 0.82em; }
+.pf-table th { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--border); color: var(--text-muted); font-weight: 500; }
+.pf-table td { padding: 5px 8px; border-bottom: 1px solid var(--border); }
 .pf-table th.r, td.r { text-align: right; }
 .pf-table tr:last-child td { border-bottom: none; }
 
@@ -529,30 +872,52 @@ main { max-width: 800px; margin: 0 auto; padding: 20px; }
 footer {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 16px 20px;
   text-align: center;
   color: var(--text-muted);
-  font-size: 0.8em;
+  font-size: 0.78em;
   border-top: 1px solid var(--border);
 }
 footer a { color: var(--text-muted); }
 
 /* responsive */
 @media (max-width: 600px) {
-  header { padding: 20px 12px 16px; }
+  header { padding: 20px 12px 0; }
   main { padding: 12px; }
-  .entry-card { padding: 12px 14px; }
-  .pf-table { font-size: 0.75em; }
-  .pf-table th, .pf-table td { padding: 4px 6px; }
+  .tab { padding: 5px 10px; font-size: 0.78em; }
+  .entry-card { padding: 10px 12px; }
+  .holdings-summary { gap: 8px; }
+  .hsum-row { padding: 8px 12px; min-width: 80px; }
+  .hsum-val { font-size: 1.1em; }
+  .pf-table { font-size: 0.72em; }
+  .pf-table th, .pf-table td { padding: 3px 5px; }
 }
 '''
     (ASSETS / 'style.css').write_text(css)
 
-# ── push ────────────────────────────────────────────────
+# ── build ──
+
+def cmd_build(args):
+    DOCS.mkdir(parents=True, exist_ok=True)
+    ASSETS.mkdir(parents=True, exist_ok=True)
+    (DOCS / '.nojekyll').write_text('')
+
+    write_css()
+
+    conn = get_db()
+    rows = conn.execute("SELECT * FROM entries ORDER BY created_at DESC").fetchall()
+    conn.close()
+
+    entries = [dict(r) for r in rows]
+    n = build_site(entries)
+
+    print(f"✓ Built {n} entries → {DOCS}/")
+    print(f"  index.html | holdings.html | decisions.html | studies.html + {n} detail pages")
+
+# ── push ──
 
 def cmd_push(args):
     msg = args.message or f"Audit log update {datetime.now(TZ_HK).strftime('%Y-%m-%d %H:%M')}"
-    # Safety check: never push real portfolio data
     for f in DOCS.rglob('*.html'):
         content = f.read_text()
         if '⚠' in content:
@@ -562,10 +927,7 @@ def cmd_push(args):
                 return
 
     subprocess.run(['git', '-C', str(HERE), 'add', 'docs/'], check=True)
-    result = subprocess.run(
-        ['git', '-C', str(HERE), 'diff', '--cached', '--quiet'],
-        capture_output=True
-    )
+    result = subprocess.run(['git', '-C', str(HERE), 'diff', '--cached', '--quiet'], capture_output=True)
     if result.returncode == 0:
         print("✓ Nothing new to push")
         return
@@ -573,7 +935,7 @@ def cmd_push(args):
     subprocess.run(['git', '-C', str(HERE), 'push', 'origin', 'main'], check=True)
     print(f"✓ Pushed to GitHub: {msg}")
 
-# ── commit (one-shot) ──────────────────────────────────
+# ── commit (one-shot) ──
 
 def cmd_commit(args):
     eid = cmd_log(args)
@@ -581,13 +943,12 @@ def cmd_commit(args):
     cmd_push(args)
     print(f"\n✓ Entry #{eid} committed and pushed")
 
-# ── main ────────────────────────────────────────────────
+# ── main ──
 
 def main():
     p = argparse.ArgumentParser(description='Stock Audit Log — record & publish trade decisions')
     sub = p.add_subparsers(dest='cmd')
 
-    # log
     plog = sub.add_parser('log', help='Log a new entry')
     plog.add_argument('--type', '-t', required=True, choices=['decision','snapshot','study','analysis'])
     plog.add_argument('--title', required=True)
@@ -598,39 +959,31 @@ def main():
     plog.add_argument('--portfolio', default='{}')
     plog.add_argument('--tags', default='')
     plog.add_argument('--source', default='')
+    plog.add_argument('--datetime', default='', help='Custom timestamp (YYYY-MM-DD HH:MM:SS) for historical entries')
 
-    # build
     pbuild = sub.add_parser('build', help='Generate HTML site from database')
-
-    # push
     ppush = sub.add_parser('push', help='Commit docs/ and push to GitHub')
     ppush.add_argument('message', nargs='?', default='')
-    ppush.add_argument('--force', action='store_true', help='Push even if ⚠ markers detected')
+    ppush.add_argument('--force', action='store_true')
 
-    # commit (one-shot)
     pcommit = sub.add_parser('commit', help='Log + build + push in one step')
-    pcommit.add_argument('--type', '-t', required=True, choices=['decision','snapshot','study','analysis'])
-    pcommit.add_argument('--title', required=True)
-    pcommit.add_argument('--ticker', default='')
-    pcommit.add_argument('--reasoning', default='')
-    pcommit.add_argument('--price', type=float, default=None)
-    pcommit.add_argument('--pnl', default='')
-    pcommit.add_argument('--portfolio', default='{}')
-    pcommit.add_argument('--tags', default='')
-    pcommit.add_argument('--source', default='')
-    pcommit.add_argument('--force', action='store_true', help='Push even if ⚠ markers detected')
+    for a in ['type','title','ticker','reasoning','price','pnl','portfolio','tags','source','datetime']:
+        kw = {'default': '', 'required': a in ('type','title')}
+        if a == 'type':
+            kw['choices'] = ['decision','snapshot','study','analysis']
+        if a == 'price':
+            kw['type'] = float; kw.pop('default')
+        if a == 'force':
+            continue
+        pcommit.add_argument(f'--{a}', **kw)
+    pcommit.add_argument('--force', action='store_true')
 
     args = p.parse_args()
-    if args.cmd == 'log':
-        cmd_log(args)
-    elif args.cmd == 'build':
-        cmd_build(args)
-    elif args.cmd == 'push':
-        cmd_push(args)
-    elif args.cmd == 'commit':
-        cmd_commit(args)
-    else:
-        p.print_help()
+    if args.cmd == 'log':      cmd_log(args)
+    elif args.cmd == 'build':  cmd_build(args)
+    elif args.cmd == 'push':   cmd_push(args)
+    elif args.cmd == 'commit': cmd_commit(args)
+    else:                      p.print_help()
 
 if __name__ == '__main__':
     main()
