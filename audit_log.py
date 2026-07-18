@@ -418,10 +418,34 @@ def build_site(entries):
         if e['entry_type'] == 'decision'
         and not any(e['title'].upper().startswith(p.upper()) for p in skip_prefixes)
     ]
-    all_cards_html = make_cards(action_entries)
-    all_dates_json = json.dumps(
-        sorted(set(e['created_at'][:10] for e in action_entries if e['created_at']), reverse=True),
-        ensure_ascii=False
+    # Group entries by date for compact display
+    from collections import defaultdict
+    grouped = defaultdict(list)
+    for e in action_entries:
+        d = e['created_at'][:10] if e['created_at'] else 'unknown'
+        grouped[d].append(e)
+
+    all_dates = sorted(grouped.keys(), reverse=True)
+    all_dates_json = json.dumps(all_dates, ensure_ascii=False)
+    all_cards_html = make_cards(action_entries)  # flat list for date folder pages
+
+    # Build grouped HTML: date header + cards per group
+    def fmt_date_header(d):
+        return f'<div class="tl-date-group" data-date="{d}"><div class="tl-date-hdr">{d}</div>'
+
+    groups_html = '\n'.join(
+        fmt_date_header(d) + '\n'.join(
+            f'<a href="entry-{e["id"]}.html" class="entry-card" data-date="{d}">\n'
+            f'  <span class="entry-time">{e["created_at"][11:16]}</span>\n'
+            f'  <span class="entry-badges">'
+            f'    {type_badge(e["entry_type"])}'
+            f'    {tkr_badge(e["ticker"]) if e["ticker"] else ""}'
+            f'    {pnl_badge(e["pnl"])}'
+            f'  </span>\n'
+            f'  <span class="entry-title">{escape(e["title"])}</span>\n'
+            f'</a>' for e in entries_of_day
+        ) + '\n</div>'
+        for d, entries_of_day in [(d, grouped[d]) for d in all_dates]
     )
     index_js = f'''<h2 class="section-title">📋 時間線（買賣記錄）</h2>
 <div class="snap-selector">
@@ -429,23 +453,15 @@ def build_site(entries):
   <div class="snap-list" id="tlDateList"></div>
 </div>
 <div id="tlCards" class="tab-content">
-{all_cards_html}
+{groups_html}
 </div>
 <script>
 const TL_DATES = {all_dates_json};
-const tlData = {{}};
-document.querySelectorAll('#tlCards .entry-card').forEach(c => {{
-  const d = c.dataset.date;
-  if (d) {{ if (!tlData[d]) tlData[d] = []; tlData[d].push(c); }}
-}});
 function filterTimeline(date) {{
-  document.querySelectorAll('#tlCards .entry-card').forEach(c => c.style.display = 'none');
-  if (!date || date === 'all') {{
-    document.querySelectorAll('#tlCards .entry-card').forEach(c => c.style.display = 'block');
-  }} else if (tlData[date]) {{
-    tlData[date].forEach(c => c.style.display = 'block');
-  }}
-  document.querySelectorAll('#tlDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
+ document.querySelectorAll('.tl-date-group').forEach(g => {{
+   g.style.display = (!date || date === 'all' || g.dataset.date === date) ? 'block' : 'none';
+ }});
+ document.querySelectorAll('#tlDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
 }}
 document.getElementById('tlDateList').innerHTML = '<a href="#" class="snap-btn active" data-date="all">全部</a>' +
   TL_DATES.map(d => '<a href="#" class="snap-btn" data-date="'+d+'">'+d+'</a>').join('');
@@ -615,17 +631,12 @@ document.getElementById('stuDateList').addEventListener('click', function(e) {{
 </div>
 <script>
 const TL_DATES = {all_dates_json};
-const tlData = {{}};
-document.querySelectorAll('#tlCards .entry-card').forEach(c => {{
-  const d = c.dataset.date;
-  if (d) {{ if (!tlData[d]) tlData[d] = []; tlData[d].push(c); }}
-}});
 function filterTimeline(date) {{
   document.querySelectorAll('#tlCards .entry-card').forEach(c => c.style.display = 'none');
   if (!date || date === 'all') {{
     document.querySelectorAll('#tlCards .entry-card').forEach(c => c.style.display = 'block');
-  }} else if (tlData[date]) {{
-    tlData[date].forEach(c => c.style.display = 'block');
+  }} else {{
+    document.querySelectorAll('#tlCards .entry-card[data-date="'+date+'"]').forEach(c => c.style.display = 'block');
   }}
   document.querySelectorAll('#tlDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
 }}
@@ -1031,6 +1042,23 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 20px; }
 .reasoning br { display: none; }
 .reasoning strong { color: #f0f6fc; }
 .empty { color: var(--text-muted); font-style: italic; padding: 20px; text-align: center; }
+
+/* timeline group */
+.tl-date-group { margin-bottom: 12px; }
+.tl-date-hdr {
+  font-size: 0.85em; font-weight: 600; color: var(--accent);
+  padding: 6px 0 4px; margin-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.tl-date-group .entry-card {
+  padding: 8px 14px; margin-bottom: 3px;
+  display: flex; align-items: center; gap: 8px;
+}
+.tl-date-group .entry-card .entry-time {
+  font-size: 0.72em; color: var(--text-muted); white-space: nowrap; min-width: 3em;
+}
+.tl-date-group .entry-card .entry-title { font-size: 0.88em; flex: 1; margin: 0; }
+.tl-date-group .entry-card .entry-badges { margin: 0; }
 
 /* portfolio table */
 .pf-section {
