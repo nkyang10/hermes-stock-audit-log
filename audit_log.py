@@ -415,14 +415,61 @@ def build_site(entries):
                '<div class="tab-content">\n' + make_cards(entries) + '\n</div>',
                sel_all='active', curr_date=None, prefix='')
 
-    # Holdings (latest snapshot)
-    latest_holdings = ''
-    if snapshots_by_date:
-        latest_dt = list(snapshots_by_date.keys())[0]
-        latest_snap = snapshots_by_date[latest_dt][0]
-        latest_holdings = render_holdings_table(latest_snap['holdings'])
-    write_page(DOCS / 'holdings.html', '💼 持倉 — 全部',
-               f'<h2 class="section-title">💼 持倉</h2>\n{latest_holdings}',
+    # Holdings with JS date selector (replaces static per-date holdings)
+    snapshots_json = json.dumps(snapshots_by_date, ensure_ascii=False)
+    holdings_js = f'''<div class="snap-selector">
+  <label>📅 選擇日期：</label>
+  <div class="snap-list" id="snapList"></div>
+</div>
+<div id="holdingsContainer"><p class="empty">載入中…</p></div>
+<script>
+const SNAPSHOTS = {snapshots_json};
+const TKR_COLORS = {json.dumps(TKR_C, ensure_ascii=False)};
+let currentDate = null;
+function fmtNum(n) {{ return n.toLocaleString('en-US', {{minimumFractionDigits:2, maximumFractionDigits:2}}); }}
+function tkrBadge(sym) {{
+  const c = TKR_COLORS[sym] || '#666';
+  return '<span class="tkr" style="--tkr-c:'+c+'">'+sym+'</span>';
+}}
+function renderHoldings(date) {{
+  currentDate = date;
+  const snaps = SNAPSHOTS[date];
+  if (!snaps || !snaps.length) {{ document.getElementById('holdingsContainer').innerHTML = '<p class="empty">呢日冇持倉快照</p>'; return; }}
+  const snap = snaps[snaps.length-1];
+  const h = snap.holdings;
+  let totalMV = 0, totalCost = 0;
+  const rows = Object.keys(h).sort().map(sym => {{
+    const pos = h[sym];
+    const sh = pos.shares || 0;
+    const cost = pos.avg_cost || pos.entry || 0;
+    const price = pos.current_price || pos.current || 0;
+    const mv = pos.market_value || pos.mv_usd || (sh * price);
+    const pnl = pos.pnl || pos.unrealized_pnl || (mv - sh * cost);
+    const chg = pos.chg_pct || pos.change_pct || ((price/cost-1)*100);
+    totalMV += mv; totalCost += sh * cost;
+    const chgCls = chg >= 0 ? 'pnl-pos' : 'pnl-neg';
+    const pnlCls = pnl >= 0 ? 'pnl-pos' : 'pnl-neg';
+    return '<tr><td>'+tkrBadge(sym)+'</td><td class="r">'+sh+'</td><td class="r">$'+fmtNum(cost)+'</td><td class="r">$'+fmtNum(price)+'</td><td class="r '+chgCls+'">'+(typeof chg==='number'?chg.toFixed(2):chg)+'%</td><td class="r '+pnlCls+'">$'+fmtNum(pnl)+'</td><td class="r">$'+fmtNum(mv)+'</td></tr>';
+  }});
+  const totalPnl = totalMV - totalCost;
+  const pnlCls = totalPnl >= 0 ? 'pnl-pos' : 'pnl-neg';
+  document.getElementById('holdingsContainer').innerHTML =
+    '<div class="holdings-summary"><div class="hsum-row"><span class="hsum-label">總值</span><span class="hsum-val">$'+fmtNum(totalMV)+'</span></div><div class="hsum-row '+pnlCls+'"><span class="hsum-label">總盈虧</span><span class="hsum-val">'+(totalPnl>=0?'+':'')+'$'+fmtNum(totalPnl)+'</span></div><div class="hsum-row"><span class="hsum-label">持倉</span><span class="hsum-val">'+Object.keys(h).length+'</span></div></div>'+
+    '<div class="pf-section"><table class="pf-table"><thead><tr><th>股票</th><th>股數</th><th>平均成本</th><th>現價</th><th>變幅</th><th>盈虧</th><th>市值</th></tr></thead><tbody>'+rows.join('')+'</tbody></table></div>';
+  // Update button active state
+  document.querySelectorAll('.snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === date));
+}}
+// Render date buttons + latest snapshot
+const dates = Object.keys(SNAPSHOTS).sort().reverse();
+document.getElementById('snapList').innerHTML = dates.map(d => '<a href="#" class="snap-btn" data-date="'+d+'">'+d+'</a>').join('');
+document.getElementById('snapList').addEventListener('click', function(e) {{
+  const btn = e.target.closest('.snap-btn');
+  if (btn) {{ renderHoldings(btn.dataset.date); e.preventDefault(); }}
+}});
+if (dates.length) renderHoldings(dates[0]);
+</script>'''
+    write_page(DOCS / 'holdings.html', '💼 持倉',
+               f'<h2 class="section-title">💼 持倉</h2>\n{holdings_js}',
                sel_hld='active', curr_date=None, prefix='')
 
     # Decisions
@@ -444,12 +491,8 @@ def build_site(entries):
         day_dir.mkdir(parents=True, exist_ok=True)
 
         # Holdings for this day
-        day_hld_html = ''
         if dt in snapshots_by_date:
             day_hld_html = render_holdings_table(snapshots_by_date[dt][-1]['holdings'])
-            # Also generate per-snapshot pages
-            for snap in snapshots_by_date[dt]:
-                gen_snapshot_holdings_page(snap, header_kw, all_dates, dt)
         else:
             day_hld_html = '<p class="empty">呢日冇持倉快照</p>'
 
