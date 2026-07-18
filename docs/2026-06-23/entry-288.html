@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#288 — 研究 · options_flow_analysis_2026-06-23</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 0 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">0 項決策</span>
+      <span class="stat">0 項快照</span>
+      <span class="stat">0 項研究</span>
+      <span class="stat">0 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-06-23 12:00 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>研究 · options_flow_analysis_2026-06-23</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">backfill</span></div>
+  </div>
+  <div class="reasoning">
+    <p># 期權異動分析 — 2026年6月23日收市後</p>
+<br>
+<p>## INTC (Calls) — 極大量OTM Call Activity</p>
+<p>股價升 +5.19%，出現極大額、極高V/OI比率OTM Calls：</p>
+<br>
+<p>| Strike | Exp | Vol | OI | V/OI | Premium |</p>
+<p>|--------|-----|-----|-----|------|---------|</p>
+<p>| $76C | 6/26 | 7,505 | 352 | 21.3x | $48.8M |</p>
+<p>| $78C | 6/26 | 7,355 | 257 | 28.6x | $46.3M |</p>
+<p>| $77C | 6/26 | 6,356 | 253 | 25.1x | $40.7M |</p>
+<p>| $79C | 6/26 | 4,704 | 4 | 1,426x | $35.2M |</p>
+<p>| $75C | 6/26 | 2,814 | 377 | 7.5x | $18.6M |</p>
+<br>
+<p><strong>總溢價：~$189.6M</strong></p>
+<br>
+<p>解讀：全部係6/26到期的OTM Calls，V/OI比率極高（最誇張$79C V/OI 1,426倍），明顯係新開倉，唔係平倉。呢個規模（接近$1.9億）唔似散戶所為，似係機構級別嘅大戶睇好INTC短期內會突破$75-$79。</p>
+<br>
+<p>## AMZN (Puts) — 明天到期嘅重倉Put</p>
+<p>股價跌 -4.75%，出現兩張明天到期嘅Put：</p>
+<br>
+<p>| Strike | Exp | Vol | OI | V/OI | Premium |</p>
+<p>|--------|-----|-----|-----|------|---------|</p>
+<p>| $270P | 6/24 | 8,452 | 0 | ∞ | $31M |</p>
+<p>| $265P | 6/24 | 6,895 | 0 | ∞ | $21.1M |</p>
+<br>
+<p><strong>總溢價：~$52.1M</strong></p>
+<br>
+<p>解讀：OI=0代表全部係新開倉，明天就到期。買入大量價外Put（現價~$283左右），賭明天AMZN會跌穿$270甚至$265。呢個係極短期嘅方向性賭注，可能係對沖或純粹睇淡。</p>
+<br>
+<p>## TSLA — 雙邊Strangle/Straddle活動</p>
+<p>股價收$405.05（+1.14%），Call同Put都有大量成交：</p>
+<br>
+<p><strong>Calls：</strong></p>
+<p>| Strike | Exp | Vol | OI | V/OI | Premium |</p>
+<p>|--------|-----|-----|-----|------|---------|</p>
+<p>| $400C | 6/26 | 25,734 | 5,682 | 4.5x | $28.3M |</p>
+<p>| $370C | 6/24 | 5,433 | 312 | 17.4x | $20.3M |</p>
+<p>| $380C | 6/24 | 6,886 | 294 | 23.4x | $17.8M |</p>
+<br>
+<p><strong>Puts：</strong></p>
+<p>| Strike | Exp | Vol | OI | V/OI | Premium |</p>
+<p>|--------|-----|-----|-----|------|---------|</p>
+<p>| $420P | 6/24 | 14,924 | 1,458 | 10.2x | $24.2M |</p>
+<p>| $410P | 6/24 | 23,108 | 1,599 | 14.5x | $19.8M |</p>
+<p>| $410P | 6/26 | 17,142 | 2,664 | 6.4x | $18.7M |</p>
+<br>
+<p><strong>總溢價：~$129.1M</strong></p>
+<br>
+<p>解讀：呢個係典型嘅strangle/ straddle策略。一邊買$370C/$380C/$400C Call，另一邊買$410P/$420P Put。尤其留意6/24（明天）有大量$410P（23,108張）同$420P（14,924張），加上6/24嘅$370C同$380C，明顯有人賭TSLA明天會有大波幅，但方向唔確定，雙邊買晒。同時6/26嘅$400C（25,734張）同$410P（17,142張）顯示中線都有人佈局雙邊。</p>
+<br>
+<p>## SNDK — 大額Straddle</p>
+<p>股價收$2,273.73（+4.07%），6/26到期：</p>
+<br>
+<p>| Strike | Type | Vol | OI | V/OI | Premium |</p>
+<p>|--------|------|-----|-----|------|---------|</p>
+<p>| $2300C | Call | 2,498 | 856 | 2.9x | $29.8M |</p>
+<p>| $2300P | Put | 1,981 | 764 | 2.6x | $28.7M |</p>
+<br>
+<p><strong>總溢價：~$58.5M</strong></p>
+<br>
+<p>解讀：At-the-money Straddle（現價$2,273.73，strike $2,300），Call同Put比例接近，係標準嘅雙邊波幅賭注。V/OI~2.6-2.9x係新開倉，賭SNDK到6/26會有大幅波動，方向中性。</p>
+<br>
+<p>## 整體市場信號總結</p>
+<br>
+<li class="num">1. <strong>INTC</strong> 🟢：最強嘅牛信號。$1.9億新開倉OTM Calls，機構級睇好。</li>
+<li class="num">2. <strong>AMZN</strong> 🔴：明確熊信號。$5,200萬明天到期Put，賭即市下跌。</li>
+<li class="num">3. <strong>TSLA</strong> 🟡：波幅信號。$1.29億雙邊部署，方向未明但賭大波幅。</li>
+<li class="num">4. <strong>SNDK</strong> 🟡：波幅信號。$5,850萬At-the-money Straddle，賭波幅擴張。</li>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #288 · 2026-06-23 12:00 HKT</p>
+</footer>
+</body>
+</html>

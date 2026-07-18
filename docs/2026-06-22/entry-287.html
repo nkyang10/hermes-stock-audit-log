@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#287 — 研究 · options_analysis_report</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 0 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">0 項決策</span>
+      <span class="stat">0 項快照</span>
+      <span class="stat">0 項研究</span>
+      <span class="stat">0 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-06-22 12:00 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>研究 · options_analysis_report</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">backfill</span></div>
+  </div>
+  <div class="reasoning">
+    <p># 期權異動分析報告 — 2026年6月23日</p>
+<p>Generated: 2026-06-23 23:03 UTC+8</p>
+<br>
+<p>---</p>
+<br>
+<p>## 重點總覽</p>
+<br>
+<p>今日系統標記 <strong>283 張</strong> 異動期權合約。以下重點分析三隻最大異動標的。</p>
+<br>
+<p>---</p>
+<br>
+<p>## 1️⃣ INTC — $93M Deep ITM Call Buying ⚠️⚠️⚠️</p>
+<br>
+<p><strong>現價:</strong> $135.83 (跌 -3.6%)</p>
+<p><strong>到期日:</strong> 本週五 June 26, 2026 (仲有3日)</p>
+<br>
+<p>### 主要異動合約</p>
+<br>
+<p>| Strike | Type | Vol | OI | Vol/OI | Premium |</p>
+<p>|--------|------|-----|----|--------|---------|</p>
+<p>| $77C | CALL | 5,500 | 253 | <strong>21.7x</strong> | $32.8M |</p>
+<p>| $76C | CALL | 4,250 | 352 | <strong>12.1x</strong> | $25.8M |</p>
+<p>| $87C | CALL | 3,652 | 111 | <strong>32.9x</strong> | $18.2M |</p>
+<p>| $88C | CALL | 3,401 | 125 | <strong>27.2x</strong> | $16.5M |</p>
+<br>
+<p><strong>4張合約總Premium: ~$93.2M</strong></p>
+<br>
+<p>### 訊號解讀</p>
+<br>
+<p><strong>Source Tier: DATA (Options Flow Data)</strong></p>
+<br>
+<p>呢個係極度唔尋常嘅訊號：</p>
+<li><strong>全部係Deep ITM Calls</strong> — 行使價$76-$88，但正股係$135.83，即係every single contract is ~$50+ in the money</li>
+<li><strong>Vol/OI Ratio 12-33倍</strong> — 幾乎全部係新開倉，唔係平倉</li>
+<li><strong>本週五到期</strong> — 仲有3日就會自動行使</li>
+<br>
+<p><strong>解讀:</strong> 有人用$93M買呢批Deep ITM Calls，基本上係 guaranteed exercise。呢啲錢唔係賭博，係有 purpose 嘅資本配置。合理推測：</p>
+<li class="num">1. <strong>M&amp;A / Tender Offer Arbitrage</strong> — 如果有人提出收購要約，呢啲Calls可以鎖定收購價差</li>
+<li class="num">2. <strong>大戶想用低成本入貨</strong> — Deep ITM Calls只係股價嘅一部分成本，槓桿效應</li>
+<li class="num">3. <strong>Dividend Capture</strong> — INTC股息日期</li>
+<li class="num">4. <strong>股份回購套利</strong> — 公司自己嘅回購計劃配合期權</li>
+<br>
+<p><strong>Source Tier: INFERENCE (Pattern-based deduction)</strong></p>
+<br>
+<p>由於無web search可用，未能確認具體新聞催化劑。但$93M喺3日前到期嘅Deep ITM Calls係極高confidence嘅熊吞訊號—呢個係知情資金。</p>
+<br>
+<p>---</p>
+<br>
+<p>## 2️⃣ TSLA — 明日 June 24 巨量Put活動 ⚠️⚠️⚠️</p>
+<br>
+<p><strong>現價:</strong> $386.45 (跌 -4.6%)</p>
+<p><strong>到期日:</strong> 聽日 June 24, 2026 (T+1)</p>
+<br>
+<p>### 主要異動合約 — Puts</p>
+<br>
+<p>| Strike | Type | Vol | OI | Vol/OI | Premium |</p>
+<p>|--------|------|-----|----|--------|---------|</p>
+<p>| $385P | PUT | 26,729 | 2,262 | <strong>11.8x</strong> | $9.2M |</p>
+<p>| $390P | PUT | 18,738 | 4,444 | <strong>4.2x</strong> | $11.0M |</p>
+<p>| $387.5P | PUT | 18,408 | 1,065 | <strong>17.3x</strong> | $8.3M |</p>
+<p>| $400P | PUT | 16,971 | 4,225 | <strong>4.0x</strong> | $22.5M |</p>
+<p>| $395P | PUT | 12,542 | 2,097 | <strong>6.0x</strong> | $11.5M |</p>
+<br>
+<p><strong>5張Put總Premium: ~$62.5M</strong></p>
+<br>
+<p>### 同時有Calls</p>
+<br>
+<p>| Strike | Type | Vol | OI | Vol/OI | Premium |</p>
+<p>|--------|------|-----|----|--------|---------|</p>
+<p>| $390C | CALL | 22,179 | 1,047 | <strong>21.2x</strong> | $8.9M |</p>
+<p>| $380C | CALL | 9,125 | 294 | <strong>31.0x</strong> | $9.1M |</p>
+<br>
+<p>### 訊號解讀</p>
+<br>
+<p><strong>Source Tier: DATA (Options Flow Data)</strong></p>
+<br>
+<p>呢個係經典嘅 <strong>期權異動風暴</strong> — 明日到期、巨額成交量、vol/oi爆燈：</p>
+<br>
+<p><strong>Put Side (Bearish):</strong></p>
+<li>最大成交量喺 $385P (26,729張) 和 $387.5P (18,408張)，正好圍繞現價 $386.45</li>
+<li>$400P有 $22.5M premium — 係單一最大金額嘅Put</li>
+<li>Vol/OI 11.8x - 17.3x，幾乎全部新倉</li>
+<br>
+<p><strong>Call Side (Bullish Hedge):</strong></p>
+<li>$390C有 22,179張，vol/oi 21x — 有人同時買Call</li>
+<li>$380C 31x OI — 更遠嘅Call都有巨量</li>
+<br>
+<p><strong>綜合解讀:</strong> 呢個係 <strong>Complex Straddle / Strangle</strong> 結構，唔係純粹睇淡：</p>
+<li>買Put保護下行，同時買Call博反彈</li>
+<li>或者係 <strong>大戶做Market-Making / Delta Hedge</strong></li>
+<li>$385/$387.5/$390 呢個區間有大量期權，明日implied move會好大</li>
+<br>
+<p><strong>Source Tier: INFERENCE (Pattern-based deduction)</strong></p>
+<br>
+<p>TSLA通常喺每月頭幾個工作日公布中國交付數據，但6月24日係星期三—可能係：</p>
+<li>Tesla中國註冊數據 (mid-month)</li>
+<li>SEC Filing / 重大公告</li>
+<li>季度末衝量數據提前洩露</li>
+<li>或者係大型機構 repositioning 前嘅對沖</li>
+<br>
+<p><strong>正股跌4.6%配合大量Put開倉，短線偏淡，但Calls嘅存在顯示唔係一面倒睇淡，而係對沖一個已知事件。</strong></p>
+<br>
+<p>---</p>
+<br>
+<p>## 3️⃣ AMZN — Brand New OTM Puts ⚠️</p>
+<br>
+<p><strong>現價:</strong> $236.47 (升 +1.6%)</p>
+<p><strong>到期日:</strong> 聽日 June 24, 2026 (T+1)</p>
+<br>
+<p>### 主要異動合約</p>
+<br>
+<p>| Strike | Type | Vol | OI | Vol/OI | Premium |</p>
+<p>|--------|------|-----|----|--------|---------|</p>
+<p>| $262.5P | PUT | 4,274 | <strong>0</strong> | <strong>∞</strong> | $12.5M |</p>
+<p>| $275P | PUT | 2,680 | <strong>0</strong> | <strong>∞</strong> | $10.8M |</p>
+<p>| $267.5P | PUT | 2,476 | <strong>0</strong> | <strong>∞</strong> | $8.5M |</p>
+<br>
+<p><strong>3張合約總Premium: ~$31.8M</strong></p>
+<br>
+<p>### 訊號解讀</p>
+<br>
+<p><strong>Source Tier: DATA (Options Flow Data)</strong></p>
+<br>
+<p>呢批Put非常特別：</p>
+<li><strong>Open Interest = 0</strong> — 全新合約，之前完全冇人持有</li>
+<li><strong>行使價 $262.5-$275</strong> — 遠高於現價 $236.47 (OTM by 11-16%)</li>
+<li><strong>聽日到期</strong> — 除非AMZN一晚升11%+，否則呢批Put會OTM到期</li>
+<br>
+<p><strong>解讀:</strong> </p>
+<p>最可能係 <strong>Long Stock Hedge</strong> — 大戶持有大量AMZN正股，買OTM Put做保護，防止今晚或明早突然暴跌。$31.8M嘅保險費相對持倉而言算合理。</p>
+<br>
+<p>另一可能性: <strong>Synthetic Short / 套利策略</strong>，但0 OI更似係新開嘅對沖倉位。</p>
+<br>
+<p><strong>Source Tier: INFERENCE (Pattern-based deduction)</strong></p>
+<br>
+<p>---</p>
+<br>
+<p>## 整體市場訊號</p>
+<br>
+<p>| Ticker | Bias | Confidence | Catalyst Type |</p>
+<p>|--------|------|------------|---------------|</p>
+<p>| INTC | 🟢 Bullish (知情資金) | HIGH | M&amp;A/Corp Action |</p>
+<p>| TSLA | 🟡 Neutral-Bearish (事件對沖) | HIGH | Binary Event |</p>
+<p>| AMZN | 🟡 Neutral (對沖盤) | MEDIUM | Portfolio Hedge |</p>
+<br>
+<p><strong>283張合約被標記</strong> — 今日期權市場異常活躍，集中喺明日/週五到期嘅合約，暗示短期內有多個催化劑來臨。</p>
+<br>
+<p>---</p>
+<br>
+<p>## 局限性</p>
+<br>
+<p>⚠️ <strong>未能進行News Search</strong> — 本分析基於純期權數據解讀 ($93M deep ITM calls, TSLA massive put wall, AMZN brand new puts)。因無web_search/bash工具，未能確認具體新聞催化劑 (如TSLA交付數字、INTC收購傳聞)。建議手動核查：</p>
+<li>INTC: M&amp;A rumor check</li>
+<li>TSLA: June delivery / China registration data</li>
+<li>AMZN: Any analyst upgrade or corporate event</li>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #287 · 2026-06-22 12:00 HKT</p>
+</footer>
+</body>
+</html>

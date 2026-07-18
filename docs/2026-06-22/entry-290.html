@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#290 — 研究 · options_flow_analysis_20260623</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 0 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">0 項決策</span>
+      <span class="stat">0 項快照</span>
+      <span class="stat">0 項研究</span>
+      <span class="stat">0 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-06-22 12:00 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>研究 · options_flow_analysis_20260623</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">backfill</span></div>
+  </div>
+  <div class="reasoning">
+    <p># 期權異動分析報告 — 2026年6月23日</p>
+<p>## Top 15 Flagged Contracts 深度解讀</p>
+<br>
+<p>---</p>
+<br>
+<p>### 總覽</p>
+<br>
+<p>全日 <strong>387 contracts flagged</strong>，Top 15 合共涉及權利金 <strong>~$4.3億美元</strong>。到期日極短（6/24 或 6/26），全部係 <strong>weeklies / 0DTE 級別</strong>——大戶擺明賭即市/隔夜爆邊，唔係慢慢坐倉嗰種。</p>
+<br>
+<p>---</p>
+<br>
+<p>### 1. Sector Concentration — 半導體一柱擎天</p>
+<br>
+<p><strong>INTC 一個股霸咗 Top 5 call positions 全部</strong>，Total premium <strong>~$1.9億</strong>，佔成個 Top 15 嘅 ~44%。</p>
+<br>
+<p>| Strike | Premium | V/OI | 備註 |</p>
+<p>|--------|---------|------|------|</p>
+<p>| $76C | $48.8M | 21.32 | 核心倉位 |</p>
+<p>| $78C | $46.3M | 28.62 | 極高槓桿 |</p>
+<p>| $77C | $40.7M | 25.12 | 中間價位 |</p>
+<p>| $79C | $35.2M | <strong>1,426</strong>🔥 | OI 得4張，極度異常 |</p>
+<p>| $75C | $18.6M | 7.46 | 最安全嗰條線 |</p>
+<br>
+<p>半導體方面完全集中 INTC，冇見到 AMD、NVDA、QCOM 等其他半導體股有同級別 activity。<strong>呢個唔係 sector-wide 嘅半導體睇好，而係針對 INTC 嘅獨特催化劑賭注</strong>（可能係 product launch / earnings / 重大策略 announcement）。</p>
+<br>
+<p><strong>SNDK</strong> 亦屬半導體相關（NAND flash），但 $2300 雙邊 straddle 係另一種打法，下面再講。</p>
+<br>
+<p>---</p>
+<br>
+<p>### 2. Directional Bias — 牛熊分明</p>
+<br>
+<p>| Sector | 傾向 | 權利金 | 比重 |</p>
+<p>|--------|------|--------|------|</p>
+<p>| INTC | 🟢 極度 bullish（全線 Calls） | ~$189.5M | 44% |</p>
+<p>| AMZN | 🔴 極度 bearish（全線 Puts） | ~$52.1M | 12% |</p>
+<p>| TSLA | 🟡 偏 bearish（Put side 重） | ~$129M | 30% |</p>
+<p>| SNDK | 🟡 中性（Straddle 雙邊） | ~$58.5M | 14% |</p>
+<br>
+<p><strong>Bullish factor:</strong> INTC 近 $1.9億 Call buying，歷史級別嘅大手，單一股就足以撐起 bullish 情緒。</p>
+<p><strong>Bearish factor:</strong> AMZN + TSLA put side 合共 ~$1.8億，完全抵銷 INTC 嘅 bullish 信號。</p>
+<br>
+<p><strong>整體判斷：Directional bias 係 mixed / mildly bearish。</strong> 指數層面睇，散戶見 INTC 爆上會開心，但大戶同時喺 AMZN/TSLA 做咗大規模下行對沖，呢個 pattern 似 <strong>「揀股睇好，但大市睇淡」</strong> 嘅 macro hedge 策略。</p>
+<br>
+<p>---</p>
+<br>
+<p>### 3. Unusual Activity — 極端訊號</p>
+<br>
+<p>#### 🔥 AMZN — Zero OI 全新倉位，極度可疑</p>
+<br>
+<p>| Strike | Vol | OI | V/OI | Premium |</p>
+<p>|--------|-----|----|------|---------|</p>
+<p>| $270P 6/24 | 8,452 | <strong>0</strong> | <strong>8,452</strong> | $31.0M |</p>
+<p>| $265P 6/24 | 6,895 | <strong>0</strong> | <strong>6,895</strong> | $21.1M |</p>
+<br>
+<li><strong>OI = 0 代表呢啲全部係今日開嘅新倉</strong>，冇任何平倉成分</li>
+<li>V/OI 理論上係無限大（除零），8,452 同 6,895 係直接反映 Vol / OI 之前冇倉</li>
+<li>6/24 expiry，聽日就到期，擺明賭 <strong>AMZN 今晚至聽朝裂口低開</strong></li>
+<li>Premium $52M 買 put，成本極高，如果 AMZN 冇跌穿 $265，呢筆錢全數蒸發</li>
+<li><strong>呢個係最 suspicious 嘅 activity</strong>——可能係 insider hedging / 機構大量下行保護</li>
+<br>
+<p>#### 🔥 INTC $79C — V/OI 1,426，教科書級別嘅異常</p>
+<br>
+<p>OI 得 4 張，今日 Vol 5,704 張。即係今日開咗超過 5,700 張新 call 喺 $79。V/OI 1,426 係成個 dataset 最高嘅合理比值。結合其他 strikes 嘅同步 Call buying，<strong>唔係散戶所為，係 institution 級別嘅 directional bet。</strong></p>
+<br>
+<p>#### 🔥 TSLA $380C 6/24 — V/OI 23.42</p>
+<br>
+<p>OI 294 張，今天 Vol 6,886 張。聽日到期嘅 call，大戶賭 TSLA 今晚至聽朝爆上 $380+。同期又有大量 put 倉對沖，係典型的 <strong>spread / collar 策略</strong>。</p>
+<br>
+<p>---</p>
+<br>
+<p>### 4. TSLA Spread Positioning 解析</p>
+<br>
+<p>TSLA 嘅 positioning 係成個 dataset 最複雜嘅：</p>
+<br>
+<p><strong>Call side ($66.4M):</strong></p>
+<li>$400C 6/26：Vol 25,734 張（最高 vol 單一 strike），Premium $28.3M。OI 5,682 顯示已有一定持倉基礎，今日再加倉。</li>
+<li>$370C 6/24 + $380C 6/24：共 $38.1M，聽日到期，賭 short-term 反彈。</li>
+<br>
+<p><strong>Put side ($62.7M):</strong></p>
+<li>$420P 6/24：Vol 14,924，Premium $24.2M — 聽日到期嘅 OTM put</li>
+<li>$410P 6/24：Vol 23,108，Premium $19.8M — 極大量 put</li>
+<li>$410P 6/26：Vol 17,142，Premium $18.7M — 週五到期</li>
+<br>
+<p><strong>策略重構：</strong></p>
+<br>
+<p>大戶喺 TSLA 上面做嘅唔係純 bearish bet，而係 <strong>risk reversal / bearish spread</strong>：</p>
+<br>
+<li>買入 $370-$400 calls 捕捉向上突破（short-term upside）</li>
+<li>同時大手掃 $410-$420 puts 做 downside protection</li>
+<li><strong>結果：Upside capped at $400，但 downside 有 protection 到 $410。</strong></li>
+<li>呢個係 classic <strong>collar strategy</strong>，適合持有正股嘅大戶做 hedging</li>
+<li>亦可能係 <strong>bear put spread</strong>：長倉 $420P + 短倉 $410P 或 similar</li>
+<br>
+<p><strong>關鍵 insight：</strong> 呢個 pattern 更似 <strong>大戶持有 TSLA 正股 / ETF，買 put 做保護，順便 sell upside calls 收期權金</strong>，而唔係裸 short TSLA。</p>
+<br>
+<p>---</p>
+<br>
+<p>### 5. Overall Market Sentiment Signal</p>
+<br>
+<p><pre><code>Bullish 🟢  |  INTC $1.9B call wall</p>
+<p>Neutral 🟡  |  SNDK straddle ($58.5M)</p>
+<p>Bearish 🔴  |  AMZN puts ($52M, zero OI)</p>
+<p>Bearish 🔴  |  TSLA put skew ($62.7M puts)</p>
+<p></code></pre></p>
+<br>
+<p><strong>綜合判斷：Bearish-neutral with concentrated bullish rotation</strong></p>
+<br>
+<li class="num">1. <strong>INTC 係 outlier，唔係 trend。</strong> 近 $2億嘅 call buying 必然有特定消息背書（私有化？拆股？重大 product？），唔可以當成整體市場 bullish indicator。</li>
+<li class="num">2. <strong>AMZN 嘅 zero-OI puts 係最大 red flag。</strong> $52M 全新 put 倉位，聽日到期，有人覺得 AMZN 聽朝會出事。呢個係最值得跟進嘅訊號。</li>
+<li class="num">3. <strong>TSLA 嘅結構性 hedging 暗示大戶對 TSLA 短期走勢冇信心。</strong> 唔怕你升（capped at $400），但驚你跌（落到 $410 都有 coverage）。</li>
+<li class="num">4. <strong>Total put premium across AMZN + TSLA = ~$114.7M vs INTC calls $189.5M</strong>，表面上 calls 贏，但 AMZN puts 係純新倉位，影響力更大。</li>
+<li class="num">5. <strong>散戶層面：</strong> INTC 嘅瘋狂 call buying 可能會帶動 semis sector 短線炒作，但聰明的錢已經喺 mega-cap tech（AMZN, TSLA）落咗 protection。</li>
+<br>
+<p>---</p>
+<br>
+<p>### Summary (廣東話總結)</p>
+<br>
+<p>&gt; <strong>今次期權flow嘅訊號好矛盾。</strong> INTC 嘅 $1.9億大時代級 call buying 會令好多人以為牛市重臨，但同一時間 AMZN 嘅 $52M zero-OI puts 同 TSLA 嘅 bearish collar 先至係真正嘅「聰明錢」信號。  </p>
+<p>&gt;  </p>
+<p>&gt; <strong>最大嘅 alarm 係 AMZN $270P / $265P。</strong> 聽日到期，零持倉基礎，$52M 新開 put——呢個係有人 extremely confident AMZN 聽朝會插水。如果佢哋啱，成個 market sentiment 可以一日反轉。  </p>
+<p>&gt;  </p>
+<p>&gt; INTC 嘅玩法似 event-driven（可能有消息），而唔係 sector-wide bullish rotation。SNDK 嘅大 straddle 更加 confirmation 咗市場 uncertainty。  </p>
+<p>&gt;  </p>
+<p>&gt; <strong>一句講晒：大戶喺度做「揀股睇好＋大市對沖」嘅 macro 策略。</strong> 唔好被 INTC 嘅 call wall 沖昏頭腦，AMZN 同 TSLA 嘅 put side 先至反映咗大戶對整體市場嘅真實睇法——<strong>短線偏淡，有備而來。</strong></p>
+<br>
+<p>---</p>
+<br>
+<p>### Confidence: High</p>
+<br>
+<p>數據 clear，V/OI ratios 同 zero OI 嘅統計異常性顯著，pattern 一致性高。唯一 uncertainty 係 INTC 背後嘅 catalyst 係咩——呢個會影響整體 bullish/bearish 嘅權重判斷。</p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #290 · 2026-06-22 12:00 HKT</p>
+</footer>
+</body>
+</html>

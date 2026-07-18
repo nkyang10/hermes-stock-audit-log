@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#291 — 研究 · options_flow_report_cantonese</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 0 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">0 項決策</span>
+      <span class="stat">0 項快照</span>
+      <span class="stat">0 項研究</span>
+      <span class="stat">0 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-06-22 12:00 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>研究 · options_flow_report_cantonese</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">backfill</span></div>
+  </div>
+  <div class="reasoning">
+    <p># 📊 期權異動日報 — 2026年6月23日（星期二）</p>
+<br>
+<p>---</p>
+<br>
+<p>## 🏆 #1: INTC — 深價內CALL巨額成交（強烈睇好信號）</p>
+<br>
+<p>| 到期 | 今日收市後仲有 | 信賴度 |</p>
+<p>|------|--------------|--------|</p>
+<p>| <strong>26Jun（星期五）</strong> | <strong>3日到期</strong> | ⭐⭐⭐⭐⭐ |</p>
+<br>
+<p>### 數據</p>
+<li>五個CALL strike（$75–$79）合共 Premium &gt; <strong>$189M</strong></li>
+<li>Spot $132.21，即每個CALL深價內 <strong>$53–57</strong></li>
+<li>V/OI 比例極誇張：$79 strike 高達 <strong>1,426x</strong>（幾乎全新開倉）</li>
+<li>總成交量遠超未平倉合約</li>
+<br>
+<p>### 解讀 — 95% 係 <strong>睇好／大戶建倉</strong></p>
+<p>&gt; 呢個唔係普通散戶玩法。深價內CALL（delta 接近1）到期前3日大量開倉，典型用法：</p>
+<p>&gt;</p>
+<p>&gt; <strong>① 槓桿持股（Synthetic Long）</strong> — 買CALL代替買正股，用更少資金控制同等股數，等於用期權合約槓桿做多INTC。</p>
+<p>&gt; <strong>② 股息套戥／換倉操作</strong> — 大戶可能將舊CALL平倉，轉到呢批新CALL等自動行使接貨。</p>
+<p>&gt; <strong>③ 機構建倉前奏</strong> — 可能係收購傳聞、回購計劃等事件前嘅先行部署。</p>
+<p>&gt;</p>
+<p>&gt; 🚫 <strong>排除closing activity</strong>：因為大部分V/OI極高（尤其$79 strike 1,426倍），證明係新開倉多過平倉。</p>
+<p>&gt;</p>
+<p>&gt; <strong>結論：強烈睇好INTC。大戶用深價內CALL賭星期五前INTC維持或上升。</strong></p>
+<br>
+<p>---</p>
+<br>
+<p>## 🏆 #2: AMZN — 三個PUT新倉攔路（強烈睇淡／對沖信號）</p>
+<br>
+<p>| 到期 | 今日收市後仲有 | 信賴度 |</p>
+<p>|------|--------------|--------|</p>
+<p>| <strong>24Jun（星期三）</strong> | <strong>聽日！1日到期</strong> | ⭐⭐⭐⭐⭐ |</p>
+<br>
+<p>### 數據</p>
+<li><strong>$260 PUT</strong>：Vol 5,714 / OI 13（V/OI 439x）→ $15.17M</li>
+<li><strong>$265 PUT</strong>：Vol 6,895 / OI 0（全新倉）→ $21.07M</li>
+<li><strong>$270 PUT</strong>：Vol 8,452 / OI 0（全新倉）→ $31.01M</li>
+<li>三個strike全部近0 OI，證明係<strong>今日全新開倉</strong></li>
+<li>總Premium：~<strong>$67M</strong></li>
+<li>聽日到期（24Jun）</li>
+<br>
+<p>### 解讀 — 80% 睇淡／20% 對沖</p>
+<p>&gt; <strong>三個原因支持睇淡：</strong></p>
+<p>&gt; 1️⃣ <strong>全新倉（OI=0）</strong> — 唔係roll倉或平倉，係真金白銀買入PUT</p>
+<p>&gt; 2️⃣ <strong>三個strike一齊開</strong> — 唔似單一hedge，似係分注做空，或一個大戶用多個strike建倉</p>
+<p>&gt; 3️⃣ <strong>聽日到期</strong> — 賭今晚或聽朝AMZN有壞消息（可能係行政命令、反壟斷、或業績預警）</p>
+<p>&gt;</p>
+<p>&gt; ⚠️ 如果係Hedge：可能大戶持有大量AMZN正股，買PUT保護倉位。但三日內到期嘅hedge咁大規模，唔常見。</p>
+<p>&gt;</p>
+<p>&gt; <strong>結論：強烈睇淡AMZN短期走勢。聽日星期三到期，賭今晚到聽日有下跌催化劑。</strong></p>
+<br>
+<p>---</p>
+<br>
+<p>## 🏆 #3: TSLA — 雙向開倉，似Strangle／波動部署</p>
+<br>
+<p>| 到期 | 今日收市後仲有 | 信賴度 |</p>
+<p>|------|--------------|--------|</p>
+<p>| <strong>24Jun（星期三）</strong> | <strong>聽日！1日到期</strong> | ⭐⭐⭐⭐ |</p>
+<br>
+<p>### 數據</p>
+<li><strong>PUT $410</strong>：Vol 23,108（最大） → $19.78M</li>
+<li><strong>PUT $420</strong>：Vol 14,924 → $24.18M</li>
+<li><strong>CALL $390</strong>：Vol 10,407 → $16.99M</li>
+<li><strong>CALL $380</strong>：Vol 6,886 → $17.84M</li>
+<li><strong>CALL $370</strong>：Vol 5,433 → $20.25M</li>
+<li>全部24Jun星期三到期</li>
+<br>
+<p>### 解讀 — 70% 波動部署（中性偏淡）</p>
+<p>&gt; TSLA嘅活動模式同INTC／AMZN好唔同——<strong>唔係單邊，係兩邊一齊開</strong>。</p>
+<p>&gt;</p>
+<p>&gt; <strong>最可能情況：Long Strangle / 跨期大波幅策略</strong></p>
+<p>&gt; - CALL集中在$370–$390（價外出少少）</p>
+<p>&gt; - PUT集中在$410–$420（價外）</p>
+<p>&gt; - 標準strangle：賭TSLA星期三到期前有大波幅，唔理方向</p>
+<p>&gt;</p>
+<p>&gt; <strong>另一可能：Gamma Hedge 對沖拆倉</strong></p>
+<p>&gt; - 大戶持有大量TSLA期權組合，今日調整gamma exposure</p>
+<p>&gt; - PUT volume大過CALL（23,108 vs 10,407），輕微偏淡</p>
+<p>&gt;</p>
+<p>&gt; 🧐 <strong>留意PUT $410 vol 23,108係全日最大單一成交量</strong>，呢個位可能有重大意義。</p>
+<p>&gt;</p>
+<p>&gt; <strong>結論：中性偏淡。主力賭波幅，PUT side略重。聽日TSLA可能有大消息。</strong></p>
+<br>
+<p>---</p>
+<br>
+<p>## 🏆 #4: SNDK — $2300 孖寶Straddle（強烈波幅預期）</p>
+<br>
+<p>| 到期 | 今日收市後仲有 | IV | 信賴度 |</p>
+<p>|------|--------------|-----|--------|</p>
+<p>| <strong>26Jun（星期五）</strong> | <strong>3日到期</strong> | 25% | ⭐⭐⭐⭐ |</p>
+<br>
+<p>### 數據</p>
+<li><strong>CALL $2300</strong>：Vol 2,498 / OI 856（2.92x）→ $29.85M</li>
+<li><strong>PUT $2300</strong>：Vol 1,981 / OI 764（2.59x）→ $28.66M</li>
+<li><strong>同一strike、同一到期、同一邊成交量</strong> — 經典Straddle</li>
+<li>總Premium：~<strong>$58.5M</strong></li>
+<br>
+<p>### 解讀 — 95% 係Long Straddle（賭大爆邊）</p>
+<p>&gt; 呢個pattern好清晰：</p>
+<p>&gt; - 同日、同strike、call+put同時大成交</p>
+<p>&gt; - 兩邊V/OI幾乎一樣（2.92x vs 2.59x）</p>
+<p>&gt; - Premium接近對稱（$29.85M vs $28.66M）</p>
+<p>&gt;</p>
+<p>&gt; <strong>係人為建倉嘅Long Straddle</strong>，唔係自然市場爭拗。</p>
+<p>&gt;</p>
+<p>&gt; 買家賭SNDK喺星期五到期前有大波幅，幅度要超過IV 25% implied嘅範圍先有錢賺。</p>
+<p>&gt;</p>
+<p>&gt; <strong>可能催化劑：</strong> 併購消息、業績預告、FDA決定、或行業政策變動。</p>
+<p>&gt;</p>
+<p>&gt; <strong>結論：Strong volatility bet。大戶賭SNDK星期五前會有大行情，唔理升定跌。</strong></p>
+<br>
+<p>---</p>
+<br>
+<p>## 🌍 整體市場期權情緒總覽</p>
+<br>
+<p>| 股票 | 方向 | 資金流 (~$M) | 到期 | 信賴度 |</p>
+<p>|------|------|-------------|------|--------|</p>
+<p>| <strong>INTC</strong> | 🟢 強烈睇好 | <strong>$189M+</strong> CALL | 26Jun 週五 | ⭐⭐⭐⭐⭐ |</p>
+<p>| <strong>AMZN</strong> | 🔴 強烈睇淡 | <strong>$67M</strong> PUT | 24Jun 週三 | ⭐⭐⭐⭐⭐ |</p>
+<p>| <strong>TSLA</strong> | 🟡 中性偏淡（波幅） | <strong>~$100M</strong> 雙向 | 24Jun 週三 | ⭐⭐⭐⭐ |</p>
+<p>| <strong>SNDK</strong> | 🟣 大波幅部署 | <strong>$58.5M</strong> Straddle | 26Jun 週五 | ⭐⭐⭐⭐ |</p>
+<br>
+<p>### 關鍵觀察</p>
+<br>
+<li class="num">1. <strong>期限極短</strong> — 全部1-3日到期，證明唔係長線部署，係<strong>短線催化劑事件驅動</strong></li>
+<br>
+<li class="num">2. <strong>INTC vs AMZN 分歧</strong> — 一個睇好、一個睇淡，市場冇一致方向，係<strong>板塊輪動</strong>或<strong>個股事件驅動</strong></li>
+<br>
+<li class="num">3. <strong>總金額巨大</strong> — 單係Top 15已超過 <strong>$400M</strong> 期權Premium，明顯係<strong>機構級別資金</strong></li>
+<br>
+<li class="num">4. <strong>星期三（聽日）係關鍵</strong> — AMZN + TSLA 聽日到期，今晚美股時段好大波動</li>
+<br>
+<li class="num">5. <strong>星期五INTC/SNDK到期</strong> — 如果INTC CALL係建倉，星期五前INTC要維持$130以上；SNDK straddle到期前隨時爆邊</li>
+<br>
+<p>### 🚨 風險提示</p>
+<li>期權異動信號係參考，唔係買賣建議</li>
+<li>深價內CALL建倉可能涉及複雜嘅稅務或股息策略，唔一定純方向性</li>
+<li>Straddle嘅買家好多時係做市商對沖，唔一定代表方向判斷</li>
+<li><strong>建議配合今晚美股盤前同技術分析一齊用</strong></li>
+<br>
+<p>---</p>
+<p><em>報告生成時間：2026年6月23日 週二</em></p>
+<p><em>數據來源：期權異動掃描（Top 295 flagged contracts）</em></p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #291 · 2026-06-22 12:00 HKT</p>
+</footer>
+</body>
+</html>

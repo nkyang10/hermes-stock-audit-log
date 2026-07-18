@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#286 — 研究 · options-flow-report</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 0 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">0 項決策</span>
+      <span class="stat">0 項快照</span>
+      <span class="stat">0 項研究</span>
+      <span class="stat">0 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-06-22 12:00 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>研究 · options-flow-report</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">backfill</span></div>
+  </div>
+  <div class="reasoning">
+    <p># 📊 期權異動訊號報告 — 2026-06-22</p>
+<br>
+<p>## 數據源</p>
+<br>
+<p>| 項目 | 內容 |</p>
+<p>|------|------|</p>
+<p>| Flagged Contracts | 854 |</p>
+<p>| 數據時間 | 2026-06-22 02:03 (HKT) |</p>
+<p>| 來源等級 | Tier 1 (Direct Market Flow) |</p>
+<p>| 信心門檻 | ✅ Medium-High (實時價格已確認) |</p>
+<br>
+<p>---</p>
+<br>
+<p>## 🟢 Tier 1 — 最強訊號：TSLA 0DTE Call 海嘯</p>
+<br>
+<p>### 核心數據</p>
+<br>
+<p>| Strike | Vol | OI | Vol/OI | Premium | 確認價位 |</p>
+<p>|--------|-----|----|--------|---------|----------|</p>
+<p>| $400 | 55,760 | 3,485 | <strong>16.0x</strong> | $27.0M | <strong>At-the-money</strong> (TSLA=$400.49) |</p>
+<p>| $395 | 40,619 | 702 | <strong>57.9x</strong> | $32.5M | Slightly OTM |</p>
+<p>| $390 | 37,799 | 773 | <strong>48.9x</strong> | $45.4M | Slightly ITM |</p>
+<p>| $392.5 | 13,961 | 363 | <strong>38.5x</strong> | $14.5M | OTM |</p>
+<p>| $385 | 8,773 | 252 | <strong>34.8x</strong> | $14.7M | ITM |</p>
+<p>| $375 | 6,388 | 197 | <strong>32.4x</strong> | $15.2M | ITM |</p>
+<p>| $380 | 12,382 | 494 | <strong>25.1x</strong> | $26.7M | ITM |</p>
+<p>| $370 | 5,131 | 246 | <strong>20.9x</strong> | $15.9M | Deep ITM |</p>
+<br>
+<p><strong>Total TSLA 0DTE Premium: ~$191.9M</strong></p>
+<br>
+<p>### 分析判斷</p>
+<br>
+<p>| 指標 | 結果 |</p>
+<p>|------|------|</p>
+<p>| Vol/OI Ratio | <strong>極端</strong> — 7個strike全部&gt;16x，$395甚至57.9x |</p>
+<p>| OI基數 | 所有strike OI都&lt;800 — 證明係<strong>全新開倉</strong>，非平倉 |</p>
+<p>| 價位分佈 | 密集由$370到$400，覆蓋今日range ($384.7-$402.52) |</p>
+<p>| TSLA股價 | $400.49，僅+1.04% |</p>
+<p>| 時間 | 0DTE (今日到期) |</p>
+<br>
+<p><strong>判決：Directional Bet，非Hedging。</strong></p>
+<p>理由：如果係 hedging，應該只有單一strike或spread。但呢度係由ITM到OTM全面掃貨，total premium近$200M。典型的機構級 directional bet，賭TSLA今日收市喺$400樓上甚至更高。</p>
+<br>
+<p><strong>⚠️ 風險警告</strong>：0DTE options 有gamma風險極高。TSLA今日低位$384.7，如果股價回落到$385以下，大部分OTM call會變廢紙。呢個trade賭緊尾市拉升。</p>
+<br>
+<p>---</p>
+<br>
+<p>## 🟢 Tier 1 — NVDA $197.5 Call Unusual Activity</p>
+<br>
+<p>| Strike | Expiry | Vol | OI | Vol/OI | Premium | IV |</p>
+<p>|--------|--------|-----|----|--------|---------|----|</p>
+<p>| $197.5 | 0DTE | 10,845 | 134 | <strong>80.93x</strong> | $14.7M | 64.1% |</p>
+<br>
+<li>Vol/OI <strong>80.93x</strong> 係全表最高比例</li>
+<li>NVDA股價$210.69 (+2.95%)</li>
+<li>$197.5係deep ITM call，實際係買方向上的delta exposure</li>
+<li>配合$210 call 55,611張 (vol/OI 5.73x) — 可能係spread組合</li>
+<br>
+<p><strong>判決：Strong Bullish Signal. Deep ITM 買法，機構方向盤。</strong></p>
+<br>
+<p>---</p>
+<br>
+<p>## 🟡 Tier 2 — SNDK 大升配合Call Activity</p>
+<br>
+<p>| Strike | Expiry | Vol | OI | Vol/OI | Premium |</p>
+<p>|--------|--------|-----|----|--------|---------|</p>
+<p>| $2200 | 6/26 | 1,087 | 428 | 2.54x | $14.0M |</p>
+<p>| $2150 | 6/26 | 810 | 167 | 4.85x | $12.0M |</p>
+<br>
+<li>SNDK股價 <strong>$2,184.75 (+11.54%)</strong> — 今日大爆升</li>
+<li>$2200 call係slightly OTM (call buyer賭繼續升穿2200)</li>
+<li>Vol/OI ratio偏低 (2.54-4.85x) — 有部分係existing positions加倉</li>
+<li>IV高達~120%，溢價顯著</li>
+<br>
+<p><strong>判決：Momentum追入。SNDK大升後call activity係trend confirmation，但IV偏高追入要小心pullback。</strong></p>
+<br>
+<p>---</p>
+<br>
+<p>## 🟡 Tier 2 — INTC $100 Call 超高IV</p>
+<br>
+<p>| Strike | Expiry | Vol | OI | Vol/OI | Premium | IV |</p>
+<p>|--------|--------|-----|----|--------|---------|----|</p>
+<p>| $100 | 6/26 | 5,278 | 717 | 7.36x | $17.2M | <strong>159.6%</strong> |</p>
+<br>
+<li>INTC股價$133.99 (+10.64%) — 今日大升</li>
+<li>$100係deep ITM call，實際係買方向</li>
+<li>IV 159.6%極高 — 市場預期INTC仲有大波動</li>
+<li>Vol/OI 7.36x — 明顯新資金流入</li>
+<br>
+<p><strong>判決：方向盤+波動率賭注。但IV超高溢價，買call time decay會好傷。</strong></p>
+<br>
+<p>---</p>
+<br>
+<p>## 🟡 Tier 2 — AMD $535/$550 Calls</p>
+<br>
+<p>| Strike | Expiry | Vol | OI | Vol/OI | Premium |</p>
+<p>|--------|--------|-----|----|--------|---------|</p>
+<p>| $535 | 6/26 | 6,876 | 362 | 19.0x | $16.0M |</p>
+<p>| $550 | 6/26 | 7,455 | 1,796 | 4.15x | $12.4M |</p>
+<br>
+<li>AMD股價$537.37 (+4.86%)</li>
+<li>$535 call vol/OI 19.0x — 超高水平，ATM call新倉</li>
+<li>$550 call vol/OI 4.15x — 部分rollover或加倉</li>
+<br>
+<p><strong>判決：Bullish。配合NVDA一齊睇，半導體板塊有資金流入。</strong></p>
+<br>
+<p>---</p>
+<br>
+<p>## 📋 整體評級</p>
+<br>
+<p>| 排名 | 訊號 | 信心 | 方向 | 時效 |</p>
+<p>|------|------|------|------|------|</p>
+<p>| 🥇 | <strong>TSLA 0DTE Call Wall ($370-$400)</strong> | <strong>極高</strong> 🟢🟢🟢 | 🐂 強烈看漲 | 幾小時內結算 |</p>
+<p>| 🥈 | <strong>NVDA $197.5 Unusual Activity (80.9x)</strong> | <strong>高</strong> 🟢🟢🟢 | 🐂 看漲 | 今日expiry |</p>
+<p>| 🥉 | AMD $535 Call (19.0x vol/OI) | 中高 🟢🟢 | 🐂 看漲 | 6/26 expiry |</p>
+<p>| 4 | SNDK $2200/$2150 | 中 🟢🟢 | 🐂 追趨勢 | 6/26 expiry |</p>
+<p>| 5 | INTC $100 Call (159.6% IV) | 中 🟢🟢 | 🐂 / 波動率賭 | 6/26 expiry |</p>
+<br>
+<p>---</p>
+<br>
+<p>## ⚠️ 綜合風險警告</p>
+<br>
+<li class="num">1. <strong>TSLA 0DTE係雙面刃</strong>：$191.9M押注今日TSLA收高。如果TSLA尾市回落到$385以下，大部分premium會蒸發。今日低位$384.7已經證明咗向下風險。</li>
+<li class="num">2. <strong>TSLA $400 Call集中風險</strong>：55,760張$400 call係最大open interest building。$400係心理關口亦係今日股價位置，呢個strike會係pin風險最高嘅位置。</li>
+<li class="num">3. <strong>高IV陷阱</strong>：INTC IV 159.6%、SNDK IV ~120%。呢啲options溢價好貴，如果標的唔繼續大幅波動，long call會輸time decay。</li>
+<li class="num">4. <strong>半導體集群</strong>：NVDA/AMD/INTC齊齊有異動，可能係板塊輪動或宏觀事件驅動。留意今晚美股開市後會否有沽壓。</li>
+<li class="num">5. <strong>854 flagged contracts</strong> 代表今日整體期權市場極度活躍，唔係單獨事件。市場可能對某個催化劑有預期。</li>
+<br>
+<p>---</p>
+<br>
+<p>## 🎯 最強訊號建議</p>
+<br>
+<p><strong>🥇 TSLA 0DTE Call Wall</strong> 係今日最 clear-cut 嘅訊號：</p>
+<li>信心級別：<strong>9/10</strong></li>
+<li>原因：極端vol/OI + 跨strike掃貨 + 0DTE = 機構級別定向押注</li>
+<li>風險：如果TSLA今日唔收高過$400，呢個訊號可信度會大打折扣</li>
+<li>跟進：留意今日TSLA收盤價及倉位是否roll到下週</li>
+<br>
+<p><em>報告生成時間：2026-06-22 02:03 HKT | 數據源：Direct Market Flow (Options Flow Top 15) | 免責聲明：僅作分析參考，唔構成投資建議。</em></p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #286 · 2026-06-22 12:00 HKT</p>
+</footer>
+</body>
+</html>

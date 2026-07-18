@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#292 — 研究 · options_flow_summary_20260622</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 0 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">0 項決策</span>
+      <span class="stat">0 項快照</span>
+      <span class="stat">0 項研究</span>
+      <span class="stat">0 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-06-22 12:00 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>研究 · options_flow_summary_20260622</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">backfill</span></div>
+  </div>
+  <div class="reasoning">
+    <p># 📊 期權異動解讀報告 — 2026-06-22 (廣東話版)</p>
+<br>
+<p>---</p>
+<br>
+<p>## 🚨 總覽：262個Flagged Contracts</p>
+<br>
+<p>今日全市場有 <strong>262個合約被標記為異常</strong>（比之前另一時段嘅854個少，但仍然係好高水平）。Top 15合約入面，<strong>全部都係CALL，一個PUT都冇</strong> — 呢個本身已經係一個好強嘅方向性訊號。</p>
+<br>
+<p>---</p>
+<br>
+<p>## 1️⃣ TSLA Call Skew — 0DTE Massive Activity 🔥</p>
+<br>
+<p>| Strike | Type | Vol | OI | Vol/OI | Premium | </p>
+<p>|--------|------|-----|----|--------|---------|</p>
+<p>| $360 C | 0DTE | 3,008 | 490 | 6.14x | $11.87M |</p>
+<p>| $370 C | 0DTE | 5,131 | 451 | 11.38x | $15.93M |</p>
+<p>| $375 C | 0DTE | 6,388 | 385 | <strong>16.59x</strong> | $15.21M |</p>
+<p>| $380 C | 0DTE | <strong>12,382</strong> | 507 | <strong>24.42x</strong> | <strong>$26.68M</strong> ← 皇牌 |</p>
+<p>| $385 C | 0DTE | 8,773 | 494 | 17.76x | $14.74M |</p>
+<p>| $387.5 C | 0DTE | 7,448 | 390 | 19.1x | $10.88M |</p>
+<p>| $390 C | 6/24 (2DTE) | 5,970 | 1,238 | 4.82x | $8.39M |</p>
+<br>
+<p><strong>點解今日TSLA 0DTE有咁多call volume？</strong></p>
+<br>
+<li><strong>Strike range $360-$387.5 — 全部係ITM到小OTM</strong>。如果TSLA股價喺$380-$400之間（從premium推算大概係咁），呢班call全部係有內在價值或者接近ATM</li>
+<li><strong>Vol/OI ratio全部超高</strong>：$380 call嘅24.42x係全表最高之一。OI得507但vol 12,382 — 證明<strong>絕大部分係今日新開倉，唔係平倉</strong></li>
+<li><strong>Strike分佈係「垂直掃貨」</strong>：由$360到$387.5，每一個strike都掃幾千張。呢個pattern唔係散戶所為，係<strong>機構級別buying wave</strong></li>
+<li><strong>總premium淨係呢6個0DTE strikes已經~$95M</strong>，再加埋$390 6/24又$8.4M</li>
+<br>
+<p><strong>Bullish bias判定：強烈看漲 ✅</strong></p>
+<li>唔係hedging（hedging唔會跨咁多strike掃貨）</li>
+<li>唔係covered call（covered call writer唔會開咁多OTM）</li>
+<li>係<strong>純方向性long call賭注</strong>，賭TSLA今日（6/22）收高</li>
+<br>
+<p><strong>信心：🟢🟢🟢 高 (8/10)</strong></p>
+<li>扣分原因：0DTE本身風險極大，呢個可能係某個大戶嘅gamma play而唔係基本面睇好</li>
+<br>
+<p>---</p>
+<br>
+<p>## 2️⃣ NVDA $197.5 Call — 大戶部署？</p>
+<br>
+<p>| Strike | Expiry | Vol | OI | Vol/OI | Premium |</p>
+<p>|--------|--------|-----|----|--------|---------|</p>
+<p>| $197.5 C | 0DTE | 10,845 | 1,063 | <strong>10.2x</strong> | $14.67M |</p>
+<br>
+<li><strong>Vol/OI 10.2x</strong> — 雖然冇TSLA咁誇張，但都係好高水平</li>
+<li><strong>OI 1,063</strong> 其實唔細，vol 10,845係OI嘅10倍，明顯係<strong>今日大量新資金入場</strong></li>
+<li>$197.5對NVDA嚟講係乜位？如果NVDA今日$207-210左右，呢個係deep ITM call — 買呢個等於用槓桿買NVDA向上，delta接近1</li>
+<li>Premium $14.67M — 絕對係機構級別嘅size</li>
+<br>
+<p><strong>判決：大戶方向盤 🐂</strong></p>
+<li>Deep ITM call = 買delta，賭NVDA今日繼續向上</li>
+<li>同TSLA call wall一齊睇，今日科技股有強烈看漲情緒</li>
+<br>
+<p><strong>信心：🟢🟢 中高 (7/10)</strong></p>
+<li>Vol/OI 10.2x係明顯，但未到extremely unusual (80x嗰啲)</li>
+<li>但$14.67M premium夠大，唔似散戶行為</li>
+<br>
+<p>---</p>
+<br>
+<p>## 3️⃣ AMZN Put Spread — Bearish Hedge定故意做？</p>
+<br>
+<p>| Strike | Type | Expiry | Vol | OI | Vol/OI | Premium |</p>
+<p>|--------|------|--------|-----|----|--------|---------|</p>
+<p>| $275 P | PUT | 0DTE | 3,616 | <strong>0</strong> | <strong>∞</strong> (3616) | $11.18M |</p>
+<p>| $270 P | PUT | 0DTE | 3,218 | <strong>0</strong> | <strong>∞</strong> (3218) | $8.64M |</p>
+<br>
+<p><strong>呢個係今日唯一值得關注嘅PUT activity。</strong></p>
+<br>
+<li><strong>OI = 0</strong> 代表呢兩個strike之前完全冇未平倉合約，今日係<strong>全新開倉</strong></li>
+<li>$275同$270 put係<strong>垂直熊市put spread</strong> — 同一日期，strike差$5</li>
+<li>兩個加埋總premium ~$20M</li>
+<br>
+<p><strong>兩種可能解讀：</strong></p>
+<br>
+<p><strong>A) Bearish hedge（最可能）</strong></p>
+<li>如果持有AMZN大倉位（或者係今日TSLA/NVDA call嘅對沖），買put spread嚟做保護</li>
+<li>$275/$270 put spread 最大利潤係股價跌到$270或以下時賺$5,000 per spread</li>
+<li>成本大約係net debit ~$4-5（從premium估算）</li>
+<li>似係<strong>大型機構嘅tail hedge</strong>，唔係純bearish bet</li>
+<br>
+<p><strong>B) 故意做嘅bearish bet（較低可能）</strong></p>
+<li>如果真係純睇跌，唔會做spread，會直接long put或者買更價外嘅put</li>
+<li>Spread structure限制咗上行利潤，係典型嘅hedging strategy</li>
+<br>
+<p><strong>判決：大概率係hedge 🟡</strong></p>
+<li>同今日整體bullish call activity一致 — 大戶long call嘅同時買put spread做保護</li>
+<li>唔係方向性睇跌訊號</li>
+<br>
+<p><strong>信心：🟡 中 (6/10)</strong></p>
+<li>冇OI tracking好難100%確定，但行內common practice係hedge居多</li>
+<br>
+<p>---</p>
+<br>
+<p>## 4️⃣ 整體Put/Call Ratio Vibe</p>
+<br>
+<p><strong>極端不平衡：</strong></p>
+<br>
+<p>| 類別 | 數量 (top 15) | Premium總和 |</p>
+<p>|------|--------------|------------|</p>
+<p>| <strong>CALL</strong> | <strong>13個</strong> | <strong>~$175M</strong> |</p>
+<p>| <strong>PUT</strong> | <strong>2個 (AMZN only)</strong> | <strong>~$20M</strong> |</p>
+<p>| Put/Call (by count) | 0.15 | — |</p>
+<p>| Put/Call (by premium) | <strong>0.11</strong> | — |</p>
+<br>
+<li><strong>Top 15 contract入面，13個係CALL，2個係PUT</strong></li>
+<li>嗰2個PUT仲要係AMZN嘅spread（好大機會係hedge）</li>
+<li><strong>如果用純directional信號計，Put/Call接近 0</strong></li>
+<li>262個flagged contracts整體 — 如果distribution類似，今日係<strong>極度看漲嘅options flow</strong></li>
+<br>
+<p><strong>對比正常市場：</strong></p>
+<li>正常options flow入面，通常有20-40%係PUT</li>
+<li>今日PUT比例低到反常，反映<strong>機構資金一面倒做多</strong></li>
+<br>
+<p><strong>信心：🟢🟢🟢 高 (9/10)</strong></p>
+<li>數據好直接，冇太多interpretation空間</li>
+<br>
+<p>---</p>
+<br>
+<p>## 5️⃣ 262個Flagged Contracts — Market Activity Intensity</p>
+<br>
+<p><strong>262個異常合約代表咩？</strong></p>
+<br>
+<li><strong>極高水平</strong>：正常交易日flagged contracts通常 &lt; 50-80</li>
+<li><strong>262 = 3-5倍正常水平</strong></li>
+<li>之前另一個時段嘅snapshot有854個flagged contracts，證明<strong>今日全日都好火爆</strong></li>
+<li>淨係TSLA已經貢獻咗8個喺top 15入面</li>
+<br>
+<p><strong>市場解讀：</strong></p>
+<li>今日可能有重要催化劑（macro event/公司消息/指數rebalancing）</li>
+<li>262個flagging = 異常資金流入options市場</li>
+<li>唔係單一股票事件，係<strong>整體市場risk-on情緒</strong></li>
+<li>高濃度嘅call activity暗示機構對短期內（今日至本週）睇好</li>
+<br>
+<p><strong>信心：🟢🟢🟢 高 (8/10)</strong></p>
+<br>
+<p>---</p>
+<br>
+<p>## 📋 綜合評分表</p>
+<br>
+<p>| # | 訊號 | 方向 | 信心 | 備註 |</p>
+<p>|---|------|------|------|------|</p>
+<p>| 1 | <strong>TSLA 0DTE Call Wall ($360-$387.5)</strong> | 🐂 強烈看漲 | 🟢🟢🟢 <strong>8/10</strong> | $95M+ premium，垂直掃貨，機構級 |</p>
+<p>| 2 | <strong>NVDA $197.5 Deep ITM Call</strong> | 🐂 看漲 | 🟢🟢 <strong>7/10</strong> | $14.67M，Vol/OI 10.2x，機構方向盤 |</p>
+<p>| 3 | <strong>AMZN $275/$270 Put Spread</strong> | 🟡 Hedge (非方向) | 🟡 <strong>6/10</strong> | OI=0全新倉，似hedge多過睇跌 |</p>
+<p>| 4 | <strong>Put/Call Ratio</strong> | 🐂🐂🐂 <strong>極度看漲</strong> | 🟢🟢🟢 <strong>9/10</strong> | Top 15入面0個方向性PUT |</p>
+<p>| 5 | <strong>262 Flagged Contracts</strong> | 🔥 <strong>極活躍</strong> | 🟢🟢🟢 <strong>8/10</strong> | 正常3-5倍水平，全市場risk-on |</p>
+<br>
+<p>---</p>
+<br>
+<p>## 🎯 核心結論（廣東話總結）</p>
+<br>
+<p><strong>「今日個options market俾出嚟嘅信號好清楚 — 大戶係度掃貨，而且係掃CALL。」</strong></p>
+<br>
+<li class="num">1. <strong>TSLA</strong>係絕對主角 — $360到$387.5嘅0DTE call俾人由頭掃到尾，total premium差唔多成億美金。呢啲唔係散戶玩嘅size，係機構級別嘅directional bet。</li>
+<br>
+<li class="num">2. <strong>NVDA</strong>都跟住有異動 — $197.5 deep ITM call 10,845張，擺明係buy delta賭尾市。</li>
+<br>
+<li class="num">3. <strong>AMZN</strong>嗰兩個put spread（$275/$270）OI=0 — 好大機會係hedge，唔係睇跌。大戶唔會咁樣build一個bearish position。</li>
+<br>
+<li class="num">4. <strong>成個market vibe</strong>係一面倒睇好 — top 15合約全部係call（amazon嗰兩個put係hedge非方向性），put/call ratio接近零。</li>
+<br>
+<li class="num">5. <strong>262個flagged contracts</strong>代表今日唔係普通交易日，係有大型資金系統性流入options市場。</li>
+<br>
+<p><strong>⚠️ 溫馨提示：</strong> 0DTE options係雙面刃。今日呢班TSLA call如果尾市唔升，premium會快速蒸發。呢個trade賭性好重，跟單要控制風險。</p>
+<br>
+<p>---</p>
+<p><em>分析時間：2026-06-22 | 數據源：Options Flow Top 15 / 262 Flagged Contracts | 免責聲明：僅分析參考</em></p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #292 · 2026-06-22 12:00 HKT</p>
+</footer>
+</body>
+</html>
