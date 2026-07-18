@@ -179,7 +179,7 @@ def page_head_html(title, header_kw, prefix='', sel_all='', sel_hld='', sel_dec=
     """Generate full page header with tabs and date switcher."""
     ds = '' if hide_date_switcher else (date_switcher_html(all_dates or [], curr_date, prefix) if all_dates else '')
     kw = dict(header_kw, title=title, prefix=prefix,
-              sel_all=sel_all, sel_hld=sel_hld, sel_dec=sel_stu, sel_stu=sel_stu,
+              sel_all=sel_all, sel_hld=sel_hld, sel_dec=sel_dec, sel_stu=sel_stu,
               date_switcher=ds)
     return PAGE_HEAD.format(**kw)
 
