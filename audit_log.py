@@ -414,7 +414,8 @@ def build_site(entries):
     # Index with JS date filter
     all_cards_html = make_cards(entries)
     all_dates_json = json.dumps(all_dates, ensure_ascii=False)
-    index_js = f'''<div class="snap-selector">
+    index_js = f'''<h2 class="section-title">📋 時間線</h2>
+<div class="snap-selector">
   <label>📅 日期：</label>
   <div class="snap-list" id="tlDateList"></div>
 </div>
@@ -519,17 +520,77 @@ if (dates.length) renderHoldings(dates[0]);
                f'<h2 class="section-title">💼 持倉</h2>\n{holdings_js}',
                sel_hld='active', curr_date=None, prefix='', hide_date_switcher=True)
 
-    # Decisions
+    # Decisions with JS date filter
+    dec_cards_html = make_cards([e for e in entries if e['entry_type'] == 'decision'])
     write_page(DOCS / 'decisions.html', '🎯 決策 — 全部',
-               '<h2 class="section-title">🎯 交易決策</h2>\n' +
-               make_cards([e for e in entries if e['entry_type'] == 'decision']),
-               sel_dec='active', curr_date=None, prefix='')
+               f'''<h2 class="section-title">🎯 交易決策</h2>
+<div class="snap-selector">
+  <label>📅 日期：</label>
+  <div class="snap-list" id="decDateList"></div>
+</div>
+<div id="decCards" class="tab-content">
+{dec_cards_html}
+</div>
+<script>
+const DEC_DATES = {all_dates_json};
+const decData = {{}};
+document.querySelectorAll('#decCards .entry-card').forEach(c => {{
+  const d = c.dataset.date;
+  if (d) {{ if (!decData[d]) decData[d] = []; decData[d].push(c); }}
+}});
+function filterDec(date) {{
+  document.querySelectorAll('#decCards .entry-card').forEach(c => c.style.display = 'none');
+  if (!date || date === 'all') {{
+    document.querySelectorAll('#decCards .entry-card').forEach(c => c.style.display = 'block');
+  }} else if (decData[date]) {{
+    decData[date].forEach(c => c.style.display = 'block');
+  }}
+  document.querySelectorAll('#decDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
+}}
+document.getElementById('decDateList').innerHTML = '<a href="#" class="snap-btn active" data-date="all">全部</a>' +
+  DEC_DATES.map(d => '<a href="#" class="snap-btn" data-date="'+d+'">'+d+'</a>').join('');
+document.getElementById('decDateList').addEventListener('click', function(e) {{
+  const btn = e.target.closest('.snap-btn');
+  if (btn) {{ filterDec(btn.dataset.date); e.preventDefault(); }}
+}});
+</script>''',
+               sel_dec='active', curr_date=None, prefix='', hide_date_switcher=True)
 
-    # Studies
+    # Studies with JS date filter
+    stu_cards_html = make_cards([e for e in entries if e['entry_type'] in ('study','analysis')])
     write_page(DOCS / 'studies.html', '📚 研究 — 全部',
-               '<h2 class="section-title">📚 研究分析</h2>\n' +
-               make_cards([e for e in entries if e['entry_type'] in ('study','analysis')]),
-               sel_stu='active', curr_date=None, prefix='')
+               f'''<h2 class="section-title">📚 研究分析</h2>
+<div class="snap-selector">
+  <label>📅 日期：</label>
+  <div class="snap-list" id="stuDateList"></div>
+</div>
+<div id="stuCards" class="tab-content">
+{stu_cards_html}
+</div>
+<script>
+const STU_DATES = {all_dates_json};
+const stuData = {{}};
+document.querySelectorAll('#stuCards .entry-card').forEach(c => {{
+  const d = c.dataset.date;
+  if (d) {{ if (!stuData[d]) stuData[d] = []; stuData[d].push(c); }}
+}});
+function filterStu(date) {{
+  document.querySelectorAll('#stuCards .entry-card').forEach(c => c.style.display = 'none');
+  if (!date || date === 'all') {{
+    document.querySelectorAll('#stuCards .entry-card').forEach(c => c.style.display = 'block');
+  }} else if (stuData[date]) {{
+    stuData[date].forEach(c => c.style.display = 'block');
+  }}
+  document.querySelectorAll('#stuDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
+}}
+document.getElementById('stuDateList').innerHTML = '<a href="#" class="snap-btn active" data-date="all">全部</a>' +
+  STU_DATES.map(d => '<a href="#" class="snap-btn" data-date="'+d+'">'+d+'</a>').join('');
+document.getElementById('stuDateList').addEventListener('click', function(e) {{
+  const btn = e.target.closest('.snap-btn');
+  if (btn) {{ filterStu(btn.dataset.date); e.preventDefault(); }}
+}});
+</script>''',
+               sel_stu='active', curr_date=None, prefix='', hide_date_switcher=True)
 
     # ── Date folder pages ── (JS timeline with auto-filter for date)
     for dt in all_dates:

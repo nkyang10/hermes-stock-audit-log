@@ -18,9 +18,9 @@
       <span class="stat">5 隻股票</span>
     </div>
     <div class="hd-tickers"><span class="tkr-mini" style="--tkr-c:#555555">AAPL</span>, <span class="tkr-mini" style="--tkr-c:#4285f4">GOOGL</span>, <span class="tkr-mini" style="--tkr-c:#0668e1">META</span>, <span class="tkr-mini" style="--tkr-c:#00a4ef">MSFT</span>, <span class="tkr-mini" style="--tkr-c:#76b900">NVDA</span></div>
-    <div class="hd-last">更新於 2026-07-18 13:19</div>
+    <div class="hd-last">更新於 2026-07-18 13:29</div>
   </div>
-  <div class="date-switcher"><label>📅 日期：</label><div class="date-list"><a href="index.html" class="date-btn active">全部</a><a href="2026-07-18/index.html" class="date-btn ">2026-07-18</a><a href="2026-07-17/index.html" class="date-btn ">2026-07-17</a><a href="2026-07-16/index.html" class="date-btn ">2026-07-16</a></div></div>
+  
   <nav class="tabs">
     <a href="index.html" class="tab ">📋 時間線</a>
     <a href="holdings.html" class="tab ">💼 持倉</a>
@@ -30,6 +30,11 @@
 </header>
 <main>
 <h2 class="section-title">🎯 交易決策</h2>
+<div class="snap-selector">
+  <label>📅 日期：</label>
+  <div class="snap-list" id="decDateList"></div>
+</div>
+<div id="decCards" class="tab-content">
     <a href="2026-07-17/entry-2.html" class="entry-card" data-date="2026-07-17">
       <div class="entry-meta">
         <span class="entry-time">2026-07-17 00:39 HKT</span>
@@ -69,7 +74,31 @@
       </div>
       <div class="entry-title">HOLD GOOGL — HOLD — GOOGL essentially flat at $371</div>
       <div class="entry-tags"><span class="tag">decision</span></div>
-    </a></main>
+    </a>
+</div>
+<script>
+const DEC_DATES = ["2026-07-18", "2026-07-17", "2026-07-16"];
+const decData = {};
+document.querySelectorAll('#decCards .entry-card').forEach(c => {
+  const d = c.dataset.date;
+  if (d) { if (!decData[d]) decData[d] = []; decData[d].push(c); }
+});
+function filterDec(date) {
+  document.querySelectorAll('#decCards .entry-card').forEach(c => c.style.display = 'none');
+  if (!date || date === 'all') {
+    document.querySelectorAll('#decCards .entry-card').forEach(c => c.style.display = 'block');
+  } else if (decData[date]) {
+    decData[date].forEach(c => c.style.display = 'block');
+  }
+  document.querySelectorAll('#decDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
+}
+document.getElementById('decDateList').innerHTML = '<a href="#" class="snap-btn active" data-date="all">全部</a>' +
+  DEC_DATES.map(d => '<a href="#" class="snap-btn" data-date="'+d+'">'+d+'</a>').join('');
+document.getElementById('decDateList').addEventListener('click', function(e) {
+  const btn = e.target.closest('.snap-btn');
+  if (btn) { filterDec(btn.dataset.date); e.preventDefault(); }
+});
+</script></main>
 <footer>
   <p>由 audit_log.py 自動生成 · <a href="https://github.com/nkyang10/hermes-stock-audit-log">GitHub 原始碼</a></p>
 </footer>
