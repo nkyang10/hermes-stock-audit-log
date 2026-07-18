@@ -428,6 +428,7 @@ const SNAPSHOTS = {snapshots_json};
 const TKR_COLORS = {json.dumps(TKR_C, ensure_ascii=False)};
 let currentDate = null;
 function fmtNum(n) {{ return n.toLocaleString('en-US', {{minimumFractionDigits:2, maximumFractionDigits:2}}); }}
+function fmtInt(n) {{ return Math.round(n).toLocaleString('en-US'); }}
 function tkrBadge(sym) {{
   const c = TKR_COLORS[sym] || '#666';
   return '<span class="tkr" style="--tkr-c:'+c+'">'+sym+'</span>';
@@ -462,13 +463,13 @@ function renderHoldings(date) {{
   const retCls = totalReturn >= 0 ? 'pnl-pos' : 'pnl-neg';
   document.getElementById('holdingsContainer').innerHTML =
     '<div class="holdings-summary">' +
-    '<div class="hsum-row"><span class="hsum-label">持倉市值</span><span class="hsum-val">$'+fmtNum(totalMV)+'</span></div>' +
-    '<div class="hsum-row"><span class="hsum-label">現金</span><span class="hsum-val">$'+fmtNum(cash)+'</span></div>' +
-    '<div class="hsum-row"><span class="hsum-label">組合總值</span><span class="hsum-val">$'+fmtNum(totalValue)+'</span></div>' +
-    '<div class="hsum-row"><span class="hsum-label">持股數</span><span class="hsum-val">'+totalShares+'</span></div>' +
+    '<div class="hsum-row"><span class="hsum-label">持倉市值</span><span class="hsum-val">$'+fmtInt(totalMV)+'</span></div>' +
+    '<div class="hsum-row"><span class="hsum-label">現金</span><span class="hsum-val">$'+fmtInt(cash)+'</span></div>' +
+    '<div class="hsum-row"><span class="hsum-label">組合總值</span><span class="hsum-val">$'+fmtInt(totalValue)+'</span></div>' +
+    '<div class="hsum-row"><span class="hsum-label">持股數</span><span class="hsum-val">'+fmtInt(totalShares)+'</span></div>' +
     '<div class="hsum-row"><span class="hsum-label">持倉</span><span class="hsum-val">'+Object.keys(h).length+'</span></div>' +
-    '<div class="hsum-row '+pnlCls+'"><span class="hsum-label">未實現盈虧</span><span class="hsum-val">'+(totalPnl>=0?'+':'')+'$'+fmtNum(totalPnl)+'</span></div>' +
-    '<div class="hsum-row '+retCls+'"><span class="hsum-label">總回報 (vs $'+fmtNum(initCash)+')</span><span class="hsum-val">'+(totalReturn>=0?'+':'')+'$'+fmtNum(totalReturn)+'</span></div>' +
+    '<div class="hsum-row '+pnlCls+'"><span class="hsum-label">未實現盈虧</span><span class="hsum-val">'+(totalPnl>=0?'+':'')+'$'+fmtInt(totalPnl)+'</span></div>' +
+    '<div class="hsum-row '+retCls+'"><span class="hsum-label">總回報 (vs $'+fmtInt(initCash)+')</span><span class="hsum-val">'+(totalReturn>=0?'+':'')+'$'+fmtInt(totalReturn)+'</span></div>' +
     '</div>' +
     '<div class="pf-section"><table class="pf-table"><thead><tr><th>股票</th><th>股數</th><th>平均成本</th><th>現價</th><th>變幅</th><th>盈虧</th><th>市值</th></tr></thead><tbody>'+rows.join('')+'</tbody></table></div>';
   // Update button active state
