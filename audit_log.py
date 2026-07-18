@@ -406,7 +406,8 @@ def build_site(entries):
             snapshots_by_date[dt].append({
                 'id': e['id'], 'holdings': clean,
                 'cash': data.get('cash', 0),
-                'total_value': data.get('total_value', 0)
+                'total_value': data.get('total_value', 0),
+                'initial_cash': data.get('initial_cash', 0)
             })
 
     # ── Root pages (all dates) ──
@@ -437,10 +438,14 @@ function renderHoldings(date) {{
   if (!snaps || !snaps.length) {{ document.getElementById('holdingsContainer').innerHTML = '<p class="empty">呢日冇持倉快照</p>'; return; }}
   const snap = snaps[snaps.length-1];
   const h = snap.holdings;
-  let totalMV = 0, totalCost = 0;
+  const cash = snap.cash || 0;
+  const totalValue = snap.total_value || 0;
+  const initCash = snap.initial_cash || 0;
+  let totalMV = 0, totalCost = 0, totalShares = 0;
   const rows = Object.keys(h).sort().map(sym => {{
     const pos = h[sym];
     const sh = pos.shares || 0;
+    totalShares += sh;
     const cost = pos.avg_cost || pos.entry || 0;
     const price = pos.current_price || pos.current || 0;
     const mv = pos.market_value || pos.mv_usd || (sh * price);
@@ -452,9 +457,19 @@ function renderHoldings(date) {{
     return '<tr><td>'+tkrBadge(sym)+'</td><td class="r">'+sh+'</td><td class="r">$'+fmtNum(cost)+'</td><td class="r">$'+fmtNum(price)+'</td><td class="r '+chgCls+'">'+(typeof chg==='number'?chg.toFixed(2):chg)+'%</td><td class="r '+pnlCls+'">$'+fmtNum(pnl)+'</td><td class="r">$'+fmtNum(mv)+'</td></tr>';
   }});
   const totalPnl = totalMV - totalCost;
+  const totalReturn = totalValue - initCash;
   const pnlCls = totalPnl >= 0 ? 'pnl-pos' : 'pnl-neg';
+  const retCls = totalReturn >= 0 ? 'pnl-pos' : 'pnl-neg';
   document.getElementById('holdingsContainer').innerHTML =
-    '<div class="holdings-summary"><div class="hsum-row"><span class="hsum-label">總值</span><span class="hsum-val">$'+fmtNum(totalMV)+'</span></div><div class="hsum-row '+pnlCls+'"><span class="hsum-label">總盈虧</span><span class="hsum-val">'+(totalPnl>=0?'+':'')+'$'+fmtNum(totalPnl)+'</span></div><div class="hsum-row"><span class="hsum-label">持倉</span><span class="hsum-val">'+Object.keys(h).length+'</span></div></div>'+
+    '<div class="holdings-summary">' +
+    '<div class="hsum-row"><span class="hsum-label">持倉市值</span><span class="hsum-val">$'+fmtNum(totalMV)+'</span></div>' +
+    '<div class="hsum-row"><span class="hsum-label">現金</span><span class="hsum-val">$'+fmtNum(cash)+'</span></div>' +
+    '<div class="hsum-row"><span class="hsum-label">組合總值</span><span class="hsum-val">$'+fmtNum(totalValue)+'</span></div>' +
+    '<div class="hsum-row"><span class="hsum-label">持股數</span><span class="hsum-val">'+totalShares+'</span></div>' +
+    '<div class="hsum-row"><span class="hsum-label">持倉</span><span class="hsum-val">'+Object.keys(h).length+'</span></div>' +
+    '<div class="hsum-row '+pnlCls+'"><span class="hsum-label">未實現盈虧</span><span class="hsum-val">'+(totalPnl>=0?'+':'')+'$'+fmtNum(totalPnl)+'</span></div>' +
+    '<div class="hsum-row '+retCls+'"><span class="hsum-label">總回報 (vs $'+fmtNum(initCash)+')</span><span class="hsum-val">'+(totalReturn>=0?'+':'')+'$'+fmtNum(totalReturn)+'</span></div>' +
+    '</div>' +
     '<div class="pf-section"><table class="pf-table"><thead><tr><th>股票</th><th>股數</th><th>平均成本</th><th>現價</th><th>變幅</th><th>盈虧</th><th>市值</th></tr></thead><tbody>'+rows.join('')+'</tbody></table></div>';
   // Update button active state
   document.querySelectorAll('.snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === date));
