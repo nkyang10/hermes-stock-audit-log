@@ -175,11 +175,11 @@ def date_switcher_html(all_dates, curr_date, prefix=''):
     html += '</div></div>'
     return html
 
-def page_head_html(title, header_kw, prefix='', sel_all='', sel_hld='', sel_dec='', sel_stu='', curr_date=None, all_dates=None, hide_date_switcher=False):
+def page_head_html(title, header_kw, prefix='', sel_all='', sel_hld='', sel_stu='', curr_date=None, all_dates=None, hide_date_switcher=False):
     """Generate full page header with tabs and date switcher."""
     ds = '' if hide_date_switcher else (date_switcher_html(all_dates or [], curr_date, prefix) if all_dates else '')
     kw = dict(header_kw, title=title, prefix=prefix,
-              sel_all=sel_all, sel_hld=sel_hld, sel_dec=sel_dec, sel_stu=sel_stu,
+              sel_all=sel_all, sel_hld=sel_hld, sel_stu=sel_stu,
               date_switcher=ds)
     return PAGE_HEAD.format(**kw)
 
@@ -209,7 +209,6 @@ PAGE_HEAD = '''<!DOCTYPE html>
   <nav class="tabs">
     <a href="{prefix}index.html" class="tab {sel_all}">📋 時間線</a>
     <a href="{prefix}holdings.html" class="tab {sel_hld}">💼 持倉</a>
-    <a href="{prefix}decisions.html" class="tab {sel_dec}">🎯 決策</a>
     <a href="{prefix}studies.html" class="tab {sel_stu}">📚 研究</a>
   </nav>
 </header>
@@ -376,10 +375,10 @@ def build_site(entries):
     # Collect unique dates
     all_dates = sorted(set(e['created_at'][:10] for e in entries if e['created_at']), reverse=True)
 
-    def write_page(path, title, content, sel_all='', sel_hld='', sel_dec='', sel_stu='', curr_date=None, prefix='', hide_date_switcher=False):
+    def write_page(path, title, content, sel_all='', sel_hld='', sel_stu='', curr_date=None, prefix='', hide_date_switcher=False):
         html = page_head_html(title, header_kw, prefix=prefix, curr_date=curr_date,
                               all_dates=all_dates, hide_date_switcher=hide_date_switcher,
-                              sel_all=sel_all, sel_hld=sel_hld, sel_dec=sel_dec, sel_stu=sel_stu)
+                              sel_all=sel_all, sel_hld=sel_hld, sel_stu=sel_stu)
         html += content + PAGE_FOOT
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(html)
@@ -411,23 +410,18 @@ def build_site(entries):
             })
 
     # ── Root pages (all dates) ──
-    # Index with JS date filter — only buy/sell/add/trim (not HOLD/no_action)
-    skip_prefixes = ('HOLD', 'no_action', 'skip', 'PASS', 'MONITOR', 'hold_review', 'none', 'hold_all')
-    action_entries = [
-        e for e in entries
-        if e['entry_type'] == 'decision'
-        and not any(e['title'].upper().startswith(p.upper()) for p in skip_prefixes)
-    ]
+    # Index with JS date filter — all decisions (trades + holds)
+    all_dec_entries = [e for e in entries if e['entry_type'] == 'decision']
     # Group entries by date for compact display
     from collections import defaultdict
     grouped = defaultdict(list)
-    for e in action_entries:
+    for e in all_dec_entries:
         d = e['created_at'][:10] if e['created_at'] else 'unknown'
         grouped[d].append(e)
 
     all_dates = sorted(grouped.keys(), reverse=True)
     all_dates_json = json.dumps(all_dates, ensure_ascii=False)
-    all_cards_html = make_cards(action_entries)  # flat list for date folder pages
+    all_cards_html = make_cards(all_dec_entries)  # flat list for date folder pages
 
     # Build grouped HTML: date header + cards per group
     def fmt_date_header(d):
@@ -544,42 +538,6 @@ if (dates.length) renderHoldings(dates[0]);
     write_page(DOCS / 'holdings.html', '💼 持倉',
                f'<h2 class="section-title">💼 持倉</h2>\n{holdings_js}',
                sel_hld='active', curr_date=None, prefix='', hide_date_switcher=True)
-
-    # Decisions with JS date filter
-    dec_cards_html = make_cards([e for e in entries if e['entry_type'] == 'decision'])
-    write_page(DOCS / 'decisions.html', '🎯 決策 — 全部',
-               f'''<h2 class="section-title">🎯 交易決策</h2>
-<div class="snap-selector">
-  <label>📅 日期：</label>
-  <div class="snap-list" id="decDateList"></div>
-</div>
-<div id="decCards" class="tab-content">
-{dec_cards_html}
-</div>
-<script>
-const DEC_DATES = {all_dates_json};
-const decData = {{}};
-document.querySelectorAll('#decCards .entry-card').forEach(c => {{
-  const d = c.dataset.date;
-  if (d) {{ if (!decData[d]) decData[d] = []; decData[d].push(c); }}
-}});
-function filterDec(date) {{
-  document.querySelectorAll('#decCards .entry-card').forEach(c => c.style.display = 'none');
-  if (!date || date === 'all') {{
-    document.querySelectorAll('#decCards .entry-card').forEach(c => c.style.display = 'block');
-  }} else if (decData[date]) {{
-    decData[date].forEach(c => c.style.display = 'block');
-  }}
-  document.querySelectorAll('#decDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
-}}
-document.getElementById('decDateList').innerHTML = '<a href="#" class="snap-btn active" data-date="all">全部</a>' +
-  DEC_DATES.map(d => '<a href="#" class="snap-btn" data-date="'+d+'">'+d+'</a>').join('');
-document.getElementById('decDateList').addEventListener('click', function(e) {{
-  const btn = e.target.closest('.snap-btn');
-  if (btn) {{ filterDec(btn.dataset.date); e.preventDefault(); }}
-}});
-</script>''',
-               sel_dec='active', curr_date=None, prefix='', hide_date_switcher=True)
 
     # Studies with JS date filter
     stu_cards_html = make_cards([e for e in entries if e['entry_type'] in ('study','analysis')])
