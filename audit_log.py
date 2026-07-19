@@ -460,12 +460,15 @@ let selMonth = null, selDay = null;
 
 function parseYmd(d) {{ const p = d.split('-'); return {{y:p[0],m:p[1],d:p[2]}}; }}
 
-const mdMap = {{}};
+// Build month/day lookup
+const hasDate = {{}};
+TL_DATES.forEach(d => {{ hasDate[d] = true; }});
+
+// Which months have data (e.g. "2026-07")
+const hasMonth = {{}};
 TL_DATES.forEach(d => {{
   const p = parseYmd(d);
-  const key = p.y+'-'+p.m;
-  if (!mdMap[key]) mdMap[key] = [];
-  if (!mdMap[key].includes(p.d)) mdMap[key].push(p.d);
+  hasMonth[p.y+'-'+p.m] = true;
 }});
 
 function filterTimeline(fullDate) {{
@@ -474,25 +477,38 @@ function filterTimeline(fullDate) {{
   }});
 }}
 
-function renderDays(monthKey) {{
-  const days = mdMap[monthKey] || [];
+function renderDays(monthKey, monthsWithData) {{
   const dayContainer = document.getElementById('tlDayList');
   const daySel = document.getElementById('daySelector');
-  if (days.length === 0) {{ daySel.style.display = 'none'; return; }}
   daySel.style.display = 'block';
   dayContainer.innerHTML = '<a href="#" class="snap-btn'+(selDay===null?' active':'')+'" data-day="all">全部</a>' +
-    days.sort().map(d => '<a href="#" class="snap-btn'+(selDay===d?' active':'')+'" data-day="'+d+'">'+d+'</a>').join('');
+    Array.from({{length:31}},(_,i)=>{{
+      const d = String(i+1).padStart(2,'0');
+      const full = monthKey+'-'+d;
+      const has = hasDate[full];
+      return '<a href="#" class="snap-btn'+(selDay===d?' active':'')+(has?'':' dimmed')+'" data-day="'+d+'">'+d+'</a>';
+    }}).join('');
 }}
 
 function renderMonths() {{
   const container = document.getElementById('tlMonthList');
-  const keys = Object.keys(mdMap).sort();
+  const allKeys = [];
+  // Generate all year-month combos from available data years
+  const years = new Set();
+  Object.keys(hasMonth).forEach(k => years.add(k.split('-')[0]));
+  years.forEach(y => {{
+    for (let m = 1; m <= 12; m++) {{
+      const mk = y+'-'+String(m).padStart(2,'0');
+      allKeys.push(mk);
+    }}
+  }});
   container.innerHTML = '<a href="#" class="snap-btn'+(selMonth===null?' active':'')+'" data-month="all">全部</a>' +
-    keys.map(k => {{
+    allKeys.sort().map(k => {{
       const p = k.split('-');
       const monthIdx = parseInt(p[1]) - 1;
       const label = MONTHS[monthIdx] + ' ' + p[0];
-      return '<a href="#" class="snap-btn'+(selMonth===k?' active':'')+'" data-month="'+k+'">'+label+'</a>';
+      const has = hasMonth[k];
+      return '<a href="#" class="snap-btn'+(selMonth===k?' active':'')+(has?'':' dimmed')+'" data-month="'+k+'">'+label+'</a>';
     }}).join('');
   if (selMonth) renderDays(selMonth);
 }}
