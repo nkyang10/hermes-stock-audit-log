@@ -443,26 +443,97 @@ def build_site(entries):
     )
     index_js = f'''<h2 class="section-title">📋 時間線（買賣記錄）</h2>
 <div class="snap-selector">
-  <label>📅 日期：</label>
-  <div class="snap-list" id="tlDateList"></div>
+  <label>📅 月份：</label>
+  <div class="snap-list" id="tlMonthList"></div>
+</div>
+<div class="snap-selector" id="daySelector" style="display:none">
+  <label>📆 日子：</label>
+  <div class="snap-list" id="tlDayList"></div>
 </div>
 <div id="tlCards" class="tab-content">
 {groups_html}
 </div>
 <script>
 const TL_DATES = {all_dates_json};
-function filterTimeline(date) {{
- document.querySelectorAll('.tl-date-group').forEach(g => {{
-   g.style.display = (!date || date === 'all' || g.dataset.date === date) ? 'block' : 'none';
- }});
- document.querySelectorAll('#tlDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
-}}
-document.getElementById('tlDateList').innerHTML = '<a href="#" class="snap-btn active" data-date="all">全部</a>' +
-  TL_DATES.map(d => '<a href="#" class="snap-btn" data-date="'+d+'">'+d+'</a>').join('');
-document.getElementById('tlDateList').addEventListener('click', function(e) {{
-  const btn = e.target.closest('.snap-btn');
-  if (btn) {{ filterTimeline(btn.dataset.date); e.preventDefault(); }}
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+let selMonth = null, selDay = null;
+
+function parseYmd(d) {{ const p = d.split('-'); return {{y:p[0],m:p[1],d:p[2]}}; }}
+
+const mdMap = {{}};
+TL_DATES.forEach(d => {{
+  const p = parseYmd(d);
+  const key = p.y+'-'+p.m;
+  if (!mdMap[key]) mdMap[key] = [];
+  if (!mdMap[key].includes(p.d)) mdMap[key].push(p.d);
 }});
+
+function filterTimeline(fullDate) {{
+  document.querySelectorAll('.tl-date-group').forEach(g => {{
+    g.style.display = (!fullDate || fullDate === 'all' || g.dataset.date === fullDate) ? 'block' : 'none';
+  }});
+}}
+
+function renderDays(monthKey) {{
+  const days = mdMap[monthKey] || [];
+  const dayContainer = document.getElementById('tlDayList');
+  const daySel = document.getElementById('daySelector');
+  if (days.length === 0) {{ daySel.style.display = 'none'; return; }}
+  daySel.style.display = 'block';
+  dayContainer.innerHTML = '<a href="#" class="snap-btn'+(selDay===null?' active':'')+'" data-day="all">全部</a>' +
+    days.sort().map(d => '<a href="#" class="snap-btn'+(selDay===d?' active':'')+'" data-day="'+d+'">'+d+'</a>').join('');
+}}
+
+function renderMonths() {{
+  const container = document.getElementById('tlMonthList');
+  const keys = Object.keys(mdMap).sort();
+  container.innerHTML = '<a href="#" class="snap-btn'+(selMonth===null?' active':'')+'" data-month="all">全部</a>' +
+    keys.map(k => {{
+      const p = k.split('-');
+      const monthIdx = parseInt(p[1]) - 1;
+      const label = MONTHS[monthIdx] + ' ' + p[0];
+      return '<a href="#" class="snap-btn'+(selMonth===k?' active':'')+'" data-month="'+k+'">'+label+'</a>';
+    }}).join('');
+  if (selMonth) renderDays(selMonth);
+}}
+
+function onMonthClick(monthKey) {{
+  selMonth = monthKey;
+  selDay = null;
+  if (monthKey) {{
+    renderDays(monthKey);
+    filterTimeline(null);
+  }} else {{
+    document.getElementById('daySelector').style.display = 'none';
+    filterTimeline('all');
+  }}
+  renderMonths();
+}}
+
+function onDayClick(day) {{
+  selDay = day;
+  if (day && selMonth) {{
+    filterTimeline(selMonth+'-'+day);
+  }} else if (selMonth) {{
+    filterTimeline(null);
+  }}
+  renderDays(selMonth);
+}}
+
+document.getElementById('tlMonthList').addEventListener('click', function(e) {{
+  const btn = e.target.closest('.snap-btn');
+  if (!btn) return; e.preventDefault();
+  const m = btn.dataset.month;
+  onMonthClick(m === 'all' ? null : m);
+}});
+document.getElementById('tlDayList').addEventListener('click', function(e) {{
+  const btn = e.target.closest('.snap-btn');
+  if (!btn) return; e.preventDefault();
+  onDayClick(btn.dataset.day === 'all' ? null : btn.dataset.day);
+}});
+
+renderMonths();
+filterTimeline('all');
 </script>'''
     write_page(DOCS / 'index.html', '📊 股票審計記錄', index_js,
                sel_all='active', curr_date=None, prefix='', hide_date_switcher=True)
