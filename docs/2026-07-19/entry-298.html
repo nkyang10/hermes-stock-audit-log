@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#298 — 新設 US Open Preview · 整合 Sim-Trader 流程</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 0 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">0 項決策</span>
+      <span class="stat">0 項快照</span>
+      <span class="stat">0 項研究</span>
+      <span class="stat">0 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-07-19 12:46 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">SPX</span>
+        
+      </div>
+    </div>
+    <h1>新設 US Open Preview · 整合 Sim-Trader 流程</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">market-preview</span><span class="tag">sim-trader</span><span class="tag">setup</span></div>
+  </div>
+  <div class="reasoning">
+    <p>建立 stock-trading-sim-us-open-preview-9pm cron job（ID: 83f2813cbed9），每日 13:00 HK 執行 premaket data collection → Part 1: 人類 readable 盤前前瞻 + Part 2: structured JSON market context 餵 sim-trading + Part 3: audit log record。取代舊 us-open-preview-9pm（915f2d）。4 個 sim-trading jobs 已加 context_from 自動 consume 個 preview output 做決策參考。</p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #298 · 2026-07-19 12:46 HKT</p>
+</footer>
+</body>
+</html>
