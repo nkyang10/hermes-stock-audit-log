@@ -384,7 +384,7 @@ def build_site(entries):
     n_dec = sum(1 for e in entries if e['entry_type'] == 'decision')
     n_snp = sum(1 for e in entries if e['entry_type'] == 'snapshot')
     n_stu = sum(1 for e in entries if e['entry_type'] in ('study','analysis'))
-    tickers = sorted(set(e['ticker'] for e in entries if e['ticker']))
+    tickers = sorted(set(e['ticker'].replace('NASDAQ:', '').replace('NYSE:', '') for e in entries if e['ticker']))
     tkr_row = '<div class="hd-tickers">' + ', '.join(tkr_html(t) for t in tickers) + '</div>' if tickers else ''
 
     header_kw = dict(title='📊 股票審計記錄', count=count,
