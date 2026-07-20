@@ -43,685 +43,500 @@
     <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">backfill</span></div>
   </div>
   <div class="reasoning">
-    <p># Cron Job: sim-research</p>
-<br>
-<p><strong>Job ID:</strong> 584ed05cbc4e</p>
-<p><strong>Run Time:</strong> 2026-06-25 00:35:30</p>
-<p><strong>Schedule:</strong> 3,33 20-23,0-3 <em> </em> 1-5</p>
-<br>
-<p>## Prompt</p>
-<br>
-<p>[IMPORTANT: The user has invoked the &quot;agent-research&quot; skill, indicating they want you to follow its instructions. The full skill content is loaded below.]</p>
-<br>
-<p>---</p>
-<p>name: agent-research</p>
-<p>description: &gt;-</p>
-<p>  Multi-source agent research methodology — source credibility tiers,</p>
-<p>  confidence gating, multi-angle search, manager quality gate, and</p>
-<p>  structured report templates. For ANY research topic (stocks, tech,</p>
-<p>  industry, macro). References skill-harness for the GENERATE→VALIDATE→</p>
-<p>  REFINE→ACCEPT loop.</p>
-<p>version: 1.1.0</p>
-<p>metadata:</p>
-<p>  hermes:</p>
-<p>    tags: [research, methodology, quality, fact-checking, source-credibility]</p>
-<p>    related_skills: [skill-harness, us-market-data]</p>
-<p>---</p>
-<br>
-<p># Agent Research Methodology</p>
-<br>
-<p>A <strong>general-purpose research skill</strong> for any topic. Combines source credibility</p>
-<p>tiers, multi-angle search, confidence gating, and a manager quality gate into</p>
-<p>a structured workflow. Built on top of the <code>skill-harness</code> loop pattern.</p>
-<br>
-<p>## When to Load This Skill</p>
-<br>
-<p>Load this skill when the user asks you to research <strong>any topic</strong> that requires</p>
-<p>multiple sources, fact-checking, or analysis — stocks, tech, industry trends,</p>
-<p>macro economics, geopolitics, company analysis, etc.</p>
-<br>
-<p>## The Research Loop</p>
-<br>
-<p><pre><code>                    ┌─── early_exit (≥90%)</p>
-<p>                    │</p>
-<p>GENERATE ─→ VALIDATE ─── standard (50-90%) ─→ REFINE ─→ REGENERATE</p>
-<p>    ↑              │                                    │</p>
-<p>    │              └─── deep_search (&lt;50%) ───────────────┘</p>
-<p>    └──────────────────── REFINE feedback ────────────────┘</p>
-<p></code></pre></p>
-<br>
-<p>### Phase 1: GENERATE — Multi-Angle Collection</p>
-<br>
-<p>Do NOT do a single search. Research needs multiple angles:</p>
-<br>
-<p><pre><code># For a stock: AAPL</p>
-<p>searches = [</p>
-<p>    &quot;AAPL stock price technical analysis 2026&quot;,</p>
-<p>    &quot;AAPL analyst rating price target June 2026&quot;,</p>
-<p>    &quot;Apple latest news catalysts market reaction&quot;,</p>
-<p>    &quot;AAPL earnings revenue EPS growth outlook&quot;,</p>
-<p>    &quot;Apple competitive position AI strategy&quot;  # different angle</p>
-<p>]</p>
-<br>
-<p># For a tech topic: &quot;AI chip shortage&quot;</p>
-<p>searches = [</p>
-<p>    &quot;AI chip shortage 2026 market impact&quot;,</p>
-<p>    &quot;NVIDIA TSMC semiconductor supply chain&quot;,</p>
-<p>    &quot;AI chip alternatives China export controls&quot;,</p>
-<p>    &quot;Data center GPU demand forecast 2026 2027&quot;,</p>
-<p>]</p>
-<p></code></pre></p>
-<br>
-<p><strong>Rules:</strong></p>
-<li>Minimum 3 angles — never 1 search only</li>
-<li>If the first 3 searches return conflicting data, add 2 more to resolve</li>
-<li>Use different sources per search (not all Yahoo Finance)</li>
-<li>Use web_extract/browser for deep-dive on key sources</li>
-<br>
-<p>### Phase 2: VALIDATE — Source Credibility + Confidence Gate</p>
-<br>
-<p>#### Source Credibility System</p>
-<br>
-<p>Tag every source with its tier. The reader sees this immediately.</p>
-<br>
-<p>| Tier | Type | Examples | Trust |</p>
-<p>|------|------|----------|-------|</p>
-<p>| <strong>Tier-1</strong> | Peer-reviewed, official filings | SEC 10-K/10-Q, Nature, Journal of Finance, IEEE, IMF, World Bank, Federal Reserve | ✅ Primary |</p>
-<p>| <strong>Tier-2</strong> | Major research, reputable analysts | McKinsey, BCG, Bain, Gartner, Forrester, IDC, Goldman Sachs, BofA, Bloomberg Terminal | ✅ Strong |</p>
-<p>| <strong>Tier-3</strong> | Quality journalism | FT, WSJ, Bloomberg, Reuters, The Economist, CNBC (selective), NYT, WaPo | ✅ Reliable |</p>
-<p>| <strong>Tier-4</strong> | Trade press, secondary | TechCrunch, The Verge, Seeking Alpha, MarketBeat, Yahoo Finance articles, Barrons | ⚠️ Needs corroboration |</p>
-<p>| <strong>🚫 Prohibited</strong> | Unattributed, anonymous | Reddit, anonymous blogs, Wikipedia as primary, X/Twitter unverified | ❌ Never cite alone |</p>
-<br>
-<p><strong>Corroboration rule:</strong> Tier-4 claims MUST be backed by at least one Tier-2/3</p>
-<p>source. Two Tier-4 sources agreeing is still not enough — find a stronger source.</p>
-<br>
-<p>#### Confidence Gate</p>
-<br>
-<p>After collecting data, self-rate your confidence <strong>per section</strong>:</p>
-<br>
-<p><pre><code>Section: [Technical Analysis]</p>
-<p>Source: Yahoo Finance Chart API (Tier-3) + TradingView (Tier-3)</p>
-<p>Key claim: AAPL support at $287</p>
-<p>Confidence: 85% ← price from live API, no interpretation</p>
-<br>
-<p>Section: [Analyst Sentiment]</p>
-<p>Source: MarketBeat price targets page (Tier-4)</p>
-<p>Key claim: Avg PT $314.59, 24 Buy / 10 Hold / 1 Sell</p>
-<p>Confidence: 70% ← MarketBeat is Tier-4, need cross-ref</p>
-<p></code></pre></p>
-<br>
-<p><strong>Actions by confidence level:</strong></p>
-<br>
-<p>| Confidence | Mode | Action |</p>
-<p>|------------|------|--------|</p>
-<p>| <strong>≥90%</strong> | <code>early_exit</code> | Accept as-is, no refine needed |</p>
-<p>| <strong>50-90%</strong> | <code>standard</code> | Do 1 round of REFINE: search for corroboration |</p>
-<p>| <strong>&lt;50%</strong> | <code>deep_search</code> | Reframe the question entirely, 2+ new angles, re-search |</p>
-<br>
-<p>#### Manager Quality Gate (Pre-Ship)</p>
-<br>
-<p>Before delivering <strong>any</strong> research output, run this gate:</p>
-<br>
-<p><pre><code>For EVERY claim with a specific number, date, or attribution:</p>
-<p>  ✅ [HALLUCINATION RISK] — claim has no source, or contradicts source?</p>
-<p>  ✅ [CITATION NEEDED] — plausible but unsourced?</p>
-<p>  ✅ [STALE DATA] — source older than 6 months?</p>
-<p>  ✅ [CONFLICT] — source has financial interest? (e.g. bank covering own stock)</p>
-<p>  ✅ [OUTDATED] — data superseded by newer information?</p>
-<br>
-<p>For the report as a whole:</p>
-<p>  ✅ Are all numbers sourced?</p>
-<p>  ✅ Are all Tier-4 claims corroborated by Tier-2/3?</p>
-<p>  ✅ Confidence score ≥ 70% overall?</p>
-<p></code></pre></p>
-<br>
-<p><strong>Nothing ships without a Manager pass.</strong> If any flag is raised, block delivery</p>
-<p>and enter REFINE phase.</p>
-<br>
-<p>### Phase 3: REFINE — Targeted Improvement</p>
-<br>
-<p>Based on which issues the Manager Gate found, pick the right refinement strategy:</p>
-<br>
-<p>| Issue | Strategy |</p>
-<p>|-------|----------|</p>
-<p>| <code>[HALLUCINATION RISK]</code> | Re-fetch the source, quote exact text, re-derive |</p>
-<p>| <code>[CITATION NEEDED]</code> | 1 specific search for the missing citation |</p>
-<p>| <code>[STALE DATA]</code> | Re-fetch with current date range filter |</p>
-<p>| <code>[CONFLICT]</code> | Find a neutral source for the same data point |</p>
-<p>| <code>Confidence &lt; 50% (deep_search)</code> | Entirely new search angles, not just rephrasing |</p>
-<br>
-<p><strong>Reflexion note:</strong> Before refining, note what went wrong:</p>
-<p><pre><code>Reflexion: My first search for &quot;AAPL analyst targets&quot; returned MarketBeat</p>
-<p>(Tier-4) which gave avg PT $314. But I didn&#x27;t verify against TipRanks or</p>
-<p>Bloomberg. For the refine pass, I&#x27;ll search &quot;AAPL analyst price target</p>
-<p>June 2026 consensus&quot; to find a Tier-3 source.</p>
-<p></code></pre></p>
-<br>
-<p>### Phase 4: ACCEPT — Structured Report</p>
-<br>
-<p>#### Report Format (Pyramid Principle / BLUF)</p>
-<br>
-<p><pre><code>## [Topic] — Research Report</p>
-<p>Confidence: [overall score]% | Generated: [date]</p>
-<br>
-<p>### Bottom Line</p>
-<p>[1-sentence summary of the most important finding]</p>
-<br>
-<p>### Key Findings</p>
-<li class="num">1. <strong>[Finding 1]</strong> — [evidence, source tier]</li>
-<li class="num">2. <strong>[Finding 2]</strong> — [evidence, source tier]</li>
-<li class="num">3. <strong>[Finding 3]</strong> — [evidence, source tier]</li>
-<br>
-<p>### Supporting Analysis</p>
-<p>#### Section A: [Angle 1]</p>
-<li>[Claim with source tag] — Confidence: X%</li>
-<li>[Claim with source tag] — Confidence: X%</li>
-<br>
-<p>#### Section B: [Angle 2]</p>
-<p>...</p>
-<br>
-<p>### Risk Factors / Contradictions</p>
-<li>[Risk 1] — [evidence, confidence]</li>
-<li>[Risk 2] — [evidence, confidence]</li>
-<br>
-<p>### Sources</p>
-<p>| Source | Tier | Date | Used For |</p>
-<p>|--------|------|------|----------|</p>
-<p>| [Name] | T-1/2/3/4 | YYYY-MM-DD | [claims] |</p>
-<br>
-<p>### Recommendation (if applicable)</p>
-<p>[Actionable advice with conviction level]</p>
-<p></code></pre></p>
-<br>
-<p>### Research Output Checklist</p>
-<br>
-<p><pre><code>BEFORE DELIVERING, CONFIRM:</p>
-<br>
-<p>□ Minimum 3 search angles used</p>
-<p>□ All claims tagged with source tier</p>
-<p>□ No Tier-4 claims used without corroboration</p>
-<p>□ Numbers triple-checked against source</p>
-<p>□ Confidence score ≥ 70% overall</p>
-<p>□ Manager Gate: no [HALLUCINATION RISK] or [STALE DATA] flags</p>
-<p>□ BLUF format — bottom line first</p>
-<p>□ Sources table included</p>
-<p>□ Risk factors acknowledged (not just bull case)</p>
-<p></code></pre></p>
-<br>
-<p>## Worked Example: Stock Research (AAPL)</p>
-<br>
-<p>See <code>us-market-data</code> skill&#x27;s <code>references/full-stock-analysis-workflow.md</code> for a</p>
-<p>complete worked example of stock research using the full GENERATE→VALIDATE→REFINE→ACCEPT</p>
-<p>loop end-to-end, including exact browser console commands, Python technical computation,</p>
-<p>and the Manager Gate implementation.</p>
-<br>
-<p>Following the full loop:</p>
-<br>
-<p><pre><code>GENERATE</p>
-<p>├── Search 1: &quot;AAPL price technical analysis June 2026&quot; → Yahoo Finance (T-3)</p>
-<p>├── Search 2: &quot;AAPL analyst rating price target&quot; → MarketBeat (T-4)</p>
-<p>├── Search 3: &quot;Apple WWDC 2026 AI features market reaction&quot; → CNBC (T-3)</p>
-<p>├── Search 4: &quot;AAPL competitive position AI vs Microsoft&quot; → FT (T-3)</p>
-<p>└── Collected: 4 angles, 4 sources</p>
-<br>
-<p>VALIDATE</p>
-<p>├── Manager Gate check: </p>
-<p>│   - PT data from MarketBeat (T-4) → [CITATION NEEDED] Tier-2 corroboration</p>
-<p>│   - WWDC AI revenue impact figure → [STALE DATA] from pre-WWDC, need post</p>
-<p>│   - Overall confidence: 65% → standard mode (50-90%)</p>
-<p>└── Flags: 2 issues found → enter REFINE</p>
-<br>
-<p>REFINE</p>
-<p>├── Reflexion: &quot;MarketBeat is Tier-4, needs cross-ref. WWDC data is pre-event.&quot;</p>
-<p>├── Search 5: &quot;AAPL analyst consensus BofA Goldman PT&quot; → Reuters (T-3) ✅</p>
-<p>├── Search 6: &quot;Apple stock reaction post-WWDC analyst notes&quot; → Bloomberg (T-3) ✅</p>
-<p>└── Corroborated PT data + updated WWDC impact → confidence now 85%</p>
-<br>
-<p>ACCEPT</p>
-<p>└── Generate structured BLUF report with all checks passed</p>
-<p></code></pre></p>
-<br>
-<p>## Worked Example: Tech Topic (AI Chip Shortage)</p>
-<br>
-<p><pre><code>GENERATE</p>
-<p>├── Search 1: &quot;AI chip shortage 2026 supply demand&quot; → FT, WSJ (T-3)</p>
-<p>├── Search 2: &quot;NVIDIA TSMC capacity expansion timeline&quot; → Reuters (T-3)</p>
-<p>├── Search 3: &quot;China export controls semiconductor impact&quot; → CSIS (T-2)</p>
-<p>└── Collected: 3 angles, 4+ sources</p>
-<br>
-<p>VALIDATE</p>
-<p>├── TSMC capacity figure from blog (T-4 lone source) → [HALLUCINATION RISK]</p>
-<p>├── Export control impact estimate → Government report (T-2) ✅</p>
-<p>├── Confidence: 78% → standard mode</p>
-<p>└── Flags: 1 issue → enter REFINE</p>
-<br>
-<p>REFINE</p>
-<p>├── Reflexion: &quot;Need to replace blog-sourced TSMC figure with official data&quot;</p>
-<p>├── Search 4: &quot;TSMC CoWoS capacity 2026 official guidance&quot; → TSMC IR (T-1) ✅</p>
-<p>└── Now has official guidance → confidence 92% → early_exit</p>
-<br>
-<p>ACCEPT</p>
-<p>└── Deliver with BLUF: &quot;AI chip shortage easing by Q3 2026, TSMC capacity +40% YoY&quot;</p>
-<p></code></pre></p>
-<br>
-<p>## Specialized Reference Patterns</p>
-<br>
-<p>The <code>references/</code> directory contains reusable patterns for specific research classes. Load when the trigger condition matches:</p>
-<br>
-<p>| Reference | Trigger | Contents |</p>
-<p>|-----------|---------|----------|</p>
-<p>| <code>references/event-impact-stock-screening.md</code> | &quot;which stocks were hit by [event] and haven&#x27;t recovered&quot; | Event timeline → watchlist prices → pre/post comparison → classification with position overlay |</p>
-<p>| <code>references/portfolio-batch-research.md</code> | User shares a portfolio/watchlist screenshot and asks &quot;analyse all of these&quot; | Portfolio scan with vision → identify items needing attention → parallel delegate_task research → structured BLUF reports per ticker |</p>
-<p>| <code>references/wikipedia-sports-squad-data.md</code> | User asks about national team squads, players in top leagues, or team composition by league | Wikipedia API parse endpoint → extract squad tables → classify by league tier → structured player breakdown |</p>
-<p>| <code>references/search-fallback-chain.md</code> | web_search fails (402/429), or all search engines blocked by CAPTCHA | Complete fallback hierarchy: browser → curl → direct URLs → GitHub API → Facebook login-wall info extraction (browser_vision on blurred background) → direct URL guessing for unknown companies → image forensics for screenshot source verification + Taiwan e-commerce direct navigation patterns |</p>
-<p>| <code>references/github-api-search.md</code> | GitHub research needed | Search repos, code, issues as primary research channel |</p>
-<p>| <code>references/wikipedia-tournament-standings.md</code> | User asks about current/live tournament standings, results, group tables — especially when search is blocked | Wikipedia API <code>parse</code> endpoint for extracting group standings (GD points, W/D/L, GF/GA), schedule, third-placed rankings, with rate-limit handling and HTML entity pitfalls |</p>
-<p>| <code>us-market-data</code> skill&#x27;s <code>references/multi-stock-sector-comparison.md</code> | User asks about 2-5 competing stocks in the same sector | Parallel delegate_task collection → comparison table → scenario matrix → entry zones |</p>
-<br>
-<p>## Cron Job Integration</p>
-<br>
-<p>The agent-research methodology can power <strong>scheduled cron jobs</strong>, not just</p>
-<p>ad-hoc research. This section covers how to design cron job prompts that</p>
-<p>follow the methodology.</p>
-<br>
-<p>### Pattern 1: Research Agent (e.g. sim-research)</p>
-<br>
-<p>Full methodology for every tick: multi-angle search, source tiers, confidence</p>
-<p>gate, Manager Gate. 1 stock per tick (context guard) — write enriched JSON</p>
-<p>research files to disk.</p>
-<br>
-<p><strong>Skills loading:</strong></p>
-<p><pre><code>cronjob action=create name=&quot;sim-research&quot; skills=[agent-research] ...</p>
-<p></code></pre></p>
-<br>
-<p><strong>Prompt structure:</strong></p>
-<li>&quot;You are a stock research agent following the <code>agent-research</code> methodology.&quot;</li>
-<li>Lock: &quot;1 stock per tick. NEVER process 2.&quot;</li>
-<li>Context guard: stop early if conversation grows long</li>
-<li>Explicit phases: READ → GENERATE (3+ angles) → VALIDATE (source tiers +</li>
-<p>  confidence gate) → REFINE (if needed) → ACCEPT (write enriched research file</p>
-<p>  with overall_confidence, manager_gate, sources_tiers, angles_used)</p>
-<li>Output: brief one-liner, research data goes to file (deliver=local)</li>
-<br>
-<p>### Pattern 2: Dual-Mode Monitor (e.g. Stock Monitor Watchlist)</p>
-<br>
-<p>Lightweight mode for normal ticks; research mode triggered by anomaly.</p>
-<p>⚠️ <strong>This pattern is PRONE to DeepSeek 180s streaming timeout / Broken pipe</strong></p>
-<p>when the script output is large AND the agent tries to further enrich via web</p>
-<p>searches. For data-heavy monitors (prices + options flow), prefer <strong>Pattern 4</strong></p>
-<p>(no_agent=true) instead.</p>
-<br>
-<p><strong>Skills loading:</strong></p>
-<p>``<code>cronjob action=create name=&quot;Stock Monitor&quot; skills=[agent-research] ...<pre><code></p>
-<p><strong>Dual-mode switch:</strong></p>
-<li><strong>Normal mode</strong> (no &gt;5% move): compact price report, no research tool calls</li>
-<li><strong>Research mode</strong> (&gt;5% move detected): activate GENERATE phase — min 2 angles</li>
-<p>  (news catalyst + sector peer), source tier tag, confidence gate, Manager Gate</p>
-<li>Keep research output compact (1-2 sentences per anomaly) to avoid context bloat</li>
-<br>
-<p><strong>When this pattern works:</strong></p>
-<li>Simple data-formatting (script output → 1-2 sentence summary)</li>
-<li>Single source of data (prices only, no options flow or multiple enrichment passes)</li>
-<li>Web tools are DISABLED in enabled_toolsets (no temptation to browse)</li>
-<li>Report fits in &lt;1000 chars / &lt;2s of streaming</li>
-<br>
-<p><strong>When to switch to Pattern 4 (no_agent=true):</strong></p>
-<li>Script collects HEAVY data (prices + options + sector data)</li>
-<li>Any enrichment step (browser, web_search, delegate_task) could be triggered</li>
-<li>Job has ever failed with [Errno 32] Broken pipe</li>
-<li>Report is pure formatting with no reasoning needed (sort, format, deliver)</li>
-<br>
-<p>### Pattern 3: Technical + Fundamental Hybrid (e.g. AAPL+AMZN Technical Monitor)</p>
-<br>
-<p>Combines browser-based TA extraction with agent-research quality gates.</p>
-<br>
-<p><strong>Skills loading:</strong></p>
-<p></code></pre></p>
-<p>cronjob action=create name=&quot;AAPL+AMZN Technical&quot; skills=[agent-research, us-market-data] ...</p>
-<p><pre><code></p>
-<p><strong>Prompt structure:</strong></p>
-<li>Each technical claim tagged with source tier (TradingView oscillators = T-3,</li>
-<p>  TradingView pivots = T-3, Yahoo Chart API = T-3)</p>
-<li>Confidence score per section (Technical: XX%, Analyst sentiment: XX%)</li>
-<li>Manager Gate pre-ship: [HALLUCINATION RISK] / [CITATION NEEDED] /</li>
-<p>  [STALE DATA] / [CONFLICT]</p>
-<li>Optional: web_search for fundamental catalysts when notable moves detected</li>
-<li>Sources table at bottom of report</li>
-<br>
-<p>### Pattern 4: no_agent=true Data Monitor (Broken Pipe Proof)</p>
-<br>
-<p>For data-heavy cron jobs that collect structured data and need formatting</p>
-<p>(prices, options flow, sector data), use </code>no_agent=true<code> with a Python script</p>
-<p>that does BOTH collection AND formatting. No LLM agent = no streaming timeout.</p>
-<br>
-<p><strong>Use when:</strong></p>
-<li>Script collects multiple data sources (prices + options + sector data)</li>
-<li>Any enrichment step could be triggered (web_search/browser)</li>
-<li>Job has ever failed with [Errno 32] Broken pipe</li>
-<li>Report is pure formatting (sort by → flag anomalies → format emoji)</li>
-<li>Output goes to Telegram (short, concise, emoji-rich)</li>
-<br>
-<p><strong>How to build:</strong></p>
-<br>
-<p>Single Python script at </code>~/.hermes/scripts/&lt;name&gt;.py<code> that:</p>
-<li class="num">1. Runs data-collection sub-scripts via </code>subprocess.run([sys.executable, path], ...)<code></li>
-<li class="num">2. Parses JSON output from each</li>
-<li class="num">3. Formats into plain text (no markdown tables — Telegram has no table support)</li>
-<li class="num">4. Outputs to stdout → delivered verbatim</li>
-<br>
-<p><strong>Cron job config:</strong></p>
-<p></code></pre>cronjob action=update job_id=&quot;...&quot; no_agent=true script=&quot;stock_monitor_report.py&quot;<pre><code>Note: </code>prompt<code> and </code>skills<code> are ignored when </code>no_agent=true<code>.</p>
-<br>
-<p><strong>Report format conventions (Telegram delivery):</strong></p>
-<li>Use <strong>bold</strong> for tickers and significant numbers</li>
-<li>Emoji for direction: 🚀/📈 big up, 💀/📉 big down, ☎️ call, 🛡️ put</li>
-<li>Sort by abs(change) descending — most important first</li>
-<li>Include P&amp;L for portfolio holdings when tracked</li>
-<li>Keep under 2000 chars total</li>
-<br>
-<p><strong>Example: stock_monitor_report.py (working production script)</strong></p>
-<p></code></pre>python</p>
-<p># ~/.hermes/scripts/stock_monitor_report.py</p>
-<p>import json, os, subprocess, sys</p>
-<br>
-<p>SCRIPTS_DIR = os.path.expanduser(&quot;~/.hermes/scripts&quot;)</p>
-<br>
-<p>def run_script(script_name: str) -&gt; str | None:</p>
-<p>    path = os.path.join(SCRIPTS_DIR, script_name)</p>
-<p>    result = subprocess.run([sys.executable, path],</p>
-<p>        capture_output=True, text=True, timeout=60)</p>
-<p>    return result.stdout if result.returncode == 0 else None</p>
-<br>
-<p>def main():</p>
-<p>    prices_out = run_script(&quot;tradingview_prices.py&quot;)</p>
-<p>    options_out = run_script(&quot;options_flow.py&quot;)</p>
-<p>    # ... format both into a concise report</p>
-<p>    sys.stdout.write(formatted_report + &quot;\n&quot;)</p>
-<br>
-<p>if __name__ == &quot;__main__&quot;:</p>
-<p>    main()</p>
-<p><pre><code></p>
-<p>### Cron Job Review Checklist</p>
-<br>
-<p>When upgrading existing cron jobs to use agent-research:</p>
-<br>
-<p></code></pre></p>
-<p>□ Job has agent-research in </code>skills: [agent-research]<code> (not just in prompt text)</p>
-<p>□ Prompt explicitly references methodology phases (GENERATE/VALIDATE/REFINE/ACCEPT)</p>
-<p>□ Source tiers are tagged on every claim</p>
-<p>□ Confidence gate: ≥90% early_exit, 50-90% standard refine, &lt;50% deep_search</p>
-<p>□ Manager Gate runs before delivery</p>
-<p>□ Normal-mode jobs stay lightweight (no unnecessary research tokens)</p>
-<p>□ Research-mode jobs trigger only on anomaly signals (&gt;5% move, pattern break, etc.)</p>
-<p>□ Sources table or summary in output</p>
-<p>□ Risk factors / contradictions acknowledged</p>
-<p><pre><code></p>
-<p>### Pitfalls (Cron Jobs)</p>
-<br>
-<li>❌ Don&#x27;t just mention </code>agent-research<code> in prompt text without adding it to</li>
-<p>  </code>skills: [agent-research]<code> — the prompted methodology text is a pale shadow</p>
-<p>  of the full loaded skill, and the agent won&#x27;t have access to references/</p>
-<p>  or the detailed source-tier system.</p>
-<li>❌ Don&#x27;t keep cron jobs in always-on research mode — 3+ searches per tick</li>
-<p>  on every 30-minute run will blow through context and DeepSeek&#x27;s 180s timeout.</p>
-<p>  Use dual-mode: lightweight default, research only on anomaly.</p>
-<li>❌ Don&#x27;t forget to enable </code>web<code> toolset on cron jobs that do research —</li>
-<p>  without </code>enabled_toolsets: [&quot;web&quot;, &quot;file&quot;, &quot;terminal&quot;]<code>, web_search won&#x27;t work.</p>
-<li>✅ Chain with domain-specific skills: </code>[agent-research, us-market-data]<code> for</li>
-<p>  stock work, </code>[agent-research, arxiv]<code> for academic research, etc.</p>
-<li>✅ For technical analysis jobs (AAPL+AMZN Technical Monitor style), chain</li>
-<p>  </code>agent-research<code> + </code>us-market-data<code> — the first provides methodology, the</p>
-<p>  second provides stock-specific data source references.</p>
-<br>
-<p>## Integration with Other Skills</p>
-<br>
-<p>### us-market-data skill</p>
-<p>When doing stock research, </code>agent-research<code> provides the general methodology,</p>
-<p>while </code>us-market-data<code> provides stock-specific data sources (TradingView API,</p>
-<p>Yahoo Finance Chart API, Treasury.gov, etc.). Load both:</p>
-<p></code></pre></p>
-<p>skill_view(name=&#x27;agent-research&#x27;)     # methodology + quality gates</p>
-<p>skill_view(name=&#x27;us-market-data&#x27;)     # stock-specific data sources</p>
-<p><pre><code></p>
-<p>### skill-harness</p>
-<p>The GENERATE→VALIDATE→REFINE→ACCEPT loop in this skill is a concrete</p>
-<p>implementation of the </code>skill-harness<code> meta-skill. Each phase maps directly:</p>
-<li>GENERATE → harness GENERATE function (multi-angle collection)</li>
-<li>VALIDATE → harness VALIDATE with domain-specific criteria (source tiers, confidence gate)</li>
-<li>REFINE → harness REFINE with targeted strategies (reflexion, re-search)</li>
-<li>ACCEPT → harness ACCEPT with structured output format</li>
-<br>
-<p>## Pitfalls</p>
-<br>
-<li>❌ <strong>Don&#x27;t stop at 1 search</strong> — always 3+ angles minimum</li>
-<li>❌ <strong>Don&#x27;t trust Tier-4 sources alone</strong> — always corroborate with Tier-2/3</li>
-<li>❌ <strong>Don&#x27;t skip the Manager Gate</strong> — it catches the most embarrassing errors</li>
-<li>❌ <strong>Don&#x27;t deliver without a confidence score</strong> — the user needs to know how sure you are</li>
-<li>❌ <strong>Don&#x27;t ignore contradictions</strong> — risk factors are as important as bullish findings</li>
-<li>❌ <strong>Don&#x27;t use stale data without flagging</strong> — tag everything with a date</li>
-<li>❌ <strong>Don&#x27;t rely on a single search backend</strong> — </code>web_search<code> and </code>web_extract<code> share the same backend, so both fail together (e.g. 402 credit errors). Have a fallback chain: browser navigation for JS sites → </code>curl<code> with User-Agent for static pages/APIs → direct URL navigation to known authoritative sources → GitHub API search. See </code>references/github-api-search.md<code> and </code>references/search-fallback-chain.md<code> for the complete hierarchy and what works at each level.</li>
-<li>❌ <strong>Don&#x27;t search when the user shares a screenshot for source verification</strong> without first doing image forensics. The image itself (dimensions, metadata, visual style, layout, presence/absence of branding/URLs) often identifies the source class (AI chat vs blog vs documentation) faster and more reliably than searching — especially when all search engines are blocked by CAPTCHA. See </code>references/search-fallback-chain.md<code> §「Image / Screenshot Source Verification」for the full checklist.</li>
-<li>❌ <strong>Don&#x27;t hammer the Wikipedia API</strong> — Multiple rapid </code>action=parse<code> calls trigger HTTP 429 (rate limit). Always insert </code>time.sleep(1)<code> between requests. Fetch sections sequentially, not in parallel. For lightweight checks, use the mobile page (</code>en.m.wikipedia.org<code>) with </code>curl<code> instead.</li>
-<li>❌ <strong>Don&#x27;t run LLM-agent cron jobs on heavy data scripts</strong> — script output plus web enrichment causes context bloat → DeepSeek streaming times out at 180s → </code>[Errno 32] Broken pipe<code> → job enters a death spiral where every tick fails. <strong>Fix:</strong> convert to </code>no_agent=true<code> with a Python script that both collects and formats (see Pattern 4 above). This is the #1 cause of cron job failures in this Hermes setup.</li>
-<li>✅ Always state the source tier alongside the claim</li>
-<li>✅ Always put the bottom line first (BLUF)</li>
-<li>✅ If two sources disagree, say so, don&#x27;t cherry-pick</li>
-<li>✅ Reflexion notes improve the next REFINE pass significantly</li>
-<li>✅ For cron jobs: if it&#x27;s just data → format → deliver (no reasoning needed), use </code>no_agent=true<code> from day one. Only use LLM-agent mode when the job needs real analysis (catalyst synthesis, market context, trade decisions).</li>
-<br>
-<p>The user has provided the following instruction alongside the skill invocation: [IMPORTANT: You are running as a scheduled cron job. DELIVERY: Your final response will be automatically delivered to the user — do NOT use send_message or try to deliver the output yourself. Just produce your report/output as your final response and the system handles the rest. SILENT: If there is genuinely nothing new to report, respond with exactly &quot;[SILENT]&quot; (nothing else) to suppress delivery. Never combine [SILENT] with content — either report your findings normally, or say [SILENT] and nothing more.]</p>
-<br>
-<p>## Script Output</p>
-<p>The following data was collected by a pre-run script. Use it as context for your analysis.</p>
-<br>
-<p></code></pre></p>
-<p>{</p>
-<p>  &quot;prices&quot;: {</p>
-<p>    &quot;NASDAQ:AAPL&quot;: 298.48,</p>
-<p>    &quot;NASDAQ:IBKR&quot;: 94.105,</p>
-<p>    &quot;NASDAQ:AMZN&quot;: 241.77,</p>
-<p>    &quot;NASDAQ:GOOGL&quot;: 350.64,</p>
-<p>    &quot;NASDAQ:META&quot;: 564.25,</p>
-<p>    &quot;NASDAQ:MSFT&quot;: 374.265,</p>
-<p>    &quot;NASDAQ:NVDA&quot;: 200.845,</p>
-<p>    &quot;NASDAQ:TSLA&quot;: 381.13,</p>
-<p>    &quot;NASDAQ:AMD&quot;: 520.63,</p>
-<p>    &quot;NASDAQ:INTC&quot;: 134.5,</p>
-<p>    &quot;NASDAQ:WDC&quot;: 644.675,</p>
-<p>    &quot;NASDAQ:STX&quot;: 997.61,</p>
-<p>    &quot;NASDAQ:SNDK&quot;: 1930.65</p>
-<p>  },</p>
-<p>  &quot;change_pct&quot;: {</p>
-<p>    &quot;NASDAQ:AAPL&quot;: 1.4203194019707803,</p>
-<p>    &quot;NASDAQ:IBKR&quot;: -0.6282998944033779,</p>
-<p>    &quot;NASDAQ:AMZN&quot;: 3.2719661697492617,</p>
-<p>    &quot;NASDAQ:GOOGL&quot;: 1.302978649640306,</p>
-<p>    &quot;NASDAQ:META&quot;: 0.3646389185343213,</p>
-<p>    &quot;NASDAQ:MSFT&quot;: 0.0869123388778918,</p>
-<p>    &quot;NASDAQ:NVDA&quot;: 0.4024195160967841,</p>
-<p>    &quot;NASDAQ:TSLA&quot;: -0.12578286732528451,</p>
-<p>    &quot;NASDAQ:AMD&quot;: 0.15004328171587433,</p>
-<p>    &quot;NASDAQ:INTC&quot;: 1.6782582400967634,</p>
-<p>    &quot;NASDAQ:WDC&quot;: -3.887439433470003,</p>
-<p>    &quot;NASDAQ:STX&quot;: -3.9457341202977023,</p>
-<p>    &quot;NASDAQ:SNDK&quot;: -1.6780403340802514</p>
-<p>  },</p>
-<p>  &quot;ohlc&quot;: {</p>
-<p>    &quot;NASDAQ:AAPL&quot;: {</p>
-<p>      &quot;open&quot;: 295.355,</p>
-<p>      &quot;high&quot;: 299.7,</p>
-<p>      &quot;low&quot;: 293.2,</p>
-<p>      &quot;close&quot;: 298.48,</p>
-<p>      &quot;volume&quot;: 13323762</p>
-<p>    },</p>
-<p>    &quot;NASDAQ:IBKR&quot;: {</p>
-<p>      &quot;open&quot;: 93.7,</p>
-<p>      &quot;high&quot;: 95.26,</p>
-<p>      &quot;low&quot;: 92.16,</p>
-<p>      &quot;close&quot;: 94.105,</p>
-<p>      &quot;volume&quot;: 1227428</p>
-<p>    },</p>
-<p>    &quot;NASDAQ:AMZN&quot;: {</p>
-<p>      &quot;open&quot;: 233.845,</p>
-<p>      &quot;high&quot;: 242.4199,</p>
-<p>      &quot;low&quot;: 232.95,</p>
-<p>      &quot;close&quot;: 241.77,</p>
-<p>      &quot;volume&quot;: 23133851</p>
-<p>    },</p>
-<p>    &quot;NASDAQ:GOOGL&quot;: {</p>
-<p>      &quot;open&quot;: 349.035,</p>
-<p>      &quot;high&quot;: 353.476,</p>
-<p>      &quot;low&quot;: 346.975,</p>
-<p>      &quot;close&quot;: 350.64,</p>
-<p>      &quot;volume&quot;: 11968109</p>
-<p>    },</p>
-<p>    &quot;NASDAQ:META&quot;: {</p>
-<p>      &quot;open&quot;: 561.89,</p>
-<p>      &quot;high&quot;: 569.04,</p>
-<p>      &quot;low&quot;: 557.47,</p>
-<p>      &quot;close&quot;: 564.25,</p>
-<p>      &quot;volume&quot;: 4630625</p>
-<p>    },</p>
-<p>    &quot;NASDAQ:MSFT&quot;: {</p>
-<p>      &quot;open&quot;: 371.57,</p>
-<p>      &quot;high&quot;: 378.88,</p>
-<p>      &quot;low&quot;: 371,</p>
-<p>      &quot;close&quot;: 374.265,</p>
-<p>      &quot;volume&quot;: 12623306</p>
-<p>    },</p>
-<p>    &quot;NASDAQ:NVDA&quot;: {</p>
-<p>      &quot;open&quot;: 200.12,</p>
-<p>      &quot;high&quot;: 201.67,</p>
-<p>      &quot;low&quot;: 198.6,</p>
-<p>      &quot;close&quot;: 200.845,</p>
-<p>      &quot;volume&quot;: 46428541</p>
-<p>    },</p>
-<p>    &quot;NASDAQ:TSLA&quot;: {</p>
-<p>      &quot;open&quot;: 380.08,</p>
-<p>      &quot;high&quot;: 384.58,</p>
-<p>      &quot;low&quot;: 378.6,</p>
-<p>      &quot;close&quot;: 381.13,</p>
-<p>      &quot;volume&quot;: 14753040</p>
-<p>    },</p>
-<p>    &quot;NASDAQ:AMD&quot;: {</p>
-<p>      &quot;open&quot;: 520.82,</p>
-<p>      &quot;high&quot;: 524.96,</p>
-<p>      &quot;low&quot;: 509.84,</p>
-<p>      &quot;close&quot;: 520.63,</p>
-<p>      &quot;volume&quot;: 9752213</p>
-<p>    },</p>
-<p>    &quot;NASDAQ:INTC&quot;: {</p>
-<p>      &quot;open&quot;: 133.045,</p>
-<p>      &quot;high&quot;: 136.08,</p>
-<p>      &quot;low&quot;: 130.02,</p>
-<p>      &quot;close&quot;: 134.5,</p>
-<p>      &quot;volume&quot;: 47789326</p>
-<p>    },</p>
-<p>    &quot;NASDAQ:WDC&quot;: {</p>
-<p>      &quot;open&quot;: 658.46,</p>
-<p>      &quot;high&quot;: 665,</p>
-<p>      &quot;low&quot;: 636.18,</p>
-<p>      &quot;close&quot;: 644.675,</p>
-<p>      &quot;volume&quot;: 4817094</p>
-<p>    },</p>
-<p>    &quot;NASDAQ:STX&quot;: {</p>
-<p>      &quot;open&quot;: 1027.715,</p>
-<p>      &quot;high&quot;: 1035.8599,</p>
-<p>      &quot;low&quot;: 989.4995,</p>
-<p>      &quot;close&quot;: 997.61,</p>
-<p>      &quot;volume&quot;: 1535551</p>
-<p>    },</p>
-<p>    &quot;NASDAQ:SNDK&quot;: {</p>
-<p>      &quot;open&quot;: 1987.53,</p>
-<p>      &quot;high&quot;: 2021.5,</p>
-<p>      &quot;low&quot;: 1908,</p>
-<p>      &quot;close&quot;: 1930.65,</p>
-<p>      &quot;volume&quot;: 4924480</p>
-<p>    }</p>
-<p>  },</p>
-<p>  &quot;errors&quot;: [],</p>
-<p>  &quot;fetched_at&quot;: &quot;2026-06-25T00:33:39.457528+08:00&quot;,</p>
-<p>  &quot;source&quot;: &quot;TradingView scanner API&quot;</p>
-<p>}</p>
-<p><pre><code></p>
-<p>You are a stock research agent following the </code>agent-research<code> methodology.</p>
-<br>
-<p>## Rules</p>
-<li><strong>1 stock per tick. NEVER process 2.</strong></li>
-<li><strong>Context guard:</strong> If your conversation is getting long (more than a few tool calls), stop after 1 stock. The next tick picks up where you left off.</li>
-<li><strong>Multi-angle search:</strong> Minimum 3 searches per stock. Never 1.</li>
-<li><strong>Source tiers:</strong> Tag every source (Tier 1-4, see methodology). Tier-4 needs corroboration.</li>
-<li><strong>Confidence gate:</strong> &lt;50% deep_search, 50-90% standard refine, ≥90% early_exit.</li>
-<li><strong>Manager Gate:</strong> Before writing output, scan for [HALLUCINATION RISK], [CITATION NEEDED], [STALE DATA], [CONFLICT]. Do not write if any critical flag remains.</li>
-<br>
-<p>## Research File Format</p>
-<br>
-<p>Write to </code>research/{timestamp}/{ticker}.json<code>. The filename must use NASDAQ_ prefix format (e.g. NASDAQ_AAPL.json).</p>
-<br>
-<p></code></pre>json</p>
-<p>{</p>
-<p>  &quot;ticker&quot;: &quot;NASDAQ:AAPL&quot;,</p>
-<p>  &quot;price&quot;: 291.58,</p>
-<p>  &quot;change_pct&quot;: 0.35,</p>
-<p>  &quot;research_ts&quot;: &quot;ISO timestamp&quot;,</p>
-<p>  &quot;overall_confidence&quot;: 85,</p>
-<p>  &quot;manager_gate&quot;: &quot;PASS&quot;,</p>
-<p>  &quot;angles_used&quot;: [&quot;technical&quot;, &quot;analyst&quot;, &quot;news&quot;, &quot;peers&quot;],</p>
-<p>  &quot;sources_tiers&quot;: {&quot;TradingView API&quot;: &quot;T-3&quot;, &quot;Yahoo Finance Chart&quot;: &quot;T-3&quot;, &quot;Yahoo Finance News&quot;: &quot;T-3&quot;},</p>
-<p>  &quot;catalysts&quot;: [&quot;catalyst 1&quot;, &quot;catalyst 2&quot;],</p>
-<p>  &quot;technical_outlook&quot;: &quot;brief TA with key levels&quot;,</p>
-<p>  &quot;technical_confidence&quot;: 90,</p>
-<p>  &quot;verdict&quot;: &quot;bullish/bearish/neutral&quot;,</p>
-<p>  &quot;conviction&quot;: &quot;high/medium/low&quot;,</p>
-<p>  &quot;analysis&quot;: &quot;2-3 sentence reasoning with BLUF&quot;</p>
-<p>}</p>
-<p></code>`<code></p>
-<br>
-<p>## Workflow</p>
-<br>
-<p>### Step 1: READ</p>
-<p>Read ticks/latest.txt for current timestamp. Read queue/status.json. Find the FIRST ticker with research_status: &quot;pending&quot;. Read its price file from prices/{ts}/{ticker}.json. Read state/portfolio.json for context.</p>
-<br>
-<p>### Step 2: GENERATE — Multi-Angle Collection</p>
-<p>Search 3+ angles. Different sources per search. Minimum:</p>
-<li>Angle 1: Price/technical (Yahoo Chart API, TradingView)</li>
-<li>Angle 2: Analyst/fundamental (Yahoo Analysis page, browser)</li>
-<li>Angle 3: News/catalysts (Yahoo News, browser)</li>
-<li>Angle 4 (optional): Peers comparison from TradingView</li>
-<br>
-<p>### Step 3: VALIDATE</p>
-<p>Check each claim&#x27;s source tier. Self-rate confidence per section. Run Manager Gate:</p>
-<li>[HALLUCINATION RISK] — claim unsourced or contradicts source?</li>
-<li>[CITATION NEEDED] — plausible but unsourced?</li>
-<li>[STALE DATA] — older than 6 months?</li>
-<li>[CONFLICT] — source has financial interest?</li>
-<br>
-<p>Overall confidence:</p>
-<li>≥90% → early_exit, write research file</li>
-<li>50-90% → standard: 1 round of refine with targeted search</li>
-<li>&lt;50% → deep_search: reframe question, 2+ new angles</li>
-<br>
-<p>### Step 4: REFINE (if needed)</p>
-<p>Reflexion note: what went wrong in first pass? Do targeted re-search for the specific missing info. Re-validate confidence.</p>
-<br>
-<p>### Step 5: ACCEPT</p>
-<p>Write research to file with all fields including confidence scores and source tiers. Update queue/status.json: set research_status: &quot;done&quot;. Update ticks/latest.txt with current price timestamp.</p>
-<br>
-<p>## Output</p>
-<p>Just report briefly what you did, e.g. </code>🔬 AAPL researched → bullish, 85% confidence.<code></p>
-<br>
-<p>## Response</p>
-<br>
-<p>🔬 <strong>NASDAQ:MSFT researched → bearish_short_term, 78% confidence.</strong></p>
-<br>
-<p><strong>Summary:</strong></p>
-<li><strong>Price:</strong> $374.27 (+0.09%), recovering +1.5% from $367 Jun 22 low</li>
-<li><strong>Technical:</strong> Deeply bearish — below MA-10 ($384) and MA-20 ($406), 52w low at $356 just -4.9% away</li>
-<li><strong>Volume red flag:</strong> Jun 24 volume at 0.34x 20d avg (13.3M vs 39.7M) — bounce lacks conviction</li>
-<li><strong>Catalysts:</strong> Securities class action lawsuit (Business Wire T-3 confirmed), -32.8% from 52w high, deeply divided analyst sentiment</li>
-<li><strong>Verdict:</strong> Bearish short-term, wait for either reversal above $384 with volume or capitulation washout to $356 before considering entry</li>
-<li><strong>File:</strong> </code>research/20260625_003339.4/NASDAQ_MSFT.json`</li>
-<li><strong>Next pending in queue:</strong> NASDAQ:NVDA</li>
+    <p>• # Cron 作業：sim-research</p>
+<p>• 職位 ID：** 584ed05cbc4e</p>
+<p>• 運行時間：** 2026-06-25 00:35:30</p>
+<p>• 時間表：<em>* 3,33 20-23,0-3 </em> * 1-5</p>
+<p>• [重要提示：使用者已呼叫「代理研究」技能，表示他們希望您遵循其指示。完整技能內容載入如下。 ]</p>
+<p>• 名稱：代理研究</p>
+<p>• 多源代理研究方法－源可信度等級，</p>
+<p>• 置信門、多角度搜尋、經理品質門，以及</p>
+<p>• 結構化報告範本。對於任何研究主題（股票、科技、</p>
+<p>• 行業、宏觀）。參考生成→驗證→的技能工具</p>
+<p>• REFINE→ACCEPT 循環。</p>
+<p>• 版本：1.1.0</p>
+<p>• 標籤：[研究、方法論、品質、事實查核、來源可信度]</p>
+<p>• related_skills：[技能裝備，美國市場數據]</p>
+<p>• # 代理研究方法論</p>
+<p>• 適用於任何主題的<strong>通用研究技能</strong>。結合來源可信度</p>
+<p>• 層級、多角度搜尋、置信門控以及經理品質門</p>
+<p>• 結構化的工作流程。建立在「技能利用」循環模式之上。</p>
+<p>• ## 何時載入該技能</p>
+<p>• 當用戶要求您研究需要的<strong>任何主題</strong>時加載此技能</p>
+<p>• 多種來源、事實查核或分析—股票、科技、產業趨勢、</p>
+<p>• 宏觀經濟、地緣政治、公司分析等</p>
+<p>• ## 研究循環</p>
+<p>• ┌──── 提前退出（≥90%）</p>
+<p>• 生成 ─→ 驗證 ─── 標準 (50-90%) ─→ 最佳化 ─→ 再生成</p>
+<p>• │ └──── 深度搜尋 (&lt;50%) ──────────────┘</p>
+<p>• └──────────────────── 完善回饋──────────────┘</p>
+<p>• ### 第 1 階段：產生 — 多角度收集</p>
+<p>• 不要進行單一搜尋。研究需要多角度：</p>
+<p>• <code><pre><code>• # 對於股票：AAPL</p>
+<p>• 《2026年AAPL股價技術分析》，</p>
+<p>• “AAPL 分析師評級 2026 年 6 月目標價”，</p>
+<p>• 《蘋果最新消息催化劑市場反應》，</p>
+<p>• “AAPL 獲利收入 EPS 成長前景”，</p>
+<p>• 《蘋果競爭地位AI策略》#不同角度</p>
+<p>• # 一個科技主題：“AI晶片短缺”</p>
+<p>• 《AI晶片短缺2026市場影響》，</p>
+<p>• 《NVIDIA台積電半導體供應鏈》，</p>
+<p>• 《AI晶片取代中國出口管制》，</p>
+<p>• 《2026-2027年資料中心GPU需求預測》，</p>
+<p>• 至少 3 個角度 — 絕不僅限 1 次搜索</p>
+<p>• 如果前 3 次搜尋返回衝突數據，請再增加 2 次來解決</p>
+<p>• 每次搜尋使用不同的來源（並非所有雅虎財經）</p>
+<p>• 使用 web_extract/browser 深入研究關鍵來源</p>
+<p>• ### 第 2 階段：驗證 — 來源可信度 + 信賴閘</p>
+<p>• #### 來源可信度系統</p>
+<p>• 用其層級標記每個來源。讀者立刻就能看到這一點。</p>
+<p>• |等級 |型別 |範例 |信任|</p>
+<p>• |------|------|----------|--------|</p>
+<p>• | <strong>一級</strong> |同行評審的官方文件| SEC 10-K/10-Q、《自然》、《金融雜誌》、IEEE、國際貨幣基金組織、世界銀行、美聯儲 | ✅ 小學 |</p>
+<p>• | <strong>2 級</strong> |主要研究、知名分析師 |麥肯錫、BCG、貝恩、Gartner、Forrester、IDC、高盛、美國銀行、彭博終端 | ✅ 強 |</p>
+<p>• | <strong>三級</strong> |優質新聞| 《金融時報》、《華爾街日報》、彭博社、路透社、《經濟學人》、CNBC（選擇性）、《紐約時報》、《華盛頓郵報》| ✅ 可靠 |</p>
+<p>• | <strong>4 級</strong> |貿易媒體，二級| TechCrunch、The Verge、Seeking Alpha、MarketBeat、雅虎財經文章、Barrons | ⚠️需要確認|</p>
+<p>• | <strong>🚫 禁止</strong> |未署名、匿名 | Reddit、匿名部落格、維基百科為主、X/Twitter 未經驗證 | ❌切勿單獨引用|</p>
+<p>• 佐證規則：** Tier-4 聲明必須得到至少一個 Tier-2/3 的支持</p>
+<p>• 來源。兩個 4 級消息來源達成一致還不夠，需要找到更強大的消息來源。</p>
+<p>• #### 置信門</p>
+<p>• 收集資料後，自評您的信心<strong>每部分</strong>：</p>
+<p>• 部分：【技術分析】</p>
+<p>• 資料來源：雅虎財經圖表 API（第 3 層）+ TradingView（第 3 層）</p>
+<p>• 關鍵主張：AAPL 支持 287 美元</p>
+<p>• 信賴度：85% ← 價格來自即時 API，無解釋</p>
+<p>• 部分：[分析師情緒]</p>
+<p>• 資料來源：MarketBeat 價格目標頁（第 4 層）</p>
+<p>• 主要主張：平均 PT $314.59，24 買/10 持有/1 賣出</p>
+<p>• 信賴度：70% ← MarketBeat 是 Tier-4，需要交叉參考</p>
+<p>• 以信賴水準採取的行動：**</p>
+<p>• |信心|模式|行動|</p>
+<p>• |------------|------|--------|</p>
+<p>• | <strong>≥90%</strong> | </code>提前退出<code> |照原樣接受，無需改進 |</p>
+<p>• | <strong>50-90%</strong> | </code>標準<code> |進行 1 輪 REFINE：尋找佐證 |</p>
+<p>• | <strong>&lt;50%</strong> | </code>深度搜尋<code> |完全重新建構問題，2+個新角度，重新搜尋 |</p>
+<p>• #### 經理品質門（出貨前）</p>
+<p>• 在交付<strong>任何</strong>研究成果之前，請先執行此門：</p>
+<p>• 對於具有特定編號、日期或歸屬的每項索賠：</p>
+<p>• ✅ [幻覺風險] — 說法沒有來源，或與來源相矛盾？</p>
+<p>• ✅ [需要引用] — 看似合理但無來源？</p>
+<p>• ✅ [陳舊資料] — 來源超過 6 個月？</p>
+<p>• ✅ [衝突] — 來源有經濟利益？ （例如銀行覆蓋自己的股票）</p>
+<p>• ✅ [已過時] — 資料已被更新的資訊取代？</p>
+<p>• 對於整個報告：</p>
+<p>• ✅ 所有號碼都有來源嗎？</p>
+<p>• ✅ 所有 Tier-4 聲明是否都得到 Tier-2/3 的證實？</p>
+<p>• ✅ 總體信賴度≥ 70%？</p>
+<p>• 沒有經理通行證，任何物品都不會出貨。 ** 如果升起任何旗幟，則阻止交付</p>
+<p>• 並進入REFINE階段。</p>
+<p>• ### 第 3 階段：REFINE — 有針對性的改進</p>
+<p>• 根據 Manager Gate 發現的問題，選擇正確的最佳化策略：</p>
+<p>• |問題 |戰略|</p>
+<p>• |--------|----------|</p>
+<p>• | </code>[幻覺風險]<code> |重新取得來源，引用準確的文本，重新推導|</p>
+<p>• | </code>[需要引用]<code> | 1 特定搜尋缺少的引文 |</p>
+<p>• | </code>[陳舊資料]<code> |使用目前日期範圍過濾器重新取得 |</p>
+<p>• | </code>[衝突]<code> |尋找相同數據點的中立來源 |</p>
+<p>• | </code>置信度 &lt; 50%（深度搜尋）<code> |全新的搜尋角度，而不僅僅是改寫 |</p>
+<p>• 反思筆記：** 在精簡之前，記下哪裡出了問題：</p>
+<p>• 反思：我第一次搜尋「AAPL 分析師目標」返回了 MarketBeat</p>
+<p>• （Tier-4）平均 PT 為 314 美元。但我沒有驗證 TipRanks 或</p>
+<p>• 布隆伯格。對於精煉通行證，我將搜尋「AAPL 分析師價格目標</p>
+<p>• 年 6 月共識」尋找三級來源。</p>
+<p>• ### 第 4 階段：接受 — 結構化報告</p>
+<p>• #### 報告格式（金字塔原理/BLUF）</p>
+<p>• ## [主題] — 研究報告</p>
+<p>• 置信度：[總分]% |產生：[日期]</p>
+<p>• ### 底線</p>
+<p>• [最重要發現的一句話總結]</p>
+<p>• ### 主要發現</p>
+<p>• <strong>[發現 1]</strong> — [證據，來源層]</p>
+<p>• <strong>[調查結果 2]</strong> — [證據，來源層]</p>
+<p>• <strong>[調查結果 3]</strong> — [證據，來源層]</p>
+<p>• ### 支援分析</p>
+<p>• #### A 部分：[角度 1]</p>
+<p>• [帶有來源標籤的聲明] — 置信度：X%</p>
+<p>• [帶有來源標籤的聲明] — 置信度：X%</p>
+<p>• #### B 部分：[角度 2]</p>
+<p>• ### 風險因素/矛盾</p>
+<p>• [風險 1] — [證據、信心]</p>
+<p>• [風險2] - [證據、信心]</p>
+<p>• ### 來源</p>
+<p>• |來源 |等級 |日期 |用於 |</p>
+<p>• |--------|------|------|----------|</p>
+<p>• | [姓名] | T-1/2/3/4 |年-月-日 | [索賠] |</p>
+<p>• ### 建議（如果適用）</p>
+<p>• [具說服力的可行建議]</p>
+<p>• ### 研究成果清單</p>
+<p>• 交貨前，確認：</p>
+<p>• □ 至少使用 3 個搜尋角度</p>
+<p>• □ 所有標有源層的聲明</p>
+<p>• □ 未經證實不得使用第 4 級聲明</p>
+<p>• □ 數字已依來源進行三次檢查</p>
+<p>• □整體信賴度 ≥70%</p>
+<p>• □經理門：無[幻覺風險]或[陳舊資料]標誌</p>
+<p>• □ BLUF 格式－底線優先</p>
+<p>• □ 包括來源表</p>
+<p>• □ 承認危險因子（不只是牛市情況）</p>
+<p>• ## 範例：股票研究 (AAPL)</p>
+<p>• 請參閱“us-market-data”技能的“references/full-stock-analysis-workflow.md”以了解</p>
+<p>• 使用完整的生成→驗證→最佳化→接受的完整股票研究工作範例</p>
+<p>• 端對端循環，包括精確的瀏覽器控制台指令、Python 技術計算、</p>
+<p>• 以及 Manager Gate 的實作。</p>
+<p>• 完整循環之後：</p>
+<p>• ├── 搜尋1：「2026年6月AAPL價格技術分析」→雅虎財經（T-3）</p>
+<p>• ├── 搜尋2：「AAPL分析師評等目標價」→ MarketBeat (T-4)</p>
+<p>• ├── 搜尋3：《蘋果WWDC 2026 AI特色市場反應》→ CNBC (T-3)</p>
+<p>• ├── 搜尋4：「AAPL 競爭地位 AI vs 微軟」 → FT (T-3)</p>
+<p>• └── 收集：4個角度，4個來源</p>
+<p>• ├── 經理門檢查：</p>
+<p>• │ - MarketBeat (T-4) 的 PT 資料 → [需要引用] Tier-2 佐證</p>
+<p>• │ - WWDC AI 收入影響圖 → [STALE DATA] 來自 WWDC 之前，需要發布</p>
+<p>• │ - 整體信賴度：65%→標準模式（50-90%）</p>
+<p>• └── 標誌：發現2個問題→進入REFINE</p>
+<p>• ├— 反思：“MarketBeat 是 Tier-4，需要交叉引用。WWDC 數據是活動前的。”</p>
+<p>• ├── 搜尋5：「AAPL 分析師共識 BofA Goldman PT」 → 路透社 (T-3) ✅</p>
+<p>• ├── 搜尋6：《WWDC 分析師筆記後蘋果股票反應》 → Bloomberg (T-3) ✅</p>
+<p>• └── 確鑿的PT數據+更新的WWDC影響→信心現在85%</p>
+<p>• └── 產生所有檢查均已通過的結構化 BLUF 報告</p>
+<p>• ## 範例：科技主題（AI 晶片短缺）</p>
+<p>• ├── 搜尋1：「AI晶片短缺2026年供應需求」→ FT、WSJ (T-3)</p>
+<p>• ├── 搜尋2：《NVIDIA台積電擴產時間表》→路透社（T-3）</p>
+<p>• ├── 搜尋3：「中國出口管制半導體影響」 → CSIS (T-2)</p>
+<p>• └── 收集：3個角度，4+個來源</p>
+<p>• ├— 部落格的台積電產能資料（T-4 獨立來源）→ [幻覺風險]</p>
+<p>• ├── 出口管制影響預估→政府報告（T-2）✅</p>
+<p>• ├── 信賴度：78%→標準模式</p>
+<p>• └── Flags: 1 期 → 進入 REFINE</p>
+<p>• ├── 反思：“需要用官方資料取代部落格來源的台積電資料”</p>
+<p>• ├── 搜尋4：「台積電CoWoS產能2026官方指引」→台積電IR (T-1) ✅</p>
+<p>• └── 現在有官方指引→信心92%→early_exit</p>
+<p>• └— 與BLUF共同交付：“2026年第三季AI晶片短缺緩解，台積電產能年增40%”</p>
+<p>• ## 專業參考模式</p>
+<p>• </code>references/<code> 目錄包含特定研究類別的可重複使用模式。觸發條件匹配時載入：</p>
+<p>• |參考|觸發|內容 |</p>
+<p>• |------------|---------|----------|</p>
+<p>• | </code>references/event-impact-stock-screening.md<code> | “哪些股票受到[事件]的打擊並且尚未恢復” |事件時間線 → 關注列表價格 → 前後比較 → 位置疊加分類 |</p>
+<p>• | </code>references/portfolio-batch-research.md<code> |使用者分享投資組合/觀察清單螢幕截圖並詢問「分析所有這些」|具有遠見的投資組合掃描 → 識別需要注意的項目 → 並行委託任務研究 → 每個代碼的結構化 BLUF 報告 |</p>
+<p>• | </code>references/wikipedia-sports-squad-data.md<code> |使用者詢問國家隊陣容、頂級聯賽球員或聯賽球隊組成 |維基百科 API 解析端點 → 提取球隊表 → 按聯賽等級分類 → 結構化球員細分 |</p>
+<p>• | </code>references/search-fallback-chain.md<code> | web_search 失敗 (402/429)，或所有搜尋引擎均被驗證碼阻止 |完整的後備層次結構：瀏覽器→curl→直接URL→GitHub API→Facebook登入牆資訊擷取（背景模糊的browser_vision）→curl→直接URL→GitHub API→Facebook登入牆資訊擷取（背景模糊的browser_vision）→直接網址圖的URLitHub API→臉</p>
+<p>• | </code>references/github-api-search.md<code> |需要 GitHub 研究 |搜尋儲存庫、程式碼、問題作為主要研究管道 |</p>
+<p>• | </code>references/wikipedia-tournament-stands.md<code> |用戶詢問當前/現場錦標賽的排名、結果、小組表——尤其是當搜索被阻止時 |維基百科 API“解析”端點，用於提取小組排名（GD 積分、W/D/L、GF/GA）、賽程表、第三名排名，具有速度陷阱處理和 HTML 實體套組 |</p>
+<p>• | </code>us-market-data<code> 技能的 </code>references/multi-stock-sector-comparison.md<code> |用戶詢問同行業2-5只競爭股|並行delegate_task集合→對照表→場景矩陣→入口區|</p>
+<p>• ## Cron 作業集成</p>
+<p>• 代理研究方法可以為<strong>預定的 cron 作業</strong>提供支持，而不僅僅是</p>
+<p>• 臨時研究。本節介紹如何設計 cron 作業提示</p>
+<p>• 遵循方法論。</p>
+<p>• ### 模式 1：研究代理（例如 sim-research）</p>
+<p>• 每個刻度的完整方法論：多角度搜尋、來源層、置信度</p>
+<p>• 門，經理門。每個價格變動 1 隻股票（情境保護）－編寫豐富的 JSON</p>
+<p>• 研究文件到磁碟。</p>
+<p>• 技能加載：**</p>
+<p>• cronjob 操作=建立名稱=“sim-research”技能=[代理研究] ...</p>
+<p>• 提示結構：**</p>
+<p>• “您是遵循‘代理研究’方法的股票研究代理。”</p>
+<p>• 鎖定：“每個價格變動 1 隻股票。切勿處理 2 隻股票。”</p>
+<p>• 情境保護：如果對話時間過長，請儘早停止</p>
+<p>• 顯式階段：讀取→產生（3+角度）→驗證（來源層+</p>
+<p>• 信賴閘）→ 完善（如果需要）→ 接受（撰寫豐富的研究文件</p>
+<p>• 與整體信心、經理門、來源層、角度使用）</p>
+<p>• 輸出：簡短的一行，研究資料進入檔案（deliver=local）</p>
+<p>• ### 模式 2：雙模式監控（例如股票監控觀察清單）</p>
+<p>• 普通蜱蟲的輕量級模式；異常觸發的研究模式。</p>
+<p>• ⚠️ <strong>此模式容易導致 DeepSeek 180 秒流逾時/管路損壞</strong></p>
+<p>• 當腳本輸出很大且代理程式嘗試透過網路進一步豐富時</p>
+<p>• 搜尋。對於數據量大的監視器（價格+選擇權流），偏好<strong>模式 4</strong></p>
+<p>• (no_agent=true) 相反。</p>
+<p>• 技能加載：**</p>
+<p>• </code></pre>cronjob 操作=創建名稱=“股票監視器”技能=[代理研究] ...<pre><code>• 雙模式切換：**</p>
+<p>• <strong>正常模式</strong>（没有 &gt;5% 的变动）：紧凑的价格报告，没有研究工具调用</p>
+<p>• <strong>研究模式</strong>（偵測到 &gt;5% 的移動）：活化產生階段 — 至少 2 個角度</p>
+<p>• （新闻催化剂+行业同行）、源层标签、置信门、经理门</p>
+<p>• 保持研究輸出緊湊（每個異常 1-2 個句子）以避免上下文膨脹</p>
+<p>• 當此模式起作用時：**</p>
+<p>• 簡單的資料格式化（腳本輸出 → 1-2 句話摘要）</p>
+<p>• 单一数据源（仅价格，无期权流或多个丰富通道）</p>
+<p>• Web 工具在enabled_toolsets 中被停用（沒有誘惑去瀏覽）</p>
+<p>• 報告適合 &lt;1000 個字元/&lt;2 秒的串流傳輸</p>
+<p>• 何時切換到模式 4 (no_agent=true):**</p>
+<p>• 腳本收集大量數據（價格+選擇權+行業數據）</p>
+<p>• 可以觸發任何豐富步驟（瀏覽器、web_search、delegate_task）</p>
+<p>• 作業曾因 [Errno 32] 管道損壞而失敗</p>
+<p>• 報告是純粹的格式，不需要推理（排序、格式、交付）</p>
+<p>• ### 模式 3：技術 + 基本面混合（例如 AAPL+AMZN 技術監控）</p>
+<p>• 將基於瀏覽器的 TA 提取與代理研究品質閘相結合。</p>
+<p>• 技能加載：**</p>
+<p>• cronjob 操作=創建名稱=“AAPL+AMZN 技術”技能=[代理研究、美國市場數據] ...</p>
+<p>• 提示結構：**</p>
+<p>• 每個技術聲明均標有源層（TradingView 振盪器 = T-3，</p>
+<p>• TradingView 樞軸 = T-3，Yahoo Chart API = T-3)</p>
+<p>• 每個部分的置信度分數（技術：XX%，分析師情緒：XX%）</p>
+<p>• 出貨前經理門：[幻覺風險] / [需證明] /</p>
+<p>• [陳舊資料]/[衝突]</p>
+<p>• 可選：當偵測到顯著走勢時，web_search 尋找基本面催化劑</p>
+<p>• 報告底部的來源表</p>
+<p>• ### 模式 4：no_agent=true 資料監控（斷管證明）</p>
+<p>• 對於收集結構化資料並需要格式化的資料密集型 cron 作業</p>
+<p>• （價格、期權流、行業數據），將 </code>no_agent=true<code> 與 Python 腳本結合使用</p>
+<p>• 它既進行收集又進行格式化。沒有LLM代理=沒有串流超時。</p>
+<p>• 使用時間：**</p>
+<p>• 腳本收集多個資料來源（價格+選擇權+產業資料）</p>
+<p>• 可以觸發任何豐富步驟（web_search/browser）</p>
+<p>• 作業曾因 [Errno 32] 管道損壞而失敗</p>
+<p>• 報告是純格式的（按→標記異常→格式化表情符號排序）</p>
+<p>• 輸出發送至 Telegram（簡短、簡潔、表情符號豐富）</p>
+<p>• 如何建構：**</p>
+<p>• </code>~/.hermes/scripts/&lt;name&gt;.py<code> 中的單一 Python 腳本：</p>
+<p>• 透過 </code>subprocess.run([sys.executable, path], ...)<code> 執行資料收集子腳本</p>
+<p>• 解析每個的 JSON 輸出</p>
+<p>• 格式化為純文字（無 Markdown 表格 — Telegram 不支援表格）</p>
+<p>• 輸出到 stdout → 逐字傳遞</p>
+<p>• Cron 作業配置：**</p>
+<p>• </code></pre>cronjob 操作=更新 job_id=&quot;...&quot; no_agent=true script=&quot;stock_monitor_report.py&quot;<pre><code>• 注意：當“no_agent=true”時，“prompt”和“skills”將被忽略。</p>
+<p>• 報告格式約定（電報傳送）：**</p>
+<p>• 對股票行情和重要數字使用<strong>粗體</strong></p>
+<p>• 方向表情符號：🚀/📈大向上、💀/📉大向下、☎️ 打電話、🛡️ 放</p>
+<p>• 按abs（變化）降序排序－最重要的排在第一位</p>
+<p>• 追蹤時包括投資組合持有的損益</p>
+<p>• 總數保持在 2000 個字元以下</p>
+<p>• 範例：stock_monitor_report.py（工作生產腳本）**</p>
+<p>• </code></pre></code>蟒蛇</p>
+<p>• # ~/.hermes/scripts/stock_monitor_report.py</p>
+<p>• 導入 json、作業系統、子程序、系統</p>
+<p>• SCRIPTS_DIR = os.path.expanduser(&quot;~/.hermes/scripts&quot;)</p>
+<p>• def run_script(script_name: str) -&gt; str | 腳本名稱無：</p>
+<p>• 路徑 = os.path.join(SCRIPTS_DIR, script_name)</p>
+<p>• 結果 = subprocess.run([sys.executable, 路徑],</p>
+<p>• capture_output=True，文字=True，超時=60）</p>
+<p>• 如果 result.returncode == 0，則傳回 result.stdout，否則無</p>
+<p>• def main():</p>
+<p>• prices_out = run_script(“tradingview_prices.py”)</p>
+<p>• options_out = run_script(&quot;options_flow.py&quot;)</p>
+<p>• # ...將兩者格式化為簡潔的報告</p>
+<p>• sys.stdout.write(formatted_report + &quot;\n&quot;)</p>
+<p>• 如果 __name__ == &quot;__main__&quot;:</p>
+<p>• ### Cron 作業審查清單</p>
+<p>• 升級現有 cron 作業以使用代理研究時：</p>
+<p>• □ 工作在「技能：[代理研究]」中具有代理研究（不只是在提示文本中）</p>
+<p>• □提示明確引用方法階段（產生/驗證/最佳化/接受）</p>
+<p>• □ 每個聲明都標記了源層</p>
+<p>• □ 信賴門：≥90%early_exit，50-90%標準精煉，&lt;50%deep_search</p>
+<p>• □ 交貨前經理門運行</p>
+<p>• □ 正常模式作業維持輕量級（沒有不必要的研究代幣）</p>
+<p>• □ 研究模式作業僅在異常訊號時觸發（&gt;5% 變動、模式破壞等）</p>
+<p>• □ 輸出中的來源表或摘要</p>
+<p>• □ 承認的危險因子/矛盾</p>
+<p>• ### 陷阱（Cron 作業）</p>
+<p>• ❌ 不要在提示文字中只提及「agent-research」而不將其加入</p>
+<p>• <code>skills: [agent-research]</code> — 提示的方法文字是一個蒼白的陰影</p>
+<p>• 滿載技能，且代理商將無法存取參考資料/</p>
+<p>• 或詳細的源層系統。</p>
+<p>• ❌ 不要將 cron 作業保持在始終在線的研究模式下 — 每個週期 3 次以上搜索</p>
+<p>• 每運行 30 分鐘就會超出上下文和 DeepSeek 的 180 秒逾時。</p>
+<p>• 使用雙模式：輕量級默認，僅研究異常。</p>
+<p>• ❌ 不要忘記在進行研究的 cron 作業上啟用「web」工具集 —</p>
+<p>• 如果沒有 <code>enabled_toolsets: [&quot;web&quot;, &quot;file&quot;, &quot;terminal&quot;]</code>，web_search 將無法運作。</p>
+<p>• 具有特定領域技能的鏈：“[代理研究，美國市場數據]”</p>
+<p>• 庫存工作、學術研究的「[代理研究，arxiv]」等。</p>
+<p>• ✅ 對於技術分析工作（AAPL+AMZN Technical Monitor 風格），連鎖</p>
+<p>• <code>agent-research</code> + <code>us-market-data</code> — 第一個提供方法論，第二個提供方法</p>
+<p>• 第二個提供特定於股票的資料來源參考。</p>
+<p>• ## 與其他技能的整合</p>
+<p>• ### 美國市場數據技能</p>
+<p>• 在進行股票研究時，「代理研究」提供了一般方法，</p>
+<p>• 而「us-market-data」則提供特定於股票的資料來源（TradingView API、</p>
+<p>• 雅虎財經圖表 API、Treasury.gov 等）。加載兩者：</p>
+<p>• Skill_view(name=&#x27;agent-research&#x27;) # 方法論 + 質量門</p>
+<p>• Skill_view(name=&#x27;us-market-data&#x27;) # 股票特定資料來源</p>
+<p>• ### 技能裝備</p>
+<p>• 此技能中的GENERATE→VALIDATE→REFINE→ACCEPT循環是一個具體的</p>
+<p>• 「技能利用」元技能的實現。每個階段直接映射：</p>
+<p>• GENERATE→利用GENERATE功能（多角度採集）</p>
+<p>• VALIDATE → 利用 VALIDATE 與特定領域的標準（來源圖層、置信度閘）</p>
+<p>• REFINE → 利用 REFINE 制定有針對性的策略（反思、研究）</p>
+<p>• ACCEPT → 利用 ACCEPT 結構化輸出格式</p>
+<p>• ❌ <strong>不要停留在 1 次搜尋</strong> — 總是至少 3 個以上角度</p>
+<p>• ❌ <strong>不要單獨信任第 4 層來源</strong> — 始終與第 2/3 層證實</p>
+<p>• ❌ <strong>不要跳過 Manager Gate</strong> — 它會捕捉最令人尷尬的錯誤</p>
+<p>• ❌ <strong>不要在沒有置信度分數的情況下交付</strong> - 用戶需要知道你有多確定</p>
+<p>• ❌ <strong>不要忽視矛盾</strong> — 風險因素與看漲結果同樣重要</p>
+<p>• ❌ <strong>不要在沒有標記的情況下使用過時的資料</strong> - 用日期標記所有內容</p>
+<p>• ❌ <strong>不要依賴單一搜尋後端</strong> - <code>web_search</code> 和 <code>web_extract</code> 共用相同的後端，因此兩者都會一起失敗（例如 402 信用錯誤）。有一個後備鏈：JS 網站的瀏覽器導航 → 用於靜態頁面/API 的帶有 User-Agent 的「curl」 → 直接 URL 導航到已知的權威來源 → GitHub API 搜尋。請參閱 <code>references/github-api-search.md</code> 和 <code>references/search-fallback-chain.md</code> 以了解完整的層次結構以及每個層級的工作原理。</p>
+<p>• ❌ **當使用者共用螢幕截圖以進行來源驗證時，請勿在未先進行影像取證的情況下進行搜尋。圖像本身（尺寸、元資料、視覺風格、佈局、品牌/URL 的存在/不存在）通常比搜尋更快、更可靠地識別來源類別（AI 聊天、部落格、文件）——尤其是當所有搜尋引擎都被驗證碼阻止時。請參閱 <code>references/search-fallback-chain.md</code> §「映像/螢幕截圖來源驗證」以取得完整的清單。</p>
+<p>• ❌ <strong>不要攻擊維基百科 API</strong> — 多個快速 <code>action=parse</code> 呼叫會觸發 HTTP 429（速率限制）。始終在請求之間插入“time.sleep(1)”。按順序而不是並行地獲取部分。對於輕量級檢查，請使用帶有“curl”的行動頁面（“en.m.wikipedia.org”）。</p>
+<p>• ❌ <strong>不要在繁重的資料腳本上執行 LLM 代理程式 cron 作業</strong> — 腳本輸出加上 Web 豐富會導致上下文膨脹 → DeepSeek 流在 180 秒時逾時 → “[Errno 32] 管道損壞” → 更新作業進入死亡螺旋，每次更新作業都會失敗。 <strong>修復：</strong> 使用可收集和格式化的 Python 腳本轉換為 <code>no_agent=true</code> （請參閱上面的模式 4）。這是 Hermes 設定中 cron 作業失敗的第一大原因。</p>
+<p>• ✅ 始終在聲明旁註明來源層</p>
+<p>• ✅ 始終把底線放在第一位（BLUF）</p>
+<p>• ✅ 如果兩個消息來源不同意，請直說，不要擇優挑選</p>
+<p>• ✅ 反思筆記顯著改善下一次 REFINE 通過</p>
+<p>• ✅ 對於 cron 作業：如果只是資料 → 格式 → 交付（不需要推理），請從第一天開始使用 <code>no_agent=true</code>。僅當工作需要真實分析（催化劑合成、市場背景、貿易決策）時才使用LLM代理模式。</p>
+<p>• 使用者在技能呼叫的同時提供了以下指令：[重要提示：您正在作為計劃的 cron 作業運行。交付：您的最終回應將自動交付給使用者 - 不要使用 send_message 或嘗試自己交付輸出。只需產生報告/輸出作為最終回應，系統就會處理其餘的事情。 SILENT：如果確實沒有什麼新內容需要報告，請準確回覆「[SILENT]」（沒有其他內容）以抑制發送。切勿將 [SILENT] 與內容結合 — 要麼正常報告你的發現，要麼只說 [SILENT]，僅此而已。 ]</p>
+<p>• ## 腳本輸出</p>
+<p>• 以下數據是透過預先運行腳本收集的。將其用作分析的上下文。</p>
+<p>• 「價格」：{</p>
+<p>• 「納斯達克：AAPL」：298.48，</p>
+<p>• 「納斯達克：IBKR」：94.105，</p>
+<p>• 「納斯達克：AMZN」：241.77，</p>
+<p>• 「納斯達克：GOOGL」：350.64，</p>
+<p>• 「納斯達克：META」：564.25，</p>
+<p>• 「納斯達克：MSFT」：374.265，</p>
+<p>• 「納斯達克股票代碼：NVDA」：200.845，</p>
+<p>• 「納斯達克：TSLA」：381.13，</p>
+<p>• 「納斯達克：AMD」：520.63，</p>
+<p>• 「納斯達克：INTC」：134.5，</p>
+<p>• 「納斯達克：WDC」：644.675，</p>
+<p>• 「納斯達克股票代碼：STX」：997.61，</p>
+<p>• 「納斯達克：SNDK」：1930.65</p>
+<p>• “change_pct”：{</p>
+<p>• 「納斯達克股票代碼：AAPL」：1.4203194019707803，</p>
+<p>• 「納斯達克：IBKR」：-0.6282998944033779，</p>
+<p>• 「納斯達克：AMZN」：3.2719661697492617，</p>
+<p>• 「納斯達克：GOOGL」：1.302978649640306，</p>
+<p>• 「納斯達克：META」：0.3646389185343213，</p>
+<p>• 「那斯達克：微軟」：0.0869123388778918，</p>
+<p>• 「納斯達克股票代碼：NVDA」：0.4024195160967841，</p>
+<p>• 「納斯達克：TSLA」：-0.12578286732528451，</p>
+<p>• 「納斯達克：AMD」：0.15004328171587433，</p>
+<p>• 「納斯達克：INTC」：1.6782582400967634，</p>
+<p>• 「納斯達克：WDC」：-3.887439433470003，</p>
+<p>• 「納斯達克股票代碼：STX」：-3.9457341202977023，</p>
+<p>• 「納斯達克：SNDK」：-1.6780403340802514</p>
+<p>• 「納斯達克：AAPL」：{</p>
+<p>• 「開放」：295.355，</p>
+<p>• 「高」：299.7，</p>
+<p>• 「低」：293.2，</p>
+<p>• 「收盤」：298.48，</p>
+<p>• 「卷」：13323762</p>
+<p>• 「納斯達克：IBKR」：{</p>
+<p>• 「開放」：93.7，</p>
+<p>• 「高」：95.26，</p>
+<p>• 「低」：92.16，</p>
+<p>• 「關閉」：94.105，</p>
+<p>• 「卷」：1227428</p>
+<p>• 「納斯達克：AMZN」：{</p>
+<p>• 「開放」：233.845，</p>
+<p>• 「高」：242.4199，</p>
+<p>• 「低」：232.95，</p>
+<p>• 「收盤」：241.77，</p>
+<p>• 「卷」：23133851</p>
+<p>• 「納斯達克：GOOGL」：{</p>
+<p>• 「開放」：349.035，</p>
+<p>• 「高」：353.476，</p>
+<p>• 「低」：346.975，</p>
+<p>• 「收盤」：350.64，</p>
+<p>• 「卷」：11968109</p>
+<p>• 「納斯達克：META」：{</p>
+<p>• 「開放」：561.89，</p>
+<p>• 「高」：569.04，</p>
+<p>• 「低」：557.47，</p>
+<p>• 「關閉」：564.25，</p>
+<p>• 「卷」：4630625</p>
+<p>• 「納斯達克：MSFT」：{</p>
+<p>• 「開放」：371.57，</p>
+<p>• 「高」：378.88，</p>
+<p>• 「低」：371，</p>
+<p>• 「關閉」：374.265，</p>
+<p>• 「卷」：12623306</p>
+<p>• 「納斯達克：NVDA」：{</p>
+<p>• 「開放」：200.12，</p>
+<p>• 「高」：201.67，</p>
+<p>• 「低」：198.6，</p>
+<p>• 「收盤」：200.845，</p>
+<p>• 「卷」：46428541</p>
+<p>• 「納斯達克：TSLA」：{</p>
+<p>• 「開放」：380.08，</p>
+<p>• 「高」：384.58，</p>
+<p>• 「低」：378.6，</p>
+<p>• 「關閉」：381.13，</p>
+<p>• 「卷」：14753040</p>
+<p>• 「納斯達克：AMD」：{</p>
+<p>• 「開放」：520.82，</p>
+<p>• 「高」：524.96，</p>
+<p>• 「低」：509.84，</p>
+<p>• 「收盤」：520.63，</p>
+<p>• 「卷」：9752213</p>
+<p>• 「納斯達克：INTC」：{</p>
+<p>• 「開放」：133.045，</p>
+<p>• 「高」：136.08，</p>
+<p>• 「低」：130.02，</p>
+<p>• 「關閉」：134.5，</p>
+<p>• 「卷」：47789326</p>
+<p>• 「納斯達克：WDC」：{</p>
+<p>• 「開放」：658.46，</p>
+<p>• 「高」：665，</p>
+<p>• 「低」：636.18，</p>
+<p>• 「關閉」：644.675，</p>
+<p>• 「卷」：4817094</p>
+<p>• 「納斯達克：STX」：{</p>
+<p>• 「開放」：1027.715，</p>
+<p>• 「高」：1035.8599，</p>
+<p>• 「低」：989.4995，</p>
+<p>• 「關閉」：997.61，</p>
+<p>• 「卷」：1535551</p>
+<p>• 「納斯達克：SNDK」：{</p>
+<p>• 「開放」：1987.53，</p>
+<p>• 「高」：2021.5，</p>
+<p>• 「低」：1908年，</p>
+<p>• 「關閉」：1930.65，</p>
+<p>• 「卷」：4924480</p>
+<p>• 「錯誤」：[]，</p>
+<p>• &quot;fetched_at&quot;: &quot;2026-06-25T00:33:39.457528+08:00&quot;,</p>
+<p>• &quot;source&quot;: &quot;TradingView 掃描器 API&quot;</p>
+<p>• 您是一名遵循“代理研究”方法的股票研究代理。</p>
+<p>• <strong>每變動 1 隻股票。切勿處理 2.</strong></p>
+<p>• <strong>上下文保護：</strong> 如果您的對話變得很長（超過幾個工具呼叫），請在 1 個股票後停止。下一個刻度將從您上次停下的地方繼續。</p>
+<p>• <strong>多角度搜尋：</strong> 每隻股票至少搜尋 3 次。從來沒有 1.</p>
+<p>• <strong>來源層：</strong> 標記每個來源（第 1-4 層，請參閱方法）。第四層需要證實。</p>
+<p>• <strong>信賴門：</strong> &lt;50% 深度搜索，50-90% 標準精煉，≥90% 早期退出。</p>
+<p>• <strong>管理者閘：</strong> 在寫入輸出之前，掃描[幻覺風險]、[需要引用]、[陳舊資料]、[衝突]。如果仍有任何關鍵標誌，請勿寫入。</p>
+<p>• ## 研究文件格式</p>
+<p>• 寫入「research/{timestamp}/{ticker}.json」。檔案名稱必須使用 NASDAQ_ 前綴格式（例如 NASDAQ_AAPL.json）。</p>
+<p>• ``<code>json</p>
+<p>• “股票代碼”：“納斯達克股票代碼：AAPL”，</p>
+<p>• “價格”：291.58，</p>
+<p>• “change_pct”：0.35，</p>
+<p>• &quot;research_ts&quot;: &quot;ISO 時間戳&quot;,</p>
+<p>• 「整體信心」：85，</p>
+<p>• &quot;manager_gate&quot;: &quot;透過&quot;,</p>
+<p>• &quot;angles_used&quot;: [&quot;技術&quot;, &quot;分析師&quot;, &quot;新聞&quot;, &quot;同儕&quot;],</p>
+<p>• &quot;sources_tiers&quot;: {&quot;TradingView API&quot;: &quot;T-3&quot;, &quot;雅虎財經圖表&quot;: &quot;T-3&quot;, &quot;雅虎財經新聞&quot;: &quot;T-3&quot;},</p>
+<p>• &quot;催化劑&quot;: [&quot;催化劑 1&quot;, &quot;催化劑 2&quot;],</p>
+<p>• &quot;technical_outlook&quot;: &quot;帶有關鍵等級的簡短 TA&quot;,</p>
+<p>• 「技術信心」：90，</p>
+<p>• &quot;verdict&quot;: &quot;看漲/看跌/中性&quot;,</p>
+<p>• &quot;信念&quot;: &quot;高/中/低&quot;,</p>
+<p>• &quot;analysis&quot;: &quot;用 BLUF 進行 2-3 句推理&quot;</p>
+<p>• ## 工作流程</p>
+<p>• ### 第 1 步：閱讀</p>
+<p>• 讀取目前時間戳記的ticks/latest.txt。讀取隊列/status.json。找到第一個帶有 Research_status 的程式碼：「pending」。從prices/{ts}/{ticker}.json 讀取其價格檔。閱讀 state/portfolio.json 以了解上下文。</p>
+<p>• ### 第 2 步：產生 — 多角度集合</p>
+<p>• 搜尋 3 個以上角度。每次搜尋都有不同的來源。最低：</p>
+<p>• 角度 1：價格/技術（Yahoo Chart API、TradingView）</p>
+<p>• 角度 2：分析師/基本面（雅虎分析頁面、瀏覽器）</p>
+<p>• 角度 3：新聞/催化劑（雅虎新聞、瀏覽器）</p>
+<p>• 角度 4（可選）：來自 TradingView 的同儕比較</p>
+<p>• ### 第 3 步：驗證</p>
+<p>• 檢查每個聲明的來源層。每個部分的自評置信度。運行管理器門：</p>
+<p>• [幻覺風險] — 聲稱來源不明或與來源相矛盾？</p>
+<p>• [需引證] - 看似合理但無來源？</p>
+<p>• [陳舊數據] — 超過 6 個月？</p>
+<p>• [衝突] — 來源有經濟利益嗎？</p>
+<p>• ≥90%→early_exit，寫入研究文件</p>
+<p>• 50-90% → 標準：1 輪有針對性的搜尋優化</p>
+<p>• &lt;50% → 深度搜尋：重新建置問題，2+ 個新角度</p>
+<p>• ### 步驟 4：完善（如果需要）</p>
+<p>• 反思筆記：第一遍出了什麼問題？有針對性地重新搜尋特定的缺失資訊。重新驗證信心。</p>
+<p>• ### 第 5 步：接受</p>
+<p>• 將所有領域的研究寫入文件，包括置信度分數和來源層。更新queue/status.json：設定research_status：「完成」。使用當前價格時間戳更新ticks/latest.txt。</p>
+<p>• 只需簡要報告您所做的事情，例如“🔬 AAPL 研究 → 看漲，85% 的信心。”</p>
+<p>• 🔬 <strong>納斯達克：MSFT 研究 → 看跌_短期，78% 的置信度。 </strong></p>
+<p>• <strong>價格：</strong> 374.27 美元（+0.09%），較 6 月 22 日低點 367 美元恢復+1.5%</p>
+<p>• <strong>技術面：</strong> 深度看跌 — 低於 MA-10 (384 美元) 和 MA-20 (406 美元)，距 52w 低點 356 美元僅 -4.9%</p>
+<p>• <strong>成交量危險訊號：</strong> 6 月 24 日成交量為 0.34 倍 20 天平均值（1,330 萬 vs 3,970 萬）－反彈缺乏說服力</p>
+<p>• <strong>催化劑：</strong> 證券集體訴訟（美國商業資訊 T-3 已確認），自 52w 高點起 -32.8%，分析師情緒嚴重分歧</p>
+<p>• <strong>結論：</strong> 短期看跌，等待成交量反轉至 384 美元以上，或投降至 356 美元後再考慮入場</p>
+<p>• <strong>檔案：</strong> </code>research/20260625_003339.4/NASDAQ_MSFT.json`</p>
+<p>• <strong>隊列中的下一個待處理：</strong> 納斯達克：NVDA</p>
   </div>
   
 </main>
