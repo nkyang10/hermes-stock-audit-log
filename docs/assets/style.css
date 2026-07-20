@@ -161,6 +161,7 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 20px; }
 }
 
 /* entry cards */
+.entry-preview { font-size: 0.82em; color: var(--text-muted); margin: 2px 0 0 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 90%; }
 .entry-card {
   display: block;
   background: var(--bg-card);

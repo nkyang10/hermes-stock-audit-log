@@ -262,13 +262,32 @@ def make_cards(entries, prefix='', curr_date=None):
             entry_path = f'{prefix}{dt}/entry-{e["id"]}.html'
         else:
             entry_path = f'entry-{e["id"]}.html'
-        cards.append(f'''\
+        # Sentiment emoji from action/PnL
+        tl = e.get('title','').lower()
+        pv = e.get('pnl','') or ''
+        if any(w in tl for w in ['buy','add']): emoji = chr(0x1f7e2)
+        elif any(w in tl for w in ['sell','trim']): emoji = chr(0x1f534)
+        elif pv.startswith('-'): emoji = chr(0x1f534)
+        elif pv.startswith('+'): emoji = chr(0x1f7e2)
+        else: emoji = chr(0x26aa)
+
+        # Reasoning preview (first ~60 chars)
+        rv = e.get('reasoning','') or ''
+        preview_txt = ''
+        if rv.strip():
+            fl = rv.strip().split('\n')[0][:60].strip().lstrip('\u2022-* ')
+            if len(fl) > 5: preview_txt = fl
+        preview_html = f'<div class="entry-preview">{{escape(preview_txt)}}</div>' if preview_txt else ''
+
+        badge = type_badge(e['entry_type']) + (tkr_badge(e['ticker']) if e['ticker'] else '') + pnl_badge(e['pnl'])
+        cards.append(f'''\\
     <a href="{entry_path}" class="entry-card" data-date="{dt}">
       <div class="entry-meta">
         <span class="entry-time">{fmt_dt(e['created_at'])}</span>
-        <div class="entry-badges">{type_badge(e['entry_type'])}{tkr_badge(e['ticker']) if e['ticker'] else ''}{pnl_badge(e['pnl'])}</div>
+        <div class="entry-badges">{badge}</div>
       </div>
-      <div class="entry-title">{escape(e['title'])}</div>
+      <div class="entry-title">{emoji} {escape(e['title'])}</div>
+      {preview_html}
       <div class="entry-tags">{tag_html(e['tags'])}</div>
     </a>''')
     return '\n'.join(cards)
@@ -1121,6 +1140,7 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 20px; }
 }
 
 /* entry cards */
+.entry-preview { font-size: 0.82em; color: var(--text-muted); margin: 2px 0 0 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 90%; }
 .entry-card {
   display: block;
   background: var(--bg-card);
