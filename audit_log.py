@@ -277,7 +277,7 @@ def make_cards(entries, prefix='', curr_date=None):
         if rv.strip():
             fl = rv.strip().split('\n')[0][:60].strip().lstrip('\u2022-* ')
             if len(fl) > 5: preview_txt = fl
-        preview_html = f'<div class="entry-preview">{{escape(preview_txt)}}</div>' if preview_txt else ''
+        preview_html = f'<div class="entry-preview">{escape(preview_txt)}</div>' if preview_txt else ''
 
         badge = type_badge(e['entry_type']) + (tkr_badge(e['ticker']) if e['ticker'] else '') + pnl_badge(e['pnl'])
         cards.append(f'''\\
