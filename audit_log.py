@@ -554,17 +554,96 @@ filterTimeline('all');
     write_page(DOCS / 'index.html', '📊 股票審計記錄', index_js,
                sel_all='active', curr_date=None, prefix='', hide_date_switcher=True)
 
-    # Holdings with JS date selector (replaces static per-date holdings)
+    # Holdings with month+day filter (like timeline)
     snapshots_json = json.dumps(snapshots_by_date, ensure_ascii=False)
+    snap_dates_json = json.dumps(sorted(snapshots_by_date.keys(), reverse=True), ensure_ascii=False)
     holdings_js = f'''<div class="snap-selector">
-  <label>📅 選擇日期：</label>
-  <div class="snap-list" id="snapList"></div>
+  <label>📅 月份：</label>
+  <div class="snap-list" id="hldMonthList"></div>
+</div>
+<div class="snap-selector" id="hldDaySelector" style="display:none">
+  <label>📆 日子：</label>
+  <div class="snap-list" id="hldDayList"></div>
 </div>
 <div id="holdingsContainer"><p class="empty">載入中…</p></div>
 <script>
 const SNAPSHOTS = {snapshots_json};
+const SNAPSHOT_DATES = {snap_dates_json};
 const TKR_COLORS = {json.dumps(TKR_C, ensure_ascii=False)};
-let currentDate = null;
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+let selMonth = null, selDay = null;
+
+function parseYmd(d) {{ const p = d.split('-'); return {{y:p[0],m:p[1],d:p[2]}}; }}
+
+const hasDate = {{}};
+SNAPSHOT_DATES.forEach(d => {{ hasDate[d] = true; }});
+
+const hasMonth = {{}};
+SNAPSHOT_DATES.forEach(d => {{
+  const p = parseYmd(d);
+  hasMonth[p.y+'-'+p.m] = true;
+}});
+
+function renderHolDays(monthKey) {{
+  const dayContainer = document.getElementById('hldDayList');
+  const daySel = document.getElementById('hldDaySelector');
+  daySel.style.display = 'block';
+  dayContainer.innerHTML = '<a href="#" class="snap-btn'+(selDay===null?' active':'')+'" data-day="all">全部</a>' +
+    Array.from({{length:31}},(_,i)=>{{
+      const d = String(i+1).padStart(2,'0');
+      const full = monthKey+'-'+d;
+      const has = hasDate[full];
+      return '<a href="#" class="snap-btn'+(selDay===d?' active':'')+(has?'':' dimmed')+'" data-day="'+d+'">'+d+'</a>';
+    }}).join('');
+}}
+
+function renderHolMonths() {{
+  const container = document.getElementById('hldMonthList');
+  const allKeys = [];
+  const years = new Set();
+  Object.keys(hasMonth).forEach(k => years.add(k.split('-')[0]));
+  years.forEach(y => {{
+    for (let m = 1; m <= 12; m++) {{
+      const mk = y+'-'+String(m).padStart(2,'0');
+      allKeys.push(mk);
+    }}
+  }});
+  container.innerHTML = '<a href="#" class="snap-btn'+(selMonth===null?' active':'')+'" data-month="all">全部</a>' +
+    allKeys.sort().map(k => {{
+      const p = k.split('-');
+      const monthIdx = parseInt(p[1]) - 1;
+      const label = MONTHS[monthIdx] + ' ' + p[0];
+      const has = hasMonth[k];
+      return '<a href="#" class="snap-btn'+(selMonth===k?' active':'')+(has?'':' dimmed')+'" data-month="'+k+'">'+label+'</a>';
+    }}).join('');
+  if (selMonth) renderHolDays(selMonth);
+}}
+
+function onHolMonthClick(monthKey) {{
+  selMonth = monthKey;
+  selDay = null;
+  if (monthKey) {{
+    renderHolDays(monthKey);
+    const firstInMonth = SNAPSHOT_DATES.find(d => d.startsWith(monthKey));
+    if (firstInMonth) renderHoldings(firstInMonth);
+  }} else {{
+    document.getElementById('hldDaySelector').style.display = 'none';
+    if (SNAPSHOT_DATES.length) renderHoldings(SNAPSHOT_DATES[0]);
+  }}
+  renderHolMonths();
+}}
+
+function onHolDayClick(day) {{
+  selDay = day;
+  if (day && selMonth) {{
+    renderHoldings(selMonth+'-'+day);
+  }} else if (selMonth) {{
+    const firstInMonth = SNAPSHOT_DATES.find(d => d.startsWith(selMonth));
+    if (firstInMonth) renderHoldings(firstInMonth);
+  }}
+  renderHolDays(selMonth);
+}}
+
 function fmtNum(n) {{ return n.toLocaleString('en-US', {{minimumFractionDigits:2, maximumFractionDigits:2}}); }}
 function fmtInt(n) {{ return Math.round(n).toLocaleString('en-US'); }}
 function tkrBadge(sym) {{
@@ -572,7 +651,6 @@ function tkrBadge(sym) {{
   return '<span class="tkr" style="--tkr-c:'+c+'">'+sym+'</span>';
 }}
 function renderHoldings(date) {{
-  currentDate = date;
   const snaps = SNAPSHOTS[date];
   if (!snaps || !snaps.length) {{ document.getElementById('holdingsContainer').innerHTML = '<p class="empty">呢日冇持倉快照</p>'; return; }}
   const snap = snaps[snaps.length-1];
@@ -610,55 +688,138 @@ function renderHoldings(date) {{
     '<div class="hsum-row '+retCls+'"><span class="hsum-label">總回報 (vs $'+fmtInt(initCash)+')</span><span class="hsum-val">'+(totalReturn>=0?'+':'')+'$'+fmtInt(totalReturn)+'</span></div>' +
     '</div>' +
     '<div class="pf-section"><table class="pf-table"><thead><tr><th>股票</th><th>股數</th><th>平均成本</th><th>現價</th><th>變幅</th><th>盈虧</th><th>市值</th></tr></thead><tbody>'+rows.join('')+'</tbody></table></div>';
-  // Update button active state
-  document.querySelectorAll('.snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === date));
 }}
-// Render date buttons + latest snapshot
-const dates = Object.keys(SNAPSHOTS).sort().reverse();
-document.getElementById('snapList').innerHTML = dates.map(d => '<a href="#" class="snap-btn" data-date="'+d+'">'+d+'</a>').join('');
-document.getElementById('snapList').addEventListener('click', function(e) {{
+
+document.getElementById('hldMonthList').addEventListener('click', function(e) {{
   const btn = e.target.closest('.snap-btn');
-  if (btn) {{ renderHoldings(btn.dataset.date); e.preventDefault(); }}
+  if (!btn) return; e.preventDefault();
+  const m = btn.dataset.month;
+  onHolMonthClick(m === 'all' ? null : m);
 }});
-if (dates.length) renderHoldings(dates[0]);
+document.getElementById('hldDayList').addEventListener('click', function(e) {{
+  const btn = e.target.closest('.snap-btn');
+  if (!btn) return; e.preventDefault();
+  onHolDayClick(btn.dataset.day === 'all' ? null : btn.dataset.day);
+}});
+
+renderHolMonths();
+if (SNAPSHOT_DATES.length) renderHoldings(SNAPSHOT_DATES[0]);
 </script>'''
     write_page(DOCS / 'holdings.html', '💼 持倉',
                f'<h2 class="section-title">💼 持倉</h2>\n{holdings_js}',
                sel_hld='active', curr_date=None, prefix='', hide_date_switcher=True)
 
-    # Studies with JS date filter
+    # Studies with month+day filter (like timeline)
     stu_cards_html = make_cards([e for e in entries if e['entry_type'] in ('study','analysis')])
+    all_stu_dates = sorted(set(e['created_at'][:10] for e in entries if e['entry_type'] in ('study','analysis') and e['created_at']), reverse=True)
+    stu_dates_json = json.dumps(all_stu_dates, ensure_ascii=False)
     write_page(DOCS / 'studies.html', '📚 研究 — 全部',
                f'''<h2 class="section-title">📚 研究分析</h2>
 <div class="snap-selector">
-  <label>📅 日期：</label>
-  <div class="snap-list" id="stuDateList"></div>
+  <label>📅 月份：</label>
+  <div class="snap-list" id="stuMonthList"></div>
+</div>
+<div class="snap-selector" id="stuDaySelector" style="display:none">
+  <label>📆 日子：</label>
+  <div class="snap-list" id="stuDayList"></div>
 </div>
 <div id="stuCards" class="tab-content">
 {stu_cards_html}
 </div>
 <script>
-const STU_DATES = {all_dates_json};
-const stuData = {{}};
-document.querySelectorAll('#stuCards .entry-card').forEach(c => {{
-  const d = c.dataset.date;
-  if (d) {{ if (!stuData[d]) stuData[d] = []; stuData[d].push(c); }}
+const STU_DATES = {stu_dates_json};
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+let selMonth = null, selDay = null;
+
+function parseYmd(d) {{ const p = d.split('-'); return {{y:p[0],m:p[1],d:p[2]}}; }}
+
+const hasDate = {{}};
+STU_DATES.forEach(d => {{ hasDate[d] = true; }});
+
+const hasMonth = {{}};
+STU_DATES.forEach(d => {{
+  const p = parseYmd(d);
+  hasMonth[p.y+'-'+p.m] = true;
 }});
-function filterStu(date) {{
-  document.querySelectorAll('#stuCards .entry-card').forEach(c => c.style.display = 'none');
-  if (!date || date === 'all') {{
-    document.querySelectorAll('#stuCards .entry-card').forEach(c => c.style.display = 'block');
-  }} else if (stuData[date]) {{
-    stuData[date].forEach(c => c.style.display = 'block');
-  }}
-  document.querySelectorAll('#stuDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
+
+function filterStu(fullDate) {{
+  document.querySelectorAll('#stuCards .entry-card').forEach(c => {{
+    c.style.display = (!fullDate || fullDate === 'all' || c.dataset.date === fullDate) ? 'block' : 'none';
+  }});
 }}
-document.getElementById('stuDateList').innerHTML = '<a href="#" class="snap-btn active" data-date="all">全部</a>' +
-  STU_DATES.map(d => '<a href="#" class="snap-btn" data-date="'+d+'">'+d+'</a>').join('');
-document.getElementById('stuDateList').addEventListener('click', function(e) {{
+
+function renderStuDays(monthKey) {{
+  const dayContainer = document.getElementById('stuDayList');
+  const daySel = document.getElementById('stuDaySelector');
+  daySel.style.display = 'block';
+  dayContainer.innerHTML = '<a href="#" class="snap-btn'+(selDay===null?' active':'')+'" data-day="all">全部</a>' +
+    Array.from({{length:31}},(_,i)=>{{
+      const d = String(i+1).padStart(2,'0');
+      const full = monthKey+'-'+d;
+      const has = hasDate[full];
+      return '<a href="#" class="snap-btn'+(selDay===d?' active':'')+(has?'':' dimmed')+'" data-day="'+d+'">'+d+'</a>';
+    }}).join('');
+}}
+
+function renderStuMonths() {{
+  const container = document.getElementById('stuMonthList');
+  const allKeys = [];
+  const years = new Set();
+  Object.keys(hasMonth).forEach(k => years.add(k.split('-')[0]));
+  years.forEach(y => {{
+    for (let m = 1; m <= 12; m++) {{
+      const mk = y+'-'+String(m).padStart(2,'0');
+      allKeys.push(mk);
+    }}
+  }});
+  container.innerHTML = '<a href="#" class="snap-btn'+(selMonth===null?' active':'')+'" data-month="all">全部</a>' +
+    allKeys.sort().map(k => {{
+      const p = k.split('-');
+      const monthIdx = parseInt(p[1]) - 1;
+      const label = MONTHS[monthIdx] + ' ' + p[0];
+      const has = hasMonth[k];
+      return '<a href="#" class="snap-btn'+(selMonth===k?' active':'')+(has?'':' dimmed')+'" data-month="'+k+'">'+label+'</a>';
+    }}).join('');
+  if (selMonth) renderStuDays(selMonth);
+}}
+
+function onStuMonthClick(monthKey) {{
+  selMonth = monthKey;
+  selDay = null;
+  if (monthKey) {{
+    renderStuDays(monthKey);
+    filterStu(null);
+  }} else {{
+    document.getElementById('stuDaySelector').style.display = 'none';
+    filterStu('all');
+  }}
+  renderStuMonths();
+}}
+
+function onStuDayClick(day) {{
+  selDay = day;
+  if (day && selMonth) {{
+    filterStu(selMonth+'-'+day);
+  }} else if (selMonth) {{
+    filterStu(null);
+  }}
+  renderStuDays(selMonth);
+}}
+
+document.getElementById('stuMonthList').addEventListener('click', function(e) {{
   const btn = e.target.closest('.snap-btn');
-  if (btn) {{ filterStu(btn.dataset.date); e.preventDefault(); }}
+  if (!btn) return; e.preventDefault();
+  const m = btn.dataset.month;
+  onStuMonthClick(m === 'all' ? null : m);
 }});
+document.getElementById('stuDayList').addEventListener('click', function(e) {{
+  const btn = e.target.closest('.snap-btn');
+  if (!btn) return; e.preventDefault();
+  onStuDayClick(btn.dataset.day === 'all' ? null : btn.dataset.day);
+}});
+
+renderStuMonths();
+filterStu('all');
 </script>''',
                sel_stu='active', curr_date=None, prefix='', hide_date_switcher=True)
 

@@ -10,15 +10,15 @@
 <header>
   <div class="hd-inner">
     <h1>📊 股票審計記錄</h1>
-    <div class="hd-sub">模擬交易決策日誌 · 共 148 條記錄</div>
+    <div class="hd-sub">模擬交易決策日誌 · 共 149 條記錄</div>
     <div class="hd-stats">
       <span class="stat">52 項決策</span>
       <span class="stat">4 項快照</span>
-      <span class="stat">92 項研究</span>
+      <span class="stat">93 項研究</span>
       <span class="stat">15 隻股票</span>
     </div>
     <div class="hd-tickers"><span class="tkr-mini" style="--tkr-c:#555555">AAPL</span>, <span class="tkr-mini" style="--tkr-c:#666">ALL</span>, <span class="tkr-mini" style="--tkr-c:#ed1c24">AMD</span>, <span class="tkr-mini" style="--tkr-c:#ff9900">AMZN</span>, <span class="tkr-mini" style="--tkr-c:#4285f4">GOOGL</span>, <span class="tkr-mini" style="--tkr-c:#ff6600">IBKR</span>, <span class="tkr-mini" style="--tkr-c:#0071c5">INTC</span>, <span class="tkr-mini" style="--tkr-c:#0668e1">META</span>, <span class="tkr-mini" style="--tkr-c:#00a4ef">MSFT</span>, <span class="tkr-mini" style="--tkr-c:#76b900">NVDA</span>, <span class="tkr-mini" style="--tkr-c:#ea1d2c">SNDK</span>, <span class="tkr-mini" style="--tkr-c:#666">SPX</span>, <span class="tkr-mini" style="--tkr-c:#5dade2">STX</span>, <span class="tkr-mini" style="--tkr-c:#e82127">TSLA</span>, <span class="tkr-mini" style="--tkr-c:#0077b6">WDC</span></div>
-    <div class="hd-last">更新於 2026-07-20 20:21</div>
+    <div class="hd-last">更新於 2026-07-20 21:35</div>
   </div>
   
   <nav class="tabs">
@@ -30,8 +30,12 @@
 <main>
 <h2 class="section-title">📚 研究分析</h2>
 <div class="snap-selector">
-  <label>📅 日期：</label>
-  <div class="snap-list" id="stuDateList"></div>
+  <label>📅 月份：</label>
+  <div class="snap-list" id="stuMonthList"></div>
+</div>
+<div class="snap-selector" id="stuDaySelector" style="display:none">
+  <label>📆 日子：</label>
+  <div class="snap-list" id="stuDayList"></div>
 </div>
 <div id="stuCards" class="tab-content">
     <a href="2026-07-20/entry-300.html" class="entry-card" data-date="2026-07-20">
@@ -81,6 +85,14 @@
       </div>
       <div class="entry-title">AMZN Research — Jul 20 session</div>
       <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span></div>
+    </a>
+    <a href="2026-07-20/entry-312.html" class="entry-card" data-date="2026-07-20">
+      <div class="entry-meta">
+        <span class="entry-time">2026-07-20 21:33 HKT</span>
+        <div class="entry-badges"><span class="type-badge type-study">研究</span><span class="tkr" style="--tkr-c:#666">ALL</span></div>
+      </div>
+      <div class="entry-title">研究報告 · 2026-07-20_21:33</div>
+      <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">auto</span></div>
     </a>
     <a href="2026-07-20/entry-299.html" class="entry-card" data-date="2026-07-20">
       <div class="entry-meta">
@@ -772,27 +784,99 @@
     </a>
 </div>
 <script>
-const STU_DATES = ["2026-07-20", "2026-07-17", "2026-07-16", "2026-07-15", "2026-07-11", "2026-07-02", "2026-07-01", "2026-06-29", "2026-06-25", "2026-06-24", "2026-06-23", "2026-06-22", "2026-06-19", "2026-06-17", "2026-06-15", "2026-06-10"];
-const stuData = {};
-document.querySelectorAll('#stuCards .entry-card').forEach(c => {
-  const d = c.dataset.date;
-  if (d) { if (!stuData[d]) stuData[d] = []; stuData[d].push(c); }
+const STU_DATES = ["2026-07-20", "2026-07-19", "2026-07-18", "2026-07-17", "2026-07-16", "2026-07-15", "2026-07-14", "2026-07-13", "2026-07-10", "2026-07-09", "2026-07-08", "2026-07-07", "2026-07-06", "2026-07-03", "2026-07-02", "2026-07-01", "2026-06-30", "2026-06-29", "2026-06-27", "2026-06-26", "2026-06-25", "2026-06-23", "2026-06-22"];
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+let selMonth = null, selDay = null;
+
+function parseYmd(d) { const p = d.split('-'); return {y:p[0],m:p[1],d:p[2]}; }
+
+const hasDate = {};
+STU_DATES.forEach(d => { hasDate[d] = true; });
+
+const hasMonth = {};
+STU_DATES.forEach(d => {
+  const p = parseYmd(d);
+  hasMonth[p.y+'-'+p.m] = true;
 });
-function filterStu(date) {
-  document.querySelectorAll('#stuCards .entry-card').forEach(c => c.style.display = 'none');
-  if (!date || date === 'all') {
-    document.querySelectorAll('#stuCards .entry-card').forEach(c => c.style.display = 'block');
-  } else if (stuData[date]) {
-    stuData[date].forEach(c => c.style.display = 'block');
-  }
-  document.querySelectorAll('#stuDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
+
+function filterStu(fullDate) {
+  document.querySelectorAll('#stuCards .entry-card').forEach(c => {
+    c.style.display = (!fullDate || fullDate === 'all' || c.dataset.date === fullDate) ? 'block' : 'none';
+  });
 }
-document.getElementById('stuDateList').innerHTML = '<a href="#" class="snap-btn active" data-date="all">全部</a>' +
-  STU_DATES.map(d => '<a href="#" class="snap-btn" data-date="'+d+'">'+d+'</a>').join('');
-document.getElementById('stuDateList').addEventListener('click', function(e) {
+
+function renderStuDays(monthKey) {
+  const dayContainer = document.getElementById('stuDayList');
+  const daySel = document.getElementById('stuDaySelector');
+  daySel.style.display = 'block';
+  dayContainer.innerHTML = '<a href="#" class="snap-btn'+(selDay===null?' active':'')+'" data-day="all">全部</a>' +
+    Array.from({length:31},(_,i)=>{
+      const d = String(i+1).padStart(2,'0');
+      const full = monthKey+'-'+d;
+      const has = hasDate[full];
+      return '<a href="#" class="snap-btn'+(selDay===d?' active':'')+(has?'':' dimmed')+'" data-day="'+d+'">'+d+'</a>';
+    }).join('');
+}
+
+function renderStuMonths() {
+  const container = document.getElementById('stuMonthList');
+  const allKeys = [];
+  const years = new Set();
+  Object.keys(hasMonth).forEach(k => years.add(k.split('-')[0]));
+  years.forEach(y => {
+    for (let m = 1; m <= 12; m++) {
+      const mk = y+'-'+String(m).padStart(2,'0');
+      allKeys.push(mk);
+    }
+  });
+  container.innerHTML = '<a href="#" class="snap-btn'+(selMonth===null?' active':'')+'" data-month="all">全部</a>' +
+    allKeys.sort().map(k => {
+      const p = k.split('-');
+      const monthIdx = parseInt(p[1]) - 1;
+      const label = MONTHS[monthIdx] + ' ' + p[0];
+      const has = hasMonth[k];
+      return '<a href="#" class="snap-btn'+(selMonth===k?' active':'')+(has?'':' dimmed')+'" data-month="'+k+'">'+label+'</a>';
+    }).join('');
+  if (selMonth) renderStuDays(selMonth);
+}
+
+function onStuMonthClick(monthKey) {
+  selMonth = monthKey;
+  selDay = null;
+  if (monthKey) {
+    renderStuDays(monthKey);
+    filterStu(null);
+  } else {
+    document.getElementById('stuDaySelector').style.display = 'none';
+    filterStu('all');
+  }
+  renderStuMonths();
+}
+
+function onStuDayClick(day) {
+  selDay = day;
+  if (day && selMonth) {
+    filterStu(selMonth+'-'+day);
+  } else if (selMonth) {
+    filterStu(null);
+  }
+  renderStuDays(selMonth);
+}
+
+document.getElementById('stuMonthList').addEventListener('click', function(e) {
   const btn = e.target.closest('.snap-btn');
-  if (btn) { filterStu(btn.dataset.date); e.preventDefault(); }
+  if (!btn) return; e.preventDefault();
+  const m = btn.dataset.month;
+  onStuMonthClick(m === 'all' ? null : m);
 });
+document.getElementById('stuDayList').addEventListener('click', function(e) {
+  const btn = e.target.closest('.snap-btn');
+  if (!btn) return; e.preventDefault();
+  onStuDayClick(btn.dataset.day === 'all' ? null : btn.dataset.day);
+});
+
+renderStuMonths();
+filterStu('all');
 </script></main>
 <footer>
   <p>由 audit_log.py 自動生成 · <a href="https://github.com/nkyang10/hermes-stock-audit-log">GitHub 原始碼</a></p>
