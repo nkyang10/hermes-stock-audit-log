@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📊 2026-07-21 — 股票審計記錄</title>
+<title>📊 2026-07-24 — 股票審計記錄</title>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
@@ -1506,8 +1506,8 @@ function filterTimeline(date) {
   document.querySelectorAll('#tlDateList .snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === (date||'all')));
 }
 document.getElementById('tlDateList').innerHTML = '<a href="../index.html" class="snap-btn" data-date="all">全部</a>' +
-  TL_DATES.map(d => '<a href="../'+(d===TL_DATES[0]?'index.html':d+'/index.html')+'" class="snap-btn'+(d==="2026-07-21"?' active':'')+'" data-date="'+d+'">'+d+'</a>').join('');
-filterTimeline("2026-07-21");
+  TL_DATES.map(d => '<a href="../'+(d===TL_DATES[0]?'index.html':d+'/index.html')+'" class="snap-btn'+(d==="2026-07-24"?' active':'')+'" data-date="'+d+'">'+d+'</a>').join('');
+filterTimeline("2026-07-24");
 </script></main>
 <footer>
   <p>由 audit_log.py 自動生成 · <a href="https://github.com/nkyang10/hermes-stock-audit-log">GitHub 原始碼</a></p>
