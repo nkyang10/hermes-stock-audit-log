@@ -10,12 +10,12 @@
 <header>
   <div class="hd-inner">
     <h1>📊 股票審計記錄</h1>
-    <div class="hd-sub">模擬交易決策日誌 · 共 0 條記錄</div>
+    <div class="hd-sub">模擬交易決策日誌 · 共 537 條記錄</div>
     <div class="hd-stats">
-      <span class="stat">0 項決策</span>
-      <span class="stat">0 項快照</span>
-      <span class="stat">0 項研究</span>
-      <span class="stat">0 隻股票</span>
+      <span class="stat">315 項決策</span>
+      <span class="stat">37 項快照</span>
+      <span class="stat">185 項研究</span>
+      <span class="stat">16 隻股票</span>
     </div>
     
     <div class="hd-last">更新於 </div>
@@ -45,61 +45,61 @@
   <div class="reasoning">
     <p>## market_context</p>
 <br>
-<p><pre><code>{</p>
-<p>  &quot;report_date&quot;: &quot;2026-08-07&quot;,</p>
-<p>  &quot;report_time_hkt&quot;: &quot;21:00&quot;,</p>
-<p>  &quot;mode&quot;: &quot;9pm&quot;,</p>
-<p>  &quot;overall_bias&quot;: &quot;neutral_bullish&quot;,</p>
-<p>  &quot;bias_rationale&quot;: &quot;NFP surprise-to-downside (payrolls -23k) + lower unemployment interpreted as dovish/rate-cut supportive; tech-AI resilient (NET +16% overnight, AMD +1.5%, SOXX +0.3%); but payrolls contraction is a growth worry capping upside. Dow weak (-0.85%) vs Nasdaq flat. Gold +4.15% (haven + cut expectations).&quot;,</p>
-<p>  &quot;vix_level&quot;: 15.27,</p>
-<p>  &quot;vix_change_pct&quot;: 0.79,</p>
-<p>  &quot;futures&quot;: {</p>
-<p>    &quot;ES&quot;: {&quot;price&quot;: 7766.75, &quot;change_pct&quot;: 0.41},</p>
-<p>    &quot;NQ&quot;: {&quot;price&quot;: 29725.25, &quot;change_pct&quot;: 0.80}</p>
-<p>  },</p>
-<p>  &quot;key_levels&quot;: {</p>
-<p>    &quot;SPY&quot;: {&quot;current&quot;: 768.56, &quot;support&quot;: [767.0, 760.0], &quot;resistance&quot;: [772.0, 776.85]},</p>
-<p>    &quot;QQQ&quot;: {&quot;current&quot;: 714.65, &quot;support&quot;: [708.5, 700.0], &quot;resistance&quot;: [719.3, 730.0]}</p>
-<p>  },</p>
-<p>  &quot;sector_bias&quot;: {</p>
-<p>    &quot;semiconductors&quot;: &quot;bullish&quot;,</p>
-<p>    &quot;technology&quot;: &quot;bullish&quot;,</p>
-<p>    &quot;energy&quot;: &quot;bullish&quot;,</p>
-<p>    &quot;financials&quot;: &quot;neutral&quot;,</p>
-<p>    &quot;defensive_utilities&quot;: &quot;bearish&quot;,</p>
-<p>    &quot;industrials&quot;: &quot;bearish&quot;,</p>
-<p>    &quot;consumer&quot;: &quot;neutral&quot;</p>
-<p>  },</p>
-<p>  &quot;sector_etf_changes&quot;: {</p>
-<p>    &quot;XLE&quot;: 1.48, &quot;XLK&quot;: -0.31, &quot;XLF&quot;: -0.33, &quot;XLI&quot;: -0.85, &quot;XLU&quot;: -0.64,</p>
-<p>    &quot;XLV&quot;: 0.18, &quot;XLP&quot;: -0.26, &quot;IWM&quot;: -0.51, &quot;SPY&quot;: -0.16, &quot;QQQ&quot;: -0.37</p>
-<p>  },</p>
-<p>  &quot;macro_signals&quot;: {</p>
-<p>    &quot;yield_curve&quot;: {&quot;2Y&quot;: 4.25, &quot;10Y&quot;: 4.69, &quot;30Y&quot;: 5.22, &quot;2Y10Y_spread&quot;: 0.44},</p>
-<p>    &quot;dxy&quot;: 99.48,</p>
-<p>    &quot;wti&quot;: 76.77,</p>
-<p>    &quot;gold&quot;: 4418.0,</p>
-<p>    &quot;btc&quot;: 65242.38,</p>
-<p>    &quot;risk_off_flags&quot;: [&quot;gold_surge +4.15%&quot;, &quot;payrolls_contraction -23k&quot;],</p>
-<p>    &quot;risk_on_flags&quot;: [&quot;futures_up ES +0.41 NQ +0.80&quot;, &quot;tech_ai_resilient&quot;, &quot;yield_curve_steepening&quot;]</p>
-<p>  },</p>
-<p>  &quot;key_events_today&quot;: {</p>
-<p>    &quot;NFP_july&quot;: {&quot;status&quot;: &quot;RELEASED_08:30_ET&quot;, &quot;headline&quot;: &quot;US jobs unexpectedly drop by 23,000, unemployment ticks lower&quot;, &quot;impact&quot;: &quot;dovish_growth_worry_mixed&quot;},</p>
-<p>    &quot;u_michigan_sentiment&quot;: {&quot;status&quot;: &quot;10:00_ET_PENDING&quot;, &quot;note&quot;: &quot;Friday event, watch 1Yr/5Yr inflation expectations&quot;},</p>
-<p>    &quot;overnight_movers&quot;: {&quot;NET&quot;: 16.46, &quot;SNDK&quot;: 1.94, &quot;WDC_close&quot;: -13.03, &quot;DELL_close&quot;: -5.41, &quot;SKHY_close&quot;: -4.97}</p>
-<p>  },</p>
-<p>  &quot;sim_trader_notes&quot;: [</p>
-<p>    &quot;NET: Q2 beat + FY raise, overnight +16.5% pre-market — strong catalyst, momentum name&quot;,</p>
-<p>    &quot;WDC: closed -13% post-earnings despite revenue beat (profit-quality worry); overnight +0.9% bounce attempt, high volatility — avoid chasing&quot;,</p>
-<p>    &quot;DELL: closed -5.4%, overnight +1.1%; AI server thesis intact but pullback after +250% run&quot;,</p>
-<p>    &quot;SKHY: closed -5% despite $38B capex news (profit-taking); memory cycle bullish long-term&quot;,</p>
-<p>    &quot;AMD: closed +1.5% on Taalas AI-inference acquisition; AI inference catalyst&quot;,</p>
-<p>    &quot;MSFT: +2.5% close, record run; fourth Azure India region — cloud momentum&quot;,</p>
-<p>    &quot;INTC: overnight +0.85%, open-weights letter with MSFT/NVDA; hold/watch&quot;,</p>
-<p>    &quot;NFP downside = watch rate-cut expectations for high-beta tech; gold surge = some macro hedge demand&quot;</p>
-<p>  ]</p>
-<p>}</p>
-<p></code></pre></p>
+<pre><code>{
+  &quot;report_date&quot;: &quot;2026-08-07&quot;,
+  &quot;report_time_hkt&quot;: &quot;21:00&quot;,
+  &quot;mode&quot;: &quot;9pm&quot;,
+  &quot;overall_bias&quot;: &quot;neutral_bullish&quot;,
+  &quot;bias_rationale&quot;: &quot;NFP surprise-to-downside (payrolls -23k) + lower unemployment interpreted as dovish/rate-cut supportive; tech-AI resilient (NET +16% overnight, AMD +1.5%, SOXX +0.3%); but payrolls contraction is a growth worry capping upside. Dow weak (-0.85%) vs Nasdaq flat. Gold +4.15% (haven + cut expectations).&quot;,
+  &quot;vix_level&quot;: 15.27,
+  &quot;vix_change_pct&quot;: 0.79,
+  &quot;futures&quot;: {
+    &quot;ES&quot;: {&quot;price&quot;: 7766.75, &quot;change_pct&quot;: 0.41},
+    &quot;NQ&quot;: {&quot;price&quot;: 29725.25, &quot;change_pct&quot;: 0.80}
+  },
+  &quot;key_levels&quot;: {
+    &quot;SPY&quot;: {&quot;current&quot;: 768.56, &quot;support&quot;: [767.0, 760.0], &quot;resistance&quot;: [772.0, 776.85]},
+    &quot;QQQ&quot;: {&quot;current&quot;: 714.65, &quot;support&quot;: [708.5, 700.0], &quot;resistance&quot;: [719.3, 730.0]}
+  },
+  &quot;sector_bias&quot;: {
+    &quot;semiconductors&quot;: &quot;bullish&quot;,
+    &quot;technology&quot;: &quot;bullish&quot;,
+    &quot;energy&quot;: &quot;bullish&quot;,
+    &quot;financials&quot;: &quot;neutral&quot;,
+    &quot;defensive_utilities&quot;: &quot;bearish&quot;,
+    &quot;industrials&quot;: &quot;bearish&quot;,
+    &quot;consumer&quot;: &quot;neutral&quot;
+  },
+  &quot;sector_etf_changes&quot;: {
+    &quot;XLE&quot;: 1.48, &quot;XLK&quot;: -0.31, &quot;XLF&quot;: -0.33, &quot;XLI&quot;: -0.85, &quot;XLU&quot;: -0.64,
+    &quot;XLV&quot;: 0.18, &quot;XLP&quot;: -0.26, &quot;IWM&quot;: -0.51, &quot;SPY&quot;: -0.16, &quot;QQQ&quot;: -0.37
+  },
+  &quot;macro_signals&quot;: {
+    &quot;yield_curve&quot;: {&quot;2Y&quot;: 4.25, &quot;10Y&quot;: 4.69, &quot;30Y&quot;: 5.22, &quot;2Y10Y_spread&quot;: 0.44},
+    &quot;dxy&quot;: 99.48,
+    &quot;wti&quot;: 76.77,
+    &quot;gold&quot;: 4418.0,
+    &quot;btc&quot;: 65242.38,
+    &quot;risk_off_flags&quot;: [&quot;gold_surge +4.15%&quot;, &quot;payrolls_contraction -23k&quot;],
+    &quot;risk_on_flags&quot;: [&quot;futures_up ES +0.41 NQ +0.80&quot;, &quot;tech_ai_resilient&quot;, &quot;yield_curve_steepening&quot;]
+  },
+  &quot;key_events_today&quot;: {
+    &quot;NFP_july&quot;: {&quot;status&quot;: &quot;RELEASED_08:30_ET&quot;, &quot;headline&quot;: &quot;US jobs unexpectedly drop by 23,000, unemployment ticks lower&quot;, &quot;impact&quot;: &quot;dovish_growth_worry_mixed&quot;},
+    &quot;u_michigan_sentiment&quot;: {&quot;status&quot;: &quot;10:00_ET_PENDING&quot;, &quot;note&quot;: &quot;Friday event, watch 1Yr/5Yr inflation expectations&quot;},
+    &quot;overnight_movers&quot;: {&quot;NET&quot;: 16.46, &quot;SNDK&quot;: 1.94, &quot;WDC_close&quot;: -13.03, &quot;DELL_close&quot;: -5.41, &quot;SKHY_close&quot;: -4.97}
+  },
+  &quot;sim_trader_notes&quot;: [
+    &quot;NET: Q2 beat + FY raise, overnight +16.5% pre-market — strong catalyst, momentum name&quot;,
+    &quot;WDC: closed -13% post-earnings despite revenue beat (profit-quality worry); overnight +0.9% bounce attempt, high volatility — avoid chasing&quot;,
+    &quot;DELL: closed -5.4%, overnight +1.1%; AI server thesis intact but pullback after +250% run&quot;,
+    &quot;SKHY: closed -5% despite $38B capex news (profit-taking); memory cycle bullish long-term&quot;,
+    &quot;AMD: closed +1.5% on Taalas AI-inference acquisition; AI inference catalyst&quot;,
+    &quot;MSFT: +2.5% close, record run; fourth Azure India region — cloud momentum&quot;,
+    &quot;INTC: overnight +0.85%, open-weights letter with MSFT/NVDA; hold/watch&quot;,
+    &quot;NFP downside = watch rate-cut expectations for high-beta tech; gold surge = some macro hedge demand&quot;
+  ]
+}
+</code></pre>
   </div>
   
 </main>

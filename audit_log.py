@@ -101,13 +101,26 @@ def render_md(text):
     if not text:
         return ""
     text = escape(text)
-    text = re.sub(r'```(\w*)\n(.*?)```', r'<pre><code>\2</code></pre>', text, flags=re.DOTALL)
+    # Protect fenced code blocks with placeholders so the line-loop below
+    # cannot split them into <p> per line. (Bug: multi-line ``` blocks were
+    # being shredded because split('\n') ran AFTER the <pre> substitution.)
+    code_blocks = []
+    def _save_cb(m):
+        code_blocks.append(m.group(2))
+        return f'\u0001CB{len(code_blocks)-1}\u0001'
+    text = re.sub(r'```(\w*)\n(.*?)```', _save_cb, text, flags=re.DOTALL)
     text = re.sub(r'`([^`]+)`', r'<code>\1</code>', text)
     text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
     text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
     lines = []
     for line in text.split('\n'):
         s = line.strip()
+        cb = re.fullmatch(r'\u0001CB(\d+)\u0001', s)
+        if cb:
+            idx = int(cb.group(1))
+            if idx < len(code_blocks):
+                lines.append(f'<pre><code>{code_blocks[idx]}</code></pre>')
+                continue
         if s.startswith('• ') or s.startswith('- ') or s.startswith('* '):
             lines.append(f'<li>{s[2:]}</li>')
         elif s.startswith('  - ') or s.startswith('  * '):
@@ -937,8 +950,10 @@ def generate_detail(e, all_dates=None):
     # Use page_head_html like all other pages
     detail_header_kw = dict(
         title=f"#{e['id']} — {escape(e['title'])}",
-        count=e.get('_total_count', 0), decisions=0, snapshots=0, studies=0,
-        tickers_n=0, ticker_row='', now=''
+        count=e.get('_total_count', 0),
+        decisions=e.get('_decisions', 0), snapshots=e.get('_snapshots', 0),
+        studies=e.get('_studies', 0), tickers_n=e.get('_tickers_n', 0),
+        ticker_row='', now=''
     )
     page_head = page_head_html(
         f"#{e['id']} — {escape(e['title'])}", detail_header_kw,
@@ -1196,6 +1211,21 @@ def cmd_build(args):
     conn.close()
 
     entries = [dict(r) for r in rows]
+    # Attach site-wide stats so detail pages show real header counts
+    # instead of 0. (Bug: generate_detail read _total_count which was never set.)
+    n_total = len(entries)
+    n_dec = sum(1 for e in entries if e['entry_type'] == 'decision')
+    n_snp = sum(1 for e in entries if e['entry_type'] == 'snapshot')
+    n_stu = sum(1 for e in entries if e['entry_type'] in ('study', 'analysis'))
+    tickers = sorted({e['ticker'].replace('NASDAQ:', '').replace('NYSE:', '')
+                      for e in entries if e.get('ticker')})
+    for e in entries:
+        e['_total_count'] = n_total
+        e['_decisions'] = n_dec
+        e['_snapshots'] = n_snp
+        e['_studies'] = n_stu
+        e['_tickers_n'] = len(tickers)
+        e['_tickers'] = tickers
     n = build_site(entries)
 
     print(f"✓ Built {n} entries → {DOCS}/")
