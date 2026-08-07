@@ -4,3 +4,5 @@ audit.db
 __pycache__/
 *.pyc
 *.json
+entries.db
+COMMIT_MSG.txt

@@ -1,9 +1,0 @@
-fix: audit_log render_md shreds multi-line code blocks + header stats all 0
-
-- render_md: protect fenced code blocks with placeholders so the
-  line-by-line <p> loop cannot split multi-line json blocks into
-  separate <p> tags (entry-724 premarket analysis showed raw JSON
-  shredded across paragraphs)
-- generate_detail header: attach real site-wide stats in cmd_build
-  instead of hardcoded 0, so every detail page showed '0 records'
-- rebuild site: 537 entries, 315 decisions, 37 snapshots, 185 studies
