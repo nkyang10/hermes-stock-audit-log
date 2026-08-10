@@ -164,6 +164,13 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 20px; }
 .reasoning code { background: #f3f4f6; padding: 1px 5px; border-radius: 4px; font-size: 0.83em; }
 .reasoning br { display: none; }
 .reasoning strong { color: #111827; }
+.reasoning .md-h { margin: 14px 0 6px; font-weight: 700; color: #111827; line-height: 1.35; }
+.reasoning .md-h:first-child { margin-top: 0; }
+.reasoning h2.md-h { font-size: 1.28em; }
+.reasoning h3.md-h { font-size: 1.12em; }
+.reasoning h4.md-h { font-size: 1.0em; }
+.reasoning .md-hr { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+.reasoning ul { padding-left: 0; margin: 4px 0 8px; }
 .empty { color: var(--text-muted); font-style: italic; padding: 20px; text-align: center; }
 
 /* timeline group */
