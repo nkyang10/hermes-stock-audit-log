@@ -10,11 +10,11 @@
 <header>
   <div class="hd-inner">
     <h1>📊 股票審計記錄</h1>
-    <div class="hd-sub">模擬交易決策日誌 · 共 556 條記錄</div>
+    <div class="hd-sub">模擬交易決策日誌 · 共 557 條記錄</div>
     <div class="hd-stats">
       <span class="stat">327 項決策</span>
       <span class="stat">37 項快照</span>
-      <span class="stat">192 項研究</span>
+      <span class="stat">193 項研究</span>
       <span class="stat">16 隻股票</span>
     </div>
     
@@ -43,17 +43,17 @@
     <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">backfill</span><span class="tag">full</span></div>
   </div>
   <div class="reasoning">
-    <p># Cron Job: stock-trading-sim-research-part2</p>
+    <h2 class="md-h">Cron Job: stock-trading-sim-research-part2</h2>
 <br>
 <p><strong>Job ID:</strong> b553e577ad13</p>
 <p><strong>Run Time:</strong> 2026-07-01 03:38:09</p>
 <p><strong>Schedule:</strong> 33 1,3 <em> </em> 2-6</p>
 <br>
-<p>## Prompt</p>
+<h3 class="md-h">Prompt</h3>
 <br>
 <p>[IMPORTANT: The user has invoked the &quot;agent-research&quot; skill, indicating they want you to follow its instructions. The full skill content is loaded below.]</p>
 <br>
-<p>---</p>
+<hr class="md-hr">
 <p>name: agent-research</p>
 <p>description: &gt;-</p>
 <p>  Multi-source agent research methodology — source credibility tiers,</p>
@@ -66,21 +66,21 @@
 <p>  hermes:</p>
 <p>    tags: [research, methodology, quality, fact-checking, source-credibility]</p>
 <p>    related_skills: [skill-harness, us-market-data]</p>
-<p>---</p>
+<hr class="md-hr">
 <br>
-<p># Agent Research Methodology</p>
+<h2 class="md-h">Agent Research Methodology</h2>
 <br>
 <p>A <strong>general-purpose research skill</strong> for any topic. Combines source credibility</p>
 <p>tiers, multi-angle search, confidence gating, and a manager quality gate into</p>
 <p>a structured workflow. Built on top of the <code>skill-harness</code> loop pattern.</p>
 <br>
-<p>## When to Load This Skill</p>
+<h3 class="md-h">When to Load This Skill</h3>
 <br>
 <p>Load this skill when the user asks you to research <strong>any topic</strong> that requires</p>
 <p>multiple sources, fact-checking, or analysis — stocks, tech, industry trends,</p>
 <p>macro economics, geopolitics, company analysis, etc.</p>
 <br>
-<p>## The Research Loop</p>
+<h3 class="md-h">The Research Loop</h3>
 <br>
 <pre><code>                    ┌─── early_exit (≥90%)
                     │
@@ -90,7 +90,7 @@ GENERATE ─→ VALIDATE ─── standard (50-90%) ─→ REFINE ─→ REGENE
     └──────────────────── REFINE feedback ────────────────┘
 </code></pre>
 <br>
-<p>### Phase 1: GENERATE — Multi-Angle Collection</p>
+<h4 class="md-h">Phase 1: GENERATE — Multi-Angle Collection</h4>
 <br>
 <p>Do NOT do a single search. Research needs multiple angles:</p>
 <br>
@@ -118,9 +118,9 @@ searches = [
 <li>Use different sources per search (not all Yahoo Finance)</li>
 <li>Use web_extract/browser for deep-dive on key sources</li>
 <br>
-<p>### Phase 2: VALIDATE — Source Credibility + Confidence Gate</p>
+<h4 class="md-h">Phase 2: VALIDATE — Source Credibility + Confidence Gate</h4>
 <br>
-<p>#### Source Credibility System</p>
+<h5 class="md-h">Source Credibility System</h5>
 <br>
 <p>Tag every source with its tier. The reader sees this immediately.</p>
 <br>
@@ -135,7 +135,7 @@ searches = [
 <p><strong>Corroboration rule:</strong> Tier-4 claims MUST be backed by at least one Tier-2/3</p>
 <p>source. Two Tier-4 sources agreeing is still not enough — find a stronger source.</p>
 <br>
-<p>#### Confidence Gate</p>
+<h5 class="md-h">Confidence Gate</h5>
 <br>
 <p>After collecting data, self-rate your confidence <strong>per section</strong>:</p>
 <br>
@@ -158,7 +158,7 @@ Confidence: 70% ← MarketBeat is Tier-4, need cross-ref
 <p>| <strong>50-90%</strong> | <code>standard</code> | Do 1 round of REFINE: search for corroboration |</p>
 <p>| <strong>&lt;50%</strong> | <code>deep_search</code> | Reframe the question entirely, 2+ new angles, re-search |</p>
 <br>
-<p>#### Manager Quality Gate (Pre-Ship)</p>
+<h5 class="md-h">Manager Quality Gate (Pre-Ship)</h5>
 <br>
 <p>Before delivering <strong>any</strong> research output, run this gate:</p>
 <br>
@@ -178,7 +178,7 @@ For the report as a whole:
 <p><strong>Nothing ships without a Manager pass.</strong> If any flag is raised, block delivery</p>
 <p>and enter REFINE phase.</p>
 <br>
-<p>### Phase 3: REFINE — Targeted Improvement</p>
+<h4 class="md-h">Phase 3: REFINE — Targeted Improvement</h4>
 <br>
 <p>Based on which issues the Manager Gate found, pick the right refinement strategy:</p>
 <br>
@@ -197,9 +197,9 @@ Bloomberg. For the refine pass, I&#x27;ll search &quot;AAPL analyst price target
 June 2026 consensus&quot; to find a Tier-3 source.
 </code></pre>
 <br>
-<p>### Phase 4: ACCEPT — Structured Report</p>
+<h4 class="md-h">Phase 4: ACCEPT — Structured Report</h4>
 <br>
-<p>#### Report Format (Pyramid Principle / BLUF)</p>
+<h5 class="md-h">Report Format (Pyramid Principle / BLUF)</h5>
 <br>
 <pre><code>## [Topic] — Research Report
 Confidence: [overall score]% | Generated: [date]
@@ -233,7 +233,7 @@ Confidence: [overall score]% | Generated: [date]
 [Actionable advice with conviction level]
 </code></pre>
 <br>
-<p>### Research Output Checklist</p>
+<h4 class="md-h">Research Output Checklist</h4>
 <br>
 <pre><code>BEFORE DELIVERING, CONFIRM:
 
@@ -248,7 +248,7 @@ Confidence: [overall score]% | Generated: [date]
 □ Risk factors acknowledged (not just bull case)
 </code></pre>
 <br>
-<p>## Worked Example: Stock Research (AAPL)</p>
+<h3 class="md-h">Worked Example: Stock Research (AAPL)</h3>
 <br>
 <p>See <code>us-market-data</code> skill&#x27;s <code>references/full-stock-analysis-workflow.md</code> for a</p>
 <p>complete worked example of stock research using the full GENERATE→VALIDATE→REFINE→ACCEPT</p>
@@ -281,7 +281,7 @@ ACCEPT
 └── Generate structured BLUF report with all checks passed
 </code></pre>
 <br>
-<p>## Worked Example: Tech Topic (AI Chip Shortage)</p>
+<h3 class="md-h">Worked Example: Tech Topic (AI Chip Shortage)</h3>
 <br>
 <pre><code>GENERATE
 ├── Search 1: &quot;AI chip shortage 2026 supply demand&quot; → FT, WSJ (T-3)
@@ -304,7 +304,7 @@ ACCEPT
 └── Deliver with BLUF: &quot;AI chip shortage easing by Q3 2026, TSMC capacity +40% YoY&quot;
 </code></pre>
 <br>
-<p>## Specialized Reference Patterns</p>
+<h3 class="md-h">Specialized Reference Patterns</h3>
 <br>
 <p>The <code>references/</code> directory contains reusable patterns for specific research classes. Load when the trigger condition matches:</p>
 <br>
@@ -322,13 +322,13 @@ ACCEPT
 <p>| <code>references/large-dynamic-page-browser-extraction.md</code> | web_search/web_extract both fail AND the page is a massive (3000+ DOM), JS-heavy, dynamic website where browser_snapshot truncates | browser_console with JS substring extraction in chunks, scroll-triggered lazy content, detecting and decoding tournament bracket notation, cookie popup handling |</p>
 <p>| <code>us-market-data</code> skill&#x27;s <code>references/multi-stock-sector-comparison.md</code> | User asks about 2-5 competing stocks in the same sector | Parallel delegate_task collection → comparison table → scenario matrix → entry zones |</p>
 <br>
-<p>## Cron Job Integration</p>
+<h3 class="md-h">Cron Job Integration</h3>
 <br>
 <p>The agent-research methodology can power <strong>scheduled cron jobs</strong>, not just</p>
 <p>ad-hoc research. This section covers how to design cron job prompts that</p>
 <p>follow the methodology.</p>
 <br>
-<p>### Pattern 1: Research Agent (e.g. sim-research)</p>
+<h4 class="md-h">Pattern 1: Research Agent (e.g. sim-research)</h4>
 <br>
 <p>Full methodology for every tick: multi-angle search, source tiers, confidence</p>
 <p>gate, Manager Gate. 1 stock per tick (context guard) — write enriched JSON</p>
@@ -347,7 +347,7 @@ ACCEPT
 <p>  with overall_confidence, manager_gate, sources_tiers, angles_used)</p>
 <li>Output: brief one-liner, research data goes to file (deliver=local)</li>
 <br>
-<p>### Pattern 2: Dual-Mode Monitor (e.g. Stock Monitor Watchlist)</p>
+<h4 class="md-h">Pattern 2: Dual-Mode Monitor (e.g. Stock Monitor Watchlist)</h4>
 <br>
 <p>Lightweight mode for normal ticks; research mode triggered by anomaly.</p>
 <p>⚠️ <strong>This pattern is PRONE to DeepSeek 180s streaming timeout / Broken pipe</strong></p>
@@ -359,7 +359,7 @@ ACCEPT
 <p>``<code>cronjob action=create name=&quot;Stock Monitor&quot; skills=[agent-research] ...CB10</p>
 <p>cronjob action=create name=&quot;AAPL+AMZN Technical&quot; skills=[agent-research, us-market-data] ...</p>
 <p>CB11cronjob action=update job_id=&quot;...&quot; no_agent=true script=&quot;stock_monitor_report.py&quot;CB12python</p>
-<p># ~/.hermes/scripts/stock_monitor_report.py</p>
+<h2 class="md-h">~/.hermes/scripts/stock_monitor_report.py</h2>
 <p>import json, os, subprocess, sys</p>
 <br>
 <p>SCRIPTS_DIR = os.path.expanduser(&quot;~/.hermes/scripts&quot;)</p>
@@ -373,7 +373,7 @@ ACCEPT
 <p>def main():</p>
 <p>    prices_out = run_script(&quot;tradingview_prices.py&quot;)</p>
 <p>    options_out = run_script(&quot;options_flow.py&quot;)</p>
-<p>    # ... format both into a concise report</p>
+<h2 class="md-h">... format both into a concise report</h2>
 <p>    sys.stdout.write(formatted_report + &quot;\n&quot;)</p>
 <br>
 <p>if __name__ == &quot;__main__&quot;:</p>
@@ -602,19 +602,19 @@ The following data was collected by a pre-run script. Use it as context for your
 <p>}</p>
 <p></code>`<code></p>
 <br>
-<p>## Workflow</p>
+<h3 class="md-h">Workflow</h3>
 <br>
-<p>### Step 1: READ</p>
+<h4 class="md-h">Step 1: READ</h4>
 <p>Read ticks/latest.txt for current timestamp. Read queue/status.json. Find the FIRST ticker with research_status: &quot;pending&quot;. Read its price file from prices/{ts}/{ticker}.json. Read state/portfolio.json for context.</p>
 <br>
-<p>### Step 2: GENERATE — Multi-Angle Collection</p>
+<h4 class="md-h">Step 2: GENERATE — Multi-Angle Collection</h4>
 <p>Search 3+ angles. Different sources per search. Minimum:</p>
 <li>Angle 1: Price/technical (Yahoo Chart API, TradingView)</li>
 <li>Angle 2: Analyst/fundamental (Yahoo Analysis page, browser)</li>
 <li>Angle 3: News/catalysts (Yahoo News, browser)</li>
 <li>Angle 4 (optional): Peers comparison from TradingView</li>
 <br>
-<p>### Step 3: VALIDATE</p>
+<h4 class="md-h">Step 3: VALIDATE</h4>
 <p>Check each claim&#x27;s source tier. Self-rate confidence per section. Run Manager Gate:</p>
 <li>[HALLUCINATION RISK] — claim unsourced or contradicts source?</li>
 <li>[CITATION NEEDED] — plausible but unsourced?</li>
@@ -626,52 +626,52 @@ The following data was collected by a pre-run script. Use it as context for your
 <li>50-90% → standard: 1 round of refine with targeted search</li>
 <li>&lt;50% → deep_search: reframe question, 2+ new angles</li>
 <br>
-<p>### Step 4: REFINE (if needed)</p>
+<h4 class="md-h">Step 4: REFINE (if needed)</h4>
 <p>Reflexion note: what went wrong in first pass? Do targeted re-search for the specific missing info. Re-validate confidence.</p>
 <br>
-<p>### Step 5: ACCEPT</p>
+<h4 class="md-h">Step 5: ACCEPT</h4>
 <p>Write research to file with all fields including confidence scores and source tiers. Update queue/status.json: set research_status: &quot;done&quot;. Update ticks/latest.txt with current price timestamp.</p>
 <br>
-<p>## Output</p>
+<h3 class="md-h">Output</h3>
 <p>Just report briefly what you did, e.g. </code>🔬 AAPL researched → bullish, 85% confidence.<code></p>
 <br>
-<p>## Response</p>
+<h3 class="md-h">Response</h3>
 <br>
-<p>---</p>
+<hr class="md-hr">
 <br>
-<p>## 🔬 AMD 研究完成 — 看好但股價已偏高，78% 信心</p>
+<h3 class="md-h">🔬 AMD 研究完成 — 看好但股價已偏高，78% 信心</h3>
 <br>
-<p>### 關鍵總結（BLUF）</p>
+<h4 class="md-h">關鍵總結（BLUF）</h4>
 <li><strong>AMD 收報 $582.87（+8.04%）</strong> — 6 月 30 日（Q2 最後交易日）因半導體普遍風險偏好升溫而大漲，但成交量低於平均值，且股價已較 MA50 高出 29%</li>
 <li><strong>基本面前景仍然強勁</strong>（數據中心營收 +57% YoY、Q2 指引 +46% YoY、FCF 成長三倍），但預估本益比 63-74 倍且股價已遠超分析師目標價，新進場的風險回報比吸引力下降</li>
 <br>
-<p>### 關鍵發現</p>
+<h4 class="md-h">關鍵發現</h4>
 <li class="num">1. <strong>📈 6 月 30 日大幅飆升（+7.85%）</strong> — AMD 領漲半導體板塊（INTC +6.3%、NVDA +2.3%），24/7 Wall St. 與 MT Newswires 指出為「風險偏好買盤」，Q2 季末機構投資組合再平衡可能放大了漲幅</li>
 <li class="num">2. <strong>📊 基本面引擎強勁</strong> — Q1 數據中心營收 $57.8 億（+57% YoY）；Q2 營收指引約 $112 億（+46% YoY）；Q1 FCF 達 $25.7 億（+252% YoY）；負債權益比低至 0.071；帳上現金 $55.9 億</li>
 <li class="num">3. <strong>⚠️ 技術面已偏高</strong> — 股價較 MA50 高出 29%，較 MA200 高出 112%；RSI 66.7 尚未過熱但接近；6 月 30 日成交量僅為 20 日均量的 0.78 倍，暗示為再平衡而非新的累積</li>
 <li class="num">4. <strong>🟡 估值疑慮</strong> — 預估本益比 63-74x；Argus Research 給予 BUY 評級但目標價僅 $450（較現價低 29%）；Yahoo Insights 標註「估值過高/溢價」</li>
 <br>
-<p>### 風險因素</p>
+<h4 class="md-h">風險因素</h4>
 <li><strong>股價遠超分析師目標價</strong> — Argus $450 目標價較現價低 29%，共識目標價可能需上調才能支撐現價</li>
 <li><strong>成交量偏低</strong> — 漲勢缺乏成交量確認，反彈基礎不穩固</li>
 <li><strong>半導體週期風險</strong> — AI 資本支出循環若放緩，AMD 數據中心業務將受直接衝擊</li>
 <li><strong>市場輪動風險</strong> — Mag 7 資金從 AI 支出大戶流出，6 月板塊輪動損失 $2.3 兆</li>
 <br>
-<p>### 機會</p>
+<h4 class="md-h">機會</h4>
 <li><strong>數據中心成長動能持續</strong> — MI300/MI400 加速器出貨量持續提升</li>
 <li><strong>FCF 大幅改善</strong> — 從虧損轉為 $25.7 億盈餘，財務體質顯著增強</li>
 <li><strong>資產負債表強健</strong> — 低槓桿、高現金，有能力應對週期性下行</li>
 <br>
-<p>### 研究配置摘要</p>
+<h4 class="md-h">研究配置摘要</h4>
 <li><strong>19 個欄位、10 項催化劑、7 項風險、6 項機會</strong></li>
 <li><strong>管理閘門檢查</strong>：PASS</li>
 <li><strong>綜合信心度：78%</strong></li>
 <li><strong>評級：看好但股價已偏高</strong> — 適合持有但不建議在當前水準新建倉位</li>
 <br>
-<p>### File Written</p>
+<h4 class="md-h">File Written</h4>
 <p></code>research/20260701_033328.1/NASDAQ_AMD.json` ✅ — 19 fields, 10 catalysts, 7 risks, 6 opportunities</p>
 <br>
-<p>### Queue Updated</p>
+<h4 class="md-h">Queue Updated</h4>
 <p>AMD → <strong>done</strong> | Still pending: <strong>INTC, STX, SNDK</strong> (for next ticks)</p>
   </div>
   

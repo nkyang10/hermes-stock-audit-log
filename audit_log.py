@@ -121,6 +121,16 @@ def render_md(text):
             if idx < len(code_blocks):
                 lines.append(f'<pre><code>{code_blocks[idx]}</code></pre>')
                 continue
+        # Heading: # / ## / ###  (bold inside already converted above)
+        hm = re.match(r'^(#{1,6})\s+(.*)$', s)
+        if hm:
+            lvl = min(len(hm.group(1)) + 1, 6)  # ## -> h3, # -> h2
+            lines.append(f'<h{lvl} class="md-h">{hm.group(2)}</h{lvl}>')
+            continue
+        # Horizontal rule / section separator
+        if re.fullmatch(r'-{3,}|\*{3,}|_{3,}', s):
+            lines.append('<hr class="md-hr">')
+            continue
         if s.startswith('• ') or s.startswith('- ') or s.startswith('* '):
             lines.append(f'<li>{s[2:]}</li>')
         elif s.startswith('  - ') or s.startswith('  * '):

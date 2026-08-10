@@ -10,11 +10,11 @@
 <header>
   <div class="hd-inner">
     <h1>📊 股票審計記錄</h1>
-    <div class="hd-sub">模擬交易決策日誌 · 共 556 條記錄</div>
+    <div class="hd-sub">模擬交易決策日誌 · 共 557 條記錄</div>
     <div class="hd-stats">
       <span class="stat">327 項決策</span>
       <span class="stat">37 項快照</span>
-      <span class="stat">192 項研究</span>
+      <span class="stat">193 項研究</span>
       <span class="stat">16 隻股票</span>
     </div>
     
@@ -43,9 +43,9 @@
     <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">backfill</span></div>
   </div>
   <div class="reasoning">
-    <p># 期權異動分析 — 2026年6月23日收市後</p>
+    <h2 class="md-h">期權異動分析 — 2026年6月23日收市後</h2>
 <br>
-<p>## INTC (Calls) — 極大量OTM Call Activity</p>
+<h3 class="md-h">INTC (Calls) — 極大量OTM Call Activity</h3>
 <p>股價升 +5.19%，出現極大額、極高V/OI比率OTM Calls：</p>
 <br>
 <p>| Strike | Exp | Vol | OI | V/OI | Premium |</p>
@@ -60,7 +60,7 @@
 <br>
 <p>解讀：全部係6/26到期的OTM Calls，V/OI比率極高（最誇張$79C V/OI 1,426倍），明顯係新開倉，唔係平倉。呢個規模（接近$1.9億）唔似散戶所為，似係機構級別嘅大戶睇好INTC短期內會突破$75-$79。</p>
 <br>
-<p>## AMZN (Puts) — 明天到期嘅重倉Put</p>
+<h3 class="md-h">AMZN (Puts) — 明天到期嘅重倉Put</h3>
 <p>股價跌 -4.75%，出現兩張明天到期嘅Put：</p>
 <br>
 <p>| Strike | Exp | Vol | OI | V/OI | Premium |</p>
@@ -72,7 +72,7 @@
 <br>
 <p>解讀：OI=0代表全部係新開倉，明天就到期。買入大量價外Put（現價~$283左右），賭明天AMZN會跌穿$270甚至$265。呢個係極短期嘅方向性賭注，可能係對沖或純粹睇淡。</p>
 <br>
-<p>## TSLA — 雙邊Strangle/Straddle活動</p>
+<h3 class="md-h">TSLA — 雙邊Strangle/Straddle活動</h3>
 <p>股價收$405.05（+1.14%），Call同Put都有大量成交：</p>
 <br>
 <p><strong>Calls：</strong></p>
@@ -93,7 +93,7 @@
 <br>
 <p>解讀：呢個係典型嘅strangle/ straddle策略。一邊買$370C/$380C/$400C Call，另一邊買$410P/$420P Put。尤其留意6/24（明天）有大量$410P（23,108張）同$420P（14,924張），加上6/24嘅$370C同$380C，明顯有人賭TSLA明天會有大波幅，但方向唔確定，雙邊買晒。同時6/26嘅$400C（25,734張）同$410P（17,142張）顯示中線都有人佈局雙邊。</p>
 <br>
-<p>## SNDK — 大額Straddle</p>
+<h3 class="md-h">SNDK — 大額Straddle</h3>
 <p>股價收$2,273.73（+4.07%），6/26到期：</p>
 <br>
 <p>| Strike | Type | Vol | OI | V/OI | Premium |</p>
@@ -105,7 +105,7 @@
 <br>
 <p>解讀：At-the-money Straddle（現價$2,273.73，strike $2,300），Call同Put比例接近，係標準嘅雙邊波幅賭注。V/OI~2.6-2.9x係新開倉，賭SNDK到6/26會有大幅波動，方向中性。</p>
 <br>
-<p>## 整體市場信號總結</p>
+<h3 class="md-h">整體市場信號總結</h3>
 <br>
 <li class="num">1. <strong>INTC</strong> 🟢：最強嘅牛信號。$1.9億新開倉OTM Calls，機構級睇好。</li>
 <li class="num">2. <strong>AMZN</strong> 🔴：明確熊信號。$5,200萬明天到期Put，賭即市下跌。</li>
