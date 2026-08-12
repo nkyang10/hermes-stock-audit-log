@@ -303,7 +303,7 @@ def make_cards(entries, prefix='', curr_date=None):
         preview_html = f'<div class="entry-preview">{escape(preview_txt)}</div>' if preview_txt else ''
 
         badge = type_badge(e['entry_type']) + (tkr_badge(e['ticker']) if e['ticker'] else '') + pnl_badge(e['pnl'])
-        cards.append(f'''\\
+        cards.append(f'''
     <a href="{entry_path}" class="entry-card" data-date="{dt}">
       <div class="entry-meta">
         <span class="entry-time">{fmt_dt(e['created_at'])}</span>
@@ -340,7 +340,7 @@ def render_holdings_table(holdings, cash=0, total_value=0):
         pnl_cls = ''
         if isinstance(pnl, (int, float)):
             pnl_cls = 'pnl-pos' if pnl >= 0 else 'pnl-neg'
-        rows.append(f'''\
+        rows.append(f'''
           <tr>
             <td>{tkr_badge(sym)}</td>
             <td class="r">{shares}</td>
@@ -353,7 +353,7 @@ def render_holdings_table(holdings, cash=0, total_value=0):
           </tr>''')
     total_pnl = total_mv - grand_cost
     pnl_cls = 'pnl-pos' if total_pnl >= 0 else 'pnl-neg'
-    return f'''\
+    return f'''
     <div class="holdings-summary">
       <div class="hsum-row">
         <span class="hsum-label">總值</span>
@@ -932,7 +932,7 @@ def generate_detail(e, all_dates=None):
                 shares = pos.get('shares', 0)
                 if isinstance(shares, (int, float)) and shares > 500:
                     sym_clean += ' ⚠'
-                rows.append(f'''\
+                rows.append(f'''
           <tr>
             <td><span class="tkr-mini" style="--tkr-c:{tc}">{escape(sym_clean)}</span></td>
             <td class="r">{pos.get("shares", "—")}</td>
@@ -943,7 +943,7 @@ def generate_detail(e, all_dates=None):
             <td class="r">${fmt_num(mv)}</td>
             <td class="r">{pos.get("wt", pos.get("concentration_pct", ""))}%</td>
           </tr>''')
-            portfolio_html = f'''\
+            portfolio_html = f'''
       <div class="pf-section">
         <h3>Snapshot 當時嘅持倉</h3>
         <div class="pf-total">總值: <strong>${fmt_num(total)}</strong></div>
