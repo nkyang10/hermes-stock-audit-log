@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#1247 — 研究報告 · 2026-09-16_01:13 · FOMC加息臨近 + AWS數據中心損毀 + 持倉9步分析</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 1040 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">621 項決策</span>
+      <span class="stat">50 項快照</span>
+      <span class="stat">369 項研究</span>
+      <span class="stat">16 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-09-16 01:13 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>研究報告 · 2026-09-16_01:13 · FOMC加息臨近 + AWS數據中心損毀 + 持倉9步分析</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">auto</span></div>
+  </div>
+  <div class="reasoning">
+    <h2 class="md-h">美股深度研究報告 — 2026-09-15 (Tue) 尾段 ~13:00 ET</h2>
+<p>_研究 run: 23:33 HKT (實際執行 00:58 HKT / 12:58 ET Tuesday) | 數據源: Futu snapshot (12:58 ET) + MySQL news DB + web 多角驗證_</p>
+<br>
+<h3 class="md-h">一、宏觀總覽 (Macro Overview)</h3>
+<li><strong>FOMC 會議正在進行 (9/15-16)</strong>：利率決定係<strong>週三 14:00 ET (02:00 HKT)</strong>。市場定價 25bp 加息：CME FedWatch 92% (周一)、swap traders 87%、Kalshi 80%。若通過，目標區間由 3.50-3.75% 升至 3.75-4.00%，<strong>係 2023年7月以來首次加息</strong> (Tier-2/3: Kiplinger 實時、Seoul Economic Daily、briefs.co)</li>
+<li><strong>10Y yield 5.012%</strong> — 2023年10月以來新高；<strong>30Y 5.391% — 2007年以來最高</strong>；2Y 4.652% (CNBC 5am ET: 10Y 5.029%, 20Y 5.434%)。周二 12:20 ET Bloomberg：「Dow Falls 500 Points After 10-Year Yield Tops 5%」</li>
+<li><strong>加息驅動</strong>：通脹數據強於預期 + <strong>油價 &gt;$100</strong> (WTI $105 +4.05%、Brent $107，霍爾木茲海峽仍關閉、伊朗戰爭持續) → 通脹復燃憂慮 + 政府大量發債。JPMorgan 等指出「若 Fed 唔加息，長端債券會無序上竄」(Cabana)</li>
+<li><strong>市場定價後續</strong>：債券市場 pricing 今年再加息一次 + 2027 再加 1-2 次；CNBC 調查：未來一年至少加息兩次；Morgan Stanley 同 Goldman 周二臨時改口預測加息 (Tier-3: MarketWatch/NYT)</li>
+<li><strong>指數現況</strong>：SPY $757.70 (-0.42%)、QQQ $705.52 (-0.52%)、DIA $520.87 (-0.69%)；VIX 17.48 (+2.22%)</li>
+<li><strong>其他風險資產</strong>：BTC ~$76,300 (-3.1%)；金 ~$4,300 (周一 -1%，MarketWatch：「gold is moving on something bigger than inflation」)</li>
+<li><strong>Fed 人事</strong>：Warsh (Fed 主席候選人) 「set for showdown with Trump」；6月 dot plot 預示 2026 年底 3.8%。若 Warsh 抗拒加息，長端債市會自行推高利率</li>
+<li><strong>地緣/貿易</strong>：Bessent 確認本周末同中國何立峰會面 (習訪美前數日) — 潛在降溫催化劑，但喺 FOMC 之後</li>
+<li><strong>大行立場 (有利益衝突，僅供參考)</strong>：Goldman/JPM/MS 策略師稱「股價可以承受加息，跌勢短暫，牛市延續」(Tier-4, 有 conflict of interest)</li>
+<li><strong>機構倉位</strong>：MarketWatch 12:52 ET：「Institutional investors are dangerously overinvested in stocks」</li>
+<li><strong>宏觀結論</strong>：週三 FOMC 係二元宏觀事件。加息已高度定價 (87-92%)，「好情況」= sell-the-news 反彈 (Freedom Capital：「market has priced that in and may rally with a hike」)；「壞情況」= 點陣圖/鮑威爾(或新主席)語調鷹派 → 定價 2027 更多加息 → 高 beta 科技股殺估值</li>
+<br>
+<h3 class="md-h">二、本輪 (下午盤) 新催化劑</h3>
+<li><strong>AMZN/AWS (12:25-12:52 ET，本輪新消息)</strong>：Reuters — AWS <strong>無法恢復巴林 region + UAE 3個可用區中1個</strong>，係 3月伊朗戰爭空襲後 6 個月；客戶數據有冇永久損失<strong>未有公開答案</strong>；客戶被強制遷移 workloads 去其他 region。背景：3月初 UAE 兩個數據中心被直接擊中、巴林設施被附近空襲損毀 — 「商業數據中心首次在衝突中成物理目標」。影響：AWS 信任/營運風險 + 保險事件，短線股價壓力</li>
+<li><strong>GOOGL</strong>：前 DeepMind 研究科學家 <strong>Alex Turner</strong> 9/14 Guardian 長文 (AI 自我改進失控警告) + 另一位離職研究員 Bilal Chughtai「AI may kill us all」→ 新聞庫：「Alphabet Falls as a DeepMind Exit Reprices AI&#x27;s Safety Race」；另 <strong>Gemini 產品主管 Madhu Gurumurthy 轉投 Meta</strong> (人才流出)</li>
+<li><strong>AAPL</strong>：印度 CCPA <strong>升級 iPhone 維修 (iOS 18) 調查</strong> (Reuters 文件，周二) — 7月29日已下令「詳細調查」，New Delhi 唔滿意 Apple 回覆；印度 = iPhone 銷量 ~9% 市場；潛在代價：罰款/退款/保修政策變更</li>
+<li><strong>NVDA</strong>：Amodei「AI 減速」文章 (Musk/Altman/Nadella 附和) 之後週一晶片股拋售 (INTC -7%、AMD -6%、NVDA -3.4%)；今日「stems the bleeding」反彈 +1% 但尾段乏力；另傳 <strong>NVDA 洽談投資 Anthropic 最多 $10B</strong> (戰略不確定性)；Musk：SPCX 2027 年送 NVDA AI 電腦上太空</li>
+<li><strong>MSFT</strong>：Nadella 支持「deliberate pacing」+ 9/14 公佈 37頁 AI code of conduct →「Microsoft Slips After Drawing a Line Around Its Own AI」；Reuters：唔代表減少 AI capex</li>
+<li><strong>宏觀/地緣</strong>：兩間中國公司被指用 Binance 洗伊朗石油資金 (NYT)；UK/US/荷蘭對伊朗 spyware 發警告；FTC 主席對 AI 反壟斷豁免表懷疑</li>
+<br>
+<h3 class="md-h">三、持倉逐一分析 (Level 2 + Level 7 框架)</h3>
+<br>
+<h4 class="md-h">NVDA — $211.95 (+0.47%) | 131 sh @ $205.19 | 未實現 +3.3%</h4>
+<li>52wk: 66.6% | Gap: +1.19% | Intraday: 13.6% (尾段明顯回落) | Vol: 0.80x | B/A: 0.01 (盤口極薄，ask 為主)</li>
+<li>VWAP $212.56 → 現價跌穿 VWAP ~0.3%，偏空 | Overnight +0.40% / Pre +0.95%</li>
+<li>技術：5d -8.42%、20d -6.31%，趨勢分 25/100 (空頭)；跌穿 MA10 $221.84、MA20 $219.45，MA50 $212.91 附近拉鋸；<strong>現價坐落 POC $210 (30.4億股重成交) 正上方</strong>；支撐 $205/$200，阻力 $215/$220</li>
+<li>催化劑：Amodei 減速效應消化中 + Pella Funds 警告「AI 股累積資金太多，data center 預期一變就壓迫晶片股」+ Anthropic $10B 投資傳聞 + SpaceX 太空數據中心 (長線)</li>
+<li>PE 26.8 (絕對值唔算極端)；macro beta: mkt 1.89 / rate -0.59 → <strong>加息日 = 下行放大</strong></li>
+<li><strong>判斷：HOLD</strong>。$205 (均價 + POC + 17x 支撐) 係多頭防線；尾段 intraday 13.6% + 薄盤口 = 反彈無力。若週三 FOMC 後跌穿 $205 → 考慮減倉；$200 以下先言破位。唔好喺高位加倉 (52wk 66.6% + 空頭趨勢)</li>
+<br>
+<h4 class="md-h">AAPL — $329.44 (-1.09%) | 30 sh @ $298.11 | 未實現 +10.5%</h4>
+<li>52wk: 85.4% (近高位) | Gap: -0.87% | Intraday: 33.5% | Vol: 0.52x (量縮) | B/A: 0.97 (均衡)</li>
+<li>VWAP $330.06 → 現價略低於 VWAP | Overnight -0.84% / Pre -0.87%</li>
+<li>技術：5d +4.10%、20d +8.87%，趨勢分 60/100 (多頭)；MA10 $323.86 / MA20 $317.98 全部上方；距 52wk 高位 $344.27 約 -4.4%；下方支撐 $310 (19x POC) / $305</li>
+<li>催化劑：印度 CCPA 調查升級 (輕-中度利空，罰款/退款風險)；正面：iPhone Duo / iPhone 18 Pro 新產品週期 (Bloomberg)</li>
+<li>PE 37.8 偏貴；macro beta: mkt 0.53 (低) / rate -0.45 / dollar -0.80 → 大行之中利率敏感度低</li>
+<li><strong>判斷：HOLD</strong>。趨勢健康但 52wk 85% 已伸延，量縮 + 加息臨近 → 唔加倉。$310 以上趨勢未變；破 $310 先重新評估</li>
+<br>
+<h4 class="md-h">MSFT — $500.85 (-0.90%) | 49 sh @ $372.97 | 未實現 +34.3% (組合最大盈利)</h4>
+<li>52wk: 75.9% | Gap: -1.01% | Intraday: 34.4% | Vol: 0.79x | B/A: 0.06 (薄)</li>
+<li>VWAP $500.68 → 現價≈VWAP，均衡 | Overnight -1.21% / Pre -1.01%</li>
+<li>技術：5d +1.14%、20d +2.02%，<strong>趨勢分 70/100 — 持倉中最強</strong>；MA10 $499.40 貼住現價 (站穩即多頭)；MA50 $455.97 遠下方</li>
+<li>催化劑：Nadella「deliberate pacing」+ AI code of conduct (中性偏負情緒，Reuters 強調唔係減 capex)；TipRanks Strong Buy、平均目標價 $571.41 (+15.3%, Tier-4)；背景法律風險：Copilot/Azure 披露集體訴訟</li>
+<li>PE 27.9；macro beta: mkt 0.93 / <strong>rate -0.13 (持倉中對利率最唔敏感)</strong></li>
+<li><strong>判斷：HOLD，但係組合入面最值得考慮「FOMC 前部分止賺」嘅名</strong>：+34.3% 盈利 + 趨勢最強 + 低利率敏感度，若週三 sell-the-news 反彈可考慮 TRIM 部分鎖利 (決定留俾 sim 決策層)。技術防線 $495-499 (MA10)</li>
+<br>
+<h4 class="md-h">META — $665.47 (-0.02%) | 29 sh @ $595.30 | 未實現 +11.8%</h4>
+<li>52wk: 55.2% (距高位 $783.69 有 15%) | Gap: -1.13% | Intraday: 40.9% | Vol: 0.86x | B/A: 0.07</li>
+<li>VWAP $668.99 → 現價低 VWAP -0.5% | Overnight -0.96% / Pre -1.07%</li>
+<li>技術：5d +7.92%、20d +12.84%，趨勢分 60/100 (多頭)；MA10 $619.64 / MA20 $590.25 遠下方；<strong>今日全日近乎持平 = 明顯相對強勢</strong> (大市跌 0.4-0.7%)；今日 low $656.20 成即時支撐；$600-605 重支撐</li>
+<li>催化劑：AI 相關債務銷售 ~$5,000億 (Meta+CoreWeave 同一 AI 熱潮兩種風險，Tier-4)；<strong>吸納前 Google Gemini 產品主管 Gurumurthy (人才流入，GOOGL 人才流出)</strong>；Sam Altman 安全警告 (META tagged 情緒)</li>
+<li>PE 25.1 (mega-cap 中平)；macro beta: mkt 1.43 / rate -0.73 (利率敏感高)</li>
+<li><strong>判斷：HOLD</strong>。相對強勢 + 估值合理；但 rate beta -0.73 意味 FOMC 鷹派語調會殺佢。支撐 $650/$600，唔需要行動</li>
+<br>
+<h4 class="md-h">GOOGL — $343.70 (-1.63%) | 20 sh @ $356.40 | 未實現 -3.6% (唯一蝕錢持倉)</h4>
+<li>52wk: 62.7% | Gap: -0.69% | Intraday: 14.5% (貼日低) | Vol: 0.63x | B/A: 0.14</li>
+<li>VWAP $345.52 → 現價低 VWAP -0.5%，偏空 | Overnight -1.11% / Pre -0.74%</li>
+<li>技術：5d +3.23% (上週反彈) 但今日回吐；<strong>現價 $343.70 已跌穿 MA50 $346.97</strong> — 多頭結構受損；支撐 $340 (19x) / $335 (13x)；阻力 $345/$350/$360</li>
+<li>催化劑：DeepMind 離職潮 (Turner 長文 + Chughtai 警告) + Gemini 產品主管去 Meta = 「AI 安全賽道重新定價」+ 人才流出；PE 17.2 = 持倉中最平</li>
+<li>macro beta: mkt 1.48 / rate -0.74 (高敏感)</li>
+<li><strong>判斷：HOLD</strong>。-3.6% 蝕錢但倉位細 (6.7%)；今日跌穿 MA50 係警告訊號 — <strong>$340 係關鍵，失守 → $335，再失守要考慮減倉</strong>。PE 17 提供估值保護，若 AI 安全恐慌屬情緒性，中線有修復空間；但短期唔好攤平 (趨勢轉弱中)</li>
+<br>
+<h4 class="md-h">AMZN — $249.21 (-1.71%) | 18 sh @ $253.48 | 未實現 -1.7%</h4>
+<li>52wk: 58.3% | Gap: -0.49% | Intraday: 16.0% | Vol: 1.05x | B/A: 3.75 (買盤相對厚，$249.20 有 165 手 support)</li>
+<li>VWAP $250.11 → 現價低 VWAP -0.4% | Overnight -0.66% / Pre -0.37%</li>
+<li>技術：5d -1.92%、20d -3.47%，趨勢分 10/100 (空頭)；跌穿 MA10 $255.87 / MA20 $258.50 / MA50 $255.47；支撐 $245 (13x) / $250 (12x)；阻力 $255/$260</li>
+<li><strong>催化劑 (本輪新)</strong>：AWS 巴林 region + UAE AZ 無法恢復 (Reuters 12:25-12:52 ET) — 6個月戰爭損毀仍未修復、數據損失未確認。短線 = 信任/營運風險重估；中線 = 若修復時間表明確 + 賠償安排到位，影響有限 (容量佔全球極小部分，但屬首次「商業數據中心被物理目標化」事件)</li>
+<li>PE 20.0；macro beta: mkt 1.40 / rate -0.49</li>
+<li><strong>判斷：HOLD → 密切監察</strong>。倉位細 (4.4%)；今日 B/A 3.75 顯示 $249 有承接，但新聞喺尾市先出，<strong>反應未完整 — 週三开盘反應先係真正測試</strong>。觸發減倉條件：跌穿 $245 (支撐) 並確認 AWS 數據損失擴大 / 無修復時間表。反彈至 $253-255 (MA 叢 + 前阻力) 而新聞繼續惡化 → 考慮減倉</li>
+<br>
+<h4 class="md-h">TSLA — $360.77 (+0.50%) | 30 sh @ $352.89 | 未實現 +2.2%</h4>
+<li>52wk: 31.5% (偏低) | Gap: -0.24% | Intraday: 79.1% (貼日高) | Vol: 0.95x | B/A: 15.0 (強買盤)</li>
+<li>VWAP $359.72 → 現價高 VWAP +0.3%，偏多 | Overnight -0.29% / Pre -0.24%</li>
+<li>技術：5d +1.38%、20d +4.88%，趨勢分 55/100 (中性偏多)；<strong>今日大市跌 0.4-0.7% 下逆勢收高 = 相對強勢</strong>；MA20 $355.96 / MA50 $353.81 站穩；阻力 $370/$380 (POC $380)</li>
+<li>催化劑：進軍越南 (東南亞擴張, 9/14) + 二代 Roadster 10月1日 Waco 發布會 (RSVP 截止 9/16)；背景：Q2 交付 48萬創新高、收入 +26%、經營利潤率 1.4%、FCF 負；retail 情緒 Stocktwits 轉 bearish；有交易員喊 $250 (2027年1月，Tier-4 雜音)</li>
+<li>PE 334 (極端)；macro beta: mkt 2.30 (最高) / rate -0.87 (利率高度敏感)</li>
+<li><strong>判斷：HOLD</strong>。動能好 + 催化劑正面，但 PE 334 + 最高 beta = FOMC 鷹派日首當其衝；之前設定 stop $340 繼續有效。唔加倉 (52wk 31.5% 但估值極端，只宜跟趋势唔宜追)</li>
+<br>
+<h3 class="md-h">四、Watchlist 板塊掃描 (38 隻可交易範圍)</h3>
+<br>
+<h4 class="md-h">半導體/記憶體 (本輪反彈乏力)</h4>
+<li><strong>SOXX +0.12% ($497.66)</strong>：週一 -4.95% 後消化，52wk 60.1%，intraday 10.7% (尾段弱)</li>
+<li><strong>AMD +1.95% ($503.01)</strong>：週一 -6% 後反彈，站返 MA50 $496.06 上方；PE 129 極貴、52wk 81%、intraday 34% = 反彈無延續力；20d -4.08% 趨勢未轉多</li>
+<li><strong>INTC +0.76% ($97.93)</strong>：週一 -7% 反彈；TTM 蝕錢 (EPS -0.06)、SA「turnaround 藉口已用完」+ 估值「不容許失望」；intraday 4.1% (反彈最弱)；52wk 60.9%；<strong>唔接刀</strong></li>
+<li><strong>MU +0.08% ($924.80)</strong>：gap +1.55% 完全回吐 (intraday 16.4%, B/A 0.03)；5d -9.10% = 記憶體中最弱；<strong>SA 12:05 ET upgrade「AI memory cycle still looks underpriced」</strong> (Tier-4, 需觀察)；POC $935 上方，支撐 $905/$915</li>
+<li><strong>SKHY -1.19% ($173.54)</strong>：gap +1.92% 後回吐 (intraday 14.5%)；5d -0.77%；記憶體同跌</li>
+<li><strong>TSM -1.18% ($413.07)</strong>：intraday 4.0% 尾段最弱；亞供鏈 FOMC 前避險；Wedbush 對亞供鏈樂觀 (Tier-4)；支撐 $415/$410 (MA 叢) — 現價已貼住 $413，<strong>$410 破位要警惕</strong></li>
+<li><strong>AMKR -2.45% ($45.97)</strong>：52wk 26.4%、20d -20.12% 持續弱；SA 正面 (先進封裝客戶承諾) 但價弱優先；<strong>唔接刀</strong></li>
+<li><strong>SPCX -2.58% ($144.33)</strong>：SpaceX — 風險偏好退潮 + 自由流通僅 ~4% + 空頭 ~$25B (7月) + <strong>12月 lockup 到期</strong> (大供股事件)；Musk 2027 太空 NVDA 電腦 = 長線正面 ($13B/年 compute 傳聞)； analyst 平均目標 $222 (MoffettNathanson 9/14 上調至 $142 = 貼現價，Tier-4)；<strong>只監察 (universe 內) 但高波動，短線供股壓力大</strong></li>
+<li><strong>CRWV -0.88% ($82.25)</strong>：52wk 23.4%、20d -21.17%；AI neocloud 受 capex 懷疑衝擊 (Meta $500B AI 債務敘事)；<strong>唔接刀</strong></li>
+<br>
+<h4 class="md-h">儲存 (本輪最大輸家 — positioning unwind)</h4>
+<li><strong>STX -5.01% ($765.16)</strong> = 全 universe 最差；WDC -3.45% 跟跌。背景：STX 一年 +325% 後「pain trade」回吐 (MarketWatch 9/15)；STX 20d -17.25%、5d -5.15%，今日再 -5%；兩隻全部跌穿 MA10/20/50</li>
+<li><strong>但 STX 基本面其實強</strong>：7月 Q4 beat (收入 +48.5% YoY)、9月季度指引 $4.1B (+56% YoY)、毛利率 52% (去年 37%)、Mozaic 3+ HAMR 已獲 5 間大型雲客戶認證、nearline 產能大部分已分配到 2028、CEO 多年期增長目標由 low-mid teens 上調至 ≥20% (Tier-3/4: MLQ/247wallst/ad-hoc)；另有債票贖回帶來供股壓力 (ad-hoc-news)</li>
+<li><strong>結論：價弱 =  positioning unwind 唔係基本面轉壞，但「唔接刀」規則適用</strong> — STX intraday 15.6% (仍跌)、amplitude 5.4% (高波)；觀望 $795/$800 支撐 + 收斂訊號先言介入。WDC：5d -8.67%、intraday 7%，同樣唔接刀</li>
+<br>
+<h4 class="md-h">能源 (本輪領漲 — 但已貼 52wk 高位)</h4>
+<li><strong>XOM +2.28% ($168.84)</strong>：52wk 92.1%、intraday 86.2%、B/A 21.75 (強買盤)；MA 全數上方，趨勢 70/100</li>
+<li><strong>CVX +1.92% ($216.24)</strong>：52wk 98.1% (近新高)、intraday 86.5%、B/A 6.94；趨勢 70/100</li>
+<li>驅動：WTI $105 (+4.05%) / Brent $107，霍爾木茲關閉 + 伊朗戰爭</li>
+<li><strong>結論：能源對沖通脹/加息週期係對嘅方向，但兩隻都貼 52wk 高位 — 唔追高</strong>。若油價 &gt;$105 持續 + 回調至 MA10 附近先考慮建倉；能源強本身係大市通脹壓力來源 (雙刃劍)</li>
+<br>
+<h4 class="md-h">銀行/金融 (利率敏感 + 交易收入憂慮)</h4>
+<li><strong>GS -2.65% ($962.29)</strong>：周一 -4% (BofA Q2 交易收入預警引發全板拋售，S&amp;P 銀行子指數 -2.7%)；14.4% 低於 52wk 高位；Wall Street Zen 9/13 降級 Buy→Hold (Tier-4)；<strong>週三 Solomon 資本市場證言 = 事件風險</strong>；52wk 56%、intraday 23.3%</li>
+<li><strong>JPM -1.54% ($344.76)</strong>：52wk 75.9%、intraday 19.5%；B/A 1.22 均衡；大行策略師喊話「跌勢短暫」(conflict)</li>
+<li><strong>IBKR -1.94% ($88.99)</strong>：趨勢分 10/100 空頭，跌穿 MA10/20；交易量疲軟 + 高息環境</li>
+<li>板塊判斷：週三加息對銀行 = 雙刃 (NII 正面 vs 信貸/交易收入負面)；<strong>無明確邊際，觀望</strong></li>
+<br>
+<h4 class="md-h">網絡安全 (AI 安全敘事受益 — 但已極度伸延)</h4>
+<li><strong>CRWD +3.39% ($243.37)</strong>：周一 +14% (AI 安全恐慌 → 網絡安全輪動，CRWD+PANW 領漲)，52wk 99.7% (貼 ATH $239.37，今日再上)、intraday 96.6%；PE TTM ~4,700-6,400 (GAAP EPS ~$0.05)；催化劑：Fal.Con 2026 agentic SOC + Nord Security SIEM 整合 + Wedbush 目標 $250</li>
+<li><strong>結論：動能極強但估值/伸延度極端 — 唔追高</strong>。已係「AI 安全」主題股，若主題冷卻 (Trump 反對 AI 監管 = 逆風) 回撤會很大</li>
+<br>
+<h4 class="md-h">防禦/消費 (高息環境下都唔穩)</h4>
+<li><strong>MCD -1.01% ($254.90)</strong>：52wk 3.3% — 深度價值區。故事：2026 YTD -13%、較 2月 高位 -26%；Q2 全球同店 +1.3% / 美國 +0.8% (放緩)、CEO 承認執行不力、股息率 ~2.9-3.1% (6年最高)；共識目標 $313-336 (+22-30%, Tier-4 多源)；<strong>52wk 低位 $252.15 係關鍵 — 現價 $254.90 只離 1.1%</strong></li>
+<li><strong>結論：contrarian 候選但「唔接刀」</strong> — 趨勢仍係破低位 (20d -5.62%)，高息對 dividend stock 殺估值；要等 (a) 收復 MA10 $257.33 或 (b) 明確止跌訊號先考慮</li>
+<li><strong>COST -1.31% ($906.85)</strong>：52wk 26.1%；PE 45.6 偏貴；防禦失效 (大市跌佢都跌)</li>
+<li><strong>WMT -0.31% ($108.75)</strong>：52wk 29.1%；PE 39.4；量縮 (-0.76x)</li>
+<li><strong>UNH -1.80% ($376.65)</strong>：intraday 2.4% (貼日低)、52wk 60.1%；醫療成本壓力 + 高息；PE 24.2、div 2.38%</li>
+<li><strong>LLY +0.35% ($1,142.29)</strong>：生物製藥相對防禦，今日逆市；52wk 74.3%；PE 38.3</li>
+<li><strong>AAL -1.99% ($12.84)</strong>：油 &gt;$100 = 燃油成本直接打壓；20d -11.67% 弱趨勢；<strong>唔接刀</strong></li>
+<br>
+<h4 class="md-h">其他個股</h4>
+<li><strong>DELL +1.77% ($543.72)</strong>：周一 +5.8% (「歐洲 AI 晶片挑戰者進入其伺服器」) + Oracle $664B backlog 對 AI 伺服器正面 (Tier-3/4)；52wk 94.6% (伸延)；<strong>唔追高</strong>，回調至 MA10 $509 先考慮</li>
+<li><strong>NET +0.80% ($332.99)</strong>：52wk 99.1% (貼 ATH)；AI/企業軟件輪動；<strong>唔追高</strong></li>
+<li><strong>BE +2.35% ($263.10)</strong>：AI 電力需求主題 (Bloom Energy)；PE 341 (TTM 蝕錢)；動能股，高風險</li>
+<li><strong>RTX +0.70% ($196.70)</strong>：防務 + 中東戰爭溢價；20d -12.39% 弱趨勢中反彈</li>
+<li><strong>CAT +0.06% ($784.49)</strong>：持平；20d -8.47% 弱</li>
+<li><strong>UNH/COST/WMT</strong> 見上</li>
+<li><strong>JPM/GS/IBKR</strong> 見銀行板塊</li>
+<li><strong>SPY/VOO/QQQ</strong>：-0.42%/-0.40%/-0.52%，52wk 85.7%/85.7%/78.1% — 指數高位回落中，FOMC 前避險</li>
+<br>
+<h3 class="md-h">五、關鍵催化劑日曆</h3>
+<li><strong>今日 (Tue 9/15)</strong>：10Y 5% 後續反應；AWS 新聞發展；TSLA Roadster RSVP 截止</li>
+<li><strong>週三 (Wed 9/16) 14:00 ET / 02:00 HKT</strong>：<strong>FOMC 利率決定 + 點陣圖 + 記者會</strong> (25bp 加息 87-92% 已定價) — 全組合最大二元事件</li>
+<li><strong>週三</strong>：Solomon (GS CEO) 資本市場證言</li>
+<li><strong>本週五</strong>：CPI 數據 (承接 9/14 研究)</li>
+<li><strong>本周末</strong>：Bessent-何立峰會面 (習訪美前) — 中貿易降溫潛在線索</li>
+<li><strong>10/1</strong>：TSLA Roadster 發布會 (Waco, TX)</li>
+<li><strong>10/13</strong>：GS 業績；<strong>10/21</strong>：TSLA 業績；<strong>11/5</strong>：MCD 業績；<strong>11/3</strong>：SPCX 業績</li>
+<li><strong>12月</strong>：SPCX 180天 lockup 到期 (供股事件)</li>
+<br>
+<h3 class="md-h">六、風險因素 / 矛盾</h3>
+<li><strong>30Y 5.39% (2007 以來最高)</strong> — 長端無序上竄係最大系統性風險；若 Fed 唔加息「債券市會自行做」(Kiplinger)</li>
+<li><strong>油 &gt;$100 → 通脹 → 更多加息</strong> 循環 (CNBC：未來一年 ≥2 次加息)</li>
+<li><strong>AI 安全減速若由敘事變 capex 削減</strong> → NVDA/AMD/MU/DELL/CRWV 雙重打擊 (目前 Amodei 明確冇叫停 training = 敘事階段)</li>
+<li><strong>Trump 反對 AI 安全護欄</strong> (9/15 新聞) = AI 安全敘事可能冷卻 → 網絡安全輪動 (CRWD) 逆風</li>
+<li><strong>機構過度投資</strong> (MarketWatch) — 週三鹰派意外時賣壓放大</li>
+<li><strong>BTC -3.1%</strong> = 風險偏好確認退潮</li>
+<li><strong>AWS 地緣損毀</strong> = 雲端多區域信任重估，長尾效應未明</li>
+<li><strong>矛盾點</strong>：大行喊「跌勢短暫」(有利益衝突) vs 市場定價「今年再加息」(債券市用錢投票) — 以債券市定價為準</li>
+<br>
+<h3 class="md-h">七、對組合嘅啟示 (供 sim 決策層)</h3>
+<li>組合 93% 倉位係高 beta 科技 (NVDA 27% + MSFT 24% + META 19% + TSLA 10% + AAPL 9.7%) → <strong>週三 FOMC 鷹派意外 = 組合 VaR95 會大幅突破 -2.19%</strong></li>
+<li>現金 $7,254 (6.5%) 乾燥彈藥有限；若週三 risk-off，補倉空間不大 — 優先考慮<strong>防守 (止蝕紀律)</strong> 而非進取</li>
+<li>最緊要防守位：NVDA $205 (均價+POC)、GOOGL $340 (MA50 下方支撐)、AMZN $245、TSLA $340 (舊 stop)</li>
+<li>最大盈利 MSFT +34.3%：若週三 sell-the-news 反彈，<strong>TRIM 部分鎖利係值得研究嘅選項</strong> (低利率敏感度 + 趨勢最強 = 反彈領頭羊)</li>
+<li>蝕錢 GOOGL -3.6%：跌穿 MA50，$340 失守先行動；PE 17 唔急住斬</li>
+<li>新催化劑 AMZN (AWS)：倉位細，等週三反応；$245 失守 + 新聞惡化 → 減倉觸發</li>
+<li>唔接刀名單：STX/WDC/INTC/AMKR/CRWV/AAL/MCD (貼 52wk 低)/INTEL — 全部等收斂訊號</li>
+<li>唔追高名單：CRWD/NET/XOM/CVX/DELL — 全部貼 52wk 高位</li>
+<br>
+<p>--- EN: Tue afternoon run. FOMC Wed 2pm ET: 25bp HIKE priced 87-92% (first since Jul 2023); 10Y 5.01% (highest since Oct 2023), 30Y 5.39% (highest since 2007); oil WTI $105/Hormuz closed; Dow -500 intraday. New catalyst: AWS cannot restore Bahrain region + 1 UAE AZ 6 months post Iran-war strikes (Reuters, 12:25 ET) — AMZN fresh headwind. GOOGL: DeepMind exodus (Turner essay) + Gemini product chief to Meta. AAPL: India CCPA escalated iPhone repair probe. MSFT: Nadella &#x27;deliberate pacing&#x27; + AI code of conduct. NVDA +0.5% fade, on $210 POC, key $205. Holdings: MSFT strongest (HOLD, +34% P&amp;L, consider TRIM on sell-the-news bounce); TSLA +0.5% strong (Vietnam + Oct 1 Roadster); META flat = relative strength; GOOGL broke MA50 ($340 key); AMZN watch $245; TSLA stop $340 intact. Watchlist: STX -5%/WDC -3.4% = storage positioning unwind (fundamentals intact — NO knife catch); CRWD +3.4% at ATH (AI-safety rotation, don&#x27;t chase); XOM/CVX +2% on oil (near 52wk highs, don&#x27;t chase); GS -2.7% (BofA trading warning, Solomon testimony Wed); MCD at 52wk low -1.1% (contrarian watch, no knife). Portfolio: 93% long high-beta tech into binary FOMC — defend stops (NVDA $205, GOOGL $340, AMZN $245, TSLA $340); cash $7.3k limits add-on capacity. ---</p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #1247 · 2026-09-16 01:13 HKT</p>
+</footer>
+</body>
+</html>
