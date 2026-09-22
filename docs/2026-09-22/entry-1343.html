@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#1343 — 研究報告 · 2026-09-22_22:47</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 1136 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">687 項決策</span>
+      <span class="stat">51 項快照</span>
+      <span class="stat">398 項研究</span>
+      <span class="stat">17 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-09-22 22:47 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>研究報告 · 2026-09-22_22:47</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">auto</span></div>
+  </div>
+  <div class="reasoning">
+    <h2 class="md-h">美股深度研究 · 2026-09-22 22:35 HKT (10:35 ET, 開市第 1 小時)</h2>
+<br>
+<h3 class="md-h">0. 資料來源與方法</h3>
+<li>價格：Futu OpenD 即時報價 (192.168.1.162:11111) + yfinance (VIX)，22:33 HKT 快照</li>
+<li>技術結構：日線 SR 簇/POC/MA (supply/technical.md, 20:40 HKT 生成)</li>
+<li>宏觀：supply/macro_context.md (ES 7839.50 +0.08%, NQ 30776.50 -0.03%, VIX 14.65)</li>
+<li>新聞：本地 MySQL news DB (218 篇, 含今日盤中 intraday 抓取至 22:33 HKT) + web_search 補充 (CNBC/Reuters/MarketBeat/Zacks/Facet 等 T-2/3 來源)</li>
+<li>研究循環：GENERATE (DB 全量 + 6 輪 web 多角度) → VALIDATE (source tier + Manager Gate) → ACCEPT</li>
+<li>Manager Gate：[STALE DATA] 已標出；[CONFLICT] AMD 有 SA 降級 vs 萬億突破對撞 → 已列雙邊；無 [HALLUCINATION RISK] 未標來源數字</li>
+<li>整體信心：宏觀 90% (Fed 官方聲明 T-1)、半導體 85%、銀行 80%、個股新聞 75%</li>
+<br>
+<h3 class="md-h">1. 宏觀環境 (本週最大變數：Fed 加息週期)</h3>
+<li><strong>Fed 9/16 加息 25bp 至 3.75-4.00%，2023 年 7 月以來首次加息，12-0 全票通過</strong> (CNBC T-3, 9/16)。Warsh 表稱「移除一劑寬鬆」；dot plot 18 位官員 16 位預計今年至少再加一次 (4 位看兩次)</li>
+<li>CME FedWatch：10/27-28 會議再加息 25bp 概率 ~51%，按兵不動 ~49%；12 月會議 38.2% 概率二次加息 (Fox Business T-3)</li>
+<li>10Y 收益率 4.93%、2Y 4.32% — 10Y 貼近 5% 關口；PIMCO 因此削減長債 underweight (Bloomberg, 09-21)</li>
+<li>本週二 (今日) Collins 表態「加息有助將通脹拉回目標」— 鷹派語調持續 (Bloomberg L8, 09-22)</li>
+<li><strong>全球信貸利差擴大</strong> → 金融條件收緊，估值邏輯惡化風險 (News Analyzer, 09-22 19:48 HKT)</li>
+<li>市場廣度警號：S&amp;P 500 接近新高，但約 60% 成分股較歷史高位下跌 &gt;20% (09-22 05:17 HKT)；極度狹窄市場</li>
+<li>對沖基金風險：Spitznagel 預測 S&amp;P 突破 8,000 前可能有 80% 崩盤；Howard Marks 向 Fed 發強烈警告 (09-21/09-22)</li>
+<li><strong>美伊外交轉暖 → 油價大挫</strong> (XLE 週一 -2.88%)：能源股受壓、航空公司成本改善 (AAL 受益)；Bloomberg L8 關注霍爾木茲封鎖對美國的成本</li>
+<li><strong>特朗普-習峰會臨近 (本週)</strong>：討論 AI 風險與競爭、貿易 (NYT L7, Seeking Alpha L8 有交易 playbook, 09-22 21:52 HKT) — 本週最大地緣/政策事件，半導體出口管制是焦點</li>
+<li>今日數據：ADP 就業 (8:15 ET)、Richmond Fed、2Y 國債拍賣、Fed 官員 speech cluster 10:05-10:20 ET</li>
+<li>VIX 14.41 (-3.1%) — 恐慌指數低，風險偏好高，但信貸利差擴大係隱性警號</li>
+<li>今日大市：SPY +0.01% (773.56)、QQQ +0.57% (745.73, 52wk 99.3%)、DIA -0.48% → <strong>資金由道指/銀行輪向科技/AI/半導體</strong>；滬 +1.0%、恆指 +1.4%、日經 +1.38%</li>
+<br>
+<h3 class="md-h">2. 持倉逐一分析 (8 隻)</h3>
+<br>
+<h4 class="md-h">NVDA -- $228.22 (+0.37%) [持倉 131 股, avg_cost $205.19, 26.3% 倉位]</h4>
+<li>52wk: 89.2% <em> Gap: -0.19% </em> Intraday: 55.5%</li>
+<li>Vol: 1.33x <em> VWAP: 價 $227.93 之上 +0.13% (均衡) </em> B/A: 1.44 (均衡偏多)</li>
+<li>Overnight: -0.65% (與 ES +0.08% 微幅負分岐，宏觀驅動非個股利空)</li>
+<li>PE TTM 28.85 (10 年低位！利潤暴增但 multiple 壓縮 — 市場質疑估值) * MktCap: $5,500B</li>
+<li>TF: 週線↑日線↑ (5d +2.39%, 20d +14.11%) = HIGH 信心</li>
+<li>利多：Mitsubishi 推 NVIDIA 驅動「晶片到電網」AI 工廠藍圖 (09-22 20:00 HKT)；「Apple 或自研 AI 晶片重返伺服器，Nvidia 仍可能收錢」(09-22 10:38 HKT)；Jensen 罕談 AI 數據中心 (09-21)</li>
+<li>利空：Bloomberg L8「Nvidia 估值跌發警告信號」(09-22 17:28 HKT, PE 10 年低位)；「Nvidia 未獲 Meta 利好提振」(09-22 18:36 HKT) — Muse 板塊利好的是 AMD/INTC 唔係 NVDA；「Nvidia 同 Meta 有 $300B AI capex 問題」(09-21 22:52 HKT)；Google 自研晶片挑戰逐步成形 (09-22 20:00 HKT)；阿里發布「中國最強大」AI 晶片 (09-22 10:21 HKT, 中國市場競爭)；Seeking Alpha：NVDA 係五隻相對盈利表現較差 AI 股之一</li>
+<li>盤口：bids 516+441+341+1464 股 vs asks 208+286+428 — 買盤厚，spread 0.02 健康</li>
+<li>信號：HOLD。26.3% 最大倉位，估值 10 年低 multiple + 競爭加劇 (Google/阿里) + 廣度警號 → 唔加碼；但週線日線雙升 + 盈利驅動未變，唔賣。若 226.5 (今日 low) 失守再審</li>
+<br>
+<h4 class="md-h">AAPL -- $340.49 (+0.45%) [持倉 58 股, avg_cost $277.90, 17.2%]</h4>
+<li>52wk: 95.3% (今日 high $345.34 = 52wk 新高) <em> Gap: +0.32% </em> Intraday: 26.4% (由高位回落)</li>
+<li>Vol: 1.42x <em> VWAP: $341.14 之下 -0.19% </em> B/A: 6.36 (強買盤支撐)</li>
+<li>Overnight: +0.24% <em> PE TTM 39.05 </em> MktCap: $4,969B</li>
+<li>TF: 週線↑日線↑ (5d +1.77%, 20d +9.58%, 趨勢分數 70/100)</li>
+<li>利多：JPMorgan 看多訊息 (09-21 23:05 HKT)；Apple Pay 下月印度推出 (09-21)；Apple/Google 招聘加密人才 (09-21 21:46 HKT, 邊緣利好)</li>
+<li>注意：今日 high 345.34 後回落至 340.49，intraday 26.4% = 高位獲利回吐；20d +9.58% 已偏短線擴張</li>
+<li>信號：HOLD。距成本 +22.5%。高位整理中，B/A 6.36 有支撐；338.75 (今日 low) 之上守穩即可。追高唔理會，回調 332-335 先考慮</li>
+<br>
+<h4 class="md-h">MSFT -- $497.01 (-0.92%) [持倉 24 股, avg_cost $422.81, 8.7%]</h4>
+<li>52wk: 74.0% <em> Gap: +1.1% </em> Intraday: 8.8% (接近日 low，gap up 後全日回落)</li>
+<li>Vol: 1.45x <em> VWAP: $500.25 之下 -0.65% (偏空) </em> B/A: 0.01 (盤口極薄，注意滑價)</li>
+<li>Overnight: +0.34% <em> PE TTM 27.69 (mega-cap 中最低之一) </em> MktCap: $3,691B</li>
+<li>TF: 週線↑日線↓ (5d +2.31%, 20d +4.46%, 但今日 -0.92%)</li>
+<li>利空 (主因)：「Microsoft 因 AI 證言加劇版權風險而跌」(Seeking Alpha L7, 09-21) — 國會 AI 版權證言；「MSFT AI CEO 就 AI 規則發嚴厲警告」(09-21 21:35 HKT)；監管風險情緒</li>
+<li>利多：季度股息 +8% 至 $0.98，連續第 24 年加派 (09-22 09:52 HKT)；Everforward 合作 (09-22 19:37 HKT)</li>
+<li>信號：HOLD。監管/版權證言係新利空，今日 gap 高開低走 + VWAP 之下 + B/A 0.01 盤口薄 = 短線弱。495.9 (今日 low) 守唔到就睇 490；但 PE 27.7 + 股息 + 雲端基本面未變，唔急賣</li>
+<br>
+<h4 class="md-h">META -- $750.33 (+1.22%) [持倉 14 股, avg_cost $622.00, 9.2%]</h4>
+<li>52wk: 97.1% (今日 high $757.27 ≈ 52wk high) <em> Gap: -1.38% </em> Intraday: 74.5%</li>
+<li>Vol: 2.81x (機構級放量) <em> VWAP: $745.81 之上 +0.61% (偏多) </em> B/A: 3.64 (強買盤)</li>
+<li>Overnight: +0.70% <em> PE TTM 28.26 </em> MktCap: $1,911B</li>
+<li>TF: 週線↑日線↑ (20d +3.56%) = HIGH</li>
+<li><strong>本輪最大催化劑 Muse AI agent</strong>：JPMorgan 上調目標價 — 「Muse 顛覆 AI 疑慮敘事」(09-22 14:33 HKT)；「Muse 可能係 ChatGPT 以來最廣泛使用嘅消費級 AI 應用」(JPM, L8)；BofA 跟進 (09-22 14:26 HKT)；「Meta 單月造價最多 +$2,940 億」(09-21)；「Muse 向市場展示 capex 用咗做咩」(SA, 09-21 23:08 HKT)；「Magnificent 7 返嚟：Meta AI 押注領先」(09-22 20:26 HKT)；Shopify 全面採用 Muse AI 結帳 (09-22 19:58 HKT)；單月表現兩年最佳</li>
+<li>風險：Amazon 封鎖 Muse 喺其網站購物 (09-21 22:19 HKT) — 生態壁壘加劇；Galloway 隱私批評 (09-22 20:21 HKT)；$300B capex 壓力</li>
+<li>信號：HOLD (偏多)。2.8x 量 + VWAP 上 + B/A 3.64 + Muse 敘事未完 = 動能強。但 97% 52wk 位置 + gap -1.38% 未完全回補 → 唔追，已持倉食住；741 (prev close) 失守先審</li>
+<br>
+<h4 class="md-h">GOOGL -- $361.99 (+1.98%) [持倉 20 股, avg_cost $313.11, 6.4%]</h4>
+<li>52wk: 73.3% <em> Gap: +0.78% </em> Intraday: 68.9%</li>
+<li>Vol: 1.90x <em> VWAP: $360.48 之上 +0.42% (偏多) </em> B/A: 0.53 (略偏賣壓)</li>
+<li>Overnight: +0.69% <em> <strong>PE TTM 18.16 (全 mega-cap 最平)</strong> </em> MktCap: $4,427B</li>
+<li>TF: 週線↑日線↑ (5d +3.86%, 20d +2.56%) = HIGH</li>
+<li>利多：+1.98% 今晨領漲 mega-cap；Google 自研 TPU 對 Nvidia 挑戰成形 (09-22 20:00 HKT) = 降低自家 AI 成本，對 GOOGL 係正面；「Google 一站式 AI 商店」(晶片+雲+模型, 09-22 00:31 HKT)；NextEra Google 支持 $1.9B 核電重啟 (09-21)；YouTube 威脅 Netflix (HSBC, 09-21) = YouTube 流量優勢</li>
+<li>利空：歐盟罰 $463M 位置數據違規 (09-22 14:16 HKT, 細)；HSBC 指 YouTube 對 Netflix 威脅 (對 GOOGL 中性偏正)</li>
+<li>信號：HOLD (偏多)。PE 18.2 + AI 全棧 + 今日 +1.98% 領漲；B/A 0.53 略弱，357 (今日 low) 之上守穩。355-358 回調區間可考慮加碼 (由 part2 決定)</li>
+<br>
+<h4 class="md-h">AMZN -- $256.92 (-0.59%) [持倉 30 股, avg_cost $243.44, 6.8%]</h4>
+<li>52wk: 66.8% <em> Gap: -1.33% </em> Intraday: 60.1% (中位)</li>
+<li>Vol: 1.61x <em> VWAP: $256.70 之上 +0.09% (均衡) </em> B/A: 4.4 (買盤厚)</li>
+<li>Overnight: +0.40% <em> PE TTM 20.67 </em> MktCap: $2,771B</li>
+<li>TF: 週線↑日線↓ (5d +0.96%, 20d +14.29% — 20 日仍強但 5 日疲軟)</li>
+<li>利空：Amazon 封鎖 Meta Muse 喺其市場購物 (09-21 22:19 HKT) — AI 生態競爭加劇，防衛性舉措；「Amazon 劃定自家 AI 安全底線」(09-21 23:18 HKT)</li>
+<li>利多：$1.9B 投資 delivery safety/AI/driver experience (09-22 20:34 HKT)；Kuehne+Nagel 主導數據中心擴張物流 (09-22 00:22 HKT)；WorkWave AWS 雲現代化 (09-21)</li>
+<li>信號：HOLD。255 (今日 low) 之上 + VWAP 均衡 + B/A 4.4；距成本 +5.5%，中性。253.79 (今日 low) 失守先看 248-250 支撐</li>
+<br>
+<h4 class="md-h">TSLA -- $378.30 (+0.80%) [持倉 12 股, avg_cost $416.33, 4.0%]</h4>
+<li>52wk: 40.2% <em> Gap: +0.99% </em> Intraday: 85.1% (接近日 high)</li>
+<li>Vol: 1.57x <em> VWAP: $376.47 之上 +0.49% (偏多) </em> B/A: 0.38 (賣壓偏重)</li>
+<li>Overnight: +0.19% <em> PE TTM 350.2 (極端) </em> MktCap: $1,494B</li>
+<li>TF: 週線↑日線↑ (5d +2.73%, 20d +7.73%)</li>
+<li>催化劑：<strong>10 月 Roadster 發布 + Semi 活動 + FSD 更新</strong> (Barron&#x27;s, fxleaders 09-22)；Sunrun+Tesla 熱浪期間向加州電網調度 580MW — 最大住宅分佈式電廠事件 (GlobeNewswire)；Fitch 授予 BBB 投資級評級 (fiscal.ai)</li>
+<li>利空：PE 350 極端、距成本 -9.1%、B/A 0.38 賣壓；Q3 業績 10/28 (前)</li>
+<li>信號：HOLD。事件驅動 (10 月 Roadster) 前 +0.8% 溫和上漲，intraday 85% 高位唔追；B/A 0.38 提示賣壓未清。372.88 (今日 low) 失守減倉考慮</li>
+<br>
+<h4 class="md-h">MU -- $1,080.22 (+3.47%) [持倉 18 股, avg_cost $475.51, 17.4%, +127.2%]</h4>
+<li>52wk: 84.1% <em> Gap: -1.05% </em> Intraday: 96.1% (貼住日 high)</li>
+<li>Vol: 2.47x (機構級) <em> VWAP: $1,062.57 之上 +1.66% (強) </em> B/A: 20.0 (極強買盤)</li>
+<li>Overnight: -0.62% <em> PE TTM 24.43 (memory 板塊最平估值之一) </em> MktCap: $1,220B</li>
+<li>TF: 週線↑日線↑ (5d +10.80%, 20d +64.50% — 20 日 +64.5% 已屬暴力擴張)</li>
+<li><strong>重大事件：MU FQ4 業績 9/30 (下三) 盤後公布，EPS 預期 $31.14-31.39、營收預期 $50.4B</strong> (Micron IR 官方 T-1, 8/26 宣布；MarketBeat/investingcalendar 交叉驗證)</li>
+<li>利多：$2.75B 投資印度設施 (09-22 05:59 HKT, 「$27.5 億係買入 Micron 嘅理由」L6)；分析師 Q4 預覽：$2,000 係合理看多目標 (09-22 19:30 HKT L7, 業績前)；「MU 同 Dell 可能比 NVDA 有更大上調潛力」(09-21 22:25 HKT)；Gabelli Q2 增持 (09-22 22:10 HKT)；記憶晶片 AI 定價力增強</li>
+<li>利空：「Micron 股價升但記憶體晶片工廠面臨危機」(09-22 14:10 HKT L7, 今日盤中!)；「傳統估值指標已唔適用」(09-22 00:19 HKT)；台灣勞資談判 (09-22 03:00 HKT)；20d +64.5% 短線嚴重超買</li>
+<li>信號：HOLD — <strong>9/30 業績前唔加碼</strong> (事件風險 + 20d +64.5% 超買)。已持倉 +127%，B/A 20 + VWAP 上 = 短線動能強，1,030 (今日 low) 之上守住就持有；業績後先做 add/trim 決定</li>
+<br>
+<h3 class="md-h">3. Watchlist 重點 (31 隻)</h3>
+<br>
+<h4 class="md-h">3A. 半導體板塊 (本輪主線：Meta Muse 驅動 CPU/晶片需求 + AMD 萬億)</h4>
+<li>板塊背景：AMD 09-21 飆升 ~10% 市值破萬億 (繼 NVDA 後第二間)；Intel +9.1%；Meta Muse 將推理需求擴展至 GPU 以外 (L7 09-21 23:46 HKT)；Intel CEO：AI CPU 需求致供應緊張，僅能滿足 50% 訂單 (09-22 13:15 HKT L8)；晶片出口數據創紀錄；Cathie Wood：忽略通膨與成長憂慮 (09-22 20:14 HKT)</li>
+<li><strong>AMD $618.39 (+0.47%)</strong>：52wk 99.2% (貼 top) <em> Vol 2.07x </em> B/A 61 (極強買盤) <em> PE 158.6 </em> 昨日 +10% 後今日整固，intraday 77%。對撞新聞：SA「Too Hot To Touch Now」降級 vs「$1 萬億唔係故事終點」(09-22 20:53 HKT L7) → Manager Gate [CONFLICT] 已列雙邊。99.2% 位置 + PE 158 = 唔接高位，等回調 580-600</li>
+<li><strong>INTC $122.35 (+0.47%)</strong>：52wk 81.7% <em> intraday 86% </em> B/A 13.6 * PE 負 (TTM 虧損)。AI CPU 50% 滿足率 = 需求&gt;供給 (利多)；零售極度看多 (09-21 23:50 HKT)。昨日 +9.1% 後高位整固，唔追；120.08 (今日 low) 支撐</li>
+<li><strong>TSM $446.83 (+0.38%)</strong>：52wk 85.5% <em> intraday 87.6% </em> PE 33.2。TSMC 88.7 公頃封裝廠擴張 (09-21 10:34 HKT)；板塊 beta 跟漲；441.2 (今日 low) 之上穩定。85% 位置唔急</li>
+<li><strong>AMKR $53.14 (+1.81%)</strong>：52wk 36.8% * intraday 87.4%。OSAT 封裝受益板塊熱潮，低位跟漲，但量 1.03x 一般。觀察，唔系主力標的</li>
+<li><strong>SKHY $194.96 (+3.23%)</strong> (SK Hynix)：52wk 93.5% <em> Vol 1.72x </em> VWAP 上 +1.4% * PE 26.0。記憶板塊聯動 (DB 中「Micron 工廠危機」誤掛 SKHY tag — 已核實係 Micron 新聞)。93.5% 高位，板塊 beta，唔追</li>
+<li><strong>SOXX $566.47 (+1.27%)</strong>：52wk 77.5% <em> intraday 97.2% </em> Vol 1.77x * VWAP 上 +1.05%。板塊 ETF 貼日 high，半導動能確認；作板塊方向指標：SOXX 守住 553.44 (今日 low) = 板塊未破</li>
+<br>
+<h4 class="md-h">3B. 記憶/存儲板塊 (AI 需求第二主線，今日最強勢)</h4>
+<li><strong>WDC $462.47 (+3.19%)</strong>：52wk 51.0% <em> Gap -2.14% 但盤中暴力反彈 </em> Vol 1.87x <em> B/A 80 </em> PE 19.05。存儲 AI 需求溢出；438.0 (今日 low) → 462 反彈 +5.4%，V 型反轉；51% 52wk 位置唔係高位 → 板塊中最有空間。20d 未過度擴張 (5d -5.02%)，今日放量翻多。留意 448.17 (prev close) 回補</li>
+<li><strong>STX $909.30 (+3.64%)</strong>：52wk 74.9% <em> Gap -2.24% 反彈 </em> Vol 1.82x * PE 65.4 (貴)。跟 WDC 走勢；856.39 (今日 low) 反轉；PE 65 限制上調空間</li>
+<li><strong>SNDK $1,875.00 (+6.13%)</strong>：52wk 78.7% <em> Vol 3.50x (今日全 watchlist 最高量比) </em> turnover 3.81% * PE 25.42。Rosenblatt 首次覆蓋 Buy (Seeking Alpha 09-22 20:40 HKT)；「Sandisk 有 $939 億訂單：難嘅部分先開始」(09-22 10:33 HKT L7)；已突破 $1,832 關鍵位 (09-22 20:16 HKT)；「呢年升咗 644%」(09-22 14:31 HKT)。3.5x 量 + 突破 = 動能最猛，但 turnover 3.81% 意味換手劇烈、短線風險高。事件驅動標的，唔追突破，等回踩 1,832-1,850</li>
+<br>
+<h4 class="md-h">3C. AI 基建/雲端</h4>
+<li><strong>DELL $561.02 (-2.48%)</strong>：52wk 92.9% <em> intraday 12.9% (貼日 low) </em> VWAP 下 -1.19%。昨日 Morgan Stanley「本地部署 AI 增長最佳優勢」(09-21 23:17 HKT) 後今日賣事實/回吐；92.9% 高位 + gap 下走 = 動能衰。559 (今日 low) 守唔到睇 545-550。唔接，等業績季驗證</li>
+<li><strong>CRWV $88.80 (+3.94%)</strong>：52wk 30.5% <em> intraday 90.7% </em> Vol 1.43x * PE 負。AI 雲端 (CoreWeave) 跟板塊反彈；30.5% 低位有空間但虧損股 + B/A 0.03 = 投機性高。觀察</li>
+<li><strong>BE $280.55 (+2.81%)</strong>：52wk 74.8% <em> VWAP 上 +0.88% </em> B/A 1.36。Bloom Energy 燃料電池 = AI 數據中心電力需求直接受益；74.8% 中高位。板塊催化劑股，觀察</li>
+<li><strong>SPCX $153.74 (+1.24%)</strong>：52wk 40.5% <em> MktCap $2,027B </em> PE 負。OpenAI 相關；40.5% 中位，無個別催化劑，隨大市</li>
+<li><strong>NET $351.68 (0.00%)</strong>：52wk 98.9% (貼 top) <em> PE 負 </em> B/A 0.16。高位死水，量 1.24x；98.9% 位置唔碰，破 345.3 (今日 low) 先有價值</li>
+<br>
+<h4 class="md-h">3D. 金融 (今日最弱板塊：Fed 加息 + Q3 IB 疲弱 + 信貸利差擴大)</h4>
+<li>板塊背景：9/14 BofA CEO Moynihan 警告 Q3 IB 費按年跌 &gt;10%、交易收入「大致持平」→ S&amp;P 銀行子指數當日 -2.7%，GS 跌 4% (Vantage/Reuters T-3)；Warsh Fed 9/16 加息 → 10Y 近 5%；全球信貸利差擴大 (09-22 19:48 HKT)；「Fed 加息對 WFC NII 嘅意思」(Zacks 09-22 14:xx ET)</li>
+<li><strong>JPM $340.55 (-3.27%)</strong>：52wk 71.2% <em> intraday 1.2% (貼日 low) </em> VWAP 下 -1.37% <em> B/A 0.09 </em> PE 14.59 * MktCap $905B。今日開 352.03 高開低走全日創新低 (low 340.41)；個股新聞中性 (India 金融樞紐翻倍、QIA $20B 投資合作 — Bloomberg/Zacks 09-22) → 跌價係板塊性 (IB 疲弱 + 信貸利差)。340.41 破位 → 335 下一支撐；PE 14.6 便宜但趨勢向下，唔接刀</li>
+<li><strong>GS $938.79 (-2.15%)</strong>：52wk 50.4% <em> intraday 2.8% </em> VWAP 下 -1.03% * PE 14.50。跟 JPM 板塊性下跌；「GS 2026 年收入基礎近 $70B」(Zacks 09-22 中性)；938.0 (今日 low) 貼住；Solomon Barclays 發表演示係催化劑 (Wed 前後)。50.4% 中位，等 930 以下先有研究價值</li>
+<li><strong>IBKR $90.29 (-3.13%)</strong>：52wk 79.1% <em> intraday 6.3% </em> VWAP 下 -1.35% <em> B/A 4.5 </em> PE 35.8。券商板塊跟跌 (交易收入 + 利率)；90.1 (今日 low) 貼住；DB 中「Musk X 加密交易」誤掛 IBKR tag — 已核實唔關 IBKR。79% 高位 + 板塊弱 = 唔碰，88-89 先睇</li>
+<br>
+<h4 class="md-h">3E. 消費/航空</h4>
+<li><strong>MCD $251.32 (+1.39%)</strong> [watchlist，今日再創 52 週新低後反彈]：52wk 5.4% (貼 bottom) <em> Gap +1.13% </em> intraday 84.8% <em> PE 20.4 </em> 股息率 2.92% (Dividend King 50 年連升，09-21 11:51 HKT)。今日 low $246.52 = 新 52 週低 (MarketBeat T-3 09-22)。主因：Q2 美國同店 +0.8% (由 +2.5% 放緩)、客流負增長 (ts2.tech/Yahoo 09-10)；「MCD 重置策略因為銷售放緩」(09-21 13:01 HKT L6)；投資者日「計劃贏返食客」(09-22 19:28 HKT)</li>
+<li>分析師：平均目標 $305-332 (24-31% 上行)；BTIG Buy $350 (09-16)；RSI 20 超賣 (09-13 數據，已過時)；19x forward earnings</li>
+<li>信號：HOLD/觀察 — <strong>falling knife 特徵未消除</strong>：所有 MA 之下 (EMA20/50/200 熊式排列)、MACD 負動能、52wk 5.4%。今日 +1.39% 反彈係投資者日後嘅 technical bounce，但 246.52 新低唔係 support 確認。用戶規則「唔接刀」→ 251.5 (09-13 分析 support) 之下唔入；要等站回 255-256 先有研究價值</li>
+<li><strong>AAL $13.81 (+1.73%)</strong> [watchlist]：52wk 42.7% <em> <strong>Gap +3.54% (今日全 watchlist 最大 gap)</strong> </em> intraday 7.5% (gap 後回落) <em> PE 負 </em> B/A 0.42。催化劑：油價大挫 (美伊外交) → 航司燃油成本 relief + 週一 +4.71% (13.57) 延續；美國政府 $2.2B 航空無線干擾改裝回扣 (Reuters 07-24, AAL 受惠)。今日 gap +3.5% 後全日回落至 7.5% intraday = gap 快填；13.785 (今日 low) 之上守住；42.7% 中位 + 油價低位 = 中期偏多，但 gap fill 未完成先觀望</li>
+<li><strong>WMT $108.00 (+0.52%)</strong>：52wk 27.0% <em> intraday 51.3% </em> Vol 0.68x (低) * B/A 0.04。低位整固，無催化劑，27% 位置 + 低量 = 中性偏多但無 urgency</li>
+<li><strong>COST $900.50 (+0.22%)</strong>：52wk 23.6% <em> intraday 62.7% </em> PE 45.3。<strong>9/24 (四) 業績</strong> — 本週重要事件；23.6% 低位 + 業績前 = 事件驅動，業績前唔建倉</li>
+<br>
+<h4 class="md-h">3F. 能源/工業/醫療/網安</h4>
+<li><strong>RTX $188.49 (-3.01%)</strong>：52wk 48.1% <em> intraday 13.2% (貼日 low) </em> VWAP 下 -0.58% <em> PE 33.2 </em> beta 2.4 (高 beta)。主因：美伊外交轉暖 → 國防板塊集體受壓 (「Defense Stocks Stand Down: NOC, LMT, RTX 落後」stockanalysis 09-22)；「RTX $22.9B 導彈合同冇推動股價」(TipRanks)；$850M 關稅暴露風險 (Zacks)；EU 已結案 Pratt &amp; Whitney 反壟斷調查 (Reuters 08-21, 舊正面)。187.51 (今日 low) 貼住；48.1% 中位 + 和平進程 = 需求敘事逆風，唔接</li>
+<li><strong>CVX $203.53 (-0.07%) / XOM $158.75 (+0.28%)</strong>：油價跌但兩油企今日抗跌 (XOM intraday 94.1% 貼 high、CVX 76.5%)；XLE 週一 -2.88% 後今日平穩；XOM B/A 2.22 + intraday 94% = 相對強。油價下行趨勢未逆轉前唔加</li>
+<li><strong>UNH $375.70 (-0.49%) / LLY $1,162.58 (-0.20%)</strong>：防御板塊今日跟跌 (XLP -1.06% 週一)；UNH gap +1.0% 高開後全日回落至 intraday 3.6% (貼 low) = 弱；LLY intraday 91% 但 20d +6.91% 已高。兩者無個別催化劑，中性</li>
+<li><strong>CAT $808.89 (-0.93%)</strong>：52wk 56.8% <em> intraday 63.8% </em> 20d -4.75% 弱。工業疲軟，無催化劑，中性</li>
+<li><strong>CRWD $248.11 (-0.50%)</strong>：52wk 98.7% (貼 top) <em> PE 6,529 (極端) </em> 20d +6.70%。「網安係為 AI 時代而建」(SA 09-22 20:00 HKT, Falcon Flex 動能) 但 98.7% + 極端 PE = 高位唔追，244.71 (今日 low) 失守先有風險</li>
+<br>
+<h3 class="md-h">4. 本週重要事件日曆</h3>
+<li>9/22 (今日, 已完成中)：ADP 就業、Richmond Fed、2Y 拍賣、Fed speeches、AutoZone/THOR/KB Home 業績</li>
+<li>9/23 (三)：Cintas (CTAS) 業績</li>
+<li>9/24 (四)：Costco (COST) 業績</li>
+<li>9/30 (下三, AMC)：<strong>MU FQ4 業績</strong> (EPS est $31.1-31.4, 營收 est $50.4B) — 本組合最大事件</li>
+<li>10/27-28：FOMC (再加息概率 ~51%)</li>
+<li>10 月：TSLA Roadster 發布 + Semi 活動 + FSD 更新；TSLA Q3 業績 10/28</li>
+<li>本週臨近：<strong>特朗普-習峰會</strong> (AI 風險/競爭/貿易) — 半導體出口管制焦點</li>
+<li>持續：美伊外交/油價；全球信貸利差；特朗普關稅</li>
+<br>
+<h3 class="md-h">5. 組合層面觀察</h3>
+<li>總值 ≈ $114,303 (股票 $111,009 + 現金 $3,294)；對初始 $88,950 ≈ +28.5% (按 avg_cost 計)</li>
+<li>持倉 P/L：MU +127.2% (18 股)、AAPL +22.5%、META +20.6%、MSFT +17.6%、GOOGL +15.6%、NVDA +11.2%、AMZN +5.5%、TSLA -9.1%</li>
+<li>集中度：NVDA 26.3% + AAPL 17.2% + MU 17.4% = 60.9% 集中於 AI/半導體板塊 — 板塊 beta 極高</li>
+<li>板塊暴露：Fed 加息週期 + 信貸利差擴大 + 市場廣度 60% 成分股跌 &gt;20% → 高 beta AI 板塊係最大脆弱點</li>
+<li>現金 $3,294 (2.8%) 偏低，本週事件密集 (MU 9/30、COST 9/24、FOMC 10 月) → 保留現金對事件風險合理</li>
+<li>數據質素註記：portfolio.json 內 total_cost 同 shares×avg_cost 唔匹配 (NVDA total_cost 30,983.69 ≠ 131×205.19；AAPL 30,318.20 ≠ 58×277.90) — total_cost 似係舊倉位殘留；portfolio_risk.md 嘅 MSFT P/L -8.9% 與現價推算 +17.6% 矛盾。本報告一律用 shares×avg_cost 對現價計算，建議修訂 state 檔</li>
+<br>
+<h3 class="md-h">6. 總結 (BLUF)</h3>
+<li>宏觀：Fed 9/16 加息後鷹派持續 (10 月再加息 ~51%)，10Y 近 5%，信貸利差擴大 + 市場廣度狹窄 = 高 beta 板塊最大隱患；但 VIX 14.4 低、科技/AI 資金流入未變</li>
+<li>板塊：AI 半導體 (AMD 萬億 + Muse 驅動 CPU 需求 + 記憶/存儲量價齊升) 係主線；銀行/國防/能源 今日輪出</li>
+<li>持倉 8 隻全部 HOLD — 無一隻滿足 BUY/ADD 5 項條件 (NVDA/AAPL/META 高位；MU 9/30 業績前；TSLA 事件前)；亦無 SELL/TRIM 觸發 (無一隻符合 5 選 3)</li>
+<li>最緊要盯：(1) MU 9/30 業績前動能 (2) 9/24 COST 業績 (3) 特朗普-習峰會 (4) JPM 340.41 / GS 938 板塊破位 (5) 10 月 FOMC 再加息概率</li>
+<br>
+<p>--- EN: Fed hiked 25bp to 3.75-4.00% on Sep 16 (first since 2023, Warsh era, 16/18 dots see more hikes; ~51% odds of Oct hike). 10Y ~4.93-4.96%, credit spreads widening, S&amp;P breadth weak (60% of SPX &gt;20% off highs). Today: rotation into tech/AI/semis (QQQ +0.57% near record, DIA -0.48%, banks JPM -3.27%/GS -2.15% on weak Q3 IB + rates, RTX -3.01% on US-Iran de-escalation defense selloff, MCD new 52wk low $246.52 on weak US comps, AAL +3.5% gap on oil decline fuel relief, MU +3.47% at day high ahead of 9/30 FQ4 earnings with analysts eyeing $2,000, SNDK +6.13% Rosenblatt coverage + $1,832 breakout, WDC/STX storage rebound). All 8 holdings: HOLD — no BUY/ADD (5 of 8 green criteria unmet; MU event risk 9/30; NVDA/AAPL/META at 52wk highs), no SELL/TRIM triggers. Key risks: 60.9% of equity in AI/semis vs hawkish Fed + narrow breadth. Key events: ADP today, COST 9/24, MU 9/30, Trump-Xi summit this week, FOMC 10/27-28. Data quality: portfolio.json total_cost fields inconsistent with shares×avg_cost — flagged for correction. Overall confidence: 82%. ---</p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #1343 · 2026-09-22 22:47 HKT</p>
+</footer>
+</body>
+</html>
