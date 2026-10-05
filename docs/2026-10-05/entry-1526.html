@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#1526 — 隔夜檢查 · 20261005 13:00 HKT</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 1317 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">809 項決策</span>
+      <span class="stat">57 項快照</span>
+      <span class="stat">451 項研究</span>
+      <span class="stat">17 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-10-05 13:00 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>隔夜檢查 · 20261005 13:00 HKT</h1>
+    <div class="entry-tags"><span class="tag">overnight</span><span class="tag">analysis</span><span class="tag">auto</span></div>
+  </div>
+  <div class="reasoning">
+    <h2 class="md-h">隔夜檢查 · 20261005 13:00 HKT</h2>
+<br>
+<p>時點：2026-10-05 13:00 HKT = 01:00 ET 週一（BOATS 夜盤時段，距開市 8.5 小時）</p>
+<p>數據：premarket_data_collector.py 13:00:48 HKT 快照（Futu OpenAPI + Yahoo Finance Chart API + Treasury.gov）＋內部新聞 DB（MySQL）查詢</p>
+<p>會話確認：us_market_state.py → market_state=overnight / quote_phase=OVERNIGHT（trading_day=1）</p>
+<br>
+<h3 class="md-h">一、隔夜信號（Overnight）</h3>
+<li>ES/NQ 直接報價未能取樣（Yahoo 期指欄空值），以 BOATS 隔夜價代理（memory rule：Futu 不支援 CME 期指）：SPY 768.85（-0.10%）、QQQ 749.40（-0.02%）、VOO 706.70（-0.12%）、DIA 510.29（-0.16%）→ 期指隱含開市平水微軟，偏離 &lt;0.2% 屬噪音水平</li>
+<li>半導體夜盤偏強：SOXX 591.21（+0.39%）、TSM 476.20（+0.72%）、NVDA 235.30（+0.58%）、AMD 636.61（+0.43%）、AMKR 56.35（+0.59%）、DELL 565.66（+0.56%）</li>
+<li>存儲股周五暴瀉後夜盤只算企穩唔算反彈：WDC 417.89（+0.63%）、STX 852.27（+0.39%）、SNDK 1,724.57（+0.27%）、MU 1,075.81（+0.09%）；INTC 117.52（-1.52%）最弱</li>
+<li>Mega-cap 微軟：MSFT 514.95（-0.50%）、AAPL 332.87（-0.25%）、META 726.30（-0.24%）、GOOGL 343.50（0.00%）、AMZN 251.51（-0.00%）</li>
+<li>其他夜盤：CRWV +0.46%、SPCX +0.67%、BE +0.09%、IBKR +0.06%、CAT +0.14%、GS +0.05%、MCD +0.05%、RTX +0.16%、AAL +0.15%、JPM -0.11%、WMT -0.18%、UNH -0.17%、CVX -0.44%、SKHY -0.48%、COST -0.37%、XOM -0.26%、LLY -0.07%、NET -0.02%</li>
+<li>亞洲日內（13:00 HKT 仍未全收）：日經 69,715.28（+2.06%）、台灣加權 49,668.63（+2.46%）、KOSPI 7,003.74（+0.46%）、上證 3,842.20（+0.31%）、恒指 23,952.28（-0.08%）</li>
+<li>宏觀：10Y 5.28%（10/02 Treasury.gov；2Y 4.83%，2s10s +45bp）、DXY 102.42、WTI 90.26（-0.93%）、金 4,161.80（-0.01%）、BTC 85,513.15（+0.88%）、VIX 收 15.31（周五 -6.59%）</li>
+<br>
+<h3 class="md-h">二、倉位相關催化劑</h3>
+<li>模擬持倉 7 隻（sim portfolio.json）隔夜全線無事：NVDA 131 股 @205.19（最大注 27.3%）、MSFT 49 @372.97（23.0%）、META 29 @595.30（19.2%）、AAPL 30 @298.11、TSLA 30 @352.89（現價 370.59 已重返成本上）、GOOGL 15 @355.35（現價 343.50，水下 -3.3%）、AMZN 18 @253.48（現價 251.51，水下 -0.8%）；cash 9,215.70</li>
+<li><strong>無持倉涉存儲爆倉</strong>（WDC/STX/SNDK/MU 均冇貨）— 周五板塊衝擊對模擬組合零直接損失</li>
+<li>存儲爆倉原因（新聞 DB，T-4 單一來源需引證）：「Toshiba Is Doubling Hard Drive Output. Seagate (STX) and Western Digital (WDC) Fell 10% Each」（pub 10-05 09:48）— 供給端衝擊；NEWS TIMELINE 檢查：周五已 price-in（-10.2%），夜盤僅 +0.1~0.6%，屬死貓彈水平，非 V 型收復</li>
+<li>MU 對峙格局：兩篇睇好長文（「Micron: Memory Boom Still Has Legs」00:05、「The Trade Of The Decade Has Arrived」）vs 周五 -2.05% — 基本面 vs 供給恐慌，今日續觀察</li>
+<li>GOOGL（模擬倉水下）：Seeking Alpha「Alphabet Appears To Be The Easiest AI Trade Of The Year Before Its Q3 Print」— 業績前情緒催化</li>
+<li>周五強勢（watchlist）：SPCX +7.35%、AMKR +5.90%、TSLA +4.65%、BE +4.17%、DELL +3.84%、TSM +2.96%、AMD +2.95%、IBKR +2.90%、CAT +2.31%、UNH +1.83%、CRWD +1.48%</li>
+<li>周五弱勢：WDC -10.22%（396.57-427.71 巨震、量比 3.77）、STX -10.21%（量比 4.70）、SNDK -3.79%、MU -2.05%、AAL -1.45%、INTC -0.56%（冲高 126 後倒跌，日內波幅 5.9%，單日轉勢 pattern）</li>
+<li>板塊輪動（周五）：XLK +1.01% &gt; IWM +0.90% &gt; XLI +0.78% &gt; XLU +0.38% &gt; XLP +0.25% &gt; XLE +0.19% &gt; XLF +0.06% &gt; XLV -0.01% → 增長主導、防禦原地踏步</li>
+<br>
+<h3 class="md-h">三、關鍵事件</h3>
+<li>今晚 22:00 HKT（10:00 ET）：9 月 ISM 製造業 PMI（前值 55.4）＋分項 — 重點物價支付指數（前值 72.6，$90 油價下有再升風險）及新訂單（前值 60.9）；同場 Conference Board 就業趨勢指數（前值 108.53）［依 Yahoo 日曆 T-3；ISM 慣常月初首個營業日發佈，今晚日子偏遲，落單前以官方公佈為準］</li>
+<li>本週（依標準發佈日程＋新聞 DB 提示，確實日期未確認）：FOMC 會議紀錄（MarketWatch 10-04：「Fed minutes coming this week」；慣常週三 14:00 ET = 週四 02:00 HKT）；9 月 CPI（慣常週三 8:30 ET）、PPI＋首次申領（週四）、密西根情緒＋通脹預期（週五 10:00 ET）</li>
+<li>地緣/能源（Bloomberg/CNBC T-3）：中東多艘油輪遇襲＋伊朗重申重開霍爾木茲海峽條件；伊拉克數十年首次租超級油輪過海峽；G7 放儲備油短暫壓價（WTI 周五 -0.93%）；沙特對亞洲旗艦油價降至六年低；沙特背景也門部隊開始反攻胡塞地區</li>
+<li>利率敘事：Bloomberg「Wall Street&#x27;s AI Party Is on Edge as Soaring Yields Raise Risks」＋「Jobs Slow but Inflation Keeps Fed on Alert」；TSMC Q3 業績臨近（多篇 preview 已出，確實日期未確認）</li>
+<li>AMZN 二十年電力合約（Constellation Energy）— AI 用電主題延續</li>
+<br>
+<h3 class="md-h">四、明確 Bias</h3>
+<p><strong>中性偏多（neutral-bullish）</strong></p>
+<li>多方：NASDAQ 周五創 52 週高（盤中 27,353.68）、費半 +2.40% 動能強、夜盤無沽壓（SPY -0.10%）、VIX 15.31 低企、亞洲全面造好（彭博：通脹憂慮降溫→再加息機會降→亞股升）</li>
+<li>空方：10Y 5.28% 高息＋AI 估值與債息張力；WTI $90 上方＋霍爾木茲中斷風險；存儲供給衝擊未散</li>
+<li>模擬倉含義：半導體強勢維持；<strong>唔撈 WDC/STX</strong>（freefall 中，夜盤 +0.1~0.6% 不足確認企穩，「唔接刀」rule）；今晚 ISM 物價指數若 &gt;75，提防高 PE 科技受壓；GOOGL/AMZN 微水下，等業績/確認訊號</li>
+<br>
+<h3 class="md-h">五、風險提示</h3>
+<li>持倉集中度：NVDA 27%＋MSFT 23%＋META 19% ≈ 70% 集中 AI/科技 — 債息再抽時同漲同跌</li>
+<li>油價 $90+：ISM 物價支付指數再升 → 滯脹敘事升溫，高 PE 科技最傷</li>
+<li>債息與股价新高並存：ISM 強於預期 → 10Y 再上 → 回調風險即時放大</li>
+<li>存儲續瀉或拖累 MU/半導體情緒</li>
+<li>BOATS 夜盤流動性稀疏，±0.5% 內變動勿過度解讀</li>
+<li>資料缺口：ES/NQ 直接報價、DXY 前收值、夜盤時間戳未能取樣 — 整體信心 ~85%</li>
+<br>
+<h3 class="md-h">六、全表（周五收市 → 夜盤）</h3>
+<p>| Ticker | 周五收 | 周五% | 夜盤 | 夜盤% |</p>
+<p>|---|---|---|---|---|</p>
+<p>| NVDA | 233.95 | +1.34 | 235.30 | +0.58 |</p>
+<p>| TSM | 472.78 | +2.96 | 476.20 | +0.72 |</p>
+<p>| AMD | 633.91 | +2.95 | 636.61 | +0.43 |</p>
+<p>| INTC | 119.33 | -0.56 | 117.52 | -1.52 |</p>
+<p>| MU | 1074.89 | -2.05 | 1075.81 | +0.09 |</p>
+<p>| WDC | 415.29 | -10.22 | 417.89 | +0.63 |</p>
+<p>| STX | 848.99 | -10.21 | 852.27 | +0.39 |</p>
+<p>| SNDK | 1719.99 | -3.79 | 1724.57 | +0.27 |</p>
+<p>| AMKR | 56.02 | +5.90 | 56.35 | +0.59 |</p>
+<p>| AAPL | 333.69 | +1.02 | 332.87 | -0.25 |</p>
+<p>| MSFT | 517.53 | +0.92 | 514.95 | -0.50 |</p>
+<p>| META | 728.08 | +0.30 | 726.30 | -0.24 |</p>
+<p>| GOOGL | 343.50 | +1.56 | 343.50 | 0.00 |</p>
+<p>| AMZN | 251.52 | +1.33 | 251.51 | -0.00 |</p>
+<p>| TSLA | 370.59 | +4.65 | 372.04 | +0.39 |</p>
+<p>| IBKR | 88.30 | +2.90 | 88.35 | +0.06 |</p>
+<p>| DELL | 562.52 | +3.84 | 565.66 | +0.56 |</p>
+<p>| NET | 349.07 | -0.55 | 349.00 | -0.02 |</p>
+<p>| SOXX | 588.90 | +2.18 | 591.21 | +0.39 |</p>
+<p>| DIA | 511.10 | +0.49 | 510.29 | -0.16 |</p>
+<p>| SKHY | 195.13 | +0.84 | 194.19 | -0.48 |</p>
+<p>| WMT | 104.26 | 0.00 | 104.07 | -0.18 |</p>
+<p>| JPM | 332.38 | -0.24 | 332.00 | -0.11 |</p>
+<p>| CVX | 206.69 | -0.20 | 205.79 | -0.44 |</p>
+<p>| UNH | 371.90 | +1.83 | 371.28 | -0.17 |</p>
+<p>| CAT | 845.42 | +2.31 | 846.64 | +0.14 |</p>
+<p>| GS | 902.56 | +0.66 | 903.05 | +0.05 |</p>
+<p>| LLY | 1142.85 | -0.61 | 1142.00 | -0.07 |</p>
+<p>| COST | 920.65 | +0.62 | 917.25 | -0.37 |</p>
+<p>| RTX | 184.68 | -0.18 | 184.97 | +0.16 |</p>
+<p>| XOM | 164.01 | +0.12 | 163.58 | -0.26 |</p>
+<p>| CRWD | 270.04 | +1.48 | 269.66 | -0.14 |</p>
+<p>| AAL | 12.94 | -1.45 | 12.96 | +0.15 |</p>
+<p>| MCD | 231.89 | +0.03 | 232.01 | +0.05 |</p>
+<p>| SPY | 769.64 | +0.74 | 768.85 | -0.10 |</p>
+<p>| VOO | 707.54 | +0.74 | 706.70 | -0.12 |</p>
+<p>| QQQ | 749.58 | +1.02 | 749.40 | -0.02 |</p>
+<p>| CRWV | 89.62 | +1.19 | 90.03 | +0.46 |</p>
+<p>| SPCX | 158.96 | +7.35 | 159.12 | +0.67 |</p>
+<p>| BE | 289.15 | +4.17 | 289.40 | +0.09 |</p>
+<p>| VIX | 15.31 | -6.59 | — | — |</p>
+<br>
+<p>— EN: Overnight check 13:00 HKT Mon Oct 5: BOATS session flat (SPY -0.10%/QQQ -0.02%), semis bid (TSM +0.72%/NVDA +0.58%), storage names stabilizing after Toshiba-driven 10% crash (already priced Friday). Asia risk-on (Nikkei +2.06%). Key: ISM Mfg PMI tonight 22:00 HKT — watch Prices Paid (prev 72.6) vs $90 WTI. Bias neutral-bullish; do not catch WDC/STX falling knives; portfolio 70% concentrated in AI/tech — yields are the main risk.</p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #1526 · 2026-10-05 13:00 HKT</p>
+</footer>
+</body>
+</html>
