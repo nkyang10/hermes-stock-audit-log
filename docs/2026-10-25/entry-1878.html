@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#1878 — 隔夜檢查 · 20261025 13:00 HKT</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 1663 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">1048 項決策</span>
+      <span class="stat">74 項快照</span>
+      <span class="stat">541 項研究</span>
+      <span class="stat">18 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-10-25 13:00 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>隔夜檢查 · 20261025 13:00 HKT</h1>
+    <div class="entry-tags"><span class="tag">overnight</span><span class="tag">analysis</span><span class="tag">auto</span></div>
+  </div>
+  <div class="reasoning">
+    <h2 class="md-h">20261025 美股隔夜報告（13:00 HKT）</h2>
+<br>
+<h3 class="md-h">核心判斷</h3>
+<li>而家係週末（週日 2026-10-25），美股完全閉市 — HKT 13:00 = 週日 01:00 ET，唔係交易日。所有報價都係 10月23日（週五）收市靜態數字，冇 live overnight session。</li>
+<li>所以「隔夜信號」只能睇週五收市 + 週五晚期貨收盤（futures 週日 18:00 ET 才重開）。</li>
+<li>上一個交易日特徵：科技股分化（SOX +0.44%、QQQ −0.01%）vs 舊經濟全線跌（DJI/DIA −1.23%、XLP −1.92%、XLV −1.11%、XLF −1.32%）— 典型「AI 換馬」輪動，唔係全面 risk-off。</li>
+<li>信貸層轉差（HYG 距 60 日高位 −2.63%，已過 −2% 門檻）＋ VIX 19.45 = 四象限最差格（信貸壓力 × VIX 平靜/偏高）。</li>
+<li>期貨週五收盤 ES 7,659.75（對現貨 7,623.68 溢價 +0.47%）、NQ 29,117.75，方向中性偏穩，但週一開市要等新消息定調。</li>
+<li>Bias：<strong>neutral（防守偏淡）</strong> — 唔係 bearish 崩盤，而係「輪動 + 信貸收緊」雙重壓力下唔好加 risk。</li>
+<br>
+<h3 class="md-h">▶️ 隔夜信號（Overnight）</h3>
+<li>⚠️ 週末閉市 — 冇 BOATS 夜盤。以下為 10月23日（週五）收市數據：</li>
+<li>S&amp;P 500（SPX）7,623.68 點，−0.52%（−39.75 點），日內高 7,660.15 / 低 7,612.07 — 收市貼近日內低位，尾段偏弱。</li>
+<li>NASDAQ（IXIC）25,955.34 點，−0.21%（−53.52 點），日內高 26,111.62 / 低 25,866.15。</li>
+<li>道指（DJI）52,215.16 點，−1.23%（−652.82 點）— 明顯跑輸，舊經濟拖累。</li>
+<li>費半（SOX）10,779.46 點，+0.44%（+47.48 點），日內高 10,923.18 — 半導體係唯一亮點。</li>
+<li>ES 期貨收 7,659.75（週五 20:59 UTC 收，即 16:59 ET），對 SPX 現貨溢價 +36.07 點（+0.47%）。</li>
+<li>NQ 期貨收 29,117.75，對 IXIC 現貨 25,955 點計嘅名義指數唔同（NQ 對應 Nasdaq-100，唔可以直接同 IXIC 比），只可以講方向：週五晚期貨持平。</li>
+<li>數據來源：Yahoo Finance Chart API（Tier-3，1m range=1d，未調整價）。數據年齡：現貨 32 小時、期貨約 40 小時 — 全部係「上次收市」數字。</li>
+<br>
+<h3 class="md-h">▶️ 倉位相關催化劑</h3>
+<p>模擬組合（cash $27,412.59，持倉市值約 $85,502，總值約 $112,915）：</p>
+<br>
+<li>NVDA 131 股 @ $205.19（現價 $210.96，佔 24.7%）</li>
+<li>週五 −0.59%，收 210.96；日內高 213.85 後回吐，收喺日內區間 21% 位置（偏弱收）。</li>
+<li>消息面：Jensen Huang 話 AI agents 令 token/GPU 需求「through the roof」，Gene Munster 估 15M bot users 會爆到 billions 級；另有「Nvidia and 3 AI Infrastructure Stocks Backed by Hyperscaler Data Center Spending」。</li>
+<li>反向聲音：headline 有「AI bear says Nvidia is creating the scarcity it sells against」— 呢個係質疑供給限制係人為造出嚟嘅論點。</li>
+<li>盤口（Futu 深度）：bid 211.15 / ask 211.18，spread $0.03；ask 側 211.20 有 1,415 股掛單，bid 側 211.11 有 269 股 — 上方賣壓厚過下方承接，短線偏賣。</li>
+<li>判斷：需求敘事仍在，但 24.7% 集中度係最大單一風險；$205 附近係成本區，跌穿要考慮減。</li>
+<li>MSFT 38 股 @ $387.46（現價 $524.51，佔 17.7%）</li>
+<li>週五 +0.66%，大型科技股入面表現最好之一。</li>
+<li>催化劑：「Microsoft May Be the Only Hyperscaler to Stay Cash-Flow Positive」；Seeking Alpha 有「Microsoft Q1: A $744 Billion AI Reckoning Is Coming」。</li>
+<li>盤口：bid 524.45 / ask 524.70，spread $0.25（較闊）；ask 524.98 有 599 股 — 上方阻力明顯。</li>
+<li>判斷：現階段現金流最穩，AI capex 質疑下反而係避風港角色。</li>
+<li>GOOGL 33 股 @ $349.58（現價 $320.21，佔 9.5%，虧損 −$830）</li>
+<li>週五 −1.24%，收 320.21，正好係日內最低位（intraday position 0.7%）— 收市最弱。</li>
+<li>盤口：bid 321.12 只有 1 股、ask 321.15 有 390 股 — 買方極薄、賣方壓住，深度極唔健康。</li>
+<li>下週有 Alphabet 業績（Seeking Alpha headline：「Fed Decision, Microsoft, Alphabet Earnings Highlight Blockbuster Week」）— 大事件。</li>
+<li>判斷：業績前唔好加，均價 $349.58 離現價 −8.4%，要等業績後先算。</li>
+<li>AMZN 33 股 @ $256.57（現價 $248.00，佔 7.3%，虧損 −$256）</li>
+<li>週五 −0.95%，收 248.00。留意：AMZN 10月22日由 262.37 急跌至 250.38（−4.6%），再喺 10月23日跌至 248.00 — 已經連續兩日下殺，唔係單日 noise。</li>
+<li>消息：「Some of Amazon&#x27;s New AI Servers Are Reportedly Waiting on Power. Here&#x27;s What October 29 Has to Prove」— 電力瓶頸質疑，10月29日（下週四）業績係關鍵驗證點。</li>
+<li>盤口：bid 248.78（500 股）遠高過 last 248.00，ask 248.80 只有 100 股 — 盤後 bid 反而偏高，深度偏買方。</li>
+<li>判斷：兩日累跌 5.5% 係 falling knife 形態，唔接；業績前觀察。</li>
+<li>META 5 股 @ $595.30（現價 $642.62，佔 2.9%，盈利 +$254）</li>
+<li>週五 −0.96%，但幅度唔大；headline：「Meta Stock Fell 7% in a Day After a Revenue Beat. Time to Sell or Load Up?」— 係講之前嘅跌幅。</li>
+<li>盤口：bid 640.00（86 股）/ ask 640.20（899 股）— 賣壓極厚。</li>
+<li>判斷：細倉，唔急處理。業績後大跌但收入 beat，係典型「capex 嚇親市場」— 需要時間消化。</li>
+<li>TSLA 10 股 @ $352.89（現價 $372.22，佔 3.3%，盈利 +$206）</li>
+<li>週五 −0.63%，振幅 3.2%（日內 365.27–377.32），波幅大但收窄。</li>
+<li>WMT 12 股 @ $118.64（現價 $119.89，佔 1.3%）</li>
+<li>週五 −1.02%，防守股都被沽（XLP −1.92%），屬板塊性，唔係個股問題。</li>
+<li>MU 2 股 @ $915.75（現價 $877.55，佔 1.6%，虧損 −$58.80）</li>
+<li>週五 +2.46%，係持倉最強。消息：「Micron Says AI Cut Its Data Center SSD Development Time by 60%」— AI 需求帶動 HBM/SSD。</li>
+<li>注意：盤口 bid 879.85 / ask 879.99，但 last 877.55 — 盤口高過 last，反映收市後有買盤。</li>
+<li>IBKR 20 股 @ $85.41（現價 $80.28，佔 1.5%，虧損 −$75.20）</li>
+<li>週五 −2.43%，跌幅最大之一，跟金融股（XLF −1.32%）跌得更狠；成交量比 1.17（放量下跌）— 唔健康。</li>
+<li>判斷：$80 附近係近期低位區，跌穿 $78 要考慮止蝕。</li>
+<br>
+<h3 class="md-h">▶️ 關鍵事件</h3>
+<p>本週（10月26–30日）係超級業績週 + Fed 會議：</p>
+<li>週一 10/26：數據清淡；關注亞洲開市反應同週末中東/伊朗消息（headline：「American embassies tighten security as Iran threat warnings intensify ahead of U.S. midterm elections」）。</li>
+<li>週二 10/27：Consumer Confidence（Conference Board，10:00 ET）— 消費情緒對 XLP/WMT/MCD 有參考價值。</li>
+<li>週三 10/28：<strong>Fed 議息決定</strong>（14:00 ET）+ 可能 CPI 之外嘅通脹數據；headline 已經有「Fed Decision, Microsoft, Alphabet Earnings Highlight Blockbuster Week」。市場已 price in 加息定唔加息係本週最大變數。</li>
+<li>週四 10/29：<strong>AMZN 業績</strong>（收市後）+ INTC 業績（headline：「Intel Stock Is Up 121% This Year. Here&#x27;s the Number to Watch on October 29」）+ 初領失業金。</li>
+<li>週五 10/30：AAPL、MSFT 業績預期喺本週（headline 提 Microsoft Q1）+ U. Michigan 消費者信心。</li>
+<li>注意：經濟日曆 script 只抽到亞洲/歐洲細項（Industrial Output MM IL、KOSPI 相關韓國數據、新加坡製造業產出），美系大事件要由 headline 側面確認 — 呢個係 script 已知限制，所以本段標 confidence 較低（70%）。</li>
+<br>
+<h3 class="md-h">▶️ 信貸制度（Credit Regime）</h3>
+<li>HYG（高收益債 ETF）收 77.05；距 60 日高位 79.13 = −2.63%，已跌穿 −2% 門檻 → <code>credit_stressed = true</code>。</li>
+<li>距 60 日低位 76.81 只有 +0.31% — 即係喺 60 日區間嘅底部邊緣，唔係中間位。</li>
+<li>HY/IG 比率 0.7419（HY 相對 IG 偏弱，risk appetite 收縮）。</li>
+<li>VIX 19.45（週五 +2.21%），2 年 75 百分位 = 19.44 → VIX 已到「fearful」邊界，啱啱踩線。</li>
+<li>四象限：<code>credit_stress_high_vix</code> = 最差格。模型預測未來 60 日回撤 −3.92% — <strong>只可以做 risk budget，唔係方向預測</strong>（rolling OOS 3/13 年，係數翻轉率 38%）。</li>
+<li>傳染測試：板塊爆 + HY 平靜 = contained（歷史回撤 −3.83%）；HY 擴闊 = contagious（−11.70%）。而家 HY 已經擴闊 → 偏向 contagious 一側，但未到確認。</li>
+<li>解除訊號：<code>release_signal = false</code> — 冇解除，唔應該返場加 risk。</li>
+<li>佐證新聞：「&#x27;Total Meltdown&#x27; in Riskiest Debt Unnerves Market: Credit Weekly」（Bloomberg，10/24 15:40）— Tier-3 報道，同 HYG 數據吻合，提升 confidence 到 85%。</li>
+<li>注意：HYG 60日高位 79.13 係 Yahoo 5d range 之外嘅計算值（script 用 3mo range 計），我只驗證到最近 3 日收市（77.10 → 77.05），60 日高低位數字未獨立複核 — confidence 75%。</li>
+<br>
+<h3 class="md-h">▶️ 明確 Bias</h3>
+<p><strong>neutral — 防守偏淡（defensive-neutral）</strong></p>
+<br>
+<p>理由：</p>
+<li>週五收市結構：半導體強、舊經濟弱，指數靠 SOX 撐住，但 DJI −1.23% 顯示 breadth 差。</li>
+<li>SPX 收喺日內低位（7,612 附近）— 尾段買盤缺席。</li>
+<li>期貨溢價 +0.47% 係中性，唔算 bullish 定 bearish 訊號（週五晚收盤數據，距今 40 小時，時效低）。</li>
+<li>信貸制度亮紅燈（HYG −2.63% off high、VIX 踩 75% 分位）→ 唔應該增加 risk exposure。</li>
+<li>本週三大事件密集（Fed + AMZN + AAPL/MSFT 業績）→ 事件前唔加倉係合理 posture。</li>
+<li>唔算 bearish：SOX/半導體需求敘事仍在（NVDA、MU 都升）、大型科技現金流穩（MSFT）；只係 breadth 同信貸唔支持追高。</li>
+<br>
+<h3 class="md-h">風險提示</h3>
+<li><strong>週末數據時效</strong>：全部數字係 10月23日（週五）收市，距今 32–40 小時。週日 18:00 ET（週一 06:00 HKT）期貨重開後方向可能唔同，唔可以用呢份報告嘅期貨數字做週一開市判斷。</li>
+<li><strong>信貸風險</strong>：HYG 喺 60 日區間底部 + Bloomberg 報「Total Meltdown in Riskiest Debt」— 呢個係最值得留意嘅 macro 裂縫，比個別股票跌幅更重要。</li>
+<li><strong>集中度風險</strong>：NVDA 24.7% + MSFT 17.7% = 42.4% 喺兩隻股，任何一隻業績出事都會主導組合。</li>
+<li><strong>事件風險</strong>：本週 Fed + AMZN(10/29) + AAPL/MSFT 業績 — 波動率會抽升，VIX 已經喺 19.45，有可能突破 20。</li>
+<li><strong>伊朗/中東地緣</strong>：headline 講美國大使館加強保安、伊朗威脅警告升溫（中期選舉前）— WTI 週五 +3.82% 到 103.27，油價已反映部分風險溢價；XOM +2.79%、CVX +2.88% 係受益者。</li>
+<li><strong>利率環境</strong>：10Y 5.00%（Treasury CSV 10/23）、2Y 4.69%，曲線 +31bp；headline 講「central banks are hinting at rate hikes」— 加息預期回歸會壓 growth 估值。</li>
+<li><strong>數據限制</strong>：Futu OpenAPI 喺週末冇 response（ES/NQ/QQQ 都空白），期貨數據只能用 Yahoo（Tier-3）；經濟日曆 script 唔含美系大事件，本段靠 headline 補 — 標明低 confidence。</li>
+<br>
+<h3 class="md-h">數據來源表</h3>
+<p>| 來源 | Tier | 日期 | 用嚟驗證 |</p>
+<p>|------|------|------|----------|</p>
+<p>| Yahoo Finance Chart API（1m range=1d） | T-3 | 2026-10-23 收市 | SPX/IXIC/DJI/SOX、ES/NQ 期貨、^TNX、^VIX |</p>
+<p>| Treasury.gov CSV | T-1 | 2026-10-23 | 2Y/10Y/30Y 國債息率 |</p>
+<p>| Futu OpenAPI snapshot | T-3 | 2026-10-23 收市 | 41 隻個股現價、盤口深度 |</p>
+<p>| Yahoo Finance chart HYG（1d 5d） | T-3 | 2026-10-23 | HYG 77.05（我獨立複核，同 script 一致） |</p>
+<p>| News DB（MySQL，llm_score≥6） | T-4（多篇 T-3 轉載） | 2026-10-24~25 | 業績日曆、催化劑、信貸新聞 |</p>
+<p>| Yahoo Finance headlines | T-4 | 2026-10-24 | 加息 hint、伊朗、油價、AI bear 論點 |</p>
+<br>
+<hr class="md-hr">
+<br>
+<p><strong>EN:</strong> Weekend market (no live session). Last close Fri 2026-10-23: SPX 7,623.68 (-0.52%), IXIC 25,955.34 (-0.21%), DJI 52,215.16 (-1.23%), SOX 10,779.46 (+0.44%). Futures settled ES 7,659.75 / NQ 29,117.75. Credit regime stressed: HYG 77.05, -2.63% off 60d high, VIX 19.45 at 2y 75th pct → worst quadrant (credit stress × high VIX), pred fwd60 DD -3.92% (risk budget only), release_signal=false. Bias: defensive-neutral ahead of Fed + AMZN/AAPL/MSFT earnings week. Key risks: HY credit meltdown narrative, NVDA+MSFT = 42.4% concentration, oil +3.82% on Iran risk.</p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #1878 · 2026-10-25 13:00 HKT</p>
+</footer>
+</body>
+</html>
