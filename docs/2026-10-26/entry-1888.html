@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#1888 — HOLD MSFT — HOLD — 38 sh @ $387.46, +1.0%但量僅0.94x冇搶貨, 10/28 Azure業績前唔動</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 1680 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">1058 項決策</span>
+      <span class="stat">76 項快照</span>
+      <span class="stat">546 項研究</span>
+      <span class="stat">18 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-10-26 22:50 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-decision">決策</span>
+        <span class="tkr" style="--tkr-c:#00a4ef">MSFT</span>
+        
+      </div>
+    </div>
+    <h1>HOLD MSFT — HOLD — 38 sh @ $387.46, +1.0%但量僅0.94x冇搶貨, 10/28 Azure業績前唔動</h1>
+    <div class="entry-tags"><span class="tag">sim-trader</span><span class="tag">HOLD</span></div>
+  </div>
+  <div class="reasoning">
+    <h2 class="md-h">決策分析 · 2026-10-26 22:45 HKT（開市後 ~1小時15分）</h2>
+<br>
+<h3 class="md-h">一、制度背景更新（用實時數據重算）</h3>
+<br>
+<li>HYG 實時 $77.305（yfinance 1d），60 日高 $79.132、60 日低 $76.81</li>
+<li>距 60 日高位 <strong>−2.31%</strong>（仍過 −2% 門檻，<strong>未解除</strong>，但比 20:40 嘅 −2.63% 收窄 0.32 個百分點）</li>
+<li>距 60 日低位回升 <strong>+0.64%</strong>（需 ≥2% 才叫解除 → 未達）</li>
+<li>結論：信貸<strong>仍受壓但邊際改善</strong>，唔屬於「加速惡化」；亦唔屬於「解除返場」</li>
+<li>VIX 實時 18.33（−5.8%，由 19.45 回落）→ 平靜，離 2 年 75 百分位 19.4 更遠</li>
+<li>10Y 4.966%（由 4.988% 微跌）</li>
+<li>四象限：<strong>信貸壓力 + VIX 平靜 = 最差風險回報格</strong>（預期回撤 −4.60%、預期回報 +0.06%）</li>
+<li>行動紀律：<strong>唔開新倉、拉闊止蝕、保留核心、唔好全現金</strong></li>
+<li>傳染測試：credit_contained = false（HYG 過 −2%）→ 半導體/neocloud 板塊壓力當<strong>傳染性</strong>處理</li>
+<li>預測回撤 −3.89% → 只做 risk budget（rolling OOS 驗證冇交易價值），唔當方向預測</li>
+<br>
+<h3 class="md-h">二、今日盤面實測（22:45 HKT，Futu snapshot 實時）</h3>
+<br>
+<h4 class="md-h">指數</h4>
+<li>SPY $766.36（+0.84%）｜日內位置 93.2%｜VWAP $763.71（價高於 VWAP 0.35% = bullish）｜量 752 萬</li>
+<li>QQQ $713.06（+1.23%）｜日內位置 97.1%（貼日高）｜VWAP $708.49（價高 +0.65% = bullish）｜量 1,022 萬</li>
+<li>DIA $524.71（+0.64%）｜VOO $703.59（+0.72%）</li>
+<li>SOXX $484.87（+1.39%）</li>
+<li>判定：<strong>今日係反彈日，唔係跌市日</strong> —— SPY/QQQ 雙雙貼日高、價喺 VWAP 之上，半導體同步反彈。呢個同「信貸壓力 + VIX 平靜」格嘅特性吻合：跌唔急、但反彈亦乏力，唔可以當趨勢確認</li>
+<br>
+<h4 class="md-h">量能（用日 K 平均量校正 — 重要）</h4>
+<li>⚠️ 腳本顯示嘅 volume_ratio（NVDA 1.34、TSLA 2.91、MU 1.65）係<strong>按開市首小時折算嘅年化比率</strong>，唔可以當全日放量解讀</li>
+<li>真實對比：今日累計成交量 vs 20 日<strong>全日</strong>平均量（22:45 已行 1h15m = 全日 ~19%）</li>
+<li>NVDA 25.7M / 105.3M = 0.24（按時段折算 ≈ 1.26x 正常 = 略高於平均，但唔算爆量）</li>
+<li>TSLA 23.2M / 36.3M = 0.64（折疊 ≈ 3.4x = <strong>真放量</strong>，配合 +6% 係有資金嘅）</li>
+<li>META 8.42M / 19.3M = 0.44（折疊 ≈ 2.3x = 放量，但方向係回升）</li>
+<li>AAPL 8.86M / 38.5M = 0.23（≈1.2x 正常）</li>
+<li>MSFT 3.54M / 20.2M = 0.18（≈0.94x 正常，未見搶貨）</li>
+<li>MU 7.77M / 26.9M = 0.29（≈1.5x）</li>
+<li>GOOGL 6.08M / 23.7M = 0.26（≈1.35x）</li>
+<li>AMZN 9.39M / 35.8M = 0.26（≈1.35x）</li>
+<li>WMT 3.07M / 21.3M = 0.14（≈0.75x 正常，靜）</li>
+<li>IBKR 1.10M / 4.17M = 0.26（≈1.38x）</li>
+<br>
+<h4 class="md-h">盤口</h4>
+<li>⚠️ Futu 未訂閱 OrderBook 數據 → 實時買賣盤深度攞唔到（<code>get_order_book</code> 回 ret=-1「請先訂閲OrderBook數據」）</li>
+<li>腳本內 bid_ask_ratio / bid_vol / ask_vol 係 snapshot 頂檔單一價位，唔係 5 檔深度總和 → <strong>唔可以用嚟判斷支撐/壓力強弱</strong></li>
+<li>本報告所有買賣盤判斷改用：VWAP 位置 + 日內位置 + 量能 + 技術結構（可信度較低但一致）</li>
+<br>
+<h3 class="md-h">三、持倉逐隻分析（10 隻，組合 $112,916 起，現金 $27,413 = 24.3%）</h3>
+<br>
+<h4 class="md-h">NVDA — 現價 $216.75（+2.75%）</h4>
+<li>52 週位置：52 高 $243.37、52 低 $163.90 → <strong>64.5%</strong>（中上段，唔算高位）</li>
+<li>Gap：開 $213.08 vs 前收 $210.96 = <strong>+1.00%</strong>（同向，pre +1.00% / overnight +0.17% → 溫和裂口，非竭盡型）</li>
+<li>日內位置 <strong>97.4%</strong>（$216.75 喺 $212.61-$216.77 區間嘅最頂）</li>
+<li>量能：折疊 ≈1.26x 正常（略放，唔算爆）</li>
+<li>VWAP $214.65 → 價高 0.98% = <strong>bullish intraday</strong>（今日全程喺 VWAP 上，係實質買盤）</li>
+<li>技術結構：MA10 $218.62 / MA20 $225.54 / MA50 $222.48 → <strong>三線仍喺頭上</strong>，今日升到 $216.75 但未觸及 MA10；趨勢分數 10/100（空頭），20 日 −6.27%</li>
+<li>阻力簇：$220（22 次）、$215（20 次）→ 今日已穿 $215，下一關 $220 係 22 次嘅硬牆</li>
+<li>支撐簇：$215（22 次）、$210（17 次，亦係 POC）、$205（17 次）</li>
+<li>基本因素：PE 27.2（同板塊比合理）、市值 $5.19 兆</li>
+<li>催化：Meta $35B 配股 + 最高 $60B ATM，NVDA/AMD/AVGO 表達最多 $5B 認購興趣（non-binding）；SpaceX $40B 債務買 GPU；a16z 顯示 GPU 租賃價（含舊卡）大升；封裝訂單外溢 AMKR/OSAT</li>
+<li>風險：中國 AI 加速器市佔由 34% 跌、Huawei 28%；「科技財報雙面效應」壓股價；Morgan Stanley 指半導體支撐位可能低現價 15%（~$184）</li>
+<li>判定：<strong>8 綠 4 條件檢核</strong> — 52wk&lt;80% ✅｜vol&gt;0.7 ✅｜intraday&lt;70% ❌（97%）｜bid/ask ❌（數據不可用）｜overnight 唔算強負 ✅｜PE 合理 ✅｜gap&lt;5% ✅｜週線唔係 bearish ✅ → <strong>5/8 綠</strong></li>
+<li>但集中度 32.5%（全組最大）+ 財報週 + 三線壓頂 → <strong>唔加倉</strong></li>
+<li><strong>動作：HOLD 131 sh @ $205.19</strong>（帳面 +$1,518）。觸發條件維持：收市跌穿 $210（POC 兼 17 次支撐簇）→ TRIM 40 股；升穿 $220 且量能折疊 &gt;2x → 下一階段再評估</li>
+<br>
+<h4 class="md-h">AAPL — 現價 $346.47（−0.36%）</h4>
+<li>52 週位置：52 高 $351.73、52 低 $242.76 → <strong>94.9%</strong>（近 52 週高位）</li>
+<li>Gap：開 $343.78 vs 前收 $347.73 = <strong>−1.13%</strong>（向下裂口）</li>
+<li>日內位置 <strong>91.0%</strong>（$346.47 喺 $341.03-$346.55 嘅高位）→ <strong>低開高走，全日收復裂口</strong></li>
+<li>量能：折疊 ≈1.2x 正常</li>
+<li>VWAP $343.83 → 價高 0.77% = <strong>bullish intraday</strong>（由日低 $341.03 反彈，實質買盤托住）</li>
+<li>技術結構：MA10 $343.30（今日低見 $341.03 曾破，但已收回）/ MA20 $338.91 / MA50 $329.47 → 趨勢分數 70/100（多頭），5 日 +1.03%、10 日 +1.61%</li>
+<li>基本因素：PE 39.7、市值 $5.05 兆、股息 0.30%</li>
+<li>催化：iPhone Duo（首款折疊機 $1,999）10/23 開賣即售罄，二手溢價一度 ~33%；台灣經濟日報 10/26 報 Apple 要求供應鏈增產 30%，2026 出貨目標由 600 萬部上調至 800-1,000 萬部</li>
+<li>⚠️「30%」呢個數字 10/11 已報過一次，基準不明，<strong>兩次唔可以相加</strong></li>
+<li>風險：UBS 預期 FQ4（11/2）收入 $112.8B vs 市場 $113.6B、毛利率 47.5%（含 ~100bps 關稅退款，上季 50.1% 含 250bps）→ 記憶體成本升係毛利率風險；折疊機唔在 FQ4 數字內</li>
+<li>判定 52wk 94.9% &gt; 95% 邊緣 → 屬「接近高位、唔適合加」。今日低開高走係健康，但 PE 39.7 已經反映好多樂觀</li>
+<li><strong>動作：HOLD 20 sh @ $298.11</strong>（帳面 +$967）。維持「收市實質跌穿 $342（MA10）兼量能折疊 &gt;1.5x → TRIM 10」；11/2 業績前唔主動加減</li>
+<br>
+<h4 class="md-h">MSFT — 現價 $529.73（+1.00%）</h4>
+<li>52 週位置：52 高 $551.15、52 低 $348.54 → <strong>88.9%</strong>（高位區）</li>
+<li>Gap：開 $527.92 vs 前收 $524.51 = <strong>+0.65%</strong>（同向溫和）</li>
+<li>日內位置 <strong>93.0%</strong>（$521.69-$530.11 高位）</li>
+<li>量能：折疊 ≈0.94x 正常 → <strong>升 1% 但冇放量</strong> = 唔係機構掃貨，係溫和買盤</li>
+<li>VWAP $526.25 → 價高 0.66% = bullish</li>
+<li>技術結構：MA10 $533.07（仍在頭上 0.6%）/ MA20 $526.70（今日已站上）/ MA50 $508.43 → 趨勢分數 40/100（中性偏弱），5 日 −0.70%</li>
+<li>基本因素：PE 29.4、市值 $3.92 兆</li>
+<li>催化：<strong>10/28 收市後業績</strong>（同日 14:00 ET FOMC）—— 公司指引收入 $89.85-90.95B（+16-17%）、Intelligent Cloud $40.95-41.25B（+33-34%）、Azure 約 +45% cc（上季 43%）；市場預期 EPS $4.71-4.72、收入 $90.7B、capex &gt;$50B；Truist 指 Azure 動能持續、Oppenheimer 上調目標</li>
+<li>風險：Azure 45% 預期已 price-in，只有 43-44% 就係失望；同日 FOMC + Alphabet 業績三重疊加</li>
+<li>判定：<strong>業績前 2 日絕對唔動</strong>。倉位 23.4% + 帳面 +$5,402 係全組最大盈利倉，唔可以用「技術面弱」去碰業績 catalyst</li>
+<li><strong>動作：HOLD 38 sh @ $387.46</strong>（帳面 +$5,402）。條件式計劃（唔係今日）：10/28 收市後若 Azure &lt;43% cc <strong>且</strong> 10/29 開市跌穿 MA20 $526.70 → TRIM 10-15 股</li>
+<br>
+<h4 class="md-h">META — 現價 $646.09（+0.54%）</h4>
+<li>52 週位置：52 高 $779.82、52 低 $519.37 → <strong>48.7%</strong>（中段，已由高位腰斬 17%）</li>
+<li>Gap：開 $640.00 vs 前收 $642.62 = <strong>−0.41%</strong>（向下裂口）</li>
+<li>日內位置 <strong>96.5%</strong>（$629.02-$647.69 高位）→ 開低跌到 $629.02（貼近 POC $610 之上）然後全日抽返上 $646</li>
+<li>量能：折疊 ≈2.3x 正常 → <strong>明顯放量回升</strong>（稀釋消息消化中，有承接）</li>
+<li>VWAP $638.18 → 價高 1.24% = <strong>強 bullish intraday</strong>（全日低於 VWAP 只有開盤頭段，之後全程喺上）</li>
+<li>技術結構：MA10 $707.77 / MA20 $717.65（遠在天花）/ MA50 $663.81（頭上 2.7%）→ 趨勢分數 10/100（空頭），5 日 −8.31%、10 日 −12.94%</li>
+<li>關鍵位：$610（POC）→ $605/$600/$595 支撐簇（9-10 次）；上方 $663.81 MA50 係第一道真阻力</li>
+<li>基本因素：PE 21.9（賬面便宜，但 FCF 已轉負 → PE 參考價值下降）、市值 $1.64 兆</li>
+<li>核心事件：宣布最多 <strong>$95B 股本融資</strong> = $35B 公開發售（$22.5B A 類經遠期出售 + $12.5B 強制可轉換優先股 METAM，2029-08-15 自動轉換）+ 2027 Q1 起最高 $60B ATM（C 類無投票權）；NVDA/AMD/AVGO 表達合計最多 $5B 認購興趣；MS+GS 牽頭；超額配售 $3.375B</li>
+<li>基本因素：Q3 收入 $64.60B（+26% YoY vs 預期 $63.37B）好過；GAAP 盈利受 $9.89B 訴訟撥備打擊；2026 capex $135-145B；Q3 FCF <strong>−$2.12B</strong>（去年 +$10.63B）→ 十幾年首次燒錢；5 年期 CDS 上週創歷史高位；承諾未來支出 ~$825B；9/30 現金 $82.45B vs 長期債 $80.92B</li>
+<li>判定：稀釋 ~5.9% + 負 FCF + CDS 創高 = <strong>結構性壓力</strong>，唔係技術回吐。但今日放量 +1.24% VWAP 溢價 = 市場消化到稀釋</li>
+<li>原條件「收市跌穿 $610（POC）→ SELL 全部 5 股」今日<strong>未觸發</strong>（$646 距 $610 有 5.6%）</li>
+<li><strong>動作：HOLD 5 sh @ $595.30</strong>（帳面 +$254）。觸發維持：收市跌穿 <strong>$610（POC 兼支撐簇）→ SELL 全部 5 股</strong>，唔等 $615（因為結構性風險唔應該等技術反彈）；10/28 業績若 capex 再上調 + FCF 更負 → 次日開市再評估</li>
+<br>
+<h4 class="md-h">GOOGL — 現價 $320.83（+0.19%）</h4>
+<li>52 週位置：52 高 $408.10、52 低 $270.00 → <strong>36.9%</strong>（低位區）</li>
+<li>Gap：開 $320.90 vs 前收 $320.21 = <strong>+0.22%</strong>（同向溫和）</li>
+<li>日內位置 <strong>76.0%</strong>（$317.60-$321.34）</li>
+<li>量能：折疊 ≈1.35x 正常</li>
+<li>VWAP $319.63 → 價高 0.38% = 溫和 bullish</li>
+<li>技術結構：MA10 $340.76 / MA20 $343.08 / MA50 $342.94 → <strong>三線密集喺 $340-343 天花</strong>（頭上 6%），趨勢分數 10/100，5 日 −6.75%、10 日 −9.01%</li>
+<li>支撐：$335（11 次）；下方 POC $345 已成阻力</li>
+<li>基本因素：PE 16.07（賬面便宜；但核心盈利計實質 ~29x，因 ~$98B 投資收益墊高賬面）、市值 $3.92 兆</li>
+<li><strong>10/28 收市後業績</strong>：市場預期收入 $127.9B（+25% YoY）、EPS $3.02-3.07；Google Cloud 預期近倍升（JPMorgan：由 $15.16B 翻倍）；2026 capex 指引 $195-205B（7 月上調自 $180-190B）、2027 ~$300B；Cloud backlog $514B</li>
+<li>風險：capex 令 Q2 FCF 轉負 + 要增發股本；EPS 增速只有 5.6% vs 收入 25% → AI 基建稀釋盈利增長</li>
+<li>持倉成本 $349.58 → <strong>現價 −8.2%（帳面 −$947）</strong></li>
+<li>判定：52 週位置 36.9% 係「低位區」、PE 賬面 16 便宜，但<strong>三線天花壓頂 + 業績 2 日後</strong>。原條件「收市 &lt;$320 即 TRIM 15」今日 $320.83 喺線上（貼近但未破）</li>
+<li>業績就係解鎖點 → 業績前斬等於放棄 catalyst</li>
+<li><strong>動作：HOLD 33 sh @ $349.58</strong>。條件升級：10/28 收市後若 Cloud 增速 &lt;80% 或 capex 再上調 <strong>且</strong> 10/29 開市跌穿 <strong>$310（POC）→ TRIM 15 股</strong>；若業績達標回升上 $335+ 則繼續持</li>
+<br>
+<h4 class="md-h">AMZN — 現價 $250.25（+0.91%）</h4>
+<li>52 週位置：52 高 $287.20、52 低 $196.00 → <strong>59.5%</strong>（中段）</li>
+<li>Gap：開 $249.84 vs 前收 $248.00 = <strong>+0.74%</strong>（同向溫和）</li>
+<li>日內位置 <strong>87.6%</strong>（$247.24-$250.79 高位）</li>
+<li>量能：折疊 ≈1.35x</li>
+<li>VWAP $249.21 → 價高 0.42% = 溫和 bullish</li>
+<li>技術結構：MA10 $256.28 / MA20 $254.43 / MA50 $255.65 → 三線壓頂（頭上 2.4%），趨勢分數 15/100（空頭），5 日 −4.67%</li>
+<li>支撐：$250（21 次阻力兼今日突破位）、$245（19 次 + POC）</li>
+<li>基本因素：PE 20.1、市值 $2.70 兆</li>
+<li><strong>10/29 收市後業績</strong>：市場預期收入 $202.2B（+12.2%）、EPS $1.96（+0.4%）；AWS 預期 ~35%（上季 37%，18 季最快）；AWS backlog $496B；2026 capex ~$220B；Q2 已有 $53.4B Anthropic 稅前收益墊高 EPS</li>
+<li>風險：EPS 幾乎零增長（+0.4%）+ capex 季均需 $61B + FCF 略負 → 市場盯住 backlog 轉收入速度</li>
+<li>持倉成本 $256.57 → 現價 −2.5%（帳面 −$209）</li>
+<li>判定：今日已升穿 $250（21 次阻力簇）→ 技術上係正面，但三線仍壓頂。原條件「收市 &lt;$245 即 TRIM 15」，現價距 2.1%，<strong>今日未觸發</strong></li>
+<li><strong>動作：HOLD 33 sh @ $256.57</strong>。維持 $245 觸發（19 次支撐簇 + POC，跌穿才係真弱）；10/29 業績前唔主動斬</li>
+<br>
+<h4 class="md-h">TSLA — 現價 $394.72（+6.04%）</h4>
+<li>52 週位置：52 高 $498.83、52 低 $297.38 → <strong>48.4%</strong>（中段）</li>
+<li>Gap：開 $384.77 vs 前收 $372.22 = <strong>+3.37%</strong>（顯著裂口；overnight +0.91%、pre +3.37% → 同向 = 趨勢裂口，慢回補）</li>
+<li>日內位置 <strong>85.0%</strong>（$383.84-$396.65）</li>
+<li>量能：<strong>折疊 ≈3.4x 正常 = 真放量</strong>（23.2M vs 20 日全日平均 36.3M，行咗 1h15m）</li>
+<li>VWAP $391.57 → 價高 0.80% = bullish（價全程喺 VWAP 之上，即全日冇乜獲利回吐壓力）</li>
+<li>技術結構：MA10 $371.26 / MA20 $369.87 / MA50 $363.77 → <strong>今日一舉升穿全部三線</strong>，趨勢分數 70/100（多頭），5 日 +7.27%、10 日 +4.44%</li>
+<li>阻力：$385（12 次，已穿）、$415（7 次）；支撐：$380（10 次 + POC）、$370（11 次）</li>
+<li>基本因素：PE 433、（市值 $1.56 兆）</li>
+<li>催化：Barclays 由 equal-weight 上調至 overweight、目標價 $370→$450（SpaceX 合併預期 + 核心車業務恢復增長 + Robotaxi 里程拐點）；Mizuho 上調至 $460；Cybercab 在 Austin F1 週末出動 1,250 次（93% 全無人駕駛）、Austin 車隊一個月增 10 倍、下月進 Dallas；柏林廠週產 7,000 部 Model Y 創新高；Q3 FSD 活躍訂閱 174 萬</li>
+<li>風險：Phillip Securities 目標 $230 維持 Sell（38% downside）；Q3 營運開支 +39% YoY、營運利潤率由 5.8% 跌至 2.6%；交付 486,532 部 −2% YoY；分析師 49 家中 25 買 / 22 持有 → 幾乎對半</li>
+<li>判定：<strong>升上 $385 觸發原定 TRIM 5 條件</strong>（10/23 定下嘅「收市 &lt;$370 或彈上 $385 即 TRIM 5」）。今日 $394.72 已經超額完成，量能真放、VWAP 溢價 → 短期動能仍在，但：</li>
+<li>PE 433 係全組最貴</li>
+<li>分析師嚴重分歧（$450 vs Sell $230）</li>
+<li>gap +3.37% 屬趨勢裂口，但已行到 85% 日內位置</li>
+<li>倉位細（3.3%）但帳面 +$418（+11.9%）</li>
+<li><strong>原定紀律要執行</strong>：條件已觸發，唔應該因為「勢好」而放棄紀律</li>
+<li><strong>動作：TRIM TSLA 5 股 @ $394.72（$1,973.60），餘 5 股 @ $352.89</strong></li>
+<li>鎖利：($394.72 − $352.89) × 5 = <strong>+$209.15</strong> 已實現</li>
+<li>保留 5 股食 SpaceX 合併敘事 + Robotaxi catalyst；止蝕上移至 $370（MA20 兼支撐簇）</li>
+<li>理由：消息驅動 + PE 433 + 分析師對半分歧 → 高位唔應該留住全部</li>
+<br>
+<h4 class="md-h">WMT — 現價 $120.95（+0.88%）</h4>
+<li>52 週位置：52 高 $134.83、52 低 $98.06 → <strong>62.2%</strong>（中上）</li>
+<li>Gap：開 $119.81 vs 前收 $119.89 = <strong>−0.07%</strong>（無裂口）</li>
+<li>日內位置 <strong>77.5%</strong>（$119.59-$121.77）</li>
+<li>量能：折疊 ≈0.75x 正常 → <strong>靜</strong>（防守股今日唔係資金焦點）</li>
+<li>VWAP $120.88 → 價高 0.06% = <strong>equilibrium</strong>（價喺 VWAP 附近，買賣平衡）</li>
+<li>技術結構：MA10 $117.36 / MA20 $112.19 / MA50 $109.43 → <strong>全部喺腳下</strong>，20 日 +11.03%、趨勢分數 70/100（多頭），5 日 +1.87%、10 日 +6.93%</li>
+<li>基本因素：PE 43.9（零售股極高，歷史 25-30x）、市值 $962B（距 $1 兆只 4%）</li>
+<li>催化：10 月係 1999 年以來最好月份；防禦性輪動令 staples 10 月升約 9%</li>
+<li>風險：PE 43.9 極高；倉細 1.7%</li>
+<li>判定：<strong>全組唯一防守性 + 唯一穩定升勢嘅倉</strong>（趨勢 70/100 + 三線喺腳下 + 20 日 +11%）。今日靜態係正常（防守股唔需要日日升）</li>
+<li><strong>動作：HOLD 12 sh @ $118.64</strong>（帳面 +$28）。維持「跌穿 $118（17 次支撐簇）→ TRIM 6」；<strong>唔可以減</strong>（唯一防守倉），<strong>亦唔加</strong>（PE 太高 + 倉細）</li>
+<br>
+<h4 class="md-h">MU — 現價 $897.31（+2.25%）</h4>
+<li>52 週位置：52 高 $1,254.61、52 低 $192.37 → <strong>66.4%</strong>（中上）</li>
+<li>Gap：開 $888.33 vs 前收 $877.55 = <strong>+1.23%</strong>（同向溫和）</li>
+<li>日內位置 <strong>45.8%</strong>（$882.77-$908.50）→ <strong>開高衝 $908.50 後回落，中段</strong></li>
+<li>量能：折疊 ≈1.5x</li>
+<li>VWAP $893.39 → 價高 0.44% = 溫和 bullish</li>
+<li>技術結構：MA10 $911.51 / MA20 $986.70 / MA50 $982.73 → 三線全部頭上，20 日 −18.92%、趨勢分數 10/100（空頭）</li>
+<li>支撐：$905（6 次，今日曾破）、$890（4 次）、$860（4 次）；阻力：$930/$945/$960</li>
+<li>基本因素：PE 12.0（<strong>板塊內最便宜</strong>）、市值 $1.01 兆</li>
+<li>基本面：FQ4&#x27;26（截 9/3）收入 $54.23B（+379% YoY）、毛利率 87%、EPS $32.87；FQ1&#x27;27 指引收入 $61.5B ±1.5B、EPS $38.15 ±1.00 → vs 市場 $57.02B / $35.40 <strong>大幅超預期</strong>；CEO 講 2027/2028 供需比 2026 更緊</li>
+<li>風險：中國 CXMT 4F² DRAM（總統 10/14 話年底出 server DDR5）→ 記憶體板塊連跌多日；Seeking Alpha 質疑新 SCA 合約；Morgan Stanley 指半導體支撐位可能低 15%</li>
+<li>⚠️ 關鍵辨析：CXMT 打 <strong>commodity DRAM</strong>，唔係 HBM。MU 嘅 HBM 佔比低過 SKHY → 受 commodity 影響較大，但仍然有 HBM 業務。用 CXMT 消息斬 MU 係「用 commodity 故事斬 HBM 倉」</li>
+<li>持倉成本 $915.75 → 現價 −2.0%（帳面 −$37）</li>
+<li>判定：今日 +2.25% 由 SK hynix 特別息 + 10/28 業績預期帶動，但日內位置 45.8% 顯示衝高回落（$908.50 遇阻）。倉細 1.6%、波動 53.4% 全組最高 → 財報週唔適合加</li>
+<li><strong>動作：HOLD 2 sh @ $915.75</strong>。維持「跌穿 $849 即 SELL」；10/28 SK hynix 業績係 read-through（若 HBM 指引強 → 持有；若 commodity DRAM 拖累 → 破 $860 就斬）</li>
+<br>
+<h4 class="md-h">IBKR — 現價 $81.00（+0.90%）</h4>
+<li>52 週位置：52 高 $98.66、52 低 $58.70 → <strong>55.9%</strong>（中段）</li>
+<li>Gap：開 $80.35 vs 前收 $80.28 = <strong>+0.09%</strong>（無裂口）</li>
+<li>日內位置 <strong>94.5%</strong>（$79.30-$81.11 高位）→ 早段跌到 $79.30（幾乎觸發 20:40 研究嘅 $79.50 止蝕線）然後全日抽返上 $81</li>
+<li>量能：折疊 ≈1.38x</li>
+<li>VWAP $80.29 → 價高 0.88% = <strong>bullish intraday</strong>（日低 $79.30 係開盤頭段，之後全程喺 VWAP 上）</li>
+<li>技術結構：MA10 $84.04 / MA20 $85.74 / MA50 $89.44 → <strong>全部頭上</strong>，5 日 −0.26%、10 日 −7.68%、20 日 −10.04%，趨勢分數 0/100（最弱）</li>
+<li>基本因素：PE 30.9、市值 $36.7B、股息 0.41%</li>
+<li>基本面：Q3（10/15）淨收入好過預期、調整 EPS 符合預期，但日均交易量（DARTs）環比下滑 → 股價跌 3.67%；Seeking Alpha 10/22 指「減速可能係暫時，但股票缺乏價值」；10/7 跌 4.78%（減息預期威脅淨利息收入）</li>
+<li>持倉成本 $85.41 → 現價 −5.2%（帳面 −$88）</li>
+<li>判定：<strong>原「收市 &lt;$79.50 → SELL 全部 20 股」今日未觸發</strong>（早段低見 $79.30 但已收回 $81，日內位置 94.5%）。呢個係<strong>日內反轉</strong>訊號：破 $79.50 之後即刻買返嚟</li>
+<li>但趨勢分數 0/100 + 20 日 −10% + DART 下滑係結構性（利率見頂 → 淨利息收入受壓）→ 唔係技術回吐</li>
+<li>帳面蝕 $88（1.45% 倉位，影響細）</li>
+<li><strong>動作：HOLD 20 sh @ $85.41</strong>。條件維持但收緊：收市 <strong>&lt;$80（心理位 + 今日 VWAP）→ SELL 全部 20 股</strong>（早段曾破 $79.50 但係假破，改睇收市價較可靠）</li>
+<br>
+<h3 class="md-h">四、非持倉可交易股（38 隻 universe）— 逐一掃描</h3>
+<br>
+<li><strong>CRWV $55.38（+2.11%）</strong>：52 週位置 <strong>4.8%</strong>（52 低 $51.24，今日低見 $51.24）。Musk「200+ neocloud 會見到孔雀魚級死亡同整合」+ CDS 破高位 + 債息 15% + 分析師連環劈價（RJ $75、UBS $105、MS $70）+ ~$30B 債 + Q2 利息 $640M。今日 +2.1% 但 gap −4.58%（由 $51.24 反彈）→ <strong>典型反彈陷阱</strong>。制度已翻轉為 contagious → <strong>唔接刀，唔買</strong></li>
+<li><strong>STX $634.87（+0.69%）</strong>：<strong>10/27（明日）收市後業績</strong>，市場預期收入 ~$4.1B、EPS $7.10-7.50（Zacks $7.34，+181% YoY）。20 日 −31.2%、趨勢 0/100、52 週位置 44.5%。Morgan Stanley 10/20 上調目標 $1,200 + 列 IT hardware top pick。<strong>業績前唔買</strong>；業績後若好業績被錯殺，$600-620 係首位觀察區</li>
+<li><strong>SNDK $1,243.34（+0.43%）</strong>：52 週位置 48.8%、20 日 −30.4%、趨勢 0/100。今日開 $1,250.18 衝 $1,278.57 後跌返 $1,243（日內 28.9%）→ 衝高失敗。<strong>唔買</strong></li>
+<li><strong>WDC $345.94（+0.66%）</strong>：52 週位置 32.0%、20 日 −24.8%、趨勢 15/100。Morgan Stanley 10/20 劈目標 $676→$643。<strong>唔買</strong></li>
+<li><strong>AMKR $37.68（−4.13%）</strong>：今日全組最弱。上週五因 NVIDIA $1.3B 封裝合約升 4.7%，今日回吐，量能折疊 ≈6.4x（放量下跌 = 派發）。52 週位置 12.1%、20 日 −26.7%、趨勢 0/100 → <strong>跌勢中接刀，唔買</strong></li>
+<li><strong>SKHY $139.89（+2.09%）</strong>：52 週位置 <strong>20.1%</strong>（接近低位）。gap +2.61%、pre +2.61%；10/28 業績（營運利潤 ₩76.96 兆 +576%、78.4% margin）+ Kioxia 持股出售 80% 收益（~$12.1B）派特別息。日內位置 25.2%（衝高 $142.07 後回落）→ 業績前衝高回落。<strong>唔買</strong>（等 10/28 業績確認 HBM 定價）</li>
+<li><strong>SOXX $484.87（+1.39%）</strong>：52 週位置 56.9%、20 日 −16.5%、趨勢 10/100。Morgan Stanley 指支撐可能到 ~$413。<strong>唔買</strong></li>
+<li><strong>AMD $519.09（+0.45%）</strong>：52 週位置 70.4%、20 日 −18.1%（大型晶片股跌幅最大）、趨勢 10/100、PE 133。日內 39.5%（開 $523 衝高後回落）。Helios 由 GPU 擴至 CPU 推論係真催化但已 price-in。<strong>唔買</strong></li>
+<li><strong>INTC $87.75（+0.90%）</strong>：10/29 業績（EPS $0.39-0.40、收入 $16.45B、18A 產出超標 25%）；20 日 −29.3%（全組最差）、趨勢 10/100、GAAP 虧損。<strong>業績前唔買</strong></li>
+<li><strong>NET $329.34（+1.11%）</strong>：5 日 +9.93% 但 20 日 −6.67%、52 週位置 80.9%、日內 92.4%（貼日高）、PE 負、PB 72.5。升完喺高位 → <strong>追高，唔買</strong></li>
+<li><strong>CAT $688.03（+0.39%）</strong>：52 週位置 29.0%、20 日 −16.4%、趨勢 0/100、MA 全部喺頭上。工業衰退訊號。<strong>唔買</strong></li>
+<li><strong>GS $893.61（+2.05%）</strong>：52 週位置 37.7%、20 日 −6.4%、趨勢 0/100、PE 12.8。今日 +2% 反彈但 MA50 $959.72 遠在天花。金融股受利率路徑不明影響。<strong>唔買</strong></li>
+<li><strong>JPM $335.64（+1.22%）</strong>：52 週位置 67.6%、20 日 −3.35%、趨勢 15/100、PE 14.1、股息 1.83%。今日量能折疊 ≈0.9x（冇放量）。<strong>唔買</strong></li>
+<li><strong>CVX $231.36（−0.80%）/ XOM $182.40（−0.44%）</strong>：52 週位置 <strong>97.0% / 97.4%</strong>（幾乎歷史高）。5 日 +3.65%/+2.36%、20 日 +14%。油價由六個月高位回落（Brent $114-115 −1.3~2%、WTI $101.5-102 −1.5~1.7%），因特朗普「接近決策時刻」+ 霍爾木茲運輸恢復。<strong>唔追</strong>（52 週位置 97% + PE 22-23 + 油價已回落）</li>
+<li><strong>UNH $418.45（+0.08%）</strong>：52 週位置 80.4%、20 日 +11.0%、趨勢 70/100。10/13 Q3 大勝（EPS $4.69 vs $4.12、收入 $112.7B、全年指引上調至 ≥$20.50 調整 EPS）+ 醫療賠付率改善至 88.4%（去年 89.9%）。但已升 11% → <strong>等回踩 MA20 $389 才考慮</strong></li>
+<li><strong>LLY $1,282.72（+0.73%）</strong>：52 週位置 91.9%、20 日 +7.6%、趨勢 70/100、PE 43。日內 26.3%（衝高 $1,296.90 後回落）。<strong>唔追</strong></li>
+<li><strong>COST $1,009.09（+0.57%）</strong>：52 週位置 66.3%、20 日 +8.7%、趨勢 70/100、PE 48.6。<strong>等回踩 MA20 $958</strong></li>
+<li><strong>MCD $251.69（+1.30%）</strong>：52 週位置 21.2%（殘）、20 日 +5.06%、趨勢 60/100、PE 20.4、股息 2.92%。今日量能 1.0x。<strong>觀察</strong>（52 週低位 + 防守 + 估值合理，但要等回踩 MA20 $238）</li>
+<li><strong>RTX $195.06（+2.12%）</strong>：52 週位置 49.0%、20 日 +0.85%、趨勢 45/100（中性）、MA50 $197.11 喺頭上。今日量能折疊 ≈0.65x（<strong>升 2% 冇放量</strong>）。國防股受伊朗尾部風險帶動。<strong>唔追</strong></li>
+<li><strong>CRWD $262.04（+1.74%）</strong>：5 日 +13.27%、52 週位置 87.6%、PE 6,896x / PB 52.6、161x forward earnings（5 年平均 115x）。NVIDIA GTC Berlin 宣布 Falcon Guardian 接 NVIDIA OpenShell 但同時公布 11 個網絡安全夥伴 → 唔係獨家。<strong>估值極限，唔買</strong></li>
+<li><strong>AAL $12.27（+1.35%）</strong>：52 週位置 25.1%、20 日 −12.7%、趨勢 15/100、PE 負。油價回落利好但幅度太細。<strong>唔買</strong></li>
+<li><strong>TSM $422.19（+0.88%）</strong>：52 週位置 70.8%、20 日 −7.1%、趨勢 25/100、PE 28.2 合理。iPhone Duo 供應商受惠 30% 增產但受 AI capex 情緒拖累。<strong>觀察</strong></li>
+<li><strong>DELL $461.41（+1.09%）</strong>：gap +2.19%（pre +2.20%）、52 週位置 72.5%、20 日 −18.9%。Helios 藍圖 + 「AI factory」。日內 60.6%（開 $466.42 衝 $468.25 後回落）。<strong>消息反彈，唔追</strong></li>
+<li><strong>BE $203.78（+5.42%）</strong>：gap −0.16%，日內 96.5%（貼日高）、量能折疊 ≈4.4x（真放量）。10/23 業績後插近 9%（Q3 收入 +138% 但 FCF 負）；20 日 −33.0%、5 日 −12.7%、趨勢 10/100、PE 123。<strong>跌勢中反彈，唔接刀</strong></li>
+<li><strong>SPY / QQQ / VOO / DIA</strong>：全部今日反彈（SPY +0.84%、QQQ +1.23%），但 20 日 SPY −1.48% / QQQ −5.39% / VOO −1.72% / DIA +0.75%，趨勢 SPY/QQQ/VOO 10/100、DIA 60/100。<strong>制度係「最差風險回報格」→ 唔用指數加倉</strong></li>
+<br>
+<h3 class="md-h">五、今日行動清單</h3>
+<br>
+<h4 class="md-h">執行（1 單）</h4>
+<li class="num">1. <strong>TRIM TSLA 5 股 @ $394.72（$1,973.60）</strong> — 原定「彈上 $385 即 TRIM 5」條件已超額觸發（今日 $394.72，+6.04%）</li>
+<li>鎖利 +$209.15；餘 5 股 @ $352.89 保留 SpaceX 合併敘事</li>
+<li>理由：PE 433 全組最貴 + 分析師對半分歧（$450 vs Sell $230）+ gap +3.37% 已行到日內 85% + 倉位細（3.3%）→ 高位唔應該留住全部</li>
+<br>
+<h4 class="md-h">唔做（紀律）</h4>
+<li>❌ <strong>唔開任何新倉</strong> — 制度「最差風險回報格」（信貸 −2.31% + VIX 18.33 平靜）+ 傳染未包住 + 財報週 5 日內 6 個重大事件 → 新倉 = 賭事件</li>
+<li>❌ <strong>唔加 NVDA（32.5%）/ MSFT（23.4%）</strong> — 集中度兩隻已 56%</li>
+<li>❌ <strong>唔接刀</strong> — CRWV（52 週 4.8%）、BE（20 日 −33%）、AMKR（今日 −4.13% 放量下跌）、CAT（趨勢 0/100）、IBKR（趨勢 0/100）</li>
+<li>❌ <strong>唔追 52 週高位</strong> — CVX 97.0%、XOM 97.4%、LLY 91.9%、AAPL 94.9%</li>
+<li>❌ <strong>唔追消息反彈</strong> — BE +5.42%、TSLA 已 TRIM、DELL +1.09%、RTX +2.12%（冇放量）</li>
+<br>
+<h4 class="md-h">條件式（今日未觸發，持續監控）</h4>
+<li>NVDA 收市 &lt;$210（POC + 17 次支撐）→ TRIM 40 股</li>
+<li>META 收市 &lt;$610（POC）→ SELL 全部 5 股</li>
+<li>IBKR 收市 &lt;$80（心理位 + VWAP）→ SELL 全部 20 股</li>
+<li>GOOGL 收市 &lt;$310（POC）→ TRIM 15 股（但 10/28 業績前唔主動斬）</li>
+<li>AMZN 收市 &lt;$245（19 次支撐 + POC）→ TRIM 15 股（10/29 業績前唔主動斬）</li>
+<li>AAPL 收市實質跌穿 $342（MA10）兼量能 &gt;1.5x → TRIM 10 股</li>
+<li>WMT 收市 &lt;$118（17 次支撐）→ TRIM 6 股</li>
+<li>MU 收市 &lt;$849 → SELL 全部 2 股</li>
+<li>TSLA（餘 5 股）收市 &lt;$370（MA20）→ SELL 全部 5 股</li>
+<br>
+<h4 class="md-h">財報後條件式計劃</h4>
+<li><strong>MSFT 10/28</strong>：Azure &lt;43% cc 且 10/29 開市跌穿 MA20 $526.70 → TRIM 10-15 股</li>
+<li><strong>GOOGL 10/28</strong>：Cloud &lt;80% 增速 或 capex 再上調 且 跌穿 $310 → TRIM 15 股</li>
+<li><strong>AMZN 10/29</strong>：AWS &lt;33% 或 capex 再加 且 跌穿 $245 → TRIM 15 股</li>
+<li><strong>AAPL 11/2</strong>：毛利率 &lt;47% 或 iPhone 收入 &lt;$56B 且 跌穿 MA20 $338.91 → TRIM 10 股</li>
+<li><strong>STX 10/27</strong>：若好業績被錯殺 → $600-620 係首位觀察區（但要 HYG 解除訊號才考慮）</li>
+<br>
+<h3 class="md-h">六、風險因素 / 矛盾點</h3>
+<br>
+<li><strong>數據限制</strong>：Futu 未訂閱 OrderBook → 實時買賣盤深度攞唔到。本報告用 VWAP + 日內位置 + 量能代替，可信度下降</li>
+<li><strong>量能陷阱</strong>：腳本 volume_ratio 係開市首小時折算，唔可以當全日放量。本報告已用日 K 20 日平均量重新折算</li>
+<li><strong>信貸邊際改善但未解除</strong>：HYG 由 −2.63% 收窄到 −2.31%，但仍過 −2% 門檻 → 唔可以當「返場訊號」（需回升至距低位 ≥2%，現時只有 +0.64%）</li>
+<li><strong>今日反彈 ≠ 趨勢確認</strong>：SPY/QQQ 貼日高但 20 日仍負（SPY −1.48%、QQQ −5.39%）；反彈係財報前空倉回補，唔係新資金入場</li>
+<li><strong>分析師嚴重分歧</strong>：TSLA（$450 vs Sell $230）、CRWV（$140 BofA vs $70 MS）、GOOGL（賬面 PE 16 vs 核心 29x）→ 唔可以單靠一個 analyst target 落判斷</li>
+<li><strong>「30% 增產」陷阱</strong>：AAPL iPhone Duo 嘅 30% 數字 10/11 同 10/26 兩次報道，基準不明、可能重疊 → 唔可以相加</li>
+<li><strong>HBM vs commodity DRAM 混淆</strong>：CXMT 打 commodity DRAM，唔係 HBM。用 CXMT 消息斬 MU/SKHY 係錯</li>
+<li><strong>VIX 18.33 平靜 ≠ 安全</strong>：VIX 恐慌格預期回報 +2.72%（均值回歸買入）；信貸壓力才是避險訊號。兩者方向相反，唔可以混淆</li>
+<li><strong>財報週單日事件風險</strong>：MSFT+GOOGL 10/28 同日、AMZN 10/29、AAPL 11/2 → 任何一隻 miss 都可能觸發 VIX 升穿 20（risk-off 確認）</li>
+<li><strong>油價尾部風險</strong>：BofA 指伊朗恢復攻擊基建可見 $120；霍爾木茲已恢復近戰前水平，但特朗普「決策時刻」未定 → CVX/XOM 高位 + 尾部風險 = 唔應該追</li>
+<br>
+<h3 class="md-h">七、信心評分</h3>
+<p>| 段落 | 信心 | 依據 |</p>
+<p>|---|---|---|</p>
+<p>| 今日盤面實測 | 95% | Futu snapshot 實時（22:45 HKT），價格/量/日內位置全部實測 |</p>
+<p>| 制度判定 | 90% | HYG yfinance 1d 實時重算 + VIX 18.33 實時 |</p>
+<p>| 量能折算 | 85% | 日 K 30 日平均量 vs 今日累計量（時段折算） |</p>
+<p>| 財報預期數字 | 85% | 公司指引（MSFT IR、MU 業績會）+ 市場共識，T-3/T-4 互相印證 |</p>
+<p>| 催化劑歸因 | 80% | CNBC/Reuters/Investing T-3；TSLA/BE/CRWV 有兩源以上 |</p>
+<p>| 技術位判定 | 75% | technical.md SR 簇（20:40 數據），未涵蓋今日全日走勢 |</p>
+<p>| 盤口判斷 | 40% | ⚠️ Futu 未訂閱 OrderBook，數據不可用 → 用 VWAP 代替 |</p>
+<p>| 整體 | <strong>78%</strong> | 無幻覺風險、無陳舊數據（全部今日）、已標註數據限制 |</p>
+<br>
+<h3 class="md-h">八、來源</h3>
+<p>| 來源 | Tier | 日期 | 用於 |</p>
+<p>|---|---|---|---|</p>
+<p>| Futu OpenAPI snapshot | T-3（券商實時） | 2026-10-26 22:45 HKT | 全部價格/量/日內位置 |</p>
+<p>| Futu kline（30 日日 K） | T-3 | 2026-10-26 | 20 日平均量校正 |</p>
+<p>| yfinance（HYG/^VIX/^TNX 1d） | T-2 | 2026-10-26 | 信貸制度重算 |</p>
+<p>| sim-trader supply（technical/macro/credit/risk/universe） | T-1 | 2026-10-26 20:40 HKT | 技術結構/制度/組合風險 |</p>
+<p>| news_digest（24h 內新聞） | T-1 | 2026-10-26 20:40 HKT | 持倉相關催化 |</p>
+<p>| 21:41 HKT 研究報告 | T-1 | 2026-10-26 21:41 HKT | 財報預期/催化劑/分析師目標 |</p>
+<br>
+<p>--- EN: One trade — TRIM TSLA 5 sh @ $394.72 (locks +$209), keep 5 sh. All other 9 holdings HOLD. No new positions: credit regime still compressed (HYG −2.31% off 60d high, VIX 18.33 calm = worst risk/reward quadrant) + earnings week + 6 events in 5 days. Today was a relief rally (SPY/QQQ at day highs, above VWAP) but 20d trends still negative — not trend confirmation. Order book data unavailable (Futu OrderBook subscription missing); volume ratios re-derived from daily-K 20d averages to avoid first-hour annualization trap. Confidence 78%.</p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #1888 · 2026-10-26 22:50 HKT</p>
+</footer>
+</body>
+</html>
