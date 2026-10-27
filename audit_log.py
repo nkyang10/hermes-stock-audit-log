@@ -1033,7 +1033,7 @@ header {
   background: #ffffff;
   padding: 28px 20px 0;
 }
-.hd-inner { max-width: 800px; margin: 0 auto; }
+.hd-inner { max-width: 1280px; margin: 0 auto; }
 header h1 { font-size: 1.6em; color: #111827; }
 .hd-sub { color: var(--text-muted); font-size: 0.85em; margin: 2px 0 6px; }
 .hd-stats { display: flex; gap: 12px; flex-wrap: wrap; margin: 6px 0; }
@@ -1076,7 +1076,7 @@ header h1 { font-size: 1.6em; color: #111827; }
 }
 
 /* main */
-main { max-width: 800px; margin: 0 auto; padding: 16px 20px; }
+main { max-width: 1280px; margin: 0 auto; padding: 16px 20px; }
 .section-title { font-size: 1.1em; font-weight: 600; margin-bottom: 12px; color: var(--text-muted); }
 
 /* snapshot date selector */
@@ -1198,7 +1198,7 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 20px; }
 .pf-table tr:last-child td { border-bottom: none; }
 
 /* footer */
-footer { max-width: 800px; margin: 0 auto; padding: 16px 20px; text-align: center; color: var(--text-muted); font-size: 0.78em; border-top: 1px solid var(--border); }
+footer { max-width: 1280px; margin: 0 auto; padding: 16px 20px; text-align: center; color: var(--text-muted); font-size: 0.78em; border-top: 1px solid var(--border); }
 footer a { color: var(--text-muted); }
 
 /* responsive */
