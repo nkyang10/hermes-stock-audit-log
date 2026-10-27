@@ -103,7 +103,7 @@ main { max-width: 1280px; margin: 0 auto; padding: 16px 20px; }
 .date-btn.active { color: #fff; background: var(--accent); border-color: var(--accent); }
 
 /* entry cards */
-@media (min-width: 900px) { #decCards, #stuCards, #tlCards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; align-items: start; } #decCards .entry-card, #stuCards .entry-card, #tlCards .entry-card { margin-bottom: 0; } #decCards .tl-date-group, #stuCards .tl-date-group, #tlCards .tl-date-group { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } #decCards .tl-date-hdr, #stuCards .tl-date-hdr, #tlCards .tl-date-hdr { grid-column: 1 / -1; } }
+@media (min-width: 900px) { #decCards, #stuCards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; align-items: start; } #decCards .entry-card, #stuCards .entry-card, #tlCards .entry-card { margin-bottom: 0; } #decCards .tl-date-group, #stuCards .tl-date-group, #tlCards .tl-date-group { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } #decCards .tl-date-hdr, #stuCards .tl-date-hdr, #tlCards .tl-date-hdr { grid-column: 1 / -1; } }
 .entry-preview { font-size: 0.82em; color: var(--text-muted); margin: 2px 0 0 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 90%; }
 .entry-card {
   display: block; background: #ffffff; border: 1px solid var(--border); border-radius: 8px;
@@ -176,7 +176,8 @@ main { max-width: 1280px; margin: 0 auto; padding: 16px 20px; }
 
 /* timeline group */
 .tl-date-group { margin-bottom: 12px; }
-@media (min-width: 900px) { .tl-date-group { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3px 8px; align-items: start; } .tl-date-group .tl-date-hdr { grid-column: 1 / -1; } .tl-date-group .entry-card { margin-bottom: 0; } }
+@media (min-width: 900px) { #tlCards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; align-items: start; } #tlCards .tl-date-group { margin-bottom: 0; } }
+
 .tl-date-hdr { font-size: 0.85em; font-weight: 600; color: var(--accent); padding: 6px 0 4px; margin-bottom: 4px; border-bottom: 1px solid var(--border); }
 .tl-date-group .entry-card { padding: 8px 14px; margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
 .tl-date-group .entry-card .entry-time { font-size: 0.72em; color: var(--text-muted); white-space: nowrap; min-width: 3em; }
