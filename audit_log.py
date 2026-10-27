@@ -1180,6 +1180,7 @@ main { max-width: 800px; margin: 0 auto; padding: 16px 20px; }
 
 /* timeline group */
 .tl-date-group { margin-bottom: 12px; }
+@media (min-width: 900px) { .tl-date-group { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3px 8px; align-items: start; } .tl-date-group .tl-date-hdr { grid-column: 1 / -1; } .tl-date-group .entry-card { margin-bottom: 0; } }
 .tl-date-hdr { font-size: 0.85em; font-weight: 600; color: var(--accent); padding: 6px 0 4px; margin-bottom: 4px; border-bottom: 1px solid var(--border); }
 .tl-date-group .entry-card { padding: 8px 14px; margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
 .tl-date-group .entry-card .entry-time { font-size: 0.72em; color: var(--text-muted); white-space: nowrap; min-width: 3em; }
