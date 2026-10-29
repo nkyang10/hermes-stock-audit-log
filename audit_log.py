@@ -198,11 +198,11 @@ def date_switcher_html(all_dates, curr_date, prefix=''):
     html += '</div></div>'
     return html
 
-def page_head_html(title, header_kw, prefix='', sel_all='', sel_hld='', sel_stu='', curr_date=None, all_dates=None, hide_date_switcher=False):
+def page_head_html(title, header_kw, prefix='', sel_all='', sel_hld='', sel_stu='', sel_sec='', curr_date=None, all_dates=None, hide_date_switcher=False):
     """Generate full page header with tabs and date switcher."""
     ds = '' if hide_date_switcher else (date_switcher_html(all_dates or [], curr_date, prefix) if all_dates else '')
     kw = dict(header_kw, title=title, prefix=prefix,
-              sel_all=sel_all, sel_hld=sel_hld, sel_stu=sel_stu,
+              sel_all=sel_all, sel_hld=sel_hld, sel_stu=sel_stu, sel_sec=sel_sec,
               date_switcher=ds)
     return PAGE_HEAD.format(**kw)
 
@@ -233,6 +233,7 @@ PAGE_HEAD = '''<!DOCTYPE html>
     <a href="{prefix}index.html" class="tab {sel_all}">📋 時間線</a>
     <a href="{prefix}holdings.html" class="tab {sel_hld}">💼 持倉</a>
     <a href="{prefix}studies.html" class="tab {sel_stu}">📚 研究</a>
+    <a href="{prefix}sector-report.html" class="tab {sel_sec}">🧭 板塊</a>
   </nav>
 </header>
 <main>
@@ -386,7 +387,7 @@ def gen_snapshot_holdings_page(snap_data, header_kw, all_dates=None, curr_date=N
     # Use the new page_head_html with date switcher
     ds = date_switcher_html(all_dates or [], curr_date, prefix)
     kw2 = dict(header_kw, title=kw['title'], prefix=prefix,
-               sel_all='', sel_hld='active', sel_dec='', sel_stu='',
+               sel_all='', sel_hld='active', sel_dec='', sel_stu='', sel_sec='',
                date_switcher=ds)
     page_head = PAGE_HEAD.format(**kw2)
 
