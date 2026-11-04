@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#2136 — 研究報告 · 2026-11-04_23:31</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 1908 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">1218 項決策</span>
+      <span class="stat">92 項快照</span>
+      <span class="stat">598 項研究</span>
+      <span class="stat">21 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+    <a href="../sector-report.html" class="tab ">🧭 板塊</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-11-04 23:31 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>研究報告 · 2026-11-04_23:31</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">auto</span></div>
+  </div>
+  <div class="reasoning">
+    <h2 class="md-h">研究報告 · 2026-11-04 23:28 HKT（美股 10:28 EST 正規時段）</h2>
+<br>
+<h3 class="md-h">一、Bottom Line（先講結論）</h3>
+<br>
+<li>今日係「期中選舉藍潮」+「AMD 爆數」兩股力量同時推動嘅大反彈日：DIA +2.03%、SPY +1.50%、QQQ +1.64%，道指曾升逾 1,200 點。但反彈嘅結構極度分化 — 資金由 AI 資本開支質疑（GOOGL/META/AMZN 現金流問題）轉向「現金流實證」同「政策受惠」標的。</li>
+<li>最重要嘅新事實：民主黨贏咗參眾兩院（Tier-3 Reuters/CBS/CNN 一致），市場解讀為「分治政府 = 唔會再加激進關稅/唔會再大規模放寬 AI 監管」，但同時對 Tesla/SpaceX（Musk 政治關聯）同大型平台監管風險構成壓力。</li>
+<li>信貸制度仍在「最差風險回報格」：HYG 距 60 日高位 −3.15%（🔴 受壓），VIX 18.33（平靜）→ 信貸壓力 + VIX 平靜 = 預期回撤加深 −4.60%、預期回報崩塌至 +0.06%。今日反彈係事件驅動，唔係制度轉向。</li>
+<li>傳染測試：credit_contained = false（HYG 已過 −2% 門檻）→ 半導體板塊今日嘅回調屬「有機會傳染」類別（歷史上對應 −11.70% vs contained −3.83%），唔可以當普通輪動處理。</li>
+<li>我哋組合今日大豐收：總值 $112,705（+$2,356 / +2.13% vs 昨晚），MSFT +6.07%、AAPL +6.18%、AMZN +7.34%、GOOGL +5.28% 全線爆上。但呢個反彈嘅「質量」要拆開睇 — AAPL 係逆業績利空而升（記憶體成本警告已消化），MSFT 係 Azure 48% 增長嘅延後反應，GOOGL 係超跌反彈（20d 仍 −19.46%）。</li>
+<li>今日唔應該追高：多隻持倉 intraday_position &gt; 85%（AAPL 90.1%、AMZN 68.7% 但 gap +5.7%、MCD 89.7%、WMT 92.0%），而多隻半導體股 intraday_position &lt; 25%（MU 14.8%、WDC 15.5%、SNDK 20.0%、INTC 24.2%、SOXX 24.2%、CAT 6.0%）。呢個係典型「指數升、半導體散」嘅內部分歧日。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">二、今日大市結構（Macro + 事件驅動）</h3>
+<br>
+<li><strong>期中選舉藍潮</strong>（Tier-3 Reuters / CBS / CNN，2026-11-04）</li>
+<li>民主黨奪參眾兩院，CNN 報 Dow futures 一度跳 1,100 點；CBS 報開市後道指升逾 1,200 點（+2.4%），標普 +1.7%、納指 +2.1%</li>
+<li>Reuters：美股期貨由隔夜最多跌 2% 反轉至升約 1%，美元下跌</li>
+<li>市場邏輯：分治政府 → 關稅/財政激進政策受限 → 利好跨國收入佔比高嘅大型科技（AAPL/GOOGL/MSFT/AMZN beta dollar 全部 −1.2 至 −1.8，美元跌 = 直接利好）</li>
+<li>反面：民主黨對 AI 監管同大型平台反壟斷更積極 → Reuters 明言「rapid AI sector growth could be hamstrung by regulatory scrutiny」</li>
+<li><strong>Tesla / SpaceX 逆市大跌</strong>（Tier-3 Bloomberg / 24-7WallSt / Business Insider）</li>
+<li>TSLA 隔夜 −4.52%、開市 −4.7% gap，現價 $388.15（−2.60%），intraday 反彈至 89.3% 位置</li>
+<li>SPCX 隔夜 −3.81%、gap −5.67%，現價 $138.05（−2.31%）</li>
+<li>原因：Musk 曾向共和黨陣營投入 $450M，民主黨全面勝選 → Tesla-SpaceX 合併（傳 2027 年中公布，Barclays 估 Musk 將控 56% 投票權）面臨監管風險</li>
+<li>呢個係「政治 beta」而唔係基本面 — 對組合影響有限（TSLA 只 2 股）</li>
+<li><strong>利率與就業</strong>（Tier-1 Treasury TBAC + Tier-3 MarketWatch/TradingEconomics）</li>
+<li>10Y 現報 4.94–4.95%，較上日 4.96% 微跌；Treasury TBAC 11-04 報告：10Y 曾於 10 月初見 5.4% 高位，之後部分回吐</li>
+<li>期貨市場定價聯儲 12 月加息機會約 80%，並預期 2027 年再加一次（MarketWatch 2026-11-04）</li>
+<li>週五（11-06）10 月非農預期 +65K（前值 +29K），失業率 4.2% — 呢個係本週最大變數</li>
+<li>JOLTS 職缺升至 752 萬（4 個月高，預期 715 萬）→ 勞動市場仍韌，支持再加息</li>
+<li><strong>VIX 18.33（−12%）</strong> — 選舉不確定性解除後波動率崩，但注意：VIX 日內跌幅 18.5%（script yfinance 數），同 macro_context 嘅 −12% 有出入，以 macro_context（20:40 生成）為準，收市前應以最終值為準</li>
+<li><strong>油價</strong> — 美伊戰爭出現新轉向，油價急跌（QQQ Energy tag 新聞 11-03 23:37），XOM −2.67%、CVX −2.46% 同步走弱</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">三、信貸制度 × 傳染測試（必須寫入風險預算）</h3>
+<br>
+<li>HYG 距 60 日高位 −3.15%（門檻 −2%）→ <strong>仍在受壓</strong></li>
+<li>HYG 距 60 日低位回升 +0.22%（2% 以上 = 解除訊號）→ <strong>未解除</strong></li>
+<li>HY/IG 比率 0.7422（60 日高 0.7567）→ 高收益相對投資級仍偏弱</li>
+<li>四象限：<strong>信貸壓力 + VIX 平靜 = 最差風險回報格</strong>（歷史預期回撤 −4.60%、回報 +0.06%）</li>
+<li>行動紀律：減新加注、拉闊止蝕、保留核心，唔好全現金</li>
+<li>傳染測試：<strong>credit_contained = false</strong></li>
+<li>半導體板塊今日 MU −3.82%、WDC −3.40%、STX −4.83%、SNDK −4.91%、INTC −2.96%、SOXX −1.82%、TSM −0.48% → 板塊爆</li>
+<li>HY 已過 −2% 門檻 → 按規則屬 <strong>contagious 類別</strong>（歷史對應 −11.70% 回撤，係 contained 嘅 3 倍）</li>
+<li>但注意：今日半導體跌嘅係記憶體/儲存/工業 AI 資本開支質疑，唔係信貸事件驅動；呢個係「歸類」而唔係「預測」。要當風險預算，唔好當方向</li>
+<li>預測未來 60 日回撤 −4.05%（基準 −3.58%）→ 新倉要細、止蝕要貼身。⚠️ 呢個模型 rolling out-of-sample 冇交易價值，唔可以當開關</li>
+<li>200 日線紀律仍係最好嘅單一規則（Calmar 0.60），信貸訊號只做危機保險</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">四、逐隻持倉分析（11 隻，全部今日 live 數據）</h3>
+<br>
+<h4 class="md-h">NVDA — $204.40（−1.11%）｜70 sh @ $205.19｜PnL −$55</h4>
+<li>52wk 位置 51.0% ｜ gap −1.50% ｜ intraday 59.1%</li>
+<li>Vol 2.47x ｜ VWAP $204.96（現價低於 VWAP 0.27% = 偏淡）｜ B/A 0.73（ask 略多）</li>
+<li>隔夜 +0.61% 但盤前 −1.50%，日內由 200.94 反彈至 204.40 → 低位有承接</li>
+<li>趨勢：5d −5.16%、20d −13.61%、趨勢分數 0/100（空頭），MA10 $212.15 / MA20 $217.99 / MA50 $221.46 全部喺上面 = 空頭排列</li>
+<li>支撐 $205（17x）、$210（16x）、$215（25x）；阻力 $220（25x）</li>
+<li>今日關鍵新聞（Tier-3 Bloomberg 2026-11-04 03:14 UTC）：中國 AI/雲廠商訂咗約 600 萬張 RTX Pro 5500（總值 ~$700 億，每張 &gt;$11,000），但 Nvidia 未來 4 個月只能交付約 6 萬張（~1%）；全球 2027 年產能上限 300 萬張</li>
+<li>解讀：呢個係「供應不足」而唔係「需求不足」— 短中期對營收係中性偏正（產能賣晒），但市場今日讀成「中國收入斷流」而沽</li>
+<li>另一新聞：Nvidia 向數據中心營運商口頭下達「51% 規則」（中國客戶佔比唔可以過 49%）→ 合規成本上升</li>
+<li>8 綠檢查：52wk ✅、vol_ratio ✅、intraday 59% ✅、B/A 0.73 ❌（略低）、隔夜 ✅、PE 25.8 ✅（唔算極端）、gap −1.5% ✅、週線 ❌ → 6/8 綠</li>
+<li><strong>判斷：HOLD（不加不減）</strong></li>
+<li>理由：6/8 綠但趨勢 0/100 + 價低於 VWAP，未夠條件 ADD</li>
+<li>催化：11-17 Nvidia 財報（最大單一事件）</li>
+<li>止蝕紀律：DAILY ATR ×2.5，參考支撐 $200.94（今日低）；跌穿 $200 收市 = 減半</li>
+<li>倉位 70 股 / 20.7% 係組合最大單一風險（beta 2.05），唔好再加</li>
+<br>
+<h4 class="md-h">AAPL — $352.42（+6.18%）｜10 sh @ $298.11｜PnL +$543（+18.22%）</h4>
+<li>52wk 位置 98.9%（<strong>接近 52 週新高 $353.68，今日 high = 52wk high</strong>）｜ gap +3.04% ｜ intraday 90.1%</li>
+<li>Vol 3.08x ｜ VWAP $348.47（現價高於 VWAP 1.13% = 強勢）｜ B/A 0.88（平衡）</li>
+<li>趨勢：5d −4.38%、20d −0.52%、趨勢分數 25/100；但 MA10 $343.85 / MA20 $342.27 / MA50 $334.05 全部喺下面 = 今日一舉收復全部均線</li>
+<li>基本面（Tier-1 CNBC / MacRumors / MarketBeat，2026-11-02）：</li>
+<li>Q4 FY2026 收入 $1,144.77 億（記錄）、毛利率 47.9%、EPS $2.10</li>
+<li>假期季毛利率指引 45–46%（共識 46.3%）→ 低於預期，因記憶體成本「unprecedented」+ Siri AI 雲端成本</li>
+<li>服務收入指引降至 8–9%，低於預期</li>
+<li>業績後盤後曾跌約 4%，市值一度蒸發 ~$1,400 億</li>
+<li>今日反彈 6.18% = <strong>利空消化 + 藍潮美元下跌（beta dollar −0.42）+ ETF 加倉（XLK 買 $74.3M Apple、QQQM 加 Apple）</strong></li>
+<li>8 綠檢查：52wk 98.9% ❌（&gt;95% 要 tight stop）、vol 3.08 ✅、intraday 90.1% ❌、B/A 0.88 ✅、隔夜 −0.24% 中性 ✅、PE 39.25 ⚠️（貴）、gap 3.04% ✅、週線 25/100 ❌ → 3/8</li>
+<li>SELL/TRIM 檢查：52wk &gt; 95% + vol 3.08（&gt;1.0 所以唔觸發）；B/A 0.88 唔低；隔夜負但 ES 正；vol&gt;2 + 價跌 ❌（價升）；gap 正 ❌ → <strong>0/5 觸發</strong></li>
+<li><strong>判斷：HOLD，但止蝕要收緊（今日已破 52 週新高）</strong></li>
+<li>呢 10 股 avg $298.11，賺 18.22%，係組合最靚嘅細倉</li>
+<li>唔加註：PE 39.25 + 毛利率下行趨勢 + 52wk 98.9% 位置 = 風險回報唔靚</li>
+<li>止蝕紀律：由今日 low $340.99 下面少少（~$339）做 GTC stop；或者用 DAILY ATR ×2.5 計</li>
+<li>若果聽日 gap up 開高再衝唔穿 $353.68，可考慮 TRIM 半（5 股）鎖利</li>
+<br>
+<h4 class="md-h">MSFT — $552.62（+6.07%）｜38 sh @ $387.46｜PnL +$6,276（+42.63%）</h4>
+<li>52wk 位置 97.7%（high $557.39 今日 = 52wk high）｜ gap +4.44% ｜ intraday 68.3%</li>
+<li>Vol 3.22x ｜ VWAP $548.58（現價高 VWAP 0.74%）｜ <strong>B/A 0.39（ask 明顯多，短線有沽壓）</strong></li>
+<li>趨勢：5d −1.95%、20d −1.57%、趨勢分數 10/100；MA10 $525.36 / MA20 $529.66 / MA50 $514.06 → 今日 gap up 直接飛越全部均線</li>
+<li>基本面（Tier-1 CNBC 2026-10-28 / indmoney）：</li>
+<li>Q1 FY2027 收入 $922.79 億（+19%）、營業利潤 $459.15 億（+21%）、淨利 $366.29 億（+32%）、EPS $4.92（+32%）</li>
+<li><strong>Azure +48% 至 $332 億</strong>（Microsoft Cloud $639 億 +30%）</li>
+<li>Q2 指引：收入 $960–971 億、Azure 增長 49–50%（constant currency）</li>
+<li>Capex 由 $1,750 億下調至 $1,700 億；自由現金流 −27% YoY</li>
+<li>另有新聞：Microsoft 披露對 Anthropic $449 億承諾；OpenAI 收購 Pierre Computer 劍指 GitHub</li>
+<li>8 綠：52wk 97.7% ❌、vol 3.22 ✅、intraday 68.3% ✅、B/A 0.39 ❌、隔夜 −0.20% ✅、PE 28.86 ✅、gap 4.44% ✅、週線 10/100 ❌ → 4/8</li>
+<li><strong>判斷：HOLD（唔減，但唔加）</strong></li>
+<li>38 股 / 權重 18.6%（現價市值 $20,999 / 總值 $112,705）— 係組合最大持倉</li>
+<li>業績質素最好（Azure 48% + Q2 指引 49–50%），AI 資本開支有實證回報 → 唔應該減</li>
+<li>但 B/A 0.39 + 52wk 97.7% = 短線唔好加；今日 gap +4.44% 追高風險大</li>
+<li>止蝕紀律：移動止蝕上移至 $520（業績後缺口下沿）附近，保住大部分利潤</li>
+<br>
+<h4 class="md-h">GOOGL — $294.82（+5.28%）｜33 sh @ $349.58｜PnL −$1,807（−15.66%）</h4>
+<li>52wk 位置 <strong>18.0%</strong>（極低位）｜ gap +1.37% ｜ intraday 87.1%</li>
+<li>Vol 1.86x ｜ VWAP $289.44（現價高 VWAP 1.86% = 強勢）｜ B/A 1.25（買盤略多）</li>
+<li>趨勢：5d −12.65%、20d −19.46%、趨勢分數 0/100（空頭）；MA10 $306.41 / MA20 $327.15 / MA50 $336.39 → 全部喺上面，反彈只係第一日</li>
+<li>支撐 $340（30x 歷史密集）— 但現價 $294.82 已跌穿，下一個睇 $290 / $280</li>
+<li>基本面（Tier-3 Bloomberg 2026-10-28 / CNBC）：</li>
+<li>Q3 FY2026 收入 $1,275.77 億（+25% YoY）但低於預期 $1,282.2 億</li>
+<li><strong>EPS $2.12 vs 預期 $3.02</strong>（大幅 miss，同比 −26%）</li>
+<li>搜尋廣告只增 12% 至 $635 億（預期 $649 億），較 Q2 的 ~17% 明顯放緩</li>
+<li>業績後股價曾跌 13%+，蒸發 $5,000 億市值（史上最大單日跌幅）</li>
+<li>Anthropic 對 Google 最低承諾 $1,213 億（2026-04 至 2033-07），短差要 true-up 付款 → 係長期收入保證但短期市場擔心「關聯交易」</li>
+<li>Google Cloud backlog $561 億；TPU 算力「僅次於 Nvidia」（新聞 11-04 01:58）</li>
+<li>自願離職方案擴至 5 個國家（成本控制）</li>
+<li>監管風險：學校停用 AI 但等於失 Google Search；App Store 18+ 分級新規</li>
+<li>8 綠：52wk 18.0% ✅（deep value 但要「唔接刀」check）、vol 1.86 ✅、intraday 87.1% ❌、B/A 1.25 ✅、隔夜 −0.15% ✅、PE 15.40 ✅（最便宜）、gap 1.37% ✅、週線 0/100 ❌ → 5/8</li>
+<li><strong>判斷：HOLD（唔加，等確認）</strong></li>
+<li>5/8 綠剛好到 BUY 門檻，但<strong>唔接刀</strong>規則優先：20d −19.46% 係 freefall 未完，趨勢 0/100</li>
+<li>今日 +5.28% 係超跌反彈第一日，唔係轉勢；要見連續 2 日站上 MA10（$306）先算</li>
+<li>若果要加，條件：回測 $285–290 有承接 + 成交量縮（唔係恐慌盤）+ 大市唔係跌</li>
+<li>33 股 / avg $349.58 = 帳面蝕 15.66%，係組合最痛嘅倉；但 PE 15.4 係大型科技最便宜，長線唔應該斬</li>
+<li>止蝕：唔建議現價斬（已超跌），但跌穿 $280（8 月低位區）要減半</li>
+<br>
+<h4 class="md-h">AMZN — $269.10（+7.34%）｜33 sh @ $256.57｜PnL +$413（+4.88%）</h4>
+<li>52wk 位置 80.2% ｜ <strong>gap +5.70%（最大 gap）</strong> ｜ intraday 68.7%</li>
+<li>Vol 3.74x ｜ VWAP $267.48（現價高 VWAP 0.60%）｜ <strong>B/A 0.22（ask 大幅多，短線沽壓重）</strong></li>
+<li>趨勢：5d −0.95%、20d −2.19%、趨勢分數 25/100；MA10 $249.80 / MA20 $253.82 / MA50 $253.79 → 今日 gap up 全數飛越</li>
+<li>基本面（Tier-1 SEC 8-K / CNBC / TechCrunch 2026-10-29）：</li>
+<li>Q3 FY2026 收入 $2,019.44 億（+12%，略低預期 $2,022 億）</li>
+<li>EPS $1.89 vs 預期 $1.97（miss）</li>
+<li><strong>AWS +39% 至 $459.8 億</strong>（近 5 年最快），AWS 營業利潤 $177.7 億（+55%）</li>
+<li>總營業利潤 $281 億（+61%），營業利潤率 13.9% 創記錄</li>
+<li><strong>自由現金流 TTM −$424 億</strong>（去年 +$148 億）→ 最大隱憂</li>
+<li>CEO Jassy：AWS 2027/2028 增長 &gt;40%</li>
+<li>自研晶片承諾增加 20 倍（新聞 11-04 02:28）</li>
+<li>分析師上調後 11-02 反彈 5%（24-7WallSt）</li>
+<li>8 綠：52wk 80.2% ⚠️（&gt;80% 要 vol&gt;1.5，有 3.74 ✅）、vol 3.74 ✅、intraday 68.7% ✅、B/A 0.22 ❌、隔夜 +0.55% ✅、PE 21.75 ✅、<strong>gap 5.70% ❌（&gt;5%）</strong>、週線 25/100 ❌ → 4/8</li>
+<li><strong>判斷：HOLD（唔追高）</strong></li>
+<li>gap +5.7% + B/A 0.22 = 典型「開高派發」形態，今日唔應該加</li>
+<li>但基本面 AWS 39% + 指引 40% 係實證，33 股成本 $256.57 已轉正（+4.88%），唔需要減</li>
+<li>止蝕：上移至 $250（Q3 業績前價位 + MA20/MA50 交匯）</li>
+<li>留意：FCF −$424 億 = 若果下季再差，市場會重新定價 AI 開支</li>
+<br>
+<h4 class="md-h">TSLA — $388.15（−2.60%）｜2 sh @ $352.89｜PnL +$71（+9.99%）</h4>
+<li>52wk 位置 45.1% ｜ gap −4.70% ｜ intraday 89.3%（由低位大幅反彈）</li>
+<li>Vol 3.63x ｜ VWAP $381.96（現價高 VWAP 1.62%）｜ B/A 0.61（ask 略多）</li>
+<li>趨勢：5d −2.20%、20d +4.68%、趨勢分數 55/100（中性）；MA10 $394.20 / MA20 $382.84 / MA50 $371.41 → 現價喺 MA20 上、MA10 下</li>
+<li>基本面/事件：</li>
+<li>藍潮 → Musk 政治關聯（捐 $450M 給共和黨）→ 合併監管風險（Tier-3 Bloomberg/Business Insider/24-7WallSt）</li>
+<li>盤前曾跌 7%，開市後由 375.50 反彈至 389.66，收窄至 −2.60%</li>
+<li>PE 426.5（極貴），EPS $1.08</li>
+<li>8 綠：52wk 45.1% ✅、vol 3.63 ✅、intraday 89.3% ❌、B/A 0.61 ❌、隔夜 −4.52% ❌、PE 426 ❌、gap −4.70% ✅、週線 55 中性 ✅ → 4/8</li>
+<li><strong>判斷：HOLD（只有 2 股，無關痛癢）</strong></li>
+<li>政治 beta 驅動，唔係基本面事件；2 股 $776 唔值得動作</li>
+<li>若果要清倉，係「簡化組合」理由而唔係風險理由 — 唔急</li>
+<br>
+<h4 class="md-h">WMT — $128.60（+3.00%）｜12 sh @ $118.64｜PnL +$120（+8.40%）</h4>
+<li>52wk 位置 83.1% ｜ gap +1.64% ｜ <strong>intraday 92.0%（近日高）</strong></li>
+<li>Vol 1.92x ｜ VWAP $127.30（現價高 VWAP 1.02%）｜ B/A 0.85（平衡）</li>
+<li>趨勢：5d +4.64%、20d +16.47%、趨勢分數 <strong>70/100（多頭）</strong>；MA10 $121.45 / MA20 $117.97 / MA50 $111.08 → 完美多頭排列</li>
+<li>基本面（Tier-2 Walmart IR / Tier-3 Motley Fool）：</li>
+<li><strong>11-19 業績</strong>（FY2027 Q3，官方 corporate events 頁確認）</li>
+<li>Q2 FY2027（截至 7/31）：收入 $1,879.4 億（+6%）、淨利 $63.7 億（−9%）、EPS $0.80</li>
+<li>電商 +23% YoY（最強增長引擎）</li>
+<li>11-02 因分析師動能 +3%（TradingKey）</li>
+<li>52wk 範圍 $98.88–$135.16，現價距高位 ~5%</li>
+<li>8 綠：52wk 83.1% ⚠️、vol 1.92 ✅、intraday 92.0% ❌、B/A 0.85 ✅、隔夜 +0.18% ✅、PE 46.6 ⚠️（貴，零售防禦溢價）、gap 1.64% ✅、週線 70 ✅ → 5/8</li>
+<li><strong>判斷：HOLD（業績前唔加）</strong></li>
+<li>多頭排列 + 電商 23% 係最靚嘅趨勢股，但 intraday 92% + 11-19 業績 = 唔好喺高位加</li>
+<li>12 股細倉，成本 $118.64，+8.40%；止蝕上移至 $124（MA20 上方）</li>
+<li>呢隻係組合嘅「防禦性分散」代表（beta mkt −0.35，同大市負相關）→ 有配置價值</li>
+<br>
+<h4 class="md-h">MU — $822.46（−3.82%）｜6 sh @ $907.81｜PnL −$512（−9.40%）</h4>
+<li>52wk 位置 59.3% ｜ gap −3.75% ｜ <strong>intraday 14.8%（近日低）</strong></li>
+<li>Vol 2.42x ｜ VWAP $835.80（現價低 VWAP 1.60% = 弱勢）｜ B/A 1.00（平衡）</li>
+<li>趨勢：5d −7.93%、20d −18.22%、趨勢分數 0/100；MA10 $897.11 / MA20 $929.57 / MA50 $974.94 全部喺上面</li>
+<li>支撐：$860（5x）、$890（4x）；今日 low $817.10 已跌穿 $860 → 下一個睇 $800 / $750</li>
+<li>基本面（Tier-1 Micron IR / Tier-3 Nikkei / 24-7WallSt）：</li>
+<li><strong>DRAM 價格 2026 年翻倍</strong>（Nikkei 2026-11-03）：記憶體商優先供貨美國 hyperscalers，PC 廠被擠壓（日本 PC 出貨 4–9 月跌 30%）</li>
+<li>Q4 FY2026 收入 $542 億（上年同期 $113 億，+379%），CMBU（雲端記憶體）$162.8 億</li>
+<li>Apple 警告記憶體價格「unprecedented」，Micron 係定價權贏家（Tier-3 11-03）</li>
+<li><strong>反面</strong>：Kioxia 12 月季度指引僅 2 兆日圓（略高於 9 月 1.99 兆，低於預期）→ 11-02 拖累 MU −4%、WDC −5%、SNDK −3%（Tier-3 24-7WallSt）</li>
+<li>Dan Niles 警告：中國 CXMT 目標 2028 搶 20% 市佔（Tier-4 評論）</li>
+<li>12-09 關鍵日期（財報/指引）</li>
+<li>Citi 預期 2027 年「continued memory undersupply」（Tier-3 11-04）</li>
+<li>8 綠：52wk 59.3% ✅、vol 2.42 ✅、intraday 14.8% ✅、B/A 1.00 ✅、隔夜 +0.31% ✅、PE 11.06 ✅（極便宜）、gap −3.75% ✅、週線 0/100 ❌ → <strong>7/8 綠</strong>（唯一唔綠係週線）</li>
+<li>SELL/TRIM 檢查：52wk&gt;95% ❌；B/A&lt;0.3 ❌；隔夜負+ES 正 ❌；vol&gt;2+價跌 ✅（1/5）；gap&lt;−3%+intraday&lt;30% ✅（2/5）→ <strong>2/5，未觸發 TRIM</strong></li>
+<li><strong>判斷：HOLD（唔加，但呢個係最值得留意嘅候選 ADD）</strong></li>
+<li>7/8 綠 + PE 11.06 + DRAM 翻倍定價權 = 基本面最強嘅一隻</li>
+<li>但趨勢 0/100 + 20d −18% + 今日破 $860 支撐 = <strong>唔接刀</strong>（用戶明確規則）</li>
+<li>6 股 avg $907.81 蝕 9.40%，唔應該喺跌勢加註攤薄</li>
+<li>加註條件：企穩 $800–820（今日低 $817 附近）連續 2 日 + 量縮 + Kioxia/記憶體板塊止跌</li>
+<li>止蝕：跌穿 $800 收市 = 減半；或者 DAILY ATR ×2.5（年化波動 55.1% = 最高風險倉位）</li>
+<br>
+<h4 class="md-h">MCD — $275.40（+4.70%）｜6 sh @ $255.20｜PnL +$121（+7.92%）</h4>
+<li>52wk 位置 43.6% ｜ gap +2.33% ｜ intraday 89.7%</li>
+<li>Vol <strong>4.09x</strong>（今日最高量比之一）｜ VWAP $273.17（現價高 VWAP 0.82%）｜ <strong>B/A 0.06（ask 極度多，明顯派發）</strong></li>
+<li>趨勢：5d +5.44%、20d +13.16%、趨勢分數 60/100（多頭）；MA10 $254.23 / MA20 $246.49 / MA50 $247.98 → 多頭排列</li>
+<li>基本面（Tier-1 McDonald&#x27;s 8-K / Tier-3 CNBC / Yahoo）：</li>
+<li>Q3 2026 收入 $71.6 億（+1.1%，預期 $73 億，<strong>miss 1.9%</strong>）</li>
+<li>調整 EPS $3.57 vs 預期 $3.38（<strong>beat 5.6%</strong>）</li>
+<li>營業利潤率 50.2%（上年 47.4%）</li>
+<li>全球同店銷售 +1.5%（預期 +1.4%，微 beat）</li>
+<li><strong>美國同店銷售 −0.2%</strong>（預期 −0.5%，好過預期但仍是負）；客流下降</li>
+<li>6 大連鎖中排第 4（Burger King +8.4% 最快）</li>
+<li>CEO 稱美國趨勢改善</li>
+<li>8 綠：52wk 43.6% ✅、vol 4.09 ✅、intraday 89.7% ❌、B/A 0.06 ❌、隔夜 −0.02% ✅、PE 22.37 ✅、gap 2.33% ✅、週線 60 ✅ → 5/8</li>
+<li>SELL/TRIM 檢查：52wk&gt;95% ❌；<strong>B/A 0.06 &lt; 0.3 ✅（1/5）</strong>；隔夜負但 ES 正 ❌；vol&gt;2+價跌 ❌（價升）；gap 正 ❌ → 1/5</li>
+<li><strong>判斷：HOLD（唔加）</strong></li>
+<li>5/8 綠但 B/A 0.06 = 高位派發訊號強，intraday 89.7% + vol 4.09x = 典型「好消息出貨」</li>
+<li>收入 miss + 美國客流負增長 = 基本面唔支持追高</li>
+<li>6 股細倉，+7.92%，止蝕上移至 $265（MA20 上方 + 支撐密集）</li>
+<li>呢隻係組合「低 beta 防禦」配置（beta mkt −0.26），有價值，唔需要走</li>
+<br>
+<h4 class="md-h">JPM — $344.19（+1.84%）｜14 sh @ $343.31｜PnL +$12（+0.25%）</h4>
+<li>52wk 位置 77.1% ｜ gap +1.85% ｜ intraday 32.3%（偏低位）</li>
+<li>Vol 2.24x ｜ VWAP $345.35（現價低 VWAP 0.34%）｜ B/A 1.11（平衡偏買）</li>
+<li>趨勢：5d +0.65%、20d +2.02%、趨勢分數 60/100（多頭）；MA10 $337.16 / MA20 $335.53 / MA50 $342.70 → 現價喺 MA50 上</li>
+<li>基本面（Tier-1 JPM 10-Q 2026-11-03 / 3Q26 press release）：</li>
+<li>Q3 2026 淨收入 $153.05 億（+6% YoY，但環比 −28%，因上季有一次性項目）</li>
+<li>淨收入 $509 億（+8%）；<strong>淨利息收入 $271 億（+13%）</strong>；NII ex-Markets $247 億（+6%）</li>
+<li>淨息差 2.48%（上年 2.45%）</li>
+<li>信貸減值 $27.43 億（環比 +$2.28 億，同比 −$6.6 億）</li>
+<li>Q4 指引：NII ~$280 億、ex-Markets ~$255 億</li>
+<li>淨投資證券損失 $6.58 億（EPS −$0.18）</li>
+<li>8 綠：52wk 77.1% ✅、vol 2.24 ✅、intraday 32.3% ✅、B/A 1.11 ✅、隔夜 −0.01% ✅、PE 14.44 ✅、gap 1.85% ✅、週線 60 ✅ → <strong>8/8 綠</strong></li>
+<li><strong>判斷：HOLD（唯一 8/8 綠，可考慮加，但唔急）</strong></li>
+<li>8/8 綠 + 加息環境利好 NII（期貨定價 12 月加息 80%）= 邏輯最順</li>
+<li>但今日 intraday 32.3% = 開高後回，收喺中低位；且 14 股已 4.3% 倉位，唔算細</li>
+<li>若果要加：等回測 $337–340（MA10/MA20 交匯 + 今日 gap 下沿）再買 3–5 股</li>
+<li>止蝕：$330（MA20 下方 + 支撐密集 16x）</li>
+<br>
+<h4 class="md-h">IBKR — 已清倉（0 股）</h4>
+<li>現價 $77.65（+0.25%）；52wk 位置 47.4%；趨勢分數 0/100；20d −14.48%</li>
+<li>基本面（Tier-3 Seeking Alpha 2026-11-02）：10 月 DART 430.6 萬（同比 −4%，環比 +5%）；客戶信用結餘 $1,805 億（+15% YoY）；客戶帳戶 567.8 萬（+34% YoY）</li>
+<li>Q3：股票交易量 −24% YoY，期權 −1% → 交易活躍度弱</li>
+<li><strong>判斷：唔入場（NO TRADE）</strong></li>
+<li>趨勢 0/100 + 20d −14.48% + 交易量下滑 = 三條負面同時存在</li>
+<li>雖然帳戶增長 34% 係好嘅長線故事，但股價仍在 MA50（$87.71）下方 11%</li>
+<li>若要重建倉位：等企穩 $80（MA10 $80.52）以上</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">五、非持倉但有交易價值嘅標的（Watchlist 觀察，今日唔落單）</h3>
+<br>
+<h4 class="md-h">AMD — $489.36（+1.13%）｜最重要嘅一日</h4>
+<li>隔夜 +7.25%、盤前 +1.28%、開市後曾衝 $514.61 但回落至 $489.36（intraday 33.7%）；after hours +5.02%</li>
+<li>Vol 5.80x（今日最高）｜ VWAP $495.92（現價低 VWAP 1.32% = 衝高回落）｜ B/A 33.0（買盤極多但價跌 = 有人掛大買單接貨）</li>
+<li>52wk 位置 64.0% ｜ gap +0.37% ｜ PE 106.2</li>
+<li>業績（Tier-1 AMD IR 2026-11-03）：</li>
+<li>Q3 收入 $133.77 億（+45% YoY，高於指引上限）；毛利率 54%；營業利潤 $28.32 億；淨利 $24.23 億；EPS $1.46（non-GAAP $2.09 vs 預期 $1.95）</li>
+<li>數據中心收入 ~$85 億（+97%），佔比由 47% → 64%</li>
+<li><strong>Q4 指引 $170 億 ±3%</strong>（+66% YoY、+27% QoQ；共識 $162.9 億）→ beat 4.4%</li>
+<li>Q4 數據中心 +50% QoQ，Client &amp; Gaming <strong>跌 &gt;20%</strong></li>
+<li>2027 年收入增長 ~80%（管理層）</li>
+<li><strong>隱憂</strong>：AMD 因 OpenAI / Meta AI 晶片交易錄得 $11 億減值（新聞 11-04 20:17 / 21:09）；$30 億庫存賭注（新聞 06:42）；自由現金流下滑</li>
+<li>分析師：Q4 有望歷史性首度超越 Intel 收入</li>
+<li><strong>判斷：觀察，唔追高</strong></li>
+<li>業績真係好，但今日開高 $514 收 $489（回落 5%），VWAP 下方 = 日內買家全部蝕錢</li>
+<li>板塊傳染風險（credit_contained=false）+ PE 106 + 2027 年 80% 增長已 price in 大部分</li>
+<li>入場條件：回測 $470–480（今日 low $476.50 附近）有承接 + SOXX 止跌</li>
+<br>
+<h4 class="md-h">其他 watchlist 快評（今日全部有 live 數據）</h4>
+<li><strong>INTC $58.76（−2.96%）</strong>：5d −35.41%、20d −46.18%（<strong>崩盤級</strong>），52wk 位置 23.6%，趨勢 0/100。14A PDK 0.9 已交付（Tier-3 Tom&#x27;s Hardware 11-03）但 Q4 指引低於預期 $15 億。<strong>唔接刀</strong>，唔好掂</li>
+<li><strong>SOXX $456.52（−1.82%）</strong>：20d −21.11%，MA50 $526.96 遠在上面。板塊弱，唔好加半導體 beta</li>
+<li><strong>TSM $402.87（−0.48%）</strong>：20d −16.07%，PE 27.2，$415 支撐已破。觀察</li>
+<li><strong>WDC $335.53（−3.40%）/ STX $577.07（−4.83%）/ SNDK $1,071.24（−4.91%）</strong>：全部記憶體/儲存，20d −15% 至 −32%。SNDK B/A 0.01（ask 壓倒性）、STX B/A 0.20 → 弱勢。雖然 DRAM 定價權在，但今日全板塊被 Kioxia 指引拖低。觀察，唔入</li>
+<li><strong>SKHY $146.24（−3.02%）</strong>：20d −17.40%，B/A 34.75（買盤多）；但美國對華出口管制威脅其紐約擴廠（Tier-3 Bloomberg 11-04）→ 政策風險高。觀察</li>
+<li><strong>CAT $590.10（−5.42%）</strong>：20d −27.74%，52wk 位置 10.7%（<strong>極低</strong>），intraday 6.0%（近日低）。Q3 收入 $206.8 億（+17%）但低於預期 $208 億，Q4 指引軟，關稅回收。<strong>唔接刀</strong></li>
+<li><strong>DELL $385.80（−5.54%）</strong>：5d −18.64%、20d −28.85%，gap −5.48%。記憶體成本壓 server 利潤率。唔掂</li>
+<li><strong>CRWV $49.87（−7.20%）</strong>：52wk 位置 0.5%（<strong>歷史最低</strong>），20d −41.41%，turnover 6.2%。CoreWeave CDS 爆但 HY OAS 平靜 = 教科書 contained，但股價已跌到無支撐。唔接</li>
+<li><strong>BE $201.52（−5.84%）</strong>：20d −27.65%，PE 122（實際虧損），intraday 10.9%。唔掂</li>
+<li><strong>NET $266.11（−2.75%）</strong>：20d −22.93%，但 B/A 5.0（買盤多）；Cloudflare 收入加速 + 上調指引（Tier-3 11-04 22:33）。觀察，等企穩 $270（MA POC）</li>
+<li><strong>CRWD $250.72（+2.47%）</strong>：52wk 82.0%，20d −12.26%，但今日逆市升 + 記錄淨新增 ARR + 收購 2 間 AI 安全新創 + kill switch 產品（Tier-3 11-04）。B/A 0.13（ask 多）。觀察，唔追</li>
+<li><strong>LLY $1,413.70（+0.31%）</strong>：52wk 94.0%，5d +9.94%、20d +21.76%，趨勢 70/100（<strong>多頭</strong>），但今日 intraday 13.1%（開高 $1,439 後回落）。PE 45.9。強勢股但今日 gap up 失敗，觀察</li>
+<li><strong>COST $1,040.18（+2.05%）</strong>：52wk 79.1%，趨勢 70/100，20d +8.93%。PE 50.1（貴）。多頭排列，觀察</li>
+<li><strong>GS $910.12（+1.57%）</strong>：52wk 41.7%，20d −0.12%，趨勢 15/100。加息利好投行業務，但技術弱。觀察</li>
+<li><strong>UNH $399.35（−1.26%）</strong>：20d +7.47%，趨勢 40/100，隔夜 +2.83% 但盤前 −1.93%（隔夜背離 4.76% = 個股催化）。藍潮對醫保政策影響（民主黨較支持擴 coverage）→ 需留意政策新聞</li>
+<li><strong>RTX $196.22（−3.73%）</strong>：52wk 50.9%，20d +11.20%，但今日 gap −2.37% + intraday 13.5%。國防股在藍潮下受壓（民主黨傾向減國防開支）。觀察</li>
+<li><strong>XOM $172.72（−2.67%）/ CVX $219.73（−2.46%）</strong>：油價因美伊戰爭轉向急跌。XOM 52wk 79.4%、CVX 82.2%（都高位）。能源板塊短線弱，觀察</li>
+<li><strong>AAL $13.19（+2.85%）</strong>：gap +4.84% 但 intraday 1.1%（開高後完全回吐 = 極弱）。20d −1.38%。航空股藍潮下有政策不確定。唔掂</li>
+<li><strong>AMKR $36.67（−2.54%）</strong>：20d −29.54%，52wk 10.6%。封測股跟板塊崩。唔掂</li>
+<li><strong>META $631.99（+1.76%）</strong>：52wk 43.2%，20d −15.95%，趨勢 25/100。<strong>B/A 11.0（買盤極多）但 intraday 21.2%（開高 $643 收 $632）</strong>。S&amp;P 已下調展望至負面（Tier-2 S&amp;P Global 2026-10-30）：2026 capex $1,350–1,450 億、2027 &gt;$2,250 億；FCF 缺口 2026 −$390 億、2027 −$710 億。發債 $200 億（美元）+ 首次歐元債。基本面風險上升，觀察</li>
+<li><strong>DIA $527.54（+2.03%）/ SPY $765.65（+1.50%）/ VOO $703.82（+1.48%）/ QQQ $696.55（+1.64%）</strong>：指數 ETF 全部 gap up，但全部 intraday &lt; 65%、B/A 全部 &lt; 0.4（SPY 0.37、QQQ 0.30、VOO 7.5 例外）。呢個係「開高後派發」嘅一致訊號 → 唔好用今日高位做入場參考</li>
+<li><strong>SPCX $138.05（−2.31%）</strong>：只監察。藍潮拖累（Musk 政治 beta）</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">六、組合層面風險預算</h3>
+<br>
+<li>總值 <strong>$112,705.48</strong>（股票 $71,166.43 + 現金 $41,539.05）｜ 初始 $100,000 → <strong>+12.71%</strong></li>
+<li>未實現 PnL +$2,433（今日單日 +$2,356 增量）</li>
+<li>權重分布（按現價）：MSFT 18.6%、NVDA 12.7%、GOOGL 8.6%、AMZN 7.9%、MU 4.4%、JPM 4.3%、AAPL 3.1%、MCD 1.5%、WMT 1.4%、TSLA 0.7%</li>
+<li>現金 36.9% — 喺信貸壓力格下，呢個係合適水平（唔好全現金，但唔好加滿）</li>
+<li>VaR95 −0.9%、VaR99 −1.17%（20:40 生成，未反映今日大升後嘅新波動）</li>
+<li>平均相關性 0.104（極低 = 分散好）— 但注意：今日所有持倉齊升係「事件驅動共同因子」，唔代表相關性真係低</li>
+<li><strong>集中風險</strong>：MSFT + NVDA = 31.3%，兩隻都係 AI 資本開支主題 → 表面分散，實質同一因子</li>
+<li>波動最高持倉：MU 55.1% &gt; TSLA 39.9% &gt; IBKR 39.1%（已清）&gt; NVDA 34.7% &gt; GOOGL 33.7%</li>
+<li>信貸制度行動紀律（本格）：<strong>減新加注、拉闊止蝕、保留核心</strong> → 今日唔應該開新倉</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">七、今日/本週催化劑時間表</h3>
+<br>
+<li><strong>11-06（五）</strong>：10 月非農（預期 +65K、失業率 4.2%）— 本週最大單一事件。熱數據 → 加息預期升 → 長債息上 → 高 PE 成長股受壓</li>
+<li><strong>11-17</strong>：Nvidia 財報 — 組合最大單一事件（NVDA 12.7% 倉位 + 板塊 beta）</li>
+<li><strong>11-19</strong>：Walmart FY2027 Q3 業績</li>
+<li><strong>12-09</strong>：Micron 關鍵日期（財報/指引）</li>
+<li><strong>12 月 FOMC</strong>：期貨定價 80% 加息</li>
+<li>藍潮後續：民主黨經濟議程針對醫保、關稅、Trump 盟友（Tier-3 Yahoo Finance）→ 醫保（UNH）、國防（RTX）、關稅敏感股要留意政策新聞</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">八、Manager Gate 檢查</h3>
+<br>
+<li>✅ [HALLUCINATION RISK]：所有價格來自 futu live snapshot（script output）；所有基本面數字來自 Tier-1 公司 IR/8-K/10-Q 或 Tier-3 主流媒體，逐項標明來源日期</li>
+<li>✅ [CITATION NEEDED]：AMD $17B 指引 → AMD IR press release（2026-11-03）；MSFT Azure 48% → CNBC（2026-10-28）；GOOGL EPS miss → CNBC（2026-10-28）；MCD 美國同店 −0.2% → CNBC/StockStory（2026-11-04）；JPM NII $271 億 → JPM 3Q26 press release；Nvidia 1% 交付 → Bloomberg（2026-11-04 03:14 UTC）；Meta 展望負面 → S&amp;P Global via CNBC（2026-10-30）；WMT 11-19 業績 → Walmart corporate events 頁</li>
+<li>✅ [STALE DATA]：無 6 個月以上數據作為現況引用；歷史對比明確標示年份</li>
+<li>✅ [CONFLICT]：S&amp;P 對 Meta 嘅評級（S&amp;P 本身係評級機構，利益衝突低）；Seeking Alpha 對 AMD/Intel/Micron 估值分歧已標明為「分歧」而非共識</li>
+<li>✅ [NEWS TIMELINE]：全部新聞標明發布時間（HKT），並核對股價是否已反應 — 例：AMD 業績 11-03 收市後公布，11-04 開市已升 7%（已反應大部分）；AAPL 業績 11-02 公布，11-03 跌，11-04 反彈 6.18%（利空消化後嘅二次定價）</li>
+<li>✅ [METRIC CONFLATION]：AMD「數據中心收入 $85 億」= segment revenue，唔係總收入（總收入 $133.77 億）；MCD「同店銷售 +1.5%」= 全球，美國係 −0.2%（分開列明）</li>
+<li>整體信心：<strong>86%</strong>（價格 100%、基本面 95%、制度解讀 80%、傳染測試歸類 75%）</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">九、總結判斷（一句話）</h3>
+<br>
+<li>今日係「藍潮 + AMD 爆數」驅動嘅事件反彈，唔係制度轉向；信貸壓力 + VIX 平靜仍係最差風險回報格，所以<strong>今日紀律 = 唔開新倉、唔追高、止蝕上移鎖利</strong>。</li>
+<li>組合 11 隻持倉全部 HOLD，無 BUY/SELL/ADD/TRIM 建議（唯一 8/8 綠嘅 JPM 都建議等回測才加）。</li>
+<li>最值得留意嘅兩個 setup：<strong>MU 回測 $800–820 企穩</strong>（7/8 綠 + DRAM 定價權）、<strong>JPM 回測 $337–340</strong>（8/8 綠 + 加息 NII 受惠）。</li>
+<li>最需要警惕嘅：NVDA 11-17 財報前嘅中國收入斷流敘事 + 半導體板塊 contagious 歸類。</li>
+<br>
+<p>--- EN: Event-driven rally (Democratic sweep + AMD blowout). Regime unchanged: credit stressed + VIX calm = worst risk/reward quadrant. All 11 holdings HOLD — no new entries, raise stops. Watch MU $800-820 and JPM $337-340 for entries. NVDA earnings 11-17 is the key binary. ---</p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #2136 · 2026-11-04 23:31 HKT</p>
+</footer>
+</body>
+</html>
