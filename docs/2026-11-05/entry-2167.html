@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#2167 — 研究報告 · 2026-11-05_23:31</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 1939 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">1239 項決策</span>
+      <span class="stat">95 項快照</span>
+      <span class="stat">605 項研究</span>
+      <span class="stat">21 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+    <a href="../sector-report.html" class="tab ">🧭 板塊</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-11-05 23:31 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>研究報告 · 2026-11-05_23:31</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">auto</span></div>
+  </div>
+  <div class="reasoning">
+    <h2 class="md-h">研究報告 · 2026-11-05 23:30 HKT（美股開市後 10:30 EST）</h2>
+<br>
+<h3 class="md-h">一、底線（BLUF）</h3>
+<li>今日係「選舉後第二日」嘅<strong>晶片／AI 基建板塊輪動崩塌</strong>，唔係全面股災 — 道指只跌 1.53%、標普 500 跌約 2.6%、納指 100 跌 4.8%，但 SOXX 半導體 ETF 單日 −9.5%、記憶體四雄（MU −12.9%、SNDK −18.1%、WDC −14.1%、STX −14.6%）全線崩，係一次高度集中嘅板塊去槓桿。</li>
+<li>但 <strong>VIX 由 16.61 抽上 22.51（+35%）</strong>，係今日最重要嘅新訊號 — 信貸制度由「VIX 平靜」轉入「VIX 恐慌」象限，配合 HYG 距 60 日高位 −2.47%（受壓），屬<strong>傳染測試未包住（contagious）</strong>格，風險預算要收緊。</li>
+<li>組合持倉半導體權重偏高（NVDA 70 股 @205.19、MU 6 股 @907.81），今日兩隻合計帳面虧損擴大；現金 41,539（37%）係最大緩衝。</li>
+<li>今日<strong>唔應該做任何新增買入</strong>，尤其唔好接半導體／記憶體刀；唯一合理動作係風險檢視 + 記錄，唔係交易。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">二、市場制度（Credit × VIX 四象限）</h3>
+<br>
+<h4 class="md-h">信貸</h4>
+<li>HYG 現價 77.23，距 60 日高位 79.48 = <strong>−2.47%（🔴 受壓，過 −2% 門檻）</strong></li>
+<li>距 60 日低位回升 +0.92%（未達 2% 解除門檻）→ <strong>仍然受壓，唔好急返場</strong></li>
+<li>HY/IG 比率 0.7418（60 日高 0.7567）— 輕微擴闊但未失控</li>
+<li>資料來源：credit_regime.md（20:40 HKT 生成）+ Yahoo 1m chart 驗證 HYG = 77.23、prev close 77.52（−0.37%）</li>
+<br>
+<h4 class="md-h">VIX（今日已變象限 ⚠️）</h4>
+<li>早上 20:40 生成時 VIX = 16.90（平靜）；現時 <strong>VIX = 22.51，+35.34%，前收 16.61，日高 22.51、日低 16.70</strong>（來源：Cboe 官網即時數據 3:17PM ET 顯示 22.48 / +35.34% / prev 16.61；Yahoo 1m chart 22.51 相互印證 → Tier-1/3 雙確認）</li>
+<li>VIX 一日由 2 年 75 百分位（19.3）之下跳到明顯之上 → <strong>制度由「信貸壓力 + VIX 平靜」（最差風險回報格）轉入「信貸壓力 + VIX 恐慌」</strong></li>
+<li>按 skill 實證：VIX 恐慌但信貸平靜 = 均值回歸買入機會（+2.72%）；<strong>但今日信貸同時受壓 → 唔屬呢個買入格</strong>，屬傳染風險格</li>
+<br>
+<h4 class="md-h">傳染測試（關鍵判定）</h4>
+<li>板塊爆（半導體 −9.5%、記憶體 −14~18%）+ HY 擴闊（HYG −2.47%）= <strong>contagious（未包住）→ 歷史預期回撤 −11.70%（vs contained 嘅 −3.83%，3 倍）</strong></li>
+<li>即係話：唔可以當今次只係「CoreWeave CDS 式板塊金絲雀」處理 — 今次 HY 一齊走弱，係真正跨資產壓力</li>
+<li>對比 2026 早期：當時 CoreWeave CDS 爆但 HY OAS 327bp 平靜 = 教科書 contained；<strong>今次唔同</strong></li>
+<br>
+<h4 class="md-h">預測回撤（只做 risk budget）</h4>
+<li>模型 −3.65% vs 基準 −3.58% → 接近正常，但呢個模型 rolling out-of-sample 冇交易價值，唔可以當開關</li>
+<li>實務解讀：唔用模型預測方向，用 VIX 抽升 + HY 擴闊做即時 risk budget 收緊</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">三、今日大市與催化劑（多來源驗證）</h3>
+<br>
+<h4 class="md-h">主催化劑：民主黨橫掃中期選舉 → AI 數據中心監管恐懼</h4>
+<li>民主黨大勝（藍色浪潮）令市場擔心聯邦／州層面會收緊 AI 數據中心建設與能源審批</li>
+<li>UBS 策略師：<strong>2028 年預計新增數據中心容量約 30% 面臨風險</strong>（來源：Stock Titan 引 Reuters，T-3）</li>
+<li>Dan Ives（Wedbush）：藍色浪潮後「10% 數據中心將不會實現」（來源：news analyzer 引述，T-4 → 需注意屬觀點非數據）</li>
+<li>科羅拉多／德州等地民主黨勝選令數據中心長期建設疑慮升溫，但已獲資金支持專案不會撤銷（MarketWatch，T-3）</li>
+<br>
+<h4 class="md-h">指數表現（多來源一致）</h4>
+<li>標普 500 −1.7%（Bloomberg 12:54 UTC 版本）→ 現時 SPY −2.60%（$746.89）</li>
+<li>納指 100 −3.8% ~ −4%（Bloomberg）；QQQ 現時 −4.81%（$658.67）</li>
+<li>道指：昨日 +3.03% 收 53,356（Rio Times，VIX 同日 −20.26% 至 16.61）→ <strong>今日 DIA −1.53%（$524.97），即昨日大反彈回吐一半</strong></li>
+<li>SOXX 半導體 ETF −7.2%（Bloomberg 15:01 UTC 版本）→ 現時 −9.51%，跌幅擴大</li>
+<li>亞洲：KOSPI 收 −5.28%、SK hynix 首爾 −9.03%（CNBC）；KOSDAQ 觸發熔斷（Chosun，T-3）</li>
+<li>VIX 收 22.51（+35%）— 由「無恐慌」一日變「明顯恐慌」</li>
+<br>
+<h4 class="md-h">記憶體板塊專屬催化劑（三層疊加）</h4>
+<li><strong>Kioxia（SanDisk 合資夥伴）11/2 發表保守 12 月季指引（營業利潤 2 兆日圓）</strong> → 記憶體股當日即挫（24/7 Wall St，T-4；與 Kioxia 官方指引方向一致）</li>
+<li><strong>Micron 暫停台灣 45 億美元記憶體廠計畫（勞資糾紛）</strong>（Bloomberg Tech，T-3）→ AI 關鍵元件產能前景受質疑</li>
+<li><strong>Qualcomm 財報雖強但指引弱，明言智能手機記憶體零件短缺</strong> → 需求端「記憶體價格過高反而打擊硬件需求」邏輯發酵（Investopedia，T-3）</li>
+<li>反向論點：Apple 明言記憶體價格會持續升過假期旺季（Benzinga 11/3，T-4）→ 記憶體廠定價權仍強；Seeking Alpha 指 Sandisk PEG 僅 0.12、估值過度便宜</li>
+<li>判斷：<strong>基本面（定價權）vs 估值／政治風險（AI 基建放緩）拉鋸</strong>，今日市場選擇先沽估值，唔代表基本面破裂</li>
+<br>
+<h4 class="md-h">NVDA 專屬</h4>
+<li>中國 700 億美元 RTX 訂單只滿足約 1%，香港晶片庫存等中國進口批准（Bloomberg 類報導，T-3/T-4）</li>
+<li>NVDA 收緊全球雲端夥伴對中國客戶 AI 存取（T-3）</li>
+<li>1080 億美元營收指引係下一道門檻（市場焦點）</li>
+<li>對沖：Goldman／Apollo 開始推銷 400 億美元 SpaceX 晶片融資（Market Chatter，T-4）；鴻海銷售 +46%（AI 需求仍強）</li>
+<br>
+<h4 class="md-h">TSLA／SPCX 專屬</h4>
+<li>Bloomberg：Tesla 續跌，因民主黨勝選打擊 Musk 政治資本與擴張能力；<strong>Musk 系股票（TSLA+SPCX）合計蒸發 1,300 億美元市值</strong>（11/4 Bloomberg，T-3）</li>
+<li>CNBC 即時：TSLA −9%、SPCX −7%（早段）；現時 TSLA −9.59%、SPCX −9.40%</li>
+<li>屬<strong>政治事件驅動嘅估值重估</strong>，非基本面（交付／毛利率）問題</li>
+<br>
+<h4 class="md-h">微軟專屬（相對抗跌）</h4>
+<li>Azure 收入 +48%（兩年新高）、營運現金流 580 億、自由現金流 186 億</li>
+<li>CFO Amy Hood：Q1 capex 452 億（第三方容量交付延遲），全年約 1,700 億，Q2 capex 將超 500 億</li>
+<li><strong>微軟退出 Nscale 德州數據中心擴建（Nscale 350 億 IPO 前）</strong> → 市場解讀為資本紀律（Cramer：「唯一減 capex 嘅 hyperscaler 得到最好市場反應」）</li>
+<li>Seeking Alpha 下調評級，警告唔好對正自由現金流過度興奮</li>
+<li>判斷：MSFT 係今日大型科技中<strong>唯一有基本面支撐嘅避風港</strong>，但 −2.59% 反映連佢都受板塊拖累</li>
+<br>
+<h4 class="md-h">GOOGL 專屬（最弱大型科技）</h4>
+<li>10/29 財報後單日 −11~13%（2004 年上市以來最差單日），Q3 首次盈利 miss（SpaceX 股權未實現虧損 + 歐盟反壟斷罰款）</li>
+<li>capex 義務超 1 兆美元；Q4 capex 可能達 730 億</li>
+<li>正面：Gemini 4 Carbon 以 1/3 成本貼近 Anthropic；Isomorphic Labs 洽 50 億融資；Google Cloud 2028 收入有望超越搜尋</li>
+<li>監管：土耳其啟動 AI 搜尋反壟斷調查；美反壟斷案上訴最早 2027 裁決（Trefis，T-4）</li>
+<li>技術：距 52 週高 −30%、52wk position 只有 10% → 深度弱勢</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">四、逐隻持倉分析（Level 2 + Level 7，價格為 23:26 HKT 實時）</h3>
+<br>
+<h4 class="md-h">NVDA — $185.32（−7.40%）｜持倉 70 股 @ $205.19</h4>
+<li>52wk: 27.0% | Gap: −2.06% | Intraday: 11.1%（近日低）</li>
+<li>Vol: 4.28x（機構級派發）| VWAP: 現價遠低於 VWAP $190.73（−2.8%，日內弱勢）| B/A: 0.16（賣壓極重）</li>
+<li>Overnight: −0.47% | 背離: 個股遠弱於大市 → 個股催化（中國供給瓶頸）</li>
+<li>PE: 23.4 | MktCap: $4.46T</li>
+<li>TF: 週線 ↓ 日線 ↓ = LOW conviction</li>
+<li>帳面：−922.6（−4.5%）| 距 52 週低 163.90 只 13%</li>
+<li><strong>判斷：唔接刀。</strong> 中國訂單 1% 滿足率係真實結構問題，VIX 抽升日唔好加註。若跌穿 $180（今日低 184.67 下方）要考慮減倉控制半導體曝險。</li>
+<br>
+<h4 class="md-h">AAPL — $350.24（+0.21%）｜持倉 10 股 @ $298.11</h4>
+<li>52wk: 95.4%（近歷史高）| Gap: +1.28% | Intraday: 29.8%</li>
+<li>Vol: 1.85x | VWAP: 現價低於 VWAP $351.58（−0.4%，中性）| B/A: 0.16</li>
+<li>PE: 39.0 | MktCap: $5.09T</li>
+<li>TF: 週 ↑ 日 ↑ = HIGH（避風港，資金由 AI 基建轉向現金流穩健）</li>
+<li>帳面：+548.6（+18.4%）</li>
+<li><strong>判斷：HOLD 核心。</strong> 95% 位置 + Bernstein 上調目標 380 但記憶體成本侵蝕毛利率係隱憂。唔加註（已近高位），止賺可考慮 $345（MA10 下方）保護利潤。</li>
+<br>
+<h4 class="md-h">MSFT — $541.41（−2.59%）｜持倉 38 股 @ $387.46</h4>
+<li>52wk: 91.6% | Gap: −0.14% | Intraday: 9.2%</li>
+<li>Vol: 1.79x | VWAP: −1.25%（弱）| B/A: 13.25（買盤厚）</li>
+<li>PE: 28.3 | MktCap: $4.02T</li>
+<li>TF: 週 ↑ 日 ↑ = HIGH（20d +4.92%）</li>
+<li>帳面：+6,289.76（+42.7%）— <strong>組合最大單一倉位 29.9%</strong></li>
+<li><strong>判斷：HOLD，但集中度係風險。</strong> 帳面利潤已 42.7%，MSFT 佔組合近三成；建議止蝕上移至 $520（MA20 下方）鎖大部分利潤，唔好再加大。</li>
+<br>
+<h4 class="md-h">GOOGL — $283.88（−1.75%）｜持倉 33 股 @ $349.58</h4>
+<li>52wk: 10.1%（深度弱勢）| Gap: +1.65% | Intraday: 10.0%</li>
+<li>Vol: 1.34x | VWAP: −1.82%（弱）| B/A: 1.00（平衡）</li>
+<li>PE: 14.8（最便宜大型科技）| MktCap: $3.49T</li>
+<li>TF: 週 ↓ 日 ↓ = LOW（20d −17.57%）</li>
+<li>帳面：−1,952.94（−16.9%）— 最大帳面虧損</li>
+<li><strong>判斷：HOLD 但唔加註。</strong> PE 14.8 + Gemini 4 成本優勢係價值支撐，但趨勢分數 0/100、距高 −30%，係典型「便宜但未見底」。等 $270（52 週低附近）或 20 日線翻向上先考慮。</li>
+<br>
+<h4 class="md-h">AMZN — $256.77（−3.48%）｜持倉 33 股 @ $256.57</h4>
+<li>52wk: 66.6% | Gap: +2.12% | Intraday: 4.9%</li>
+<li>Vol: 2.03x | VWAP: −3.18%（明顯弱）| B/A: 1.26</li>
+<li>PE: 20.8 | MktCap: $2.78T</li>
+<li>TF: 週 ↑ 日 ↑（20d +2.35%）= MEDIUM</li>
+<li>帳面：+409.86（+1.6%，均價幾乎打平）</li>
+<li><strong>判斷：HOLD。</strong> 開高走低（gap +2.12% 但收在日低附近）屬派發形態，但基本面（AWS 增長、Anthropic 62 億持股）未變。跌穿 $250（MA20/支撐）再考慮。</li>
+<br>
+<h4 class="md-h">TSLA — $348.27（−9.59%）｜持倉 2 股 @ $352.89</h4>
+<li>52wk: 25.3% | Gap: −3.05% | Intraday: 9.3%</li>
+<li>Vol: 4.74x（恐慌拋售）| VWAP: −1.94% | B/A: 0.00（全賣壓，ask 420 vs bid 2）</li>
+<li>PE: 381（極高）| MktCap: $1.37T</li>
+<li>TF: 週 ↓ 日 ↓ = LOW</li>
+<li>帳面：−9.24（−1.3%）</li>
+<li><strong>判斷：HOLD（倉位極細 2 股，$720 曝險）。</strong> 純政治事件驅動（Musk 系蒸發 1,300 億），唔係基本面。倉位細到唔值得交易，穿 $345 亦只影響 $6。</li>
+<br>
+<h4 class="md-h">WMT — $131.38（+1.71%）｜持倉 12 股 @ $118.64</h4>
+<li>52wk: 90.6% | Gap: +1.52% | Intraday: 70.1%</li>
+<li>Vol: 1.92x | VWAP: +0.24% | B/A: 0.09（賣壓重，但價升）</li>
+<li>PE: 47.7 | MktCap: $1.04T</li>
+<li>TF: 週 ↑ 日 ↑ = HIGH（20d +19.42%）</li>
+<li>帳面：+152.88（+10.7%）</li>
+<li><strong>判斷：HOLD。</strong> 消費防禦資金流入受益者，趨勢最強之一。B/A 0.09 反映高位有人派貨，穿 $125（MA10 上方）留意。</li>
+<br>
+<h4 class="md-h">MU — $692.71（−12.89%）｜持倉 6 股 @ $907.81</h4>
+<li>52wk: 47.1% | Gap: −5.24% | Intraday: 10.0%</li>
+<li>Vol: 4.89x（崩盤量）| VWAP: −4.5% | B/A: 5.67（低位有承接買盤）</li>
+<li>PE: 9.29（極低）| MktCap: $780B</li>
+<li>TF: 週 ↓ 日 ↓ = LOW（20d −26.91%）</li>
+<li>帳面：−1,290.6（−23.7%）— <strong>組合最大百分比虧損</strong></li>
+<li><strong>判斷：唔接刀、唔加註、唔恐慌沽。</strong> 三重打擊（Kioxia 保守指引 + 台灣建廠暫停 + 民主黨 AI 建設憂慮）全部係「預期」而非「實績破裂」；PE 9.3 + HBM 定價權係支撐。但 52 週高 1,254 → 現 692（−45%），屬典型崩盤中途。<strong>若跌穿 $650（今日低 690.51 下方）考慮止蝕部分，因 6 股虧損已 23.7%。</strong></li>
+<br>
+<h4 class="md-h">JPM — $344.81（−2.07%）｜持倉 14 股 @ $343.31</h4>
+<li>52wk: 77.8% | Gap: +1.91% | Intraday: 4.9%</li>
+<li>Vol: 2.20x | VWAP: −1.95% | B/A: 1.40</li>
+<li>PE: 14.5 | MktCap: $917B</li>
+<li>TF: 週 ↑ 日 ↑（20d +6.84%）= MEDIUM</li>
+<li>帳面：+21.0（+0.4%）</li>
+<li><strong>判斷：HOLD。</strong> 開高 358.84 後插水到 345（日低），係典型高開派發；但 GS 同日 −5.61% 更弱，金融板塊整體受利率／信貸憂慮拖累。穿 $335（MA20/支撐 21x）先算轉勢。</li>
+<br>
+<h4 class="md-h">MCD — $280.40（+0.06%）｜持倉 6 股 @ $255.20</h4>
+<li>52wk: 48.3% | Gap: +0.12% | Intraday: 62.6%</li>
+<li>Vol: 1.47x | VWAP: +0.13% | B/A: 0.10</li>
+<li>PE: 22.3 | MktCap: $199B</li>
+<li>TF: 週 ↑ 日 ↑（20d +21.37%）= HIGH</li>
+<li>帳面：+151.2（+9.9%）</li>
+<li><strong>判斷：HOLD。</strong> 防禦股今日幾乎平盤（+0.06% vs SPY −2.6%），完美對沖。趨勢 70/100 但已接近 52 週高 335 嘅 49%（實際 280 vs 335，仲有距離）。維持。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">五、非持倉但重點監察（唔交易，只記錄）</h3>
+<br>
+<h4 class="md-h">半導體崩盤群（全部 52wk 低位）</h4>
+<li><strong>SOXX $135.86（−9.51%，52wk 37.4%）</strong> — 板塊代理，volR 6.93x 極端</li>
+<li><strong>SNDK $849.17（−18.14%，52wk 30.7%）</strong> — 今日最慘，成交 6.14% 換手</li>
+<li><strong>STX $475.96（−14.56%）</strong>、<strong>WDC $278.17（−14.10%）</strong>、<strong>SKHY $125.41（−12.35%，52wk 1.4% = 52 週低位）</strong></li>
+<li><strong>AMD $417.44（−14.60%，gap −7.39%）</strong> — 財報好但被板塊拖死；GS 目標 675 認為拋售過度</li>
+<li><strong>TSM $364.20（−7.97%，volR 5.36x）</strong>、<strong>AMKR $31.61（−11.37%，52wk 3.1%）</strong>、<strong>DELL $325.94（−12.47%）</strong></li>
+<li><strong>INTC $52.89（−9.23%，5d −39%）</strong> — 1974 年以來最差單日後續跌</li>
+<li><strong>BE $162.27（−19.03%）</strong> — 今日最差，燃料電池／AI 電力概念</li>
+<li><strong>CRWV $42.56（−12.11%，52wk 0.4% = 歷史低位）</strong>、<strong>NET $238.69（−10.46%）</strong>、<strong>CRWD $216.51（−10.16%）</strong></li>
+<br>
+<h4 class="md-h">抗跌群（今日亮點）</h4>
+<li><strong>COST $1,077.15（+2.93%，52wk 93.7%）</strong> — 消費防禦，gap +2.34% 持續</li>
+<li><strong>LLY $1,438.83（+1.47%，52wk 97.7% = 歷史高附近）</strong> — 醫療保健資金流入</li>
+<li><strong>CVX $220.76（+1.75%）</strong>、<strong>XOM $172.21（+1.74%）</strong> — 能源受益油價／伊朗戰爭預期更快結束</li>
+<li><strong>UNH $412.04（+0.65%）</strong>、<strong>RTX $198.58（+0.07%）</strong> — 防禦</li>
+<li><strong>AAL $12.86（−5.69%）</strong> — 航空受油價／需求憂慮</li>
+<li><strong>CAT $561.05（−5.12%，52wk 5.3%）</strong> — 工業崩，DIA ETF 正賣出 CAT／GS</li>
+<li><strong>GS $875.96（−5.61%）</strong> — 投行受市場波動拖累</li>
+<br>
+<h4 class="md-h">觀察結論</h4>
+<li><strong>資金流向極清晰：AI 基建／半導體 → 消費防禦（COST、WMT、MCD）＋醫療（LLY）＋能源（XOM、CVX）</strong></li>
+<li>呢個輪動同 11/4「藍色浪潮後 Mag7 大反彈」係相反 — 11/4 市場買 Mag7 係買「政策不確定性消除」，11/5 市場意識到「民主黨 = AI 基建監管風險」→ 同一事件兩日內反向定價</li>
+<li>呢個係典型<strong>敘事翻轉</strong>，唔係基本面翻轉</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">六、風險因素與矛盾</h3>
+<br>
+<h4 class="md-h">風險</h4>
+<li class="num">1. <strong>VIX +35% 一日跳升</strong> — 呢個唔係普通波動，係制度轉換訊號。歷史上 VIX 單日 +30% 以上通常伴隨後 5–10 日高波動延續</li>
+<li class="num">2. <strong>HYG 同時受壓（−2.47%）</strong> — 傳染測試未包住 → 預期回撤 −11.70%（3 倍於 contained）</li>
+<li class="num">3. <strong>組合半導體曝險</strong>：NVDA 19.8% + MU 6.8% + 間接（MSFT Azure 受 AI capex 影響）= 超過 25% 直接／間接 AI 基建曝險</li>
+<li class="num">4. <strong>MSFT 集中度 29.9%</strong> — 單一股票佔近三成，且 52wk 91.6% 高位</li>
+<li class="num">5. <strong>政治風險不可預測</strong> — 民主黨控制國會後具體 AI 監管路徑未明，30% 數據中心風險係 UBS 估算（T-3）非確定數字</li>
+<li class="num">6. <strong>MU 虧損 23.7% 已達心理止蝕線</strong> — 6 股 $692 現值 4,156 vs 成本 5,447</li>
+<br>
+<h4 class="md-h">矛盾／反向論點</h4>
+<li><strong>Apple 明言記憶體價格持續升</strong> → 記憶體廠定價權強，今日跌係估值＋政治，唔係需求破裂</li>
+<li><strong>AMD Q3 財報全面超預期</strong>（數據中心收入 +107% 至 85 億）→ 基本面未變，GS 675 目標認為拋售過度</li>
+<li><strong>Seeking Alpha 指 Sandisk PEG 0.12、Micron 估值便宜</strong> → 記憶體股可能係過度反應</li>
+<li><strong>Dan Ives／UBS 嘅「數據中心 30% 唔實現」屬估算非事實</strong> — 民主黨未必真會阻撓已獲資金項目（MarketWatch 明言已獲資金項目不會撤銷）</li>
+<li><strong>道指 −1.53% 遠好過納指 −4.8%</strong> → 唔係系統性風險，係集中於 AI／晶片嘅板塊去槓桿</li>
+<br>
+<h4 class="md-h">經理人品質閘（Manager Gate）檢查</h4>
+<li>✅ [HALLUCINATION RISK] 無 — 所有價格來自 Futu／Yahoo 實時，VIX 由 Cboe 官網 + Yahoo 雙確認</li>
+<li>✅ [CITATION NEEDED] 已處理 — UBS 30% 數據中心、Kioxia 2 兆日圓、Micron 台灣 45 億廠全部有來源</li>
+<li>✅ [STALE DATA] 無 — 全部新聞 11/2–11/5，24 小時內為主</li>
+<li>⚠️ [CONFLICT] Dan Ives「10% 數據中心唔實現」vs UBS「30% 風險」數字差異大 — 標明前者係觀點、後者係估算，兩者皆非事實</li>
+<li>✅ [NEWS TIMELINE] 已查 — 民主黨勝選係 11/3–11/4 事件，11/4 市場先反彈（買 Mag7），11/5 才反向定價晶片 → 市場未完全 priced in，仍有發酵空間</li>
+<li>✅ [METRIC CONFLATION] 無</li>
+<br>
+<p><strong>整體信心：82%</strong>（價格 100% 驗證；催化劑 85%；監管影響估算 60%）</p>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">七、決策建議（今日 23:26 HKT / 10:26 EST，正規時段可執行）</h3>
+<br>
+<h4 class="md-h">明確建議：<strong>今日唔做任何交易（NO ACTION）</strong></h4>
+<p>理由：</p>
+<li class="num">1. VIX 一日 +35% + HY 受壓 = 傳染風險格，唔係加註環境</li>
+<li class="num">2. 所有半導體股今日全部在日低附近（intraday position 全部 &lt; 12%）→ 接刀</li>
+<li class="num">3. 組合現金 37% 已足夠緩衝，唔需要急於部署</li>
+<li class="num">4. 今日跌幅係「敘事翻轉」首日，通常有第二／第三日跟跌（歷史 VIX 單日 +30% 後 5 日內平均再震盪）</li>
+<br>
+<h4 class="md-h">若必須動作（風險管理，非新增倉）</h4>
+<li><strong>MSFT 止蝕上移至 $520</strong>（MA20 $530.96 下方、保護 42.7% 利潤）— 需先確認</li>
+<li><strong>MU 若跌穿 $650 考慮減半（3 股）</strong> — 現價 692.71 距 650 有 6%，可掛 GTC 條件單</li>
+<li><strong>NVDA 若跌穿 $180 考慮減 30%（21 股）</strong> — 現價 185.32 距 180 有 2.9%</li>
+<br>
+<h4 class="md-h">觀察清單（未來 3–5 日）</h4>
+<li class="num">1. <strong>VIX 能否回落至 19 以下</strong> — 回落 = 恐慌一次性；維持 22+ = 制度性壓力</li>
+<li class="num">2. <strong>HYG 距 60 日高位能否收窄至 −1.5% 內</strong> — 收窄 = 傳染測試轉 contained</li>
+<li class="num">3. <strong>SOXX 能否守住 $135（今日低）</strong> — 守住 = 板塊築底；失守 = 第二波</li>
+<li class="num">4. <strong>MU 能否守 $690（今日低）</strong> — 係記憶體板塊最直接指標</li>
+<li class="num">5. <strong>民主黨 AI 監管具體立法草案</strong> — 若有實質法案，AI 基建股要重估；若只係言論，屬過度反應</li>
+<li class="num">6. <strong>11/6 非農就業報告</strong> — 若數據強 → 利率回升 → 對高 PE 科技再加壓力</li>
+<br>
+<h4 class="md-h">唔好做嘅事</h4>
+<li>❌ 唔好接 SOXX／SNDK／WDC／STX／SKHY 刀（全部在日低，intraday &lt; 12%）</li>
+<li>❌ 唔好因為「AMD 財報好」就買 AMD（−14.6%，gap −7.39%，板塊拖累未止）</li>
+<li>❌ 唔好因為「GOOGL PE 14.8 好便宜」就加註（趨勢 0/100，未見底）</li>
+<li>❌ 唔好因為 VIX 抽升就恐慌清倉（信貸模型實證：全現金 CAGR 崩到 0.30%）</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">八、板塊輪動總結（今日最重要嘅結構變化）</h3>
+<br>
+<p>| 板塊 | 今日表現 | 資金方向 | 代表 |</p>
+<p>|------|---------|---------|------|</p>
+<p>| 半導體／記憶體 | −9% ~ −19% | 大幅流出 | SOXX, MU, SNDK, STX, WDC, SKHY, AMD, INTC |</p>
+<p>| AI 基建（數據中心） | −10% ~ −12% | 流出 | CRWV, BE, NET, DELL, SPCX |</p>
+<p>| 大型科技（軟件） | −2% ~ −6% | 分化（MSFT 抗跌、GOOGL 弱） | MSFT −2.6%, GOOGL −1.8%, META −5.6% |</p>
+<p>| 消費防禦 | +0.1% ~ +3% | 流入 | COST +2.9%, WMT +1.7%, MCD +0.1% |</p>
+<p>| 醫療保健 | +0.7% ~ +1.5% | 流入 | LLY +1.5%, UNH +0.7% |</p>
+<p>| 能源 | +1.7% | 流入 | XOM +1.7%, CVX +1.8% |</p>
+<p>| 工業／金融 | −5% ~ −6% | 流出 | CAT −5.1%, GS −5.6%, JPM −2.1% |</p>
+<p>| 航空 | −5.7% | 流出 | AAL −5.7% |</p>
+<br>
+<p><strong>核心結論：呢個係「AI 資本開支敘事」嘅第一次真實壓力測試。</strong> 市場兩日內由「民主黨勝選 = 政策確定性 = 買 Mag7」翻轉到「民主黨勝選 = AI 監管風險 = 沽晶片」。呢種翻轉通常需要 3–5 個交易日消化，期間半導體波動會持續偏高。組合 37% 現金係最好嘅位置 — <strong>唔需要急，等 VIX 回落同 HYG 收窄先算機會。</strong></p>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">九、來源表</h3>
+<br>
+<p>| 來源 | Tier | 日期 | 用途 |</p>
+<p>|------|------|------|------|</p>
+<p>| Cboe 官網 VIX 即時數據 | T-1 | 2026-11-05 | VIX 22.48 / +35.34% / prev 16.61 |</p>
+<p>| Yahoo Finance Chart API (1m/1d) | T-3 | 2026-11-05 | VIX 22.51、HYG 77.23 交叉驗證 |</p>
+<p>| Futu OpenAPI session_quote | T-3 | 2026-11-05 | 全部 38 隻報價（正規時段） |</p>
+<p>| Bloomberg（Chipmaker Selloff 報導） | T-3 | 2026-11-05 | SPX −1.7%、NDX −3.8%、SOXX −7.2%、Tesla −10% |</p>
+<p>| Reuters / Stock Titan（UBS 30% 數據中心） | T-3 | 2026-11-05 | AI 數據中心風險估算 |</p>
+<p>| CNBC 即時（KOSPI −5.28%、SK hynix −9.03%） | T-3 | 2026-11-05 | 亞洲傳導 |</p>
+<p>| Chosun（KOSDAQ 熔斷） | T-3 | 2026-11-05 | 亞洲市場壓力 |</p>
+<p>| 24/7 Wall St（Kioxia 保守指引、Micron 台灣廠） | T-4 | 2026-11-02/04 | 記憶體催化劑（已用 Bloomberg/Seeking Alpha 佐證方向） |</p>
+<p>| Benzinga（Apple 記憶體價格續升） | T-4 | 2026-11-03 | 反向論點 |</p>
+<p>| TechTimes / Yahoo（MSFT capex 1,700 億、Azure +48%） | T-3/T-4 | 2026-11-02 | 微軟基本面 |</p>
+<p>| Motley Fool / Seeking Alpha（GOOGL 10/29 −11%） | T-3/T-4 | 2026-10-29/11-02 | GOOGL 弱勢根因 |</p>
+<p>| Trefis（GOOGL 反壟斷時間線） | T-4 | 2026-11-02 | 監管時程 |</p>
+<p>| Bloomberg（Musk 系蒸發 1,300 億） | T-3 | 2026-11-04 | TSLA/SPCX 政治風險 |</p>
+<p>| Rio Times（道指 +3.03% 收 53,356、VIX 16.61） | T-4 | 2026-11-05 | 昨日基準 |</p>
+<p>| credit_regime.md / macro_context.md / technical.md | 內部 | 2026-11-05 20:40 | 制度背景、技術結構 |</p>
+<br>
+<hr class="md-hr">
+<br>
+<p>--- EN: Post-election day 2 = concentrated semiconductor/AI-infra de-rating (SOXX −9.5%, memory −13~18%), not broad crash (DIA −1.5%). VIX +35% to 22.51 + HYG −2.47% from 60d high = CONTAGIOUS regime (fwd drawdown risk −11.7%, 3x contained). Portfolio: MSFT 29.9% concentration, NVDA+MU ~27% semis exposure, 37% cash buffer. Recommendation: NO ACTION today — all semis closing at intraday lows (no knife-catching), regime turned adverse. Risk management only: MSFT stop to $520, MU conditional exit below $650, NVDA trim below $180. Watch VIX back under 19 and HYG narrowing past −1.5% as re-entry signals. Confidence 82%. ---</p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #2167 · 2026-11-05 23:31 HKT</p>
+</footer>
+</body>
+</html>
