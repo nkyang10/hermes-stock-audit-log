@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#2168 — 研究報告 · 2026-11-06_00:14</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 1940 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">1239 項決策</span>
+      <span class="stat">95 項快照</span>
+      <span class="stat">606 項研究</span>
+      <span class="stat">21 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+    <a href="../sector-report.html" class="tab ">🧭 板塊</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-11-06 00:14 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>研究報告 · 2026-11-06_00:14</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">auto</span></div>
+  </div>
+  <div class="reasoning">
+    <h2 class="md-h">研究報告 · 2026-11-06 00:10 HKT（盤中，美股 11/5 交易日 11:10 ET 前後）</h2>
+<br>
+<h3 class="md-h">一、Bottom Line（先講結論）</h3>
+<li>今日係<strong>典型 AI 交易拆倉（unwind）第二日</strong>，唔係單一公司壞消息：民主黨橫掃參眾兩院 + 德州/俄亥俄州長民主黨勝選（承諾暫停新數據中心）→ 市場重估 AI 資本開支曲線；再加上 Qualcomm 指引疲弱（手機收入 -26% YoY）、Reuters 指 60 萬顆 H200 卡在香港等中國進口批准、CXMT 稱已預售 10 億美元 DRAM（中國記憶體威脅）四重壓力疊加。</li>
+<li>盤中實測：^SOX -12.4%、QQQ -5.3%、SPY -3.2%、VIX 27.45（+54%）、ES -1.08% / NQ -3.83%、油價先跌後反彈（CL 曾 -9% 破 $100，現回升至 ~$90-97 區間震盪）。</li>
+<li><strong>信貸制度同時轉壞</strong>：HYG 距 60 日高位 -2.47%（過 -2% 門檻）→ credit_contained=false，屬「信貸壓力 + VIX 由平靜轉恐慌」過渡格，唔再係「contained」個股事件，係<strong>傳染風險升高</strong>嘅格局。</li>
+<li>對組合最痛嘅係 MU（-14.9%，權重 6.8%，均價 $907.81 深水 -25%）同 NVDA（-7.8%），半導體係今次風眼。</li>
+<li>操作取向：<strong>唔接刀、唔加半導體、唔加 AI 基建 beta</strong>；防禦（WMT/COST/MCD/CVX/XOM）逆勢升，係今日唯一避風港；現金 41,539（37%）係資產唔係包袱，等 HYG 解除訊號（距高位回升 +2%）或 SOX 止跌先講加注。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">二、宏觀 + 制度背景</h3>
+<li>指數（實測 yfinance 盤中）：^SOX 9,200.35（-12.4%）、^GSPC 約 -3.3%、^IXIC -5%（CNBC 報跌入 correction，較上月高位 -10% 以上）、^DJI -2.2%（-1,200 點）。</li>
+<li>VIX 27.45（+54.5%）— Yahoo/CNBC 報 11/5 VIX 單日曾 +54.59%，係近年罕見單日恐慌跳升；10Y 4.84%（-1.67%），避險資金入債。</li>
+<li>傳媒口徑核對：Bloomberg（11-05 15:31 UTC）報 PHLX 半導體指數 -9.2%，「worst day since June」；Yahoo 盤中報 ^SOX -11.15%；Investopedia 報 Nasdaq -3%。→ 全日波動極大，收市前數字會再變，本報告所有價格標明「盤中約 11:10 ET」。</li>
+<li>傳染測試：HYG -2.47%（🔴 受壓、未達 +2% 解除條件）→ <strong>傳染（contagious）風險升高</strong>，唔可以當「單一板塊 contained」。呢個係同 10 月 CoreWeave CDS 事件最大分別（當時 HY 平靜 = contained）。</li>
+<li>四象限：VIX 由 16.9 跳上 27（已過 2 年 75 百分位 19.3）→ 由「最差格（信貸壓力+VIX 平靜）」轉入「信貸壓力 + VIX 恐慌」格。歷史含義：呢一格 fwd60 回撤仍偏深，但唔再係「回報崩塌 +0.06%」嘅最差格；<strong>仍然唔係加注格</strong>，係「保留核心、唔追、等解除訊號」格。</li>
+<li>油：Brent 隔夜 -9% 破 $100（兩個月首次），本週累跌 ~20%（2020 年 4 月以來最大單週跌幅），因市場押注民主黨國會令特朗普較難升級對伊朗戰事；但盤中油價已反彈（CL +2~2.5%），能源股（CVX +2.3%、XOM +2.35%）跟隨回升。⚠️ 呢個係典型「油價急跌後反彈」— 唔好追空能源。</li>
+<li>10 月 ADP +86,000（小幅改善）；今晚（11/6）非農係下一個方向風險點。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">三、持倉逐隻分析（10 隻）</h3>
+<br>
+<h4 class="md-h">NVDA — 約 $184.5（-7.8%）｜70 股 @ 均價 $205.19｜市值 ~$12,915｜浮虧 -$1,447</h4>
+<li>52wk 位置 24.1%（$163.9-243.37 區間）→ 已由高位大幅回落，唔算貴價區。</li>
+<li>日內位置 10.3%（貼近日低 $181.55）｜成交量比 3.74x（放量下跌 = 派發）｜VWAP $188.65，現價低於 VWAP 2.2%（日內弱勢）｜B/A 0.45（賣壓）。</li>
+<li>趨勢分數 0/100，MA10 $209.97 &gt; MA20 $216.12 &gt; MA50 $221.20（空頭排列）。</li>
+<li>催化劑（負）：60 萬顆 H200 卡在香港等中國進口批准（Reuters）；中國市場 700 億美元 RTX 訂單只滿足 1%；收緊全球雲端夥伴對中國客戶 AI 存取。</li>
+<li>催化劑（正）：鴻海銷售 +46%（AI 需求真實）；ETF 11/3 仍淨買 3.55 億美元。</li>
+<li>判斷：基本面需求未壞，係<strong>估值 + 政治風險重估</strong>；但 3.7x 放量破 MA20 係技術性破位，唔應該加。現價距均價 -10%，止蝕參考：DAILY ATR×2.5 約 $170-172（52wk 低 $163.9 為最後防線）。</li>
+<li>動作：HOLD（唔加、唔砍），等日線收復 MA10 $210 或 HYG 解除訊號。</li>
+<br>
+<h4 class="md-h">MU — 約 $677（-14.9%）｜6 股 @ 均價 $907.81｜市值 ~$4,062｜浮虧 -$1,385</h4>
+<li>今日全場最痛（-14.9%），20 日 -38.7%、5 日 -26%。</li>
+<li>52wk 位置 45.1%（區間 $192-1,254 極寬）｜PE 9.0（forward 約 5x）｜日內位置 14.8%｜量比 4.34x（放量崩）｜B/A 0.8。</li>
+<li>四重負面：(1) 民主黨德州/俄亥俄州長勝選 → 數據中心暫停令，威脅 2027 server memory 預算（Texas moratoria 可能影響 ~45% 已規劃美國項目）；(2) NAND 供需轉差 + 記憶體現貨價軟化 + HBM 溢價收窄（TradingKey 11-05）；(3) CXMT（中國 DRAM）稱已預售 10 億美元 DRAM，按年增 15.7 倍 → 中國供給威脅；(4) 台灣 45 億美元廠因勞資糾紛停工（Bloomberg 11-05 16:54 HKT）。</li>
+<li>正面：&gt;75% FY2027 出貨已鎖 26 份供應協議；HBM 2027 價格已上升；5x forward PE 極便宜。</li>
+<li>判斷：<strong>估值平唔等於唔會再跌</strong>。均價 $907.81 已經係深水（-25%），呢隻係組合最高波動（年化 56.9%）+ 最細權重（3.98%）。今日 4.3x 放量長陰 = 派發未完。</li>
+<li>動作：HOLD 但<strong>明確唔加</strong>；若跌破今日低 $655.86 且量能再放大，考慮 TRIM 一半控制尾部風險（半導體記憶體係今次風眼，唔好同自己講「PE 5 倍好抵」）。</li>
+<li>⚠️ 風險提示：呢隻嘅止蝕如果設得太近（例如 $680）會即刻鎖死 -25% 損失；要麼用寬 stop（$620-630，-31%）要麼減一半降低尾部暴露。</li>
+<br>
+<h4 class="md-h">MSFT — 約 $537.9（-3.2%）｜38 股 @ 均價 $387.46｜市值 ~$20,440｜浮盈 +$5,717</h4>
+<li>最大持倉（18.9%），20 日 +4.92%，MA10 $527.65 / MA20 $530.96 / MA50 $515.34（多頭但今日跌穿 MA20）。</li>
+<li>日內位置 12.6%｜量比 1.6x｜B/A 0.21（賣壓明顯）。</li>
+<li>基本面：Q1 FY2027 收入 $92.3B（+19% YoY）、Azure 需求強勁；Morningstar 公允值 $600。</li>
+<li>負面：退出 Nscale 德州數據中心擴建（$170 億問題）；Seeking Alpha 下調評級（自由現金流被 AI capex 侵蝕）；發 250 億美元債。</li>
+<li>判斷：AI capex 疑慮打擊，但係「有現金流的平台」唔係「純 AI 基建」。均價 $387 有 39% 安全墊，唔需要恐慌。</li>
+<li>動作：HOLD（核心倉，唔減）。若跌穿 MA50 $515 且 HYG 再擴闊，先考慮 TRIM 1/3 鎖利。</li>
+<br>
+<h4 class="md-h">GOOGL — 約 $281.8（-2.5%）｜33 股 @ 均價 $349.58｜市值 ~$9,299｜浮虧 -$2,237</h4>
+<li>20 日 -17.57%、5 日 -11%，趨勢 0/100（空頭），MA10 $301.83 / MA20 $324.07 / MA50 $335.23 全部喺上面。</li>
+<li>52wk 位置 7.7%（區間 $270-408）→ 貼近一年低位，PE 14.65（Mag7 最便宜）。</li>
+<li>日內位置 19.2%｜量比 1.21x｜B/A 1.0（平衡）。</li>
+<li>基本面：Gemini 4 Carbon 以 1/3 成本逼近 Anthropic（價格戰受益者之一）；Cloud 2028 收入或超搜尋；馬來西亞數據中心 150 億美元投資。</li>
+<li>判斷：跌係因為 AI 監管/數據中心政治風險 + Mag7 集體降 beta，唔係公司壞消息。PE 14.65 + 52wk 低位 7.7% = 估值已反映好多壞消息。但趨勢全空，<strong>唔接刀</strong>。</li>
+<li>動作：HOLD；等日線收復 MA20 $324 或 SOX 止跌後再談 ADD。</li>
+<br>
+<h4 class="md-h">AMZN — 約 $256.4（-3.6%）｜33 股 @ 均價 $256.57｜市值 ~$8,461｜浮虧 -$0.4</h4>
+<li>20 日 +2.35%、5 日 +4.49%，MA10 $250.17 / MA20 $254.13 / MA50 $253.89（現價剛好喺三條線上方，今日回測）。</li>
+<li>52wk 位置 64.7%｜日內位置 12.9%｜量比 1.7x｜B/A 2.0（買盤支持）。</li>
+<li>基本面：持有 Anthropic 62 億美元股份；Uber Eats 取代 GrubHub 做 Prime 配送；AWS 增長面對 2,200 億美元 capex 考驗；Q3 曾 miss + FCF 轉負。</li>
+<li>判斷：均價 $256.57 ≈ 現價，等於零利潤區；但 MA20/MA50 密集支撐喺 $254 附近，今日守住就係好事。</li>
+<li>動作：HOLD；跌穿 $252（今日低）兼量增 → 考慮 TRIM。</li>
+<br>
+<h4 class="md-h">TSLA — 約 $345.5（-10.1%）｜2 股 @ 均價 $352.89｜市值 ~$691｜浮虧 -$15</h4>
+<li>20 日 +1.95% 但 5 日 -4.71%；今日 -10.1%（Bloomberg：開市即插 10%，YTD -23%）。</li>
+<li>催化劑：民主黨勝選 → Musk 係最大個人捐贈者，Tesla 同 SpaceX 總部都在德州（民主黨州長 Hinojosa 承諾暫停新數據中心）；合併前景受政治阻力（Mark Tepper 唔信合併會成）；自動駕駛安全紀錄將受更嚴審查。</li>
+<li>52wk 位置 22.6%｜PE 377（極高）｜量比 3.70x｜日內位置 7.2%（貼日低）｜B/A 22（極端買盤掛單但價在低位 = 掛單誘多）。</li>
+<li>判斷：政治風險 + 合併溢價消失係實質負面；但倉位只有 2 股（0.65%），對組合影響微不足道。</li>
+<li>動作：HOLD（倉位太細，唔值得花 commission 處理）；如要清倉，任何反彈至 $355+ 都可以走。</li>
+<br>
+<h4 class="md-h">WMT — 約 $131.45（+1.77%）｜12 股 @ 均價 $118.64｜市值 ~$1,577｜浮盈 +$154</h4>
+<li>今日<strong>逆勢上升</strong>，係典型防禦輪動受益者（XLP 10 月以來 +10.5%，VDC 創 52wk 新高）。</li>
+<li>52wk 位置 90.3%（貼高位）｜PE 47.6（貴）｜量比 1.69x｜B/A 0.05（ask 極薄，小心滑價）。</li>
+<li>催化劑：Sparky AI 購物助手、60 億美元 Symbotic 自動化、11/19 業績前樂觀。</li>
+<li>判斷：估值貴（PE 47.6、52wk 90%）+ 防禦輪動已行咗一段，<strong>唔係加注位</strong>；但持有冇問題。</li>
+<li>動作：HOLD；如升至 $134-135（52wk 高）且量能縮，可 TRIM 一半鎖利（12 股 → 6 股）。</li>
+<br>
+<h4 class="md-h">MCD — 約 $279.2（-0.35%）｜6 股 @ 均價 $255.20｜市值 ~$1,675｜浮盈 +$144</h4>
+<li>抗跌（-0.35%），52wk 位置 47.1%（中性），PE 22.1，息率 2.67%。</li>
+<li>日內位置 33.8%｜量比 1.22x｜B/A 7.67（買盤厚）。</li>
+<li>判斷：典型低 beta 防禦（beta -0.12），今日係資金避風港之一。</li>
+<li>動作：HOLD。</li>
+<br>
+<h4 class="md-h">JPM — 約 $338.6（-3.83%）｜14 股 @ 均價 $343.31｜市值 ~$4,740｜浮虧 -$66</h4>
+<li>今日金融股跟大市走弱（GS -7.4% 更傷），JPM 20 日仍 +6.84%、MA10 $338.85 / MA20 $336.66（現價剛好貼 MA10）。</li>
+<li>52wk 位置 70.7%｜PE 14.2｜量比 2.13x｜日內位置 10.4%（貼日低）｜B/A 0.33（賣壓）。</li>
+<li>判斷：業績（Q3）本身無問題，今日跌係 risk-off 拖累 + 債息波動。均價 $343.31 vs 現價 $338.6 = 小浮虧。</li>
+<li>動作：HOLD；$335（MA20 下方 + 支撐簇）係關鍵，跌穿且量增先考慮 TRIM。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">四、可交易範圍（非持倉）— 值得留意 setup</h3>
+<br>
+<h4 class="md-h">防禦 / 逆勢（今日資金流入方向）</h4>
+<li><strong>COST $1,078.6（+3.07%）</strong>：52wk 位置 93.8%、PE 51.9（貴）、量比 2.41x、日內位置 79.3%（貼日高）。防禦輪動首選之一，但估值極貴 → 只觀察，唔追高。</li>
+<li><strong>CVX $221.95（+2.3%）/ XOM $173.3（+2.35%）</strong>：油價急跌後反彈帶動；CVX 52wk 84.1%、PE 16.3、息率 3.18%；XOM 52wk 79.6%、PE 17.8、息率 2.38%。⚠️ 油價本週累跌 20%，反彈屬技術性回補，唔好當趨勢反轉追。</li>
+<li><strong>LLY $1,424.9（+0.48%）</strong>：52wk 位置 95.1%（貼歷史高）、PE 46.2、20 日 +19.3%。強勢股，但貼高位 + 高 PE = 只適合細注或等回調至 MA10 $1,345。</li>
+<li><strong>UNH $408.3（-0.26%）</strong>：抗跌，52wk 75.4%、PE 23.3、MA10 $410（剛跌穿）。醫療係今日另一個避風港（防守板塊輪動）。</li>
+<li><strong>RTX $197.3（-0.55%）</strong>：52wk 51.5%、PE 32.0、20 日 +10.1%、量比 0.81（縮量）。防務股相對抗跌，若中東局勢再升溫係受惠者。</li>
+<br>
+<h4 class="md-h">半導體 / AI 基建（今日風眼，全部唔好接）</h4>
+<li><strong>AMD $414.0（-15.3%）</strong>：Q3 財報本身超預期（數據中心收入近倍增至 85 億美元、佔總銷售 64%、Helios +107%），但被 AI 拆倉拖累；52wk 47%、PE 88.9、量比 3.26x、日內位置 10.9%。BofA 降至 $650、Mizuho 降至 $610、GS $675（認為拋售過度）。→ 基本面好、但 3.3x 放量破位，等止跌。</li>
+<li><strong>SOXX $133.9（-10.8%）</strong>：量比 7.10x（極端放量）、52wk 35%、日內位置 7.1%、B/A 27.9（買盤掛單厚但價在低位）。SOX 已連續多日下跌，Bloomberg 指「worst day since June」，Barclays 指係「投資者整體離開 AI，唔係板塊內部輪動」（半導體同 Mag7 一齊跌 = 更差嘅訊號）。→ 呢個係最直接嘅板塊 beta 表達，但今日絕對唔好撈。</li>
+<li><strong>TSM $355.9（-10.1%）</strong>：PE 23.9、52wk 40.4%、量比 4.97x；ASML/TSMC 都報 AI 需求強勁、訂單 backlog 滿（Barclays）→ 基本面同價格背馳，係典型情緒主導。</li>
+<li><strong>WDC $271.9（-16.0%）/ STX $476.1（-14.5%）/ SNDK $841.0（-18.9%）</strong>：記憶體/HDD 全軍覆沒（SNDK 換手率 9.4%！）。STX 首季收入 +61% 勝預期但照跌 → 情緒主導。SNDK PEG 0.12（極便宜）但今日 -18.9%，證明「便宜唔等於唔跌」。</li>
+<li><strong>SKHY $125.4（-12.3%）</strong>：52wk 位置 <strong>2.4%</strong>（貼一年低位 $122.5）、PE 6.2。韓國 Kospi 因晶片股 -5% 以上。呢隻係「最殘」嘅記憶體股，但韓國政治/工會風險 + 52wk 低位 = 唔接刀。</li>
+<li><strong>INTC $53.7（-7.8%）</strong>：5 日 -39%、20 日 -48.5%、PE 負數（虧損）；CEO 買入近 1,000 萬美元自家股但仍跌；晶圓代工陷阱惡化。→ 純粹「唔好掂」。</li>
+<li><strong>AMKR $31.2（-12.5%）</strong>：52wk 位置 2.1%（貼低位）、PE 12.5、封測股跟隨板塊崩。</li>
+<li><strong>NET $237.5（-10.9%）/ CRWD $216.5（-10.2%）</strong>：軟件亦被殺（CRWD 曾 -1.5%，今日 -10%）。CRWD 52wk 64.3%、PE 5,659（無意義）、B/A 0.05（賣壓極重）。軟件估值重估中。</li>
+<li><strong>DELL $324.2（-12.9%）/ CRWV $41.6（-14.1%）/ BE $161.4（-19.5%）</strong>：AI 基建高 beta 全軍覆沒。CRWV 52wk 位置 0.6%（歷史低位）、BE -19.5%（Bloom Energy，燃料電池，52wk 30%）。</li>
+<li><strong>META $597.1（-5.2%）</strong>：20 日 -12.66%、MA20 $673.89（遠高於現價）、52wk 28.3%、PE 20.2。收購 Conductor（AI 編碼）、150 億美元發債。→ 弱勢中，等企穩。</li>
+<br>
+<h4 class="md-h">金融 / 其他</h4>
+<li><strong>GS $858.9（-7.4%）</strong>：昨日 +3.56%（選舉行情），今日回吐全部漲幅；52wk 29%、PE 12.3、量比 2.68x、日內位置 4.7%（貼日低）、B/A 0.06（賣壓極重）。Q3 收入 186.8 億（+23% YoY）、EPS 17.01（遠超 12.86）。→ 基本面強但今日係 risk-off 提款機，$854（今日低）係關鍵。</li>
+<li><strong>CAT $558.5（-5.6%）</strong>：52wk 位置 4.2%（貼一年低位 $532.55）、PE 21.8、20 日 -27.3%。工業股被數據中心 capex 疑慮打（卡特彼勒發電機組/data center 電力設備曝險）。→ 弱勢，唔掂。</li>
+<li><strong>AAL $12.76（-6.4%）</strong>：PE 負、52wk 30.3%、量比 0.85。油價跌對航空係利好，但今日仍跌 = 需求憂慮。細價股，唔建議。</li>
+<li><strong>DIA $520.8（-2.3%）/ SPY $742.5（-3.2%）/ VOO $682.4（-3.2%）</strong>：指數 ETF 全線下跌。SPY 52wk 73.2%、DIA 74.3%。→ 唔係入場位，但 SPY 係「唔想選股」嘅工具，等企穩後可分批。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">五、風險框架（今日最重要嘅判斷）</h3>
+<li><strong>傳染 vs contained</strong>：HYG 已過 -2% 門檻（-2.47%）→ 唔可以再當「單一板塊事件」。呢個係同 10 月最大分別。含義：半導體爆 + HY 擴闊 = 歷史上 -11.70% 回撤格（vs contained -3.83%）。→ 唔好撈底、拉闊止蝕、保留現金。</li>
+<li><strong>VIX 27.45</strong> 已進入恐慌區，但 VIX 恐慌 + 信貸壓力 = 過渡格，唔係「均值回歸買入格」（買入格要求 VIX 恐慌但信貸平靜）。今日唔符合買入條件。</li>
+<li><strong>政治風險係新變數</strong>：民主黨控制國會 + 多個州長 → 數據中心許可、AI 監管、反壟斷、油氣許可全部進入新制度。呢個係<strong>長期貼現率/資本開支假設嘅改變</strong>，唔係一日事件。往後每份研究都要將「藍色浪潮」列入 AI 基建股嘅結構性折讓。</li>
+<li><strong>組合集中度</strong>：MSFT 18.9% + NVDA 12.1% + GOOGL 8.6% + AMZN 8.0% = 科技 47.6%，再加 MU 4.0% ≈ 51.6% 半導體+科技。今日呢個集中度係痛源。但唔應該恐慌性全減 — 歷史上「全現金走佬」CAGR 崩到 0.30%。</li>
+<li><strong>VaR 95 -1.0%（日）</strong>：以 $112K 組合計約 -$1,120/日，今日實際跌幅遠超 VaR（NVDA+MU 兩隻已 -$2,800）→ 尾端事件中。呢個係提醒：唔好再加高 beta。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">六、行動清單（明確，唔含糊）</h3>
+<li class="num">1. <strong>唔加任何半導體 / AI 基建</strong>（NVDA、MU、AMD、SOXX、TSM、SKHY、WDC、STX、SNDK、AMKR、INTC、CRWV、DELL、BE、NET、CRWD）— 全部等日線止跌 + HYG 解除訊號。</li>
+<li class="num">2. <strong>唔加高估值防禦</strong>（COST PE 51.9、WMT PE 47.6、LLY PE 46.2 且 52wk 95%）— 防禦輪動已行一段，追高風險大。</li>
+<li class="num">3. <strong>持倉全部 HOLD</strong>，但設定風險界線：</li>
+<li>NVDA：$170-172（DAILY ATR×2.5）為止蝕參考；52wk 低 $163.9 為最後防線。</li>
+<li>MU：$620-630（-31%）寬 stop，或先減一半；<strong>唔好設 $680 咁近</strong>（會即刻鎖死 -25%）。</li>
+<li>GOOGL：$270（52wk 低）為界；MA20 $324 為轉強確認。</li>
+<li>AMZN：$252（今日低）；MSFT：$515（MA50）。</li>
+<li>JPM：$335（MA20 + 支撐簇）；WMT：$134-135 考慮 TRIM 一半鎖利。</li>
+<li class="num">4. <strong>現金 $41,539（37%）保留</strong>，等兩個訊號之一：(a) HYG 距 60 日高位回升 +2%（解除訊號），(b) SOX 連 3 日止跌 + 量能萎縮（縮量止跌）。</li>
+<li class="num">5. <strong>下一個觀察點</strong>：11/6 非農就業；民主黨國會上任後首輪數據中心/能源政策表態；Nvidia 11 月業績（1080 億營收指引係門檻）。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">七、Sources（Tier 標示）</h3>
+<p>| 來源 | Tier | 日期 | 用途 |</p>
+<p>|---|---|---|---|</p>
+<p>| Bloomberg — &quot;Semiconductor Stocks Plunge as AI Trade Weakens&quot; | T-3 | 2026-11-05 | SOX -9.2%、worst day since June |</p>
+<p>| Bloomberg — &quot;Semiconductor ETF Drops Over 3%...&quot; | T-3 | 2026-11-05 | S&amp;P -1.7%、Nasdaq 100 -3.8%、SOXX -7.2% |</p>
+<p>| Reuters — &quot;Wall St slumps as sharp tech losses put Nasdaq on course for correction&quot; | T-3 | 2026-11-05 | correction territory |</p>
+<p>| Yahoo Finance — market live blog | T-4（corroborated by Bloomberg） | 2026-11-05 | ^SOX -11.15%、NVDA -7%、MU -12%、AMD -13% |</p>
+<p>| CNBC — &quot;Qualcomm slides 9% after earnings&quot; | T-3 | 2026-11-05 | QCOM 指引疲弱、手機收入 -26% |</p>
+<p>| TipRanks — &quot;Why Chip Stocks Nvidia, AMD, Intel Are Sinking&quot; | T-4（corroborated by Reuters via TipRanks citation） | 2026-11-05 | 60 萬顆 H200 卡在香港（Reuters exclusive） |</p>
+<p>| Motley Fool — &quot;Why Micron Stock Keeps Going Down&quot; | T-4（corroborated） | 2026-11-05 | CXMT 預售 10 億美元 DRAM、15.7x |</p>
+<p>| TradingKey — Micron 25% 月跌分析 | T-4 | 2026-11-05 | NAND 供需轉差、現貨價軟、HBM 溢價收窄 |</p>
+<p>| 24/7 Wall St via Yahoo — &quot;How Worried Should Investors Be About Micron&quot; | T-4 | 2026-11-05 | Texas moratoria ~45% 美國項目、75% FY27 出貨鎖定、5x forward PE |</p>
+<p>| Yahoo Finance — &quot;SpaceX, Tesla stocks tumble&quot; | T-4（corroborated by Bloomberg TSLA article） | 2026-11-05 | Tesla -9%、民主黨德州勝選、合併疑慮 |</p>
+<p>| Bloomberg — &quot;Tesla Shares Tumble Again&quot; | T-3 | 2026-11-05 | TSLA 開市 -10%、YTD -23% |</p>
+<p>| Barclays Private Bank — &quot;AI sell-off: strong demand vs funding needs&quot; | T-2 | 2026-11 | 投資者整體離開 AI、半導體+Mag7 同步跌、SOX 8 連跌（2008 以來最長） |</p>
+<p>| MarketEdge — &quot;On the Edge Nov 2026&quot; | T-4 | 2026-11 | SOX 9 連跌（2006 年 5 月以來最長）、-23% from June high、bear market |</p>
+<p>| Reuters/Euronext — &quot;AI stocks, oil fall as investors bet on blue wave&quot; | T-3 | 2026-11-05 | Brent -9% 破 $100、本週 -20% |</p>
+<p>| EnergyNow / Global Banking &amp; Finance | T-4 | 2026-11-05 | 油價反彈 +2.5%、$97/bbl |</p>
+<p>| Yahoo Finance / Investopedia / WSJ | T-3/T-4 | 2026-11-05 | 指數日內數字、VIX +54% |</p>
+<p>| Zacks — VDC 52 週新高 | T-4 | 2026-11-02 | 防禦輪動、WMT/COST 支撐 |</p>
+<p>| Perplexity Finance — WMT/GS 逐日摘要 | T-4（aggregator） | 2026-11-05 | WMT +3.45% 11/4、GS +3.56% 11/4 |</p>
+<p>| Futu OpenAPI session quotes | T-1（實時交易所數據） | 2026-11-05 盤中 | 全部持倉/宇宙實時價、量比、B/A、日內位置 |</p>
+<p>| yfinance（ES/NQ/VIX/TNX/CL/SOX） | T-3 | 2026-11-05 盤中 | 期指、VIX 27.45、SOX 9,200 |</p>
+<br>
+<h3 class="md-h">八、Confidence</h3>
+<li>整體：82%（價格全部 Futu/yfinance 實時；催化劑有 Bloomberg/Reuters/CNBC 三層來源；政治風險因果鏈有 Barclays + Fortune + Yahoo 三源互相印證）</li>
+<li>價格數字：95%（Futu session quotes + yfinance 雙源）</li>
+<li>催化劑歸因：78%（多數為 Tier-3/4 媒體，已做 Tier-2/3 corroboration；「藍色浪潮 → 數據中心暫停 → 記憶體需求」係市場敘事，唔係已證實因果）</li>
+<li>制度判斷：85%（HYG/VIX 係硬數據；但 credit regime 模型本身經實證驗證「冇交易價值」，只做 risk budget）</li>
+<br>
+<p>--- EN: Broad AI-trade unwind day 2 — SOX -12.4%, QQQ -5.3%, VIX 27.5, HYG through -2% stress threshold (contagion risk up, no longer contained). Semis (MU -14.9%, AMD -15.3%, SNDK -18.9%) are the epicenter; defensives (WMT +1.8%, COST +3.1%, CVX/XOM +2.3%) are the only green. No adds anywhere in semis/AI-infra; all holdings HOLD with wider stops; keep $41.5K cash until HYG recovery signal or SOX stops falling. ---</p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #2168 · 2026-11-06 00:14 HKT</p>
+</footer>
+</body>
+</html>
