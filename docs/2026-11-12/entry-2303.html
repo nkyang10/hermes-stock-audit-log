@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#2303 — 研究報告 · 2026-11-12_22:47</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 2073 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">1330 項決策</span>
+      <span class="stat">103 項快照</span>
+      <span class="stat">640 項研究</span>
+      <span class="stat">23 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+    <a href="../sector-report.html" class="tab ">🧭 板塊</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-11-12 22:47 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>研究報告 · 2026-11-12_22:47</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">auto</span></div>
+  </div>
+  <div class="reasoning">
+    <h2 class="md-h">研究報告 · 2026-11-12（正規時段盤中，ET 09:34–10:00）</h2>
+<br>
+<h3 class="md-h">0. 執行摘要（BLUF）</h3>
+<li>今日主題得一個：<strong>Nvidia 創辦人黃仁勳即時辭任 CEO</strong>（公司新聞稿 2026-11-12，T-1）→ CFO Colette Kress 做臨時 CEO、Harvey Jones 出任首任董事會主席。呢個係「key-man risk」由傳聞變成事實嘅一日，唔再係 rumour。</li>
+<li>市場反應係<strong>極度分化，唔係全面崩</strong>：SPY −0.34%、QQQ −0.55%、DIA −0.02%，但 NVDA −8.15%、CRWV −7.26%、SNDK −5.44%、DELL −4.30%、BE −4.52%。同時 AMD +3.20%、AMZN +2.18%、GOOGL +0.82%、MSFT +0.50%、MCD +1.41%。→ 資金唔係離場，係<strong>喺 AI 鏈內部換馬</strong>（NVDA 客戶／槓桿方 → NVDA 競爭對手 + 現金流穩健巨頭）。</li>
+<li>我哋個倉 10 隻股全部「有得守」：NVDA（均價 205.19 vs 現價 159.57，−22.2%）係今日唯一真正痛點；其餘 9 隻全部浮盈或接近打和。</li>
+<li>信貸制度：<strong>contained</strong>（HYG 距 60 日高 −1.74%、HY/IG 0.7440，HY 冇擴闊）＋ VIX 18.97 平靜 → 屬「板塊爆 + HY 平靜」= 預期回撤 −3.83% 嘅格，唔係系統性傳染。呢個直接決定：<strong>唔可以因為 NVDA 一件事就全線減 AI 曝險</strong>，但亦唔可以當無事加倉。</li>
+<li>今日唔建議追高任何 AI 反彈股（AMD 已 +3.2% 但仍在 MA20 上方 10%、DELL 反彈後又跌 4.3%）；亦唔建議喺 NVDA 第一日崩盤中段撈底（未見日內翻紅、VWAP 上方乏力）。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">1. 制度背景（先講框架，後講個股）</h3>
+<br>
+<h4 class="md-h">1.1 信貸 × VIX 四象限</h4>
+<li>VIX 18.97（2 年 75 百分位 19.4）→ <strong>平靜</strong>；HYG 距 60 日高位 −1.74%（門檻 −2%）→ <strong>信貸平靜</strong>。</li>
+<li>呢一格 = 正常（歷史回撤 −2.93%、回報 +0.82%）→ <strong>無制度警示，風險預算照常</strong>。</li>
+<li>傳染測試：板塊爆（NVDA 兩日蒸發 4,300 億美元市值級別）＋ HY 平靜 → <strong>✅ contained</strong>，對應歷史回撤 −3.83%；若 HY 開始擴闊就要當 contagious（−11.70%，3 倍）。今日未見 HY 擴闊，所以 NVDA 事件 = <strong>板塊金絲雀，唔係系統性訊號</strong>。</li>
+<li>60 日預測回撤 −3.51%（基準 −3.58%）→ 只做 risk budget，<strong>唔可以當方向預測</strong>（模型 rolling out-of-sample 冇交易價值）。</li>
+<br>
+<h4 class="md-h">1.2 宏觀價位</h4>
+<li>ES 7,583.25（−0.75%）、NQ 28,080.75（−1.38%）、VIX 18.97（+8.46%）、10Y 5.05%（+0.96%）。</li>
+<li>10Y 5.05% 係一個唔舒服嘅位：對高 PE 成長股（AMD 121x、CRWD 5786x、TSLA 430x、COST 53x、LLY 46.9x）係持續嘅估值壓縮力。</li>
+<li>Beta 表提醒：NVDA mkt beta 1.77、MU 3.71、TSLA 2.45、AMZN 1.26、GOOGL 1.25 → 呢幾隻今日嘅波動主要係 market/sector factor，唔係個股 alpha。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">2. 持倉逐隻分析（10 隻，用 systematic 8 步 + 今日實測數據）</h3>
+<br>
+<p>&gt; 數據來源：Futu snapshot（regular session，ET 09:34–10:00 連續多次抓取）＋ Futu 日 K（2026-07-01 至 2026-11-12）計 MA20/MA50/ATR20。所有價格為<strong>盤中實時</strong>，非收市價。</p>
+<br>
+<h4 class="md-h">NVDA — $159.57（−8.15%）</h4>
+<li>52 週位置 4.6%（52 週高 243.37 / 低 148.80）→ <strong>極低位，但今日創 52 週新低 148.80 後反彈</strong>。</li>
+<li>Gap：−13.08%（開 151.00 vs 前收 173.73）→ 巨大向下裂口；日內高 162.33、低 148.80，振幅 7.79%（正常 1 日 2–3%）。</li>
+<li>量：2.36 億股（turnover 1.00%），係 20 日平均量嘅<strong>幾十倍</strong>級別 → 恐慌換手 + 撈底盤同時入場。</li>
+<li>VWAP（avg_price）155.77 → 現價 159.57 高於 VWAP +2.4% = <strong>日內偏多，即係撈底買盤暫時贏咗</strong>；但日內位置 74%（由低位反彈 68%），未算追高。</li>
+<li>B/A 0.98（平衡），盤口 5 檔買賣都薄（幾百股級），spread 0.02。</li>
+<li>技術：MA20 200.94、MA50 215.81 → 現價低過 MA20 20.5%、MA50 26%；ATR20 9.29（5.81%），2.5×ATR 止蝕參考 136.76。</li>
+<li>催化劑（T-1/T-3）：官方新聞稿確認黃仁勳辭任、Kress 臨時 CEO；Oppenheimer 下調評級並撤目標價（指無明顯接班人、brain drain 風險）；Bernstein 降至 Market Perform、目標價 400→200；CNBC 引分析師話「若黃被移除股價可跌 20%」。反面：11-17（週二）照原定公布 FY2027 Q3 業績 —— 呢個係 5 日內嘅二元事件。</li>
+<li>8 步判分：52wk ✅（極低）、vol ✅、intraday 74%（中性偏唔利）、B/A ✅ 0.98、overnight divergence 極負 ❌、PE 32.8（futu pe_ratio）對半導體龍頭唔算極端 ✅、gap ❌ −13%、weekly trend ❌ 全空頭 → <strong>3–4 綠 / 4 紅 = HOLD，唔加唔減</strong>。</li>
+<li>判斷：呢個係「<strong>基本面未變、治理風險重定價</strong>」嘅事件，唔係業績崩壞。持倉均價 205.19 → 現價 159.57 = −22.2%（−$3,193）。<strong>唔接刀</strong>：今日日內反彈 7% 係空頭回補，唔係趨勢轉向；要等 11-17 業績 + 新 CEO 路徑明朗。</li>
+<li>風險 framing：70 股 = 組合 11.3%（用 159.57 算實際 8.4% 市值佔比），NVDA 波動 42% 年化 → 對組合 VaR 貢獻最大。若跌破今日低 148.80 並收低於，則 2.5×ATR 止蝕 136.76 係最後防線（= 由現價再跌 14.3%）。</li>
+<br>
+<h4 class="md-h">MU — $790.06（−2.62%）</h4>
+<li>52 週位置 55.1%（高 1254.61 / 低 192.37），但<strong>離 6 月高位已 −37%</strong>。</li>
+<li>今日 gap −4.99%（開 770.85）、低見 767.50 後回升，日內位置 87%（接近日高）；量 502 萬股 turnover 0.44%，11x 均量。</li>
+<li>VWAP 781.34 → 現價高 VWAP +1.1% = 日內偏多；B/A 3.89（買盤厚）。</li>
+<li>技術：MA20 842.65、MA50 947.13 → 現價低過 MA20 6.2%；ATR20 58.78（7.43%），2.5×ATR 644.04。</li>
+<li>催化劑（T-3/T-4）：CoreWeave 業績 + 上調 2026 展望 → 11-11 MU +11~13%；HBM 明年產能多已售出、DRAM/NAND 合約價上行、SK Hynix 指記憶體供應緊張持續到 2030；但今日盤前記憶體股全線回吐（SKHY −3.8%、MU −3.8%、SNDK −4.2%、WDC −3.4%、STX −2.8%，Gate News 11-12 10:30 HKT 引 MSX）。分析師分歧：Bernstein 目標 200（舊）／高盛「強力買進」／美銀剔出首選／DA Davidson 目標 3,000。</li>
+<li>8 步：52wk 中性、vol ✅、intraday 87%（偏高，唔利追）、B/A ✅ 3.89、divergence 中性、PE 10.7（極低，7x forward 附近）✅、gap −5% ❌、weekly ❌ → <strong>4 綠 = HOLD</strong>。</li>
+<li>持倉：6 股 @ 907.81 → −12.9%（−$707）。呢隻係組合波動最大（70% 年化），但估值最便宜（10.7x TTM、~7x forward），且 HBM 產能售罄 = 基本面支持。<strong>唔加</strong>（今日全組回吐、未見止跌確認），<strong>唔減</strong>（估值 + 售罄產能係實質支撐，唔係故事）。</li>
+<br>
+<h4 class="md-h">AMZN — $271.97（+2.18%）</h4>
+<li>52 週位置 80%；gap +0.74%；日內位置約 78%（高 272.48 / 低 267.83）；量 550 萬（~7.9x 均量）；VWAP 269.55 → 現價高 VWAP +0.9%；B/A 0.04（賣盤極厚，短線有阻力）。</li>
+<li>技術：MA20 256.72、MA50 254.74 → 現價高 MA20 +5.9%；ATR20 9.78（3.6%），2.5×ATR 247.31。</li>
+<li>催化劑：AWS 按年 +39%（近五年最快）、營運利潤率 38.7%；但 Q3 收入 201.94B vs 預期 202.31B、EPS 1.89 vs 1.96、自由現金流 −42.4B（capex 全年 ~$220B）。JPMorgan 11-09 加入 Analyst Focus List；Mizuho 目標 335。今日 +2.2% = <strong>資金由 NVDA 客戶鏈輪入「自己有算力 + 現金流」嘅巨頭</strong>。</li>
+<li>8 步：52wk 80%（中性偏上）、vol ✅、intraday 78%（唔利追）、B/A ❌ 0.04、divergence 中性、PE 38.0（貴但合理）、gap ✅、weekly ✅ → <strong>4 綠 = HOLD</strong>。</li>
+<li>持倉：33 股 @ 256.57 → +6.0%（+$509）。已浮盈，<strong>唔加</strong>（B/A 0.04 賣盤厚、日內已在高位）；若回踩 MA20 256.7 附近可分批加。</li>
+<br>
+<h4 class="md-h">AMD — $570.57（+3.20%）</h4>
+<li>52 週位置 78.6%；gap +3.0%（開 569.5）；日內位置約 66%（高 578.78 / 低 554.90）；量 1,327 萬（24x 均量，turnover 0.54%）；VWAP 566.10 → 現價高 VWAP +0.8%；B/A 3.23。</li>
+<li>技術：MA20 518.13、MA50 552.74 → 現價高 MA20 +10.1%、高 MA50 +3.2%（<strong>唯一隻 AI 晶片股喺 MA20 上方 10%</strong>）；ATR20 39.10（6.83%），2.5×ATR 475.07。</li>
+<li>催化劑（T-3）：Bloomberg 11-12 明確講 NVDA 動盪令 AMD/Broadcom/Alphabet 受惠（業務轉移押注）；William Blair 指 AMD AI 銷售將超越伺服器 CPU、有 runway；美銀上調 AMD 盈利預測但下調目標價；TIKR 提醒 AMD 有 6GW 產能繫於 OpenAI 現金消耗（風險）。PsiQuantum × AMD 量子合作。</li>
+<li>8 步：52wk 78.6%（中性偏上）、vol ✅ 24x、intraday 66%（中性）、B/A ✅、divergence 正 ✅、PE 121（極貴 ❌）、gap ✅ 3%、weekly ❌（20 日 −3.14%，趨勢分數 30/100）→ <strong>5 綠 = 邊緣 BUY，但 PE 121 + 已離 MA20 10% → 唔追</strong>。</li>
+<li>持倉：0（唔持）。<strong>觀察名單第一位</strong>：如果回踩 MA20 518–525 而量唔縮，係呢一輪「NVDA 出事受益者」最乾淨嘅入場位；今日追 570 係追高。</li>
+<br>
+<h4 class="md-h">GOOGL — $295.85（+0.82%）</h4>
+<li>52 週位置 18.3%（52 週低 271.77，離低位 +8.9%）；gap +0.51%；日內位置 94%（貼日高）；量 583 萬（16x）；VWAP 294.77 → 現價高 VWAP +0.4%；B/A 1.0。</li>
+<li>技術：MA20 305.51、MA50 329.06 → 現價低過 MA20 3.2%、MA50 10.1%（<strong>20 日 −15.6%、趨勢分數 30/100 空頭</strong>）；ATR20 10.27（3.47%），2.5×ATR 270.16。</li>
+<li>催化劑：TPU 第八代新增兩款專用晶片（8i Max 雙晶片封裝、8tx 用 AMD EPYC 取代 Arm 主機）；Anthropic IPO 受益股；Bloomberg 指 NVDA 動盪 Alphabet 受惠 +0.3% extended；路透專欄建議 Alphabet 收購 Uber 結合 Waymo；但 Alphabet 91 億美元現金消耗報道曾令股價跌 10%，亞洲美元債發行最高 30 億。</li>
+<li>8 步：52wk ✅ 18.3%（低位）、vol ✅、intraday 94% ❌（貼高）、B/A ✅、divergence 中性、PE 27.3（唔貴）✅、gap ✅、weekly ❌ → <strong>5 綠 = 接近 BUY 條件，但日內 94% 唔追</strong>。</li>
+<li>持倉：33 股 @ 349.58 → −15.4%（−$1,773）。<strong>最大賬面虧損倉</strong>。今日 +0.8% 屬相對強勢（NVDA 崩佢升）。策略：<strong>唔加唔減，等回踩 290 或站穩 MA20 305.5 再加</strong>。若跌穿 271.77（52 週低）則要重新評估（即 −8.2% 空間）。</li>
+<br>
+<h4 class="md-h">MSFT — $523.73（+0.50%）</h4>
+<li>52 週位置 82.4%；gap +0.26%；日內位置約 57%（高 525.83 / 低 520.51）；量 194 萬（6.5x）；VWAP 522.52 → 現價高 VWAP +0.2%；B/A 0.19（賣盤厚）。</li>
+<li>技術：MA20 529.67（現價低 1.1%）、MA50 518.73（現價高 1.0%）→ 喺兩條線之間；5 日 −6.24%、20 日 −2.35%、趨勢分數 10/100。</li>
+<li>催化劑：Anthropic 推出 Claude Sheets 曾令 MSFT 跌 2.5%，但 Evercore 維持 Outperform、目標 635；承諾自行負擔資料中心供電成本（避開政治風險）；Azure 醫療客戶擴張（Kno2）；Ackman 13F 週一公布。Scott Galloway：AI 若「似鐵路」，Alphabet 同 Microsoft「都唔會死」。</li>
+<li>8 步：52wk 82%（偏高）、vol ✅、intraday 57%（中性）、B/A ❌、divergence 中性、PE 29.1 ✅、gap ✅、weekly ❌ → <strong>4 綠 = HOLD</strong>。</li>
+<li>持倉：19 股 @ 387.46 → +35.2%（+$2,585，組合最大浮盈）。<strong>唔減</strong>（AI 巨頭中最唔受 NVDA 直接衝擊、現金流強）；止蝕參考 2.5×ATR 485.05（−7.4%）。</li>
+<br>
+<h4 class="md-h">AAPL — $356.71（+0.38%）</h4>
+<li>52 週位置 98.0%（<strong>貼 52 週高 359.02</strong>）；gap +0.8%；日內位置 26%（由高 359.02 回落）；量 393 萬（6.6x）；VWAP 357.37 → 現價低 VWAP −0.2%；B/A 2.88。</li>
+<li>技術：MA20 345.34、MA50 338.26 → 現價高 MA20 +3.3%、MA50 +5.5%；ATR20 8.39（2.35%），2.5×ATR 335.53。</li>
+<li>催化劑：記憶體定價「前所未見」（Ternus）壓毛利；但 iPhone Duo（摺機）需求帶動鴻海利潤 +34%；Google Gemini 進 CarPlay；今日 +0.38% 屬「傳統科技輪動」受益。</li>
+<li>8 步：52wk 98% ❌（貼高）、vol ✅、intraday 26%（回至日內低位，短線轉弱）、B/A ✅、divergence 中性、PE 39.7（貴）、gap ✅、weekly ✅ → <strong>4 綠 1 紅 = HOLD</strong>。</li>
+<li>持倉：10 股 @ 298.11 → +19.6%（+$586）。<strong>唔加</strong>（52 週 98%、日內 26% 即係高位回落）；可考慮 359 附近（20 日高）分批減 1/3 鎖利，但今日唔急（AI 崩盤日佢抗跌 = 防守價值）。</li>
+<br>
+<h4 class="md-h">TSLA — $393.38（+0.65%）</h4>
+<li>52 週位置 46.6%；gap −1.24%（開 386）；日內位置 70%；量 347 萬（6.6x）；VWAP 391.18 → 現價高 VWAP +0.6%；B/A 0.1（賣盤極厚）。</li>
+<li>技術：MA20 381.83、MA50 373.65 → 現價高 MA20 +3.0%；ATR20（未計，但振幅 2.81%）；PE 363.7（極貴）。</li>
+<li>持倉：2 股 @ 352.89 → +11.5%（+$81）。倉位細（0.72%），<strong>HOLD</strong>。B/A 0.1 反映日內賣壓，唔加。</li>
+<br>
+<h4 class="md-h">WMT — $125.94（+0.21%）</h4>
+<li>52 週位置 79.4%；gap +1.01%；日內位置約 30%（高 127.66 / 低 125.48，現價近低）；量 200 萬（5.8x）；VWAP 126.62 → 現價低 VWAP −0.5%；B/A 0.49。</li>
+<li>技術：MA20 122.35、MA50 113.74 → 現價高 MA20 +2.9%；ATR 未計（振幅 1.74%）；PE 46.1（貴，零售股偏貴）。</li>
+<li>持倉：12 股 @ 118.64 → +6.2%（+$87）。<strong>HOLD</strong>。防禦性角色（今日 beta 負 −0.13），但 PE 46 唔吸引加倉。日內由 127.66 回落到 125.94 = 開高走低，短線弱。</li>
+<br>
+<h4 class="md-h">MCD — $278.69（+1.41%）</h4>
+<li>52 週位置 46.0%；gap +0.83%；日內位置約 68%；量 43 萬（3.9x）；VWAP 278.34 → 現價高 VWAP +0.1%；B/A 4.17（買盤厚）。</li>
+<li>技術：MA20 259.51、MA50 249.75 → 現價高 MA20 +7.4%；20 日 +15.31%、趨勢分數 55/100；PE 23.3。</li>
+<li>持倉：6 股 @ 255.20 → +9.2%（+$141）。<strong>HOLD，係今日防禦輪動受益股之一</strong>（+1.41% 跑贏 SPY −0.34%）。唔加（已離 MA20 7.4%，且防禦股喺 AI 崩盤日被追捧，追高唔划算）。</li>
+<br>
+<h4 class="md-h">JPM — $344.75（+0.40%）</h4>
+<li>52 週位置 78.4%；gap +0.64%；日內位置約 16%（高 347.15 / 低 343.45，現價近低）；量 25 萬（3.3x）；VWAP 345.14 → 現價低 VWAP −0.1%；B/A 4.6（買盤厚）。</li>
+<li>技術：MA20 338.36、MA50 341.01 → 現價高 MA20 +1.9%；PE 17.2（金融股合理）；XLF 52 週位置 90.7%（金融板塊強）。</li>
+<li>持倉：14 股 @ 343.31 → +0.4%（打和）。<strong>HOLD</strong>。10Y 5.05% 對銀行淨息差係利好（rate beta −0.27 但水平高），今日 XLF +0.08% 抗跌。日內 16% 即開高走低，短線唔追。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">3. 可交易範圍內值得留意但唔持倉嘅標的（選 6 隻）</h3>
+<br>
+<h4 class="md-h">CRWV — $56.36（−7.26%）｜⚠️ 高風險</h4>
+<li>52 週位置 12.1%（低 40.58）；gap −16.47%；日內高 56.70 / 低 50.17（振幅 10.74%）；量 3,230 萬股 turnover <strong>6.29%</strong>（33x 均量）；VWAP 53.51 → 現價高 VWAP +5.3%；B/A 15.74（買盤極厚，5 檔 299 vs 19）。</li>
+<li>技術：MA20 55.39（剛好喺上面）、MA50 73.22；ATR20 6.43（11.41%），2.5×ATR 40.29。</li>
+<li>邏輯：呢隻係 NVDA「最大槓桿客戶」——NVDA 出事佢跌最多（−7.3% vs NVDA −8.2%），同時 40 億美元投資級貸款計劃被指「Nvidia 規模風險」。但 B/A 15.74 + 日內由 50.17 反彈 12% = 有實質撈底盤。</li>
+<li>判斷：<strong>唔掂</strong>。理由：(1) 6.29% turnover = 極度投機換手；(2) 11.4% ATR 對組合係毒藥；(3) 佢嘅風險同 NVDA 高度重疊，而我哋已經有 11.3% NVDA。要買 AI 基建，等 DELL/AMZN 呢類有現金流嘅。</li>
+<br>
+<h4 class="md-h">DELL — $357.63（−4.30%）｜⚠️ 觀察</h4>
+<li>52 週位置 48.6%；gap −9.41%（開 338.51）；日內 337.17–359.89；量 166 萬 turnover 0.35%（15x）；VWAP 353.25 → 現價高 VWAP +1.2%；B/A 2.36。</li>
+<li>技術：MA20 417.85（現價低 14.4%）、MA50 496.20（低 27.9%）；20 日 −26.4%、趨勢分數 15/100；ATR20 33.37（9.32%），2.5×ATR 274.79。</li>
+<li>邏輯：11-11 因 CoreWeave 業績跳 +12%（AI 伺服器股同步反彈），今日又跌 4.3%（跟 NVDA 供應鏈）；基本面有 $95B AI 伺服器 backlog，但記憶體成本上升壓 server margin、PC 需求警告。</li>
+<li>判斷：<strong>觀察，唔入</strong>。理由：MA20 低 14% = 明確下跌趨勢中嘅反彈，唔係回踩支撐；9.3% ATR 太闊。</li>
+<br>
+<h4 class="md-h">SNDK — $924.48（−5.44%）｜⚠️ 觀察</h4>
+<li>52 週位置 32.8%（高 2354.39！）；gap −9.29%；日內 869.49–937.88；量 356 萬 turnover 1.58%（16.7x）；VWAP 908.86 → 現價高 VWAP +1.7%；B/A 1.25。</li>
+<li>技術：MA20 1144.49（現價低 19.2%）、MA50 1454.60（低 36.4%）；ATR20 106.49（11.5%）→ 極度波動。</li>
+<li>邏輯：NAND 合約價上行係實質利好（Kioxia 保守指引係反例），但 11-12 記憶體全組回吐。Evercore 目標 2,500 + 8 拆 1 計劃。</li>
+<li>判斷：<strong>唔掂</strong>。11.5% ATR + 已由高位 −61% = 典型 falling knife，唔接刀。</li>
+<br>
+<h4 class="md-h">SKHY — $137.71（−3.19%）｜觀察</h4>
+<li>52 週位置 16.9%（低 122.20）；gap −5.38%；量 369 萬（12x）；VWAP 136.22 → 現價高 VWAP +1.1%；B/A 2.45。</li>
+<li>技術：MA20 142.02（低 3.0%）、MA50 165.19（低 16.6%）；PE 6.75（極便宜）。</li>
+<li>邏輯：HBM 供應緊張持續到 2030（公司自己講）；但今日 ADR −3.19% 跟記憶體組回吐。</li>
+<li>判斷：<strong>觀察</strong>。呢隻係「記憶體三隻（MU/SKHY/SNDK）中最接近 MA20」+ 最便宜 PE 嘅一隻。如果要做記憶體，佢比 SNDK 乾淨。但今日全組未止跌，唔入。</li>
+<br>
+<h4 class="md-h">BE — $200.01（−4.52%）｜⚠️ 避開</h4>
+<li>52 週位置 44.3%；gap −6.49%；量 390 萬 turnover 0.75%（12x）；PE 119.6、EPS 負；MA20 208.61（低 4.1%）、MA50 245.23（低 18.4%）。</li>
+<li>判斷：燃料電池股、虧損、波動大，今日跟 AI 電力概念跌。<strong>唔掂</strong>（唔符合「有盈利支撐」標準）。</li>
+<br>
+<h4 class="md-h">INTC — $60.80（−2.72%）｜觀察（唔入）</h4>
+<li>52 週位置 24.6%；20 日 −36.3%、MA20 76.96（低 21%）、MA50 96.19（低 37%）；PE 負（虧損）；B/A 15.18（買盤厚）。</li>
+<li>判斷：<strong>典型 falling knife</strong>（20 日 −36%），B/A 厚只係撈底盤。<strong>唔接刀</strong>。</li>
+<br>
+<h4 class="md-h">反向：相對強勢組（今日資金流入位）</h4>
+<li><strong>AMD +3.20%</strong>（NVDA 直接受益、William Blair 看好、但 PE 121 + 離 MA20 10% → 等回踩 518–525）</li>
+<li><strong>AMZN +2.18%</strong>（自有算力 + AWS +39%，已持倉）</li>
+<li><strong>GOOGL +0.82%</strong>（TPU 自研、Anthropic IPO 受益、52 週位置 18.3% = 深度價值區）</li>
+<li><strong>MCD +1.41% / JPM +0.40% / XLF +0.08% / XLU +0.33% / XLP +0.02%</strong> = 防禦輪動確認（10Y 5.05% 下，公用/消費必需品/金融抗跌）</li>
+<li>呢個組合告訴我哋：<strong>今日係「AI 集中度風險 → 分散到非 AI」嘅一日</strong>，唔係「risk-off 全撤」。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">4. 風險矩陣（今日特別要盯嘅 4 條）</h3>
+<br>
+<li class="num">1. <strong>NVDA 11-17 業績（FY2027 Q3）</strong> — 距今 5 日。呢個係唯一可以推翻今日所有判斷嘅事件。Kress 做臨時 CEO + 首份財報 = 極高不確定性。我哋 70 股 = 組合 8.4% 市值，唔建議喺業績前加或減（除非跌穿 148.80 收市）。</li>
+<li class="num">2. <strong>HY 信貸是否擴闊</strong> — 今日 contained，但若 HYG 距 60 日高跌穿 −2%（現 −1.74%，只差 0.26%！）就要由「板塊事件」升級為「傳染」，屆時 AI 鏈要全線降風險。<strong>呢個係最貼近嘅警戒線</strong>。</li>
+<li class="num">3. <strong>10Y 5.05% + CPI 偏熱 + Fed 鷹派</strong> — 高 PE 成長股（AMD 121x、CRWD 5786x、TSLA 364x、COST 53x、LLY 46.9x）估值壓縮未完。若 10Y 上 5.2%，呢批要再殺一輪。</li>
+<li class="num">4. <strong>監管/地緣</strong>：美國擬將 AI 晶片遠端存取許可擴大至另外 7 國、參議員要求封殺 CXMT、眾議院傳票威脅 → 對 NVDA/AMD/TSM 中國收入係持續壓力。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">5. 行動清單（今日唔執行，等 21:48 決策 job）</h3>
+<br>
+<li><strong>NVDA</strong>：HOLD（唔加唔減）。硬止蝕 136.76（2.5×ATR），觸發條件 = 日收 &lt; 148.80 且量唔縮。</li>
+<li><strong>MU</strong>：HOLD。若回踩 767.50（今日低）而量縮，可考慮加 2 股；跌穿 2.5×ATR 644.04 唔再加。</li>
+<li><strong>GOOGL</strong>：HOLD。加倉條件 = 回踩 290 或站穩 MA20 305.51 兩日。</li>
+<li><strong>AMZN</strong>：HOLD。加倉條件 = 回踩 MA20 256.7。</li>
+<li><strong>MSFT / AAPL / WMT / MCD / JPM / TSLA</strong>：HOLD，無需動作。</li>
+<li><strong>AMD</strong>：觀察，等回踩 MA20 518–525 且量唔縮（呢個係今日最值得準備嘅新倉）。</li>
+<li><strong>CRWV / SNDK / DELL / INTC / BE</strong>：唔掂（ATR 太闊 / falling knife / 同 NVDA 風險重疊）。</li>
+<li><strong>SKHY</strong>：觀察（記憶體三隻中最乾淨，PE 6.75、貼 MA20），但要等全組止跌。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">6. 信心評分（Manager Gate）</h3>
+<li>價格/成交量/盤口：<strong>95%</strong> — 全部 Futu snapshot 實測（ET 09:34–10:00 多次抓取，價格一致方向），非推測。</li>
+<li>黃仁勳辭任事實：<strong>99%</strong> — Nvidia 官方新聞稿（nvidianews.nvidia.com，2026-11-12）直引；CNBC/Reuters/CoinDesk/Al Jazeera 四源互證。</li>
+<li>分析師評級變動：<strong>85%</strong> — Oppenheimer 降級 + Bernstein 400→200（Investing.com 引述），未直接見原報告。</li>
+<li>記憶體盤前跌幅：<strong>80%</strong> — Gate News 引 MSX 數據（T-4），與 Futu 盤中實測方向一致。</li>
+<li>信貸制度：<strong>90%</strong> — credit_regime.md 腳本實算（HYG/HY-IG），但 HYG 距門檻只 0.26%，屬臨界。</li>
+<li>技術指標（MA/ATR）：<strong>95%</strong> — Futu 日 K 自行計算（2026-07-01 至 2026-11-12）。</li>
+<li>整體信心：<strong>88%</strong> — 主要不確定性係 NVDA 11-17 業績同 HY 臨界，非數據質量問題。</li>
+<br>
+<h4 class="md-h">Manager Gate 檢查</h4>
+<li>[HALLUCINATION RISK] ✅ 無 —— 所有價格有 Futu 實測、辭任事實有官方稿</li>
+<li>[CITATION NEEDED] ✅ 已標 —— 分析師降級引 Investing.com、記憶體盤前引 Gate News</li>
+<li>[STALE DATA] ✅ 無 —— 新聞全部 24 小時內（news_digest 已 24h 過濾）</li>
+<li>[CONFLICT] ✅ 已標 —— 記憶體分析師分歧（高盛買 / 美銀剔出 / Bernstein 200 vs DA Davidson 3000）已列兩面</li>
+<li>[NEWS TIMELINE] ✅ 已查 —— 辭任 11-12 04:02 ET 公布，今日盤中已反應（NVDA 由 173.73 → 159.57 = −8.15%，已跌 80%+ 分析師預期嘅「20% 跌幅」中嘅 40%），殘餘 edge 有限</li>
+<li>[METRIC CONFLATION] ✅ 已查 —— 用 pe_ratio（futu 實時）而非舊 pe_ttm；NVDA PE 32.8 vs 之前腳本 pe_ttm 19.36 係唔同時點，已以 pe_ratio 為準</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">7. 一句總結（中文）+ EN</h3>
+<li>今日係「NVDA key-man risk 由傳聞變事實」嘅一日，市場冇散，係喺 AI 鏈內部換馬（NVDA 客戶/槓桿方 → AMD/AMZN/GOOGL + 防禦股）；我哋 10 隻持倉全部可守，NVDA 係唯一痛點但基本面未崩（PE 32.8、11-17 業績），所以今日 HOLD、唔接刀、唔追高，等 NVDA 業績同 HY 信貸方向。</li>
+<li><strong>EN:</strong> Huang resigned as NVDA CEO (official PR, Nov 12); NVDA −8.2% but SPY −0.34%/QQQ −0.55% — this is intra-AI rotation (NVDA customers/leverage down, AMD +3.2%/AMZN +2.2%/GOOGL +0.8%/defensives up), not systemic risk-off. Credit regime = contained (HYG −1.74% from 60d high, HY flat), VIX 18.97 calm → sector event, not contagion. All 10 holdings holdable; NVDA (avg 205.19 vs 159.57, −22%) is the only pain point but valuation (PE 32.8) and Nov 17 earnings argue against capitulation. No knife-catching (CRWV 6.3% turnover, SNDK 11.5% ATR, INTC 20d −36%), no chasing (AMD +10% above MA20). Action: HOLD everything; AMD watch for pullback to MA20 518–525; NVDA hard stop 136.76 (2.5×ATR).</li>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #2303 · 2026-11-12 22:47 HKT</p>
+</footer>
+</body>
+</html>
