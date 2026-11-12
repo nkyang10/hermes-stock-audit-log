@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#2300 — 隔夜檢查 · 20261112 13:00 HKT</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 2070 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">1330 項決策</span>
+      <span class="stat">103 項快照</span>
+      <span class="stat">637 項研究</span>
+      <span class="stat">23 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+    <a href="../sector-report.html" class="tab ">🧭 板塊</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-11-12 13:00 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>隔夜檢查 · 20261112 13:00 HKT</h1>
+    <div class="entry-tags"><span class="tag">overnight</span><span class="tag">analysis</span><span class="tag">auto</span></div>
+  </div>
+  <div class="reasoning">
+    <p>20261112美股隔夜報告</p>
+<br>
+<h4 class="md-h">▶️ 隔夜信號（Overnight）</h4>
+<li>監測時間：2026-11-12 13:02 HKT（00:02 EST，BOATS 隔夜時段，距 09:30 ET 開市約 9.5 小時）</li>
+<li>期指未取得有效報價（script 嘅 Yahoo futures 欄位只有標籤冇數值）→ 改以 SPY/QQQ/DIA 隔夜價做 proxy</li>
+<li>SPY 756.80（隔夜 −0.40%，隔夜高 758.31 / 低 755.78，隔夜量 67,420 股）</li>
+<li>對比 11/11 正規收市 759.81（當日 +1.32%）</li>
+<li>QQQ 683.70（隔夜 −0.97%，隔夜量 164,110 股），正規收市 690.38（+2.31%）</li>
+<li>DIA 525.19（隔夜 +0.14%，隔夜量 2,715 股），正規收市 524.44（+0.52%）</li>
+<li>偏離度判定：QQQ −0.97% 接近 1% 門檻但未破 → 屬「指數級回吐」而唔係全面 risk-off；DIA 微升顯示資金由高 beta 轉向舊經濟/防守</li>
+<li>分歧核心 = 單一股票（NVDA）事件驅動，唔係宏觀驅動</li>
+<li>來源：Futu OpenAPI session_quote（隔夜時段用 *_change_rate 欄，唔用 prev_close 自算）— Tier-3，信心 85%</li>
+<br>
+<h4 class="md-h">▶️ 倉位相關催化劑</h4>
+<li>模擬組合現值 109,421.14（現金 51,435.20、股票 57,985.94、累計已實現 7,935.06）</li>
+<li>NVDA（70 股 @ 均價 205.19，倉位 11.3%）</li>
+<li>隔夜 160.50（−7.62%），隔夜高 164.15 / 低 158.51，隔夜量 443 萬股（全場最活躍）</li>
+<li>正規收市 173.73（當日 +2.87%）→ 即係事件喺收市後爆發</li>
+<li>新聞：董事會據報準備撤換 CEO 黃仁勳（WSJ 首報，CNBC/Bloomberg/NYT/Tom&#x27;s Hardware 跟進），涉「中國間諜」及第二宗婚外情指控</li>
+<li>兩日累計市值蒸發約 4,300 億美元；另有 75 億美元晶片醜聞講法</li>
+<li>持倉帳面：現價 160.50 vs 均價 205.19 → 未實現虧損約 −3,128 美元（−21.8%）</li>
+<li>關鍵：呢個係「管治風險」唔係「需求風險」——AI 需求鏈本身未被新聞否定</li>
+<li>半導體全線跟跌（NVDA 事件傳染）</li>
+<li>MU 784.00（−3.36%，正規收市 811.30 當日 +11.89%）；持倉 6 股 @ 907.81 → 帳面 −743 美元</li>
+<li>SNDK 945.95（−3.25%）、SKHY 138.13（−2.90%）、SOXX 151.35（−2.61%）、TSM 402.72（−2.57%）、WDC 303.80（−3.04%）、STX 536.31（−2.79%）、AMKR 36.97（−2.97%）</li>
+<li>但 INTC 60.34（−3.46%）、DELL 359.73（−3.73%）跌得更深 → 硬件組別全面去風險</li>
+<li>AMD 560.90（+1.45%，正規收市 +7.32%）→ 逆勢企穩，屬 NVDA 替代受惠交易（「Demand Is Higher Than Supply」報道）</li>
+<li>防守/非 AI 倉位穩定</li>
+<li>AAPL 355.92（+0.16%，正規收市 +2.04%，52 週位 99.8%）</li>
+<li>MSFT 521.00（−0.02%，正規收市 −2.26%）、GOOGL 294.96（+0.51%）、AMZN 266.41（+0.09%）、META 628.69（−0.01%）、TSLA 386.30（−1.16%）</li>
+<li>JPM 344.98（+0.46%）、MCD 275.91（+0.40%）、WMT 126.24（+0.45%）、COST 1,093.45（+0.54%）、UNH 403.30（+0.09%）</li>
+<li>資金明顯由 AI 硬件輪入「傳統科技 + 防守 + 金融」</li>
+<li>其他高 beta 去風險：CRWV 56.55（−6.94%）、BE 202.60（−3.28%）、NET 312.18（−0.90%）、CRWD 227.60（−0.64%）</li>
+<br>
+<h4 class="md-h">▶️ 關鍵事件</h4>
+<li>今日（11/12 ET）美國本土數據極少，日曆主要係歐洲/亞洲數據，對美股開市影響有限</li>
+<li>英國 GDP 初值 Q3、工業生產、貿易收支（07:00 UTC = 02:00 ET）</li>
+<li>瑞典 CPI／CPIF（07:00 UTC）、羅馬尼亞 CPI（07:00 UTC）、印度 CPI（10:30 UTC）</li>
+<li>南非黃金/礦業生產（09:30 UTC）</li>
+<li>真正焦點 = NVDA 董事會決定嘅時間表（公司治理事件，無官方時間）</li>
+<li>聯儲局：CPI 偏熱後市場押注加息（Goolsbee 形容通脹報告「borderline disturbing」；Goldman 已改利率預測；有分析講 50 點子）</li>
+<li>10Y 曾觸及 5% 附近講法；日本 JGB 息跟隨美債拋售抽升；英國 gilts 同步被拖累</li>
+<li>美債息曲線（Treasury.gov，11/10 收市）：2Y 4.73%、10Y 4.98%、30Y 5.35%、2Y-10Y +0.25%</li>
+<li>商品：WTI 85.24（−0.93%）、黃金 3,981.90（−1.20%，跌穿 4,000）、BTC 73,593.99（−0.17%）</li>
+<li>亞洲時段：恒指 24,092.89（−0.92%）、日經 61,162.90（−0.14%）、上證 3,688.05（+0.20%）、台灣加權 43,550.52（−1.60%）、KOSPI 5,356.65（−0.35%）</li>
+<li>台灣加權跌 1.6% = 半導體供應鏈已即時反應 NVDA 事件</li>
+<br>
+<h4 class="md-h">▶️ 信貸制度（Credit Regime）</h4>
+<li>HYG 77.35，距 60 日高位 −1.74%（門檻 −2% 未破）→ 信貸未受壓（credit_stressed = false）</li>
+<li>HYG 距 60 日低位 +1.23% → 信貸仍在相對高位，屬「健康」而非「壓力」</li>
+<li>HY/IG 比率 0.744</li>
+<li>VIX 17.49（正規收市 11/11，單日 −10.12%），兩年 75 分位 19.43 → vix_fearful = false</li>
+<li>四象限 = calm（信貸穩 + VIX 平靜）→ 唔係最差格（最差格 = 信貸壓力 + VIX 平靜）</li>
+<li>傳染測試：板塊（半導體）爆 + HY 平靜 = contained（歷史條件下回撤 −3.83%，唔係 contagious −11.70%）</li>
+<li>模型前瞻 60 日回撤估算 −3.39% → 只當 risk budget 用，唔係方向預測</li>
+<li>release_signal = false（過去 40 日曾受壓但未見解除訊號）→ 未到「當日返場」條件</li>
+<li>來源：script credit_regime 段（HYG/VIX 計算）— Tier-3，信心 80%；model_note 明確講明 rolling OOS 只有 3/13 年有效、係數會翻轉</li>
+<br>
+<h4 class="md-h">▶️ 明確 Bias</h4>
+<li><strong>neutral，偏 bearish 傾向（單一股票風險）</strong></li>
+<li>理由：</li>
+<li>指數層面（SPY −0.40%、DIA +0.14%）顯示回吐溫和，唔係系統性去風險</li>
+<li>但 NVDA 佔指數權重大，隔夜 −7.6% 會直接拖低 SPX/NDX 開盤價；QQQ −0.97% 已預示</li>
+<li>信貸制度（HYG −1.74%、VIX 17.49）顯示「contained」，唔支持恐慌拋售劇本</li>
+<li>資金流向清楚：半導體/硬件 → 傳統科技 + 防守 + 金融，屬輪動而非逃亡</li>
+<li>宏觀背景（CPI 熱、加息預期、10Y 近 5%）本身就壓估值 → 反彈空間受限</li>
+<li>開市預期：低開，半導體主導；指數跌幅由 NVDA 權重決定，防守股應守得住</li>
+<br>
+<h4 class="md-h">風險提示</h4>
+<li>最大不確定性：NVDA 董事會決定未有官方時間表 — 若正式宣佈撤換 CEO，股價可能再插一段（有分析講「無咗黃仁勳，公司值少 25%」）；若否認傳聞，可能出現軋空式反彈</li>
+<li>模擬倉 NVDA 均價 205.19、現價 160.50 → 帳面 −21.8%，屬深度虧損；事件屬治理/聲譽風險，唔係需求崩塌，但短期波動會極大</li>
+<li>半導體全線被拖（MU/SNDK/SKHY/TSM/SOXX/WDC/STX/AMKR 全部 −2.5% 至 −3.5%），MU 持倉 907.81 均價亦已虧 13.6%</li>
+<li>利率風險未消化：CPI 熱 + Fed 加息預期 + 10Y 近 5% → 高估值科技股（NVDA PE、AMD PE 120）折現率壓力持續</li>
+<li>信貸模型本身有 caveat（rolling OOS 只 3/13 年有效、係數會翻轉）→ 唔可以當方向指標用</li>
+<li>期指數據缺失（script futures 欄位無效）→ 開市方向判斷只靠 ETF 隔夜 proxy，精度有限</li>
+<li>數據新鮮度：美股收市數字 = 11/11 收市（age 1 日）；NVDA 等隔夜價 = 11/12 00:02 EST 即時；亞洲數字 = 11/12 當日收市</li>
+<li>今日美國本土經濟數據稀少，冇日內催化劑對沖 NVDA 事件 → 開市後走勢高度集中喺 NVDA 一線</li>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #2300 · 2026-11-12 13:00 HKT</p>
+</footer>
+</body>
+</html>
