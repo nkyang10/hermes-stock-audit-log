@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#2336 — 研究報告 · 2026-11-13_22:53</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 2106 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">1354 項決策</span>
+      <span class="stat">106 項快照</span>
+      <span class="stat">646 項研究</span>
+      <span class="stat">24 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+    <a href="../sector-report.html" class="tab ">🧭 板塊</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-11-13 22:53 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>研究報告 · 2026-11-13_22:53</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">auto</span></div>
+  </div>
+  <div class="reasoning">
+    <h2 class="md-h">研究報告 · 2026-11-13 22:45 HKT（正規時段開市後 ~68 分鐘）</h2>
+<br>
+<h3 class="md-h">一、制度背景（先講風險格，再講機會）</h3>
+<br>
+<li><strong>信貸制度：壓力 + VIX 平靜 = 最差風險回報格</strong>（credit_regime.md）— HYG 距 60 日高位 −2.21%（已過 −2% 門檻，🔴 受壓）；VIX 18.19（2 年 75 百分位 19.4 以下）→ 平靜。呢個格歷史預期回撤 −4.60%、預期回報塌到 +0.06%。行動指引：<strong>減新加注、拉闊止蝕、保留核心、唔好全現金</strong>。</li>
+<li><strong>傳染測試：⚠️ 未包住（credit_contained=false）</strong> — HYG 已擴闊，即今日半導體板塊爆倉<strong>唔可以</strong>當 contained 處理。歷史對照：板塊爆 + HY 平靜 = −3.83%；板塊爆 + HY 擴闊 = −11.70%（3 倍）。呢個係今日最重要嘅一句：晶片股賣壓有機會傳去非晶片資產。</li>
+<li>但注意：HYG 距 60 日低位只回升 +0.74%（未夠 2% 解除訊號），即<strong>未確認系統性崩壞，亦未確認解除</strong>。信貸模型預測 60 日回撤 −3.65%（≈ 基準 −3.58%）→ 只做 risk budget，唔係方向預測（rolling OOS 驗證過冇交易價值）。</li>
+<li>宏觀：ES 期貨 7657.50（+0.55%）、NQ 28515（+0.46%）、10Y 5.14%（+0.74%，2022 年以來最大單週升幅）、VIX 18.19（−2.73%）。</li>
+<li><strong>利率係第二條主線</strong>：12 月 8–9 日 FOMC 加息已近乎完全定價（CME FedWatch 87.4% 加 25bp、12.6% 加 50bp；Kalshi 98% 加息）。聯儲局主席 Warsh 鷹派、Daly/Goolsbee/Hammack 相繼放鷹，10 月核心 CPI 連續第三個月 +0.3% MoM。</li>
+<li>對倉位含意：高估值、長久期增長股（TSLA rate beta −0.2987、AAPL −0.3804、WMT −0.3551、MCD −0.3725、JPM −0.2707）在加息定價下屬逆風；MU 係全 watchlist 最高市場 beta（3.7151），加息 + 板塊壓力雙重夾擊。</li>
+<br>
+<h3 class="md-h">二、今日實盤（Futu snapshot 22:38 HKT，正規時段）</h3>
+<br>
+<li>大市：SPY 756.47（−0.09%）、QQQ 684.98（−0.46%）、DIA 523.31（+0.16%）、IWM 278.6（+0.06%）。指數靠穩但內部嚴重分化 —— 道指靠金融/防守股企穩，納指被晶片拖住。</li>
+<li>今日真正嘅故事唔係大盤，係<strong>晶片股第二輪去槓桿</strong>：AMD −5.57%、CRWV −5.34%、SNDK −4.17%、DELL −3.44%、SKHY −2.96%、BE −2.45%、WDC −2.28%、STX −2.03%、AMKR −1.99%、NVDA −1.93%、INTC −1.90%、MU −1.37%、TSM −0.72%。</li>
+<li>對比昨日（11-12 收市）嘅急彈：NVDA 由 166.19 再跌到 162.97（日內低位 162.19，開市 170 高位 = 開高 2.29% 後全日派發）；AMD 由 585.30 跌到 552.71（跌穿 20 日 VWAP 562.55）；SNDK 由 937 跌到 898。</li>
+<li>呢個 pattern = <strong>開高走低、成交放大、價跌量增（vr 2–4x）</strong> → 典型派發（distribution），唔係縮量回吐。系統化分析 Step 3 判定：volume_ratio &gt; 2.0 + 價格負 = 派發訊號。</li>
+<li>防守端反而有錢入：META +2.09%（636.67，日內高位 636.85，intraday position 98.5%）、AAPL +1.34%（359.62，52 週位 99%）、GOOGL +1.39%（302.85）、WMT +1.26%（127.78）、COST +1.03%（1103.41）、GRMN +1.05%、XLF +0.58%。</li>
+<li><strong>資金流向結論：由「AI 資本開支鏈」（NVDA→MU→SNDK→CRWV→BE→DELL）輪出去「唔靠 AI capex 嘅現金牛」（AAPL/META/WMT/COST/金融）</strong>。呢個唔係恐慌，係 rotation，而且 rotation 兩邊都有得做。</li>
+<br>
+<h3 class="md-h">三、催化劑日曆（本週末至下週）</h3>
+<br>
+<li><strong>11 月 17 日（二）美股收市後：NVDA Q3 FY2027 業績</strong> —— 公司指引 $108B ±2%（$105.84–110.16B，剔除中國 data center compute），LSEG 共識 ~$109.2B、Visible Alpha data center ~$101.8B、共識 EPS $2.47。呢個係 5 日內最大嘅單一事件風險。</li>
+<li>11 月 19 日（四）開市前：WMT Q3 業績，分析師預期 EPS $0.64、收入 ~$187.22B（Fiscal.ai）。BofA 目標價 $126→$139、Mizuho $125→$135、JPM $125→$145（全部 11 月 9–11 日上調）。</li>
+<li>12 月 8–9 日：FOMC（加息 25bp 為基準）。11 月 CPI 要 12 月 10 日才出（會議之後）→ 決策前有數據真空。</li>
+<li>未確認：Nvidia 事件相關國會聽證（Huang 同意感恩節前作證、商務部長 Lutnick 自願出席參議院）具體日期未經 Tier-1 核實，只作背景風險。</li>
+<br>
+<h3 class="md-h">四、逐隻持倉（以 live 價重算，唔用舊 portfolio.json 價）</h3>
+<br>
+<li><strong>NVDA $162.97（−1.93%）｜70 股 @ $205.19｜未實現 −$2,955（−20.6%）｜倉位 10.6%</strong></li>
+<li>52 週位 15.0%（深度低位）、日內位置 10.1%（貼日低）、vr 3.95x、價 162.97 vs VWAP 166.35（−2.0% 低於 VWAP = 日內看淡）、bid/ask 280/373。</li>
+<li>技術結構：MA10 186.92 / MA20 201.25 / MA50 215.96 全部喺頭上，趨勢分數 0/100，20 日 −23.5%。成交量 POC 218，即 218 以上係全部蟹貨區。$148.80 係 52 週低（11-13 曾觸及）。</li>
+<li>催化劑：11/17 業績。管理層真空（CFO Colette Kress 臨時 CEO）+ 國會調查 + 走私醜聞 = 業績前風險溢價唔會收窄。</li>
+<li>系統化判定：8 項 BUY 條件只中「52 週位 &lt;80%」同「PE 唔極端（21x）」，其餘（日內位置低、bid/ask &lt;0.8、價遠低 VWAP、gap 後派發、週線/日線皆空頭）全部紅 → <strong>唔符合加注條件</strong>。同時亦唔符合 5 項 SELL 中 3 項（52 週位唔係 &gt;95%）。</li>
+<li>結論：<strong>HOLD 唔加不減，等 11/17 業績</strong>。倉位 10.6% 已係組合最大單一風險，業績前唔應該再加。若要控制風險，唯一合理動作係業績前減半（35 股）鎖細損失；但 52 週位 15%、PE 21x 唔算貴，我傾向留倉等業績，用 $148.80（52 週低）做硬止蝕參考。</li>
+<li><strong>AAPL $359.62（+1.34%）｜10 股 @ $298.11｜未實現 +$615（+20.6%）｜倉位 3.3%</strong></li>
+<li>52 週位 99.0%（歷史新高區，11-12 收 355.63 創收市新高）、日內位置 58.3%、vr 2.85x、價 ≈ VWAP（359.45）、bid/ask 88/81 平衡。</li>
+<li>邏輯：AI capex 軍備競賽以外嘅避風港（2026 年 +31%），新 CEO John Ternus 上任後 +7.9%，iPhone Duo / HomeView 產品線。rate beta −0.38 係主要逆風（加息定價）。</li>
+<li>系統化：52 週位 99% &gt; 95% + 逼近分析師平均目標（已高於均值）→ Step 1 要求「收緊止蝕」，唔係加注。趨勢多頭但估值 PE 40x。</li>
+<li>結論：<strong>HOLD，唔追高</strong>。止蝕上移至 $345（MA20）保住利潤；呢隻係組合嘅防守核心，唔應該喺 99% 位置加。</li>
+<li><strong>MSFT $523.17（+0.03%）｜19 股 @ $387.46｜未實現 +$2,578（+35.0%）｜倉位 9.2%</strong></li>
+<li>52 週位 82.9%、日內位置 97.8%（由 513.82 低位反上 523.38）、vr 3.14x、價 523.17 vs VWAP 518.03（+1.0% 高於 VWAP = 日內轉強）、bid/ask 105/7 買方佔優。</li>
+<li>事件：11-12 16:17 UTC 開始嘅全球 Outlook/Teams/Copilot 中斷，至 11-13 仍未完全復原（Microsoft 稱已部署認證/路由 patch、亞太區已恢復、北美有改善）。股價今日竟然收復全部跌幅 → 市場當係「營運事故」而非「結構性問題」。</li>
+<li>技術：趨勢分數 10/100（5 日 −2.41%）、MA10 529.48 / MA20 529.64 喺頭上，MA50 518.72 剛好喺腳下 = 關鍵支持。</li>
+<li>結論：<strong>HOLD</strong>。$518.72（MA50）係生死線，跌穿且收唔返就減。今日由低位反 1.8% 嘅走勢係正面訊號，但唔足以加注（趨勢分數 10）。</li>
+<li><strong>GOOGL $302.85（+1.39%）｜33 股 @ $349.58｜未實現 −$1,542（−13.4%）｜倉位 9.2%</strong></li>
+<li>52 週位 22.8%、日內位置 30.7%、vr 3.21x、價 ≈ VWAP 303.01、bid/ask 240/50（買方強）。</li>
+<li>兩條新催化劑：(1) Anthropic IPO 以 $74 中位價認購 $10B Class N，完成後持股升至 ~13.7%，市值約等於 Alphabet 3.8% 市值；(2) 首次喺香港/新加坡雙幣債券發行，認購超 $7B，用嚟養 AI 基建。另外 Google Cloud 開放客戶喺自己 data center 跑 TPU（近 100 客戶用），庫存升至 $133 億，收入主要 2027 年入帳。</li>
+<li>技術：20 日 −14.47%（趨勢分數 30），MA20 305.66 / MA50 329.12 喺頭上，MA10 286.28 喺腳下 → 短線反彈中，但中期仍空頭。POC 345 = 上方全部蟹貨。</li>
+<li>系統化：5 日 +5.71%、價 &gt; VWAP、bid/ask 4.8 倍、52 週位 22.8% → 8 項條件中 6 項綠（只有中期趨勢同 gap 後跟進要觀察）→ <strong>符合分批加注條件</strong>，但今日已反 1.39%，唔係最好入場位。</li>
+<li>結論：<strong>HOLD 現倉，回踩 $295–298（MA10 上方）分批加</strong>，唔好喺 302–305（MA20 阻力）追。呢隻係組合最似「錯價」嘅一隻（PE 15.9x、52 週位 22.8%、AI 資產重估未反映）。</li>
+<li><strong>AMZN $268.62（+0.44%）｜33 股 @ $256.57｜未實現 +$398（+4.7%）｜倉位 8.2%</strong></li>
+<li>52 週位 79.6%、日內位置 53.8%、vr 1.87x、價 ≈ VWAP、bid/ask 20/123（賣壓略重）。</li>
+<li>催化劑：Anthropic IPO 令其持股估值 ~$2,718 億；AI token 價格上月跌近 15%（對 AWS 用量係好事）。</li>
+<li>技術：多頭（趨勢 70/100）、MA10 259.36 / MA20 256.50 / MA50 254.66 全部喺腳下，但 52 週位 79.6% 已接近 80% 上限。</li>
+<li>結論：<strong>HOLD</strong>，唔加（52 週位貼近 80%、bid/ask 偏賣）。</li>
+<li><strong>MU $787.49（−1.37%）｜6 股 @ $907.81｜未實現 −$722（−13.3%）｜倉位 4.3%</strong></li>
+<li>52 週位 56.0%、日內位置 52.1%、vr 2.52x、價 ≈ VWAP 788.56、bid/ask 27/50。</li>
+<li>基本面反而係全組合最強之一：26 份 take-or-pay 長約覆蓋 2030 年前 &gt;35% 收入、客戶承諾 $32B（大部分現金押金）、2027 年 HBM 產能大部分已售罄且價格大幅高於 2026、管理層話「睇唔到供需幾時平衡」。TrendForce 11-12 報道記憶體廠商口頭通知 enterprise DRAM / enterprise SSD 加價。</li>
+<li>但風險：market beta 3.7151（全 watchlist 最高）、年化波動 70.1%、MA20 843 / MA50 947 喺頭上（趨勢 30/100）。</li>
+<li>系統化：基本面 vs 技術面嚴重分歧 → conviction MEDIUM-LOW。</li>
+<li>結論：<strong>HOLD 唔加</strong>。呢隻要等 MA20 843 收復 + 半導體板塊止跌才考慮加。$778（今日低位）跌穿就係短線轉弱訊號。</li>
+<li><strong>JPM $344.45（+0.48%）｜14 股 @ $343.31｜未實現 +$16（+0.3%）｜倉位 4.4%</strong></li>
+<li>52 週位 77.4%、日內位置 8.0%（貼日低）、vr 0.98x、價 344.45 vs VWAP 345.28（略低）、bid/ask 67/46。</li>
+<li>加息環境對銀行淨息差係利好（XLF 52 週位 88.2%、趨勢 70/100 多頭），但 JPM rate beta −0.2707（歷史上市場當佢係長久期資產）。</li>
+<li>結論：<strong>HOLD</strong>。$338.72（MA20）係支持，$335 係 POC 重成交區，跌穿 $335 減。</li>
+<li><strong>WMT $127.78（+1.26%）｜12 股 @ $118.64｜未實現 +$110（+7.7%）｜倉位 1.4%</strong></li>
+<li>52 週位 80.4%、日內位置 94.8%（貼日高）、vr 1.42x、價 127.78 vs VWAP 127.04（+0.6%）、bid/ask 2/260（賣方掛單極重，要留意）。</li>
+<li>11/19 業績前三大行齊齊上調目標（JPM $145、BofA $139、Mizuho $135）→ 市場預期已經好高。rate beta −0.3551 係主要逆風。</li>
+<li>結論：<strong>HOLD 到業績</strong>，唔加（業績前追高風險回報差、bid/ask 260 賣單壓住）。若業績後回踩 $122（MA20）先考慮加。</li>
+<li><strong>MCD $273.67（+0.01%）｜6 股 @ $255.20｜未實現 +$111（+7.2%）｜倉位 1.5%</strong></li>
+<li>52 週位 42.0%、日內位置 13.2%、vr 0.93x、價 273.67 vs VWAP 274.28。防守股，rate beta −0.3725。今日有文章指 MCD 相對公平價值高估 27%（Tier-4，單一來源，只作參考）。</li>
+<li>結論：<strong>HOLD</strong>，倉位細（1.5%）唔使動。</li>
+<li><strong>TSLA $396.25（−0.30%）｜2 股 @ $352.89｜未實現 +$87（+12.3%）｜倉位 0.7%</strong></li>
+<li>52 週位 49.1%、日內位置 50.2%、vr 5.22x（全組合最高）、bid/ask 40/98。PE 437x、rate beta −0.2987、市場 beta 2.4434。</li>
+<li>結論：<strong>HOLD</strong>，倉位 0.7% 屬象徵性，唔使理。</li>
+<br>
+<h3 class="md-h">五、Watchlist 值得留意（非持倉）</h3>
+<br>
+<li><strong>AMD $552.71（−5.57%）</strong> — 5 日仍 +44.7%（11-05 中選後插水至 404.40 再反彈），今日跌穿 20 日 VWAP、日內位置 14.8%。共識目標曾被上調，但 PE 123.8x + 2027 收入指引 +80% 已經好多人入咗飛。<strong>唔接刀</strong>：5 日 +44.7% 之後嘅 −5.57% 係獲利回吐，唔係恐慌錯價。等 $520（POC 重成交區）/ MA20 518.76 站穩先講。</li>
+<li><strong>CRWV $53.58（−5.34%）</strong> — 52 週位 13.3%、20 日 −18.8%、MA50 73.22 遠喺頭上。CoreWeave 係 NVDA 事件最直接受害者（失去關鍵背書），CEO 話產能賣到 2027 都頂唔住情緒。<strong>唔接刀</strong>，呢隻要等 NVDA 11/17 業績後才知生死。</li>
+<li><strong>SNDK $898.36（−4.17%）／STX $534.09（−2.03%）／WDC $304.12（−2.28%）</strong> — 記憶體/HDD 三雄齊跌，但 SNDK PE 7.5x、STX 28.7x、WDC 12.1x 全部平。呢組同 MU 同一條邏輯（HBM/DRAM 加價），但技術上全部喺 MA20 之下。<strong>觀察，唔入</strong>。</li>
+<li><strong>INTC $60.03（−1.90%）</strong> — 52 週位 24.8%、20 日 −35.8%、PE 負數（虧損）。AppLovin 式反彈唔關事；Intel 係 NVDA 事件嘅二階受害者（持股 NVDA 4%）。<strong>避開</strong>。</li>
+<li><strong>XLF $58.55（+0.58%，52 週位 88.2%，趨勢多頭）／XLV $187.59（52 週位 90.8%，多頭）／XLU $43.88（60.4%，多頭）／XLRE $44.45（77.7%，多頭）</strong> — 四個防守/利率敏感板塊全部多頭排列。若 12 月加息落實而市場唔跌（因為已定價），呢批係最直接受益/最少受害嘅載體。</li>
+<li><strong>IBKR $81.73（+0.49%）</strong> — 5 日 +11.8% 但 20 日 −5.5%、MA50 85.33 喺頭上，趨勢 30/100。經紀股喺高波動環境成交量有利，但技術未確認。</li>
+<li><strong>LLY $1427（52 週位 94.9%）／COST $1103（99.3%）</strong> — 兩隻都係歷史高位區。COST 今日 +1.03% 但 52 週位 99.3%，同 AAPL 一樣「唔追高」處理。</li>
+<br>
+<h3 class="md-h">六、風險評估（Manager Gate）</h3>
+<br>
+<li>✅ 所有價格 = Futu snapshot 22:38 HKT 實測，非推算。舊 portfolio.json 內價（如 NVDA 163.98）已過時，本報告全部用 live 重算。</li>
+<li>✅ 業績日期 = NVDA IR 官方新聞稿（10-28）+ Invezz/Seeking Alpha 交叉核實（11/17 收市後、EPS $2.47、收入 ~$109B）。WMT = Yahoo/Fiscal.ai（11/19 開市前、EPS $0.64、收入 $187.22B）。</li>
+<li>✅ 加息機率 = CME FedWatch 87.4%（25bp）+ 12.6%（50bp），Kalshi 98%；兩源一致。</li>
+<li>⚠️ [NEWS TIMELINE] NVDA 事件（Huang 辭任）11-12 已發生，11-12 當日 NVDA 曾跌 14% 再收 −4.34%，今日再 −1.93% → <strong>首輪反應已過，但業績前仍未有結論性定價</strong>（11/17 前後仍有大幅重估空間）。呢個唔算「已 price in」。</li>
+<li>⚠️ [STALE/未確認] 國會聽證具體日期、走私案細節（$75 億、1.5GW）只有媒體轉述，未有官方文件 → 標為未確認，唔作決策依據。</li>
+<li>⚠️ [CONFLICT] 分析師目標價多數嚟自 MarketBeat/Tier-4；已用 JPM/BofA/Mizuho 三方一致嘅 WMT 目標作交叉驗證。</li>
+<li>⚠️ 半導體板塊壓力今日<strong>唔屬 contained</strong>（HYG 已擴闊）→ 傳染風險比 11-12 高，呢點直接影響 MU/NVDA 嘅風險預算。</li>
+<li>整體信心：<strong>72%</strong>（價格/技術/制度 95%；NVDA 事件後續與國會風險 55%；分析師目標 65%）。</li>
+<br>
+<h3 class="md-h">七、明日／下週策略要點（僅供參考，非下單指令）</h3>
+<br>
+<li><strong>唔加注半導體</strong>（NVDA/AMD/MU/SNDK/STX/WDC/CRWV）直到 11/17 NVDA 業績落地。理由：制度格最差（信貸壓力 + VIX 平靜）、板塊派發中、單一事件風險集中。</li>
+<li><strong>唔追高防守股</strong>（AAPL 99% / COST 99.3% / LLY 94.9%）— 收緊止蝕保住利潤，唔加。</li>
+<li><strong>唯一有 edge 嘅加注位</strong>：GOOGL 回踩 $295–298（MA10 上方、52 週位 22.8%、PE 15.9x、AI 資產重估 + TPU 外賣 + Anthropic 持股）。分兩注，第一注 5 股（~$1,500）。</li>
+<li><strong>防守板塊輪動</strong>：XLF / XLV / XLU / XLRE 全部多頭，若想減晶片 beta 可以考慮以 ETF 形式加 3–5% 倉，但要留意加息對 XLU/XLRE 嘅反向壓力。</li>
+<li><strong>止蝕紀律</strong>：NVDA $148.80（52 週低）、MSFT $518.72（MA50）、GOOGL $286（MA10）、MU $778（今日低位）、JPM $335（POC）。信貸壓力期按制度指引「拉闊止蝕」— 唔好收得太貼被 noise 掃走。</li>
+<li><strong>現金 51,435（47%）</strong> — 喺最差風險回報格下係合理緩衝，唔急住部署。等 11/17 業績 + 12/8–9 FOMC 兩個事件過去，風險回報會清楚好多。</li>
+<br>
+<hr class="md-hr">
+<p><strong>EN Summary:</strong> Credit regime is in the worst risk/reward quadrant (HYG −2.21% from 60d high + VIX calm), and the contagion test now reads NOT contained — so today&#x27;s chip rout (−2% to −5.6% across AMD/CRWV/SNDK/DELL/SKHY/BE/WDC/STX/NVDA) deserves a wider risk budget than yesterday. Portfolio $108,753 (stock $57,318 / cash $51,435), unrealized −$1,305, with NVDA (−20.6%) and MU (−13.3%) the main drags. Rotation is clearly out of the AI-capex chain into non-AI cash generators (META +2.09%, AAPL +1.34% at 99% of 52w range, WMT +1.26%, COST +1.03%, XLF +0.58%). Key events: NVDA Q3 FY27 on Nov 17 after close (guide $108B ±2%, consensus ~$109B, EPS $2.47) and WMT Q3 on Nov 19 pre-market (EPS $0.64); Dec 8-9 FOMC hike ~87-98% priced. Recommendation: HOLD all 10 positions, no adds into semis until NVDA prints, no chasing AAPL/COST/LLY at 52w highs, tighten stops rather than add. Only real edge: GOOGL staged add on a pullback to $295–298 (PE 15.9x, 52w pos 22.8%, Anthropic $10B IPO stake, TPU external sales). Overall confidence 72%.</p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #2336 · 2026-11-13 22:53 HKT</p>
+</footer>
+</body>
+</html>
