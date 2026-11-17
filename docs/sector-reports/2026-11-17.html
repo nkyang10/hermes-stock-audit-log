@@ -1,0 +1,168 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>美股板塊新聞分析 · 24h</title>
+<style>
+:root{--paper:#f7f4ef;--ink:#1f2421;--muted:#6b6a63;--green:#3e7a52;--red:#b8462f;--amber:#9a7b3f;--neutral:#b9b6ad;--line:#ddd7cc;--card:#fffdf9}
+*{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Helvetica Neue",Arial,sans-serif;line-height:1.65}
+.wrap{max-width:860px;margin:0 auto;padding:34px 20px 70px}
+header{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:22px}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-family:"Noto Serif TC","Songti TC",Georgia,serif;font-size:34px;line-height:1.2;margin:8px 0 6px;font-weight:700}
+.sub{font-size:13.5px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 16px}
+.stat .n{font-family:"Noto Serif TC",serif;font-size:26px;font-weight:700;font-variant-numeric:tabular-nums}
+.stat.g .n{color:var(--green)} .stat.r .n{color:var(--red)} .stat .l{font-size:11.5px;color:var(--muted)}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:15px 18px;margin-bottom:20px}
+.sl{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--muted);margin-bottom:9px}
+.dbar{display:flex;width:100%;border-radius:3px;overflow:hidden;margin:0}
+.dg{background:var(--green)} .dr{background:var(--red)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:1px}
+.dot-g{background:var(--green)} .dot-r{background:var(--red)} .dot-n{background:var(--neutral)} .dot-m{background:linear-gradient(90deg,#3e7a52 50%,#b8462f 50%)}
+.nav{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 22px}
+.nav a{font-size:12px;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--card);padding:3px 9px;border-radius:4px}
+.blk{background:var(--card);border:1px solid var(--line);border-left-width:5px;border-left-style:solid;border-radius:9px;padding:17px 20px;margin-bottom:15px;scroll-margin-top:14px}
+.hdr{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.ttl{font-family:"Noto Serif TC",serif;font-size:20px;font-weight:700}
+.pill{font-size:11.5px;font-weight:700;color:#fff;padding:2px 9px;border-radius:4px}
+.pg{background:var(--green)} .pr{background:var(--red)} .pn{background:#a9a69d} .pm{background:var(--amber)}
+.cnt{font-size:11.5px;color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}
+.brrow{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+.brrow .dbar{flex:1;max-width:320px}
+.brtxt{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tr{font-size:14.5px;margin:0 0 12px;color:#2c312d}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 13px}
+.chip{font-size:11px;color:#41503f;background:#eef2ea;border:1px solid #dde4d7;border-radius:3px;padding:1px 6px;font-variant-numeric:tabular-nums}
+.nl{margin:0 0 13px;padding:0;list-style:none}
+.nl li{position:relative;padding-left:17px;margin-bottom:7px;font-size:14px}
+.nl li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:#b9b3a6}
+.nl li.pos::before{background:var(--green)} .nl li.neg::before{background:var(--red)}
+.nl .tm{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;margin-right:4px}
+.ent{font-weight:700;color:#0f1a13}
+.jd{background:#f6f3ec;border:1px solid #e4ddcf;border-radius:7px;padding:12px 14px}
+.jdhead{font-family:"Noto Serif TC",serif;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.jg-line{border-left:3px solid;padding-left:11px;margin-bottom:9px}
+.jg-line:last-child{margin-bottom:0}
+.jg-label{font-size:11px;font-weight:700;letter-spacing:.04em;margin-bottom:3px}
+.jl2{margin:0;padding-left:15px;font-size:13.5px;color:#3b403c}
+.jl2 li{margin-bottom:3px}
+.warn{background:#fbf1e6;border:1px solid #e8d3b8;border-left-width:4px;border-left-style:solid;border-left-color:var(--amber);border-radius:6px;padding:11px 14px;font-size:13px;color:#6a5738;margin-bottom:16px}
+footer{margin-top:32px;padding-top:14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);line-height:1.8}
+@media(max-width:600px){h1{font-size:26px}.stats{grid-template-columns:1fr}.cnt{margin-left:0}.brtxt{font-size:10.5px}.wrap{padding:24px 14px 60px}}
+</style></head><body><div class="wrap">
+<header><div class="eyebrow">美股 · 全市場 sector 新聞分析</div>
+<h1>美股板塊新聞摘要<br>綠色好消息 · 紅色壞消息</h1>
+<div class="sub">最近 24 小時 · 525 條相關新聞 → 11 個板塊 · 生成於 2026-11-17 18:38 HKT</div></header>
+<div class="stats">
+<div class="stat"><div class="n">525</div><div class="l">相關新聞條目</div></div>
+<div class="stat"><div class="n">11</div><div class="l">有新聞嘅板塊</div></div>
+<div class="stat g"><div class="n">10</div><div class="l">合併後重點條目</div></div></div>
+<div class="sent"><div class="sl">板塊方向</div>
+<div class="legend">
+<span><i class="dot dot-g"></i>利好 0 個</span>
+<span><i class="dot dot-r"></i>不利 0 個</span>
+<span><i class="dot dot-m"></i>分歧 1 個</span>
+<span><i class="dot dot-n"></i>中性 10 個</span></div></div>
+<div class="warn">⚠️ 以下板塊嘅部分分析未能完成（LLM 失敗），已保留其餘內容，下一輪會補齊：半導體、人工智能、科技、宏觀、地緣政治、監管、消費、金融、能源、醫療保健、其他</div>
+<div class="chips" style="margin-bottom:18px"><span class="chip">NVDA ×5</span><span class="chip">INTC ×4</span><span class="chip">AMD ×2</span><span class="chip">MU ×1</span><span class="chip">SNDK ×1</span><span class="chip">TSM ×1</span></div>
+<div class="nav"><a href="#s-0">半導體</a><a href="#s-1">人工智能</a><a href="#s-2">科技</a><a href="#s-3">宏觀</a><a href="#s-4">地緣政治</a><a href="#s-5">監管</a><a href="#s-6">消費</a><a href="#s-7">金融</a><a href="#s-8">能源</a><a href="#s-9">醫療保健</a><a href="#s-10">其他</a></div>
+<section class="blk" id="s-0" style="border-left-color:#9a7b3f">
+  <div class="hdr"><span class="ttl">半導體</span>
+    <span class="pill pm">分歧</span>
+    <span class="cnt">302 篇 → 10 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:25.0%"></div><div class="dr" style="width:75.0%"></div></div><span class="brtxt">好消息 25% · 壞消息 75%</span></div>
+  <p class="tr">過去24小時半導體板塊全面承壓，核心事件是<b class="ent">NVDA</b>執行長黃仁勳突然離職，引發市場對AI資本支出持續性與領導層穩定性的疑慮，<b class="ent">AMD</b>、<b class="ent">INTC</b>、<b class="ent">MU</b>、<b class="ent">SNDK</b>同步走弱。<b class="ent">INTC</b>因PC需求疲弱與29%股價崩跌遭投資人集體訴訟，進一步打擊情緒；<b class="ent">TSM</b>十月營收年增59.7%創高，但ADR仍下跌5.7%，顯示資金正從AI硬體撤出。不過巴克萊、Jim Cramer與部分分析師認為市場反應過度，<b class="ent">NVDA</b>中位目標價仍達280美元，多空明顯分歧。</p>
+<ul class="nl">
+<li class="neg"><span class="tm">11-16 20:00 HKT</span><b class="ent">NVDA</b>黃仁勳突然離職後，代理執行長Colette Kress首份財報面臨嚴峻考驗。</li>
+<li class="neg"><span class="tm">11-16 19:45 HKT</span>AI晶片拋售延續，<b class="ent">AMD</b>、<b class="ent">INTC</b>、<b class="ent">NVDA</b>同步下挫，市場憂慮AI支出與領導層不確定性。</li>
+<li class="neg"><span class="tm">11-16 19:39 HKT</span><b class="ent">INTC</b>股價崩跌29%後遭投資人指控詐欺，稱未充分揭露PC需求轉弱。</li>
+<li class="neg"><span class="tm">11-16 19:38 HKT</span><b class="ent">INTC</b>市值蒸發1,400億美元後面臨重大訴訟，爭議聚焦230億美元增資前的資訊揭露。</li>
+<li class="neg"><span class="tm">11-16 19:41 HKT</span><b class="ent">MU</b>與<b class="ent">SNDK</b>在<b class="ent">NVDA</b>財報前走跌，投資人重新評估AI基礎建設支出。</li>
+<li class="neg"><span class="tm">11-16 18:23 HKT</span>前蘋果晶片主管稱AI將晶片設計前置期壓縮至兩三個月，<b class="ent">NVDA</b>領先優勢恐縮小。</li>
+<li class="pos"><span class="tm">11-16 19:07 HKT</span>策略師認為<b class="ent">NVDA</b>現金流與負債結構穩健，可避免市值登頂後多數個股的命運（另有 4 篇同類報導）</li>
+<li class=""><span class="tm">11-17 16:06 HKT</span><b class="ent">INTC</b>揭露持有IREN約129萬股、價值約5,275萬美元，IREN盤後上漲。</li>
+<li class="pos"><span class="tm">11-17 11:14 HKT</span>黃仁勳離職後<b class="ent">AMD</b>被列為受惠名單第九名，被視為三年AI交易改換門面的最大契機。</li>
+<li class=""><span class="tm">11-17 11:09 HKT</span><b class="ent">TSM</b>十月營收年增59.7%創2026年高峰，但ADR仍下跌5.7%，投資人撤離AI硬體。</li>
+</ul>
+<div class="jd"><div class="jdhead">影響判斷</div>
+<div class="jg-line" style="border-left-color:var(--green)"><div class="jg-label" style="color:var(--green)">好消息</div><ul class="jl2"><li>巴克萊、Jim Cramer等認為市場對<b class="ent">NVDA</b>領導層變動反應過度，中位目標價280美元仍遠高於現價</li><li><b class="ent">TSM</b>十月營收年增59.7%印證AI需求基本面未壞，<b class="ent">AMD</b>被點名為領導層真空下的潛在受益者</li></ul></div>
+<div class="jg-line" style="border-left-color:var(--red)"><div class="jg-label" style="color:var(--red)">壞消息</div><ul class="jl2"><li><b class="ent">NVDA</b>執行長突然離職引發AI資本支出疑慮，<b class="ent">AMD</b>、<b class="ent">INTC</b>、<b class="ent">MU</b>、<b class="ent">SNDK</b>同步遭拋售</li><li><b class="ent">INTC</b>因PC需求疲弱與29%股價崩跌面臨詐欺訴訟，市值蒸發1,400億美元，監管與法律風險升溫</li></ul></div>
+</div>
+</section>
+<section class="blk" id="s-1" style="border-left-color:#a9a69d">
+  <div class="hdr"><span class="ttl">人工智能</span>
+    <span class="pill pn">中性</span>
+    <span class="cnt">37 篇 → 0 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:0.0%"></div><div class="dr" style="width:100.0%"></div></div><span class="brtxt">好消息 0% · 壞消息 100%</span></div>
+  <p class="tr">（本節分析失敗，下一輪會重試）</p>
+</section>
+<section class="blk" id="s-2" style="border-left-color:#a9a69d">
+  <div class="hdr"><span class="ttl">科技</span>
+    <span class="pill pn">中性</span>
+    <span class="cnt">116 篇 → 0 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:0.0%"></div><div class="dr" style="width:100.0%"></div></div><span class="brtxt">好消息 0% · 壞消息 100%</span></div>
+  <p class="tr">（本節分析失敗，下一輪會重試）</p>
+</section>
+<section class="blk" id="s-3" style="border-left-color:#a9a69d">
+  <div class="hdr"><span class="ttl">宏觀</span>
+    <span class="pill pn">中性</span>
+    <span class="cnt">9 篇 → 0 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:0.0%"></div><div class="dr" style="width:100.0%"></div></div><span class="brtxt">好消息 0% · 壞消息 100%</span></div>
+  <p class="tr">（本節分析失敗，下一輪會重試）</p>
+</section>
+<section class="blk" id="s-4" style="border-left-color:#a9a69d">
+  <div class="hdr"><span class="ttl">地緣政治</span>
+    <span class="pill pn">中性</span>
+    <span class="cnt">39 篇 → 0 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:0.0%"></div><div class="dr" style="width:100.0%"></div></div><span class="brtxt">好消息 0% · 壞消息 100%</span></div>
+  <p class="tr">（本節分析失敗，下一輪會重試）</p>
+</section>
+<section class="blk" id="s-5" style="border-left-color:#a9a69d">
+  <div class="hdr"><span class="ttl">監管</span>
+    <span class="pill pn">中性</span>
+    <span class="cnt">2 篇 → 0 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:0.0%"></div><div class="dr" style="width:100.0%"></div></div><span class="brtxt">好消息 0% · 壞消息 100%</span></div>
+  <p class="tr">（本節分析失敗，下一輪會重試）</p>
+</section>
+<section class="blk" id="s-6" style="border-left-color:#a9a69d">
+  <div class="hdr"><span class="ttl">消費</span>
+    <span class="pill pn">中性</span>
+    <span class="cnt">7 篇 → 0 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:0.0%"></div><div class="dr" style="width:100.0%"></div></div><span class="brtxt">好消息 0% · 壞消息 100%</span></div>
+  <p class="tr">（本節分析失敗，下一輪會重試）</p>
+</section>
+<section class="blk" id="s-7" style="border-left-color:#a9a69d">
+  <div class="hdr"><span class="ttl">金融</span>
+    <span class="pill pn">中性</span>
+    <span class="cnt">7 篇 → 0 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:0.0%"></div><div class="dr" style="width:100.0%"></div></div><span class="brtxt">好消息 0% · 壞消息 100%</span></div>
+  <p class="tr">（本節分析失敗，下一輪會重試）</p>
+</section>
+<section class="blk" id="s-8" style="border-left-color:#a9a69d">
+  <div class="hdr"><span class="ttl">能源</span>
+    <span class="pill pn">中性</span>
+    <span class="cnt">3 篇 → 0 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:0.0%"></div><div class="dr" style="width:100.0%"></div></div><span class="brtxt">好消息 0% · 壞消息 100%</span></div>
+  <p class="tr">（本節分析失敗，下一輪會重試）</p>
+</section>
+<section class="blk" id="s-9" style="border-left-color:#a9a69d">
+  <div class="hdr"><span class="ttl">醫療保健</span>
+    <span class="pill pn">中性</span>
+    <span class="cnt">1 篇 → 0 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:0.0%"></div><div class="dr" style="width:100.0%"></div></div><span class="brtxt">好消息 0% · 壞消息 100%</span></div>
+  <p class="tr">（本節分析失敗，下一輪會重試）</p>
+</section>
+<section class="blk" id="s-10" style="border-left-color:#a9a69d">
+  <div class="hdr"><span class="ttl">其他</span>
+    <span class="pill pn">中性</span>
+    <span class="cnt">2 篇 → 0 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:0.0%"></div><div class="dr" style="width:100.0%"></div></div><span class="brtxt">好消息 0% · 壞消息 100%</span></div>
+  <p class="tr">（本節分析失敗，下一輪會重試）</p>
+</section>
+<footer>
+資料來源：Hermes news pipeline（Bloomberg / CNBC / MarketWatch / Seeking Alpha / Benzinga /
+SCMP / NYT / Fortune / Tom's Hardware 等 RSS）· 只計最近 24 小時、related=1、已去重嘅新聞。<br>
+公司名與好消息／壞消息判斷由 LLM 逐篇閱讀後產生，非死名單比對。數字為機器統計，投資判斷請自行覆核。
+<br>今日無相關新聞：工業<br>
+生成於 2026-11-17 18:38 HKT · Hermes Agent</footer></div></body></html>
