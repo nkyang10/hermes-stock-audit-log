@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#2609 — 隔夜檢查 · 20261125 13:00 HKT</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 2371 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">1551 項決策</span>
+      <span class="stat">122 項快照</span>
+      <span class="stat">698 項研究</span>
+      <span class="stat">55 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+    <a href="../sector-report.html" class="tab ">🧭 板塊</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-11-25 13:00 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>隔夜檢查 · 20261125 13:00 HKT</h1>
+    <div class="entry-tags"><span class="tag">overnight</span><span class="tag">analysis</span><span class="tag">auto</span></div>
+  </div>
+  <div class="reasoning">
+    <p>20261125美股隔夜報告</p>
+<br>
+<h4 class="md-h">▶️ 隔夜信號（Overnight）</h4>
+<li>現時 HKT 13:00（ET 00:00，BOATS 隔夜時段）— 美股正規時段已收，隔夜盤薄，流動性極低。</li>
+<li>正規收市（11/24 收市價，Tier-1 Futu）：</li>
+<li>S&amp;P 500：7,201.09（−0.50%）</li>
+<li>納斯達克：23,733.54（−1.48%）</li>
+<li>道指：50,018.70（+0.85%）</li>
+<li>費半 SOX：8,832.50（−7.88%）— 晶片股崩，全日低位 8,657.78</li>
+<li>隔夜偏離（regular close → BOATS 現價）：</li>
+<li>SPY：718.78 → 714.25（−0.63%）</li>
+<li>QQQ：638.10 → 630.82（−1.14%）</li>
+<li>DIA：499.74 → 497.51（−0.45%）</li>
+<li>NVDA：155.38 → 152.40（−1.92%）；MU：629.79 → 608.85（−3.32%）；AMD：413.27 → 402.95（−2.50%）</li>
+<li>判斷：偏離全部 &lt;2%（NVDA 最接近 2%），屬「AI／半導體單邊續跌」而非全面風險事件；隔夜盤成交薄，偏離度只作方向參考，不作入場價依據。</li>
+<li>ES/NQ 期貨：Yahoo 側欄未取到數值（sidebar_raw 只有月份「02」）→ 以 SPY/QQQ 隔夜變化作 proxy。</li>
+<li>亞洲已反映同一條線：日經 −2.83%（56,986.91）、台灣加權 −5.24%（38,019.17）、KOSPI −5.83%（4,714.12）、上證 −1.01%（3,512.66）；恒指逆勢 +0.21%（22,265.68）。SoftBank 亞洲時段插 11%（CNBC，Tier-3）。</li>
+<br>
+<h4 class="md-h">▶️ 倉位相關催化劑</h4>
+<li>模擬組合（portfolio.json，last_updated 11/24 23:55；現價為收市價）：</li>
+<li>NVDA 50 股 @ 均價 205.19 → 152.46（−1.88%），未實現 −2,649（最大傷口）。新聞：Huang 為員工道歉、司法部／客戶審查疑雲、特朗普介入干預（Yahoo／NYT，Tier-3/4）；另有 Le Monde 指東南亞晶片轉運網絡。治理＋調查風險係股價主因，唔係單純 beta。</li>
+<li>MU 2 股 @ 907.81 → 608.85（−3.32%），未實現 −564。記憶體全線殺：WDC −2.54%、STX −2.59%、SNDK −3.73%、SKHY −2.84%。</li>
+<li>GOOGL 33 股 @ 349.58 → 276.69（−0.84%），未實現 −2,350。仍守 276 支持；距 52 週高 408 已跌 32%。</li>
+<li>AAPL 10 股 @ 298.11 → 353.05（−0.29%），未實現 +529，52 週位置 94.3% — 組合最強勢。</li>
+<li>MSFT 14 股 @ 387.46 → 492.72（−0.69%），未實現 +1,508。但新聞：Outlook/Teams/Copilot 24 小時大故障、內部宣佈 code red（Yahoo headlines，Tier-3）→ 短期情緒風險。</li>
+<li>AMZN 33 股 @ 256.57 → 250.20（−0.83%），未實現 −106。</li>
+<li>JPM 14 股 @ 343.31 → 316.66（−0.14%），未實現 −405；XLF 收市 +0.83%，金融係今日資金避風港。</li>
+<li>MCD 6 股 @ 255.20 → 280.99（+0.10%），未實現 +143；WMT 12 股 @ 118.64 → 132.38（+0.05%），未實現 +157 — 防守股全晚頂得住。</li>
+<li>組合結構：股票市值 44,508 + 現金 60,597 = 總值 105,105；未實現 −3,737、已實現 +8,529。防守倉（MCD/WMT/JPM/RTX/CVX/XOM/UNH/LLY/COST）全數微升或持平，科技倉全部下跌 → 今日係典型 growth→defensive 輪動。</li>
+<li>板塊 ETF 收市（Tier-1）：XLV +2.95%、XLP +1.66%、XLE +0.97%、XLF +0.83%、IWM +0.53% vs XLK −3.26%、XLI −0.53%。醫療＋必需品＋能源做資金停泊，半導體係提款機。</li>
+<li>DELL 業績（11/24 收市後）：Q3 破紀錄、AI 伺服器積壓訂單 1,320 億美元（+619%）、年內第三次上調全年收入指引、授權 250 億美元回購（CNBC／Bloomberg，Tier-3）。股價正規時段仍跌 0.77%（收 295.28），盤後 +0.92%。→ 業績好但股價唔升，係 AI 板塊 rotation 拖累，唔係公司問題；教訓同 NVDA 一樣：板塊資金流出時業績好都無用。</li>
+<li>債市／宏觀：10 年 4.91%、30 年 5.30%、2Y-10Y 利差 +0.28（11/24 Treasury，Tier-1）— 曲線仍正但長端高企。VIX 26.36（−0.98%），日內高曾見 32.38，收市回落。黃金 3,548（−2.83%）、BTC 59,217（−3.26%）、WTI 80.72（+0.69%）、DXY 103.99（+0.17%）→ 美元強＋金跌＋幣跌 = 風險資產齊齊減倉。</li>
+<li>新聞焦點（Bloomberg，Tier-3）：美國準備對中國及歐盟貨品加徵關稅 → 通脹／貿易政策風險升溫；債商買保險對沖「聯儲加息令經濟停滯」。呢個係今日亞洲科技股全線下殺嘅第二條腿（第一條係 AI 估值）。</li>
+<br>
+<h4 class="md-h">▶️ 關鍵事件</h4>
+<li>今晚 HKT 21:30 開市前（ET 08:30 = HKT 21:30）：</li>
+<li>核心 PCE 物價指數（10 月）— 前值 YoY 3.1%、MoM 0.3%；整體 PCE YoY 前值 3.6%、MoM 0.5%</li>
+<li>Q3 GDP 第二次估算 — 前值 3.4%；GDP 銷售初值前值 1.7%</li>
+<li>個人實質消費 MoM 前值 0</li>
+<li>耐用品／非國防資本財（飛機除外）前值 +0.6%</li>
+<li>HKT 20:00（ET 07:00）MBA 按揭申請數據（上週 30 年利率 7.35%、再融資指數 532.8）。</li>
+<li>今晚係「通脹數據 + 高估值科技股」正面碰撞：PCE 核心 3.1% 已遠高於聯儲目標，如果今次再熱，減息預期會再削，科技股折現率壓力加劇；如果核心 MoM 回落至 0.2 以下，AI 板塊有機會出現第一波技術反彈。</li>
+<li>財報：DELL 已出（好）；今晚留意盤後有無其他 AI 供應鏈公司出數。</li>
+<li>今日無 FOMC 會議，但聯儲 12 月決策定價正被「油價＋強美元＋Nvidia 反彈」三重訊號拉扯（Stocktwits，Tier-4，需留意）。</li>
+<br>
+<h4 class="md-h">▶️ 信貸制度（Credit Regime）</h4>
+<li>HYG 76.43，距 60 日高位 78.45 → −2.58%（已跌破 −2% 門檻）→ credit_stressed = true。</li>
+<li>HY/IG 比率 0.7364（高收益相對投資級偏弱）。</li>
+<li>VIX 26.36，對比 2 年 75 分位 19.52 → vix_fearful = true。</li>
+<li>四象限：credit_stress_high_vix — 唔係最差格（最差係信貸壓力 + VIX 平靜，回撤 −4.60%／回報 +0.06%），今次係「雙重壓力」格。</li>
+<li>傳染測試：HYG 已擴闊，屬 contagious 而非 contained（−11.70% 對 −3.83%）→ 信貸壓力已由股票傳到債券，唔可以當單一板塊事件處理。</li>
+<li>模型預測 60 日前瞻回撤 −4.44% — 只作 risk budget（倉位上限），唔係方向預測（rolling OOS 3/13 年、係數翻轉 38%）。</li>
+<li>release_signal = false，而且 was_stressed_40d = true → 信貸壓力已持續 40 日以上，未見解除訊號 → 今日唔應該當「撈底日」，防守優先。</li>
+<li>對模擬組合嘅意思：股票倉 44.5% / 現金 60.6K 已經係防守姿態，唔需要再減；但絕對唔應該在信貸壓力未解除下加科技倉（尤其 NVDA／MU）。</li>
+<br>
+<h4 class="md-h">▶️ 明確 Bias</h4>
+<p><strong>bearish（偏淡，防守為主）</strong></p>
+<li>理由一：半導體單日 −7.88%、亞洲科技接力 −5% 至 −5.8%，AI 敘事正在重估，唔係單日噪音。</li>
+<li>理由二：信貸壓力（HYG −2.58% 距高位）+ VIX 26 雙重壓力，且無解除訊號。</li>
+<li>理由三：今晚核心 PCE 前值 3.1% 仍高，疊加關稅消息，通脹風險偏向上行。</li>
+<li>理由四：NVDA 係組合最大單一持倉（7.24%）兼最大虧損來源，同時有治理／司法部調查新聞 — 個股風險 + beta 風險疊加，唔符合「純 beta 倉守統計」條件。</li>
+<li>反面論據（要記住）：道指 +0.85%、XLV +2.95%、XLP +1.66% — 唔係全面崩盤，係輪動。防守倉仍然賺錢。VIX 收市由 32.38 回落至 26.36，日內恐慌有緩和。</li>
+<br>
+<h4 class="md-h">風險提示</h4>
+<li>隔夜 BOATS 成交極薄（NVDA 盤口 best bid 100 股 / best ask 400 股，價差 0.13），任何隔夜價都唔可以當真倉入場參考；開市後 9:30 ET（21:30 HKT）先有真實深度。</li>
+<li>今晚 PCE 係最大單一變數：熱數 → 科技股第二波殺；冷數 → 可能出現「業績好但被殺」股（DELL 類型）嘅報復性反彈。唔好喺數據出爐前重倉押方向。</li>
+<li>模擬組合 NVDA 未實現 −2,649、MU −564 — 兩隻都係「板塊資金流出」型虧損，唔係公司基本面崩壞；但用戶止蝕紀律規定：個股有自身壞消息時唔可以靠 beta 統計硬守，NVDA 需明確檢視止蝕位。</li>
+<li>黃金 −2.83% + BTC −3.26% + 美元 +0.17% 同步 — 流動性收緊訊號，通常係風險資產全線減倉前奏。</li>
+<li>數據出處：Futu 收市價（Tier-1）、Treasury.gov 11/24 曲線（Tier-1）、Yahoo Chart API（Tier-3）、新聞標題 Yahoo／CNBC／Bloomberg／NYT（Tier-3/4，未逐篇核實全文）。ES/NQ 期貨數值缺失，已用 SPY/QQQ 隔夜變化替代，未確認。</li>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #2609 · 2026-11-25 13:00 HKT</p>
+</footer>
+</body>
+</html>
