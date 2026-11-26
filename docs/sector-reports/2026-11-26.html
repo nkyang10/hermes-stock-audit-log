@@ -1,0 +1,333 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>美股板塊新聞分析 · 24h</title>
+<style>
+:root{--paper:#f7f4ef;--ink:#1f2421;--muted:#6b6a63;--green:#3e7a52;--red:#b8462f;--amber:#9a7b3f;--neutral:#b9b6ad;--line:#ddd7cc;--card:#fffdf9}
+*{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Helvetica Neue",Arial,sans-serif;line-height:1.65}
+.wrap{max-width:860px;margin:0 auto;padding:34px 20px 70px}
+header{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:22px}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-family:"Noto Serif TC","Songti TC",Georgia,serif;font-size:34px;line-height:1.2;margin:8px 0 6px;font-weight:700}
+.sub{font-size:13.5px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 16px}
+.stat .n{font-family:"Noto Serif TC",serif;font-size:26px;font-weight:700;font-variant-numeric:tabular-nums}
+.stat.g .n{color:var(--green)} .stat.r .n{color:var(--red)} .stat .l{font-size:11.5px;color:var(--muted)}
+.sent{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:15px 18px;margin-bottom:20px}
+.sl{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--muted);margin-bottom:9px}
+.dbar{display:flex;width:100%;border-radius:3px;overflow:hidden;margin:0}
+.dg{background:var(--green)} .dr{background:var(--red)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:1px}
+.dot-g{background:var(--green)} .dot-r{background:var(--red)} .dot-n{background:var(--neutral)} .dot-m{background:linear-gradient(90deg,#3e7a52 50%,#b8462f 50%)}
+.nav{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 22px}
+.nav a{font-size:12px;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--card);padding:3px 9px;border-radius:4px}
+.blk{background:var(--card);border:1px solid var(--line);border-left-width:5px;border-left-style:solid;border-radius:9px;padding:17px 20px;margin-bottom:15px;scroll-margin-top:14px}
+.hdr{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.ttl{font-family:"Noto Serif TC",serif;font-size:20px;font-weight:700}
+.pill{font-size:11.5px;font-weight:700;color:#fff;padding:2px 9px;border-radius:4px}
+.pg{background:var(--green)} .pr{background:var(--red)} .pn{background:#a9a69d} .pm{background:var(--amber)}
+.cnt{font-size:11.5px;color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}
+.brrow{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+.brrow .dbar{flex:1;max-width:320px}
+.brtxt{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tr{font-size:14.5px;margin:0 0 12px;color:#2c312d}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 13px}
+.chip{font-size:11px;color:#41503f;background:#eef2ea;border:1px solid #dde4d7;border-radius:3px;padding:1px 6px;font-variant-numeric:tabular-nums}
+.nl{margin:0 0 13px;padding:0;list-style:none}
+.nl li{position:relative;padding-left:17px;margin-bottom:7px;font-size:14px}
+.nl li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:#b9b3a6}
+.nl li.pos::before{background:var(--green)} .nl li.neg::before{background:var(--red)}
+.nl .tm{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;margin-right:4px}
+.ent{font-weight:700;color:#0f1a13}
+.jd{background:#f6f3ec;border:1px solid #e4ddcf;border-radius:7px;padding:12px 14px}
+.jdhead{font-family:"Noto Serif TC",serif;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.jg-line{border-left:3px solid;padding-left:11px;margin-bottom:9px}
+.jg-line:last-child{margin-bottom:0}
+.jg-label{font-size:11px;font-weight:700;letter-spacing:.04em;margin-bottom:3px}
+.jl2{margin:0;padding-left:15px;font-size:13.5px;color:#3b403c}
+.jl2 li{margin-bottom:3px}
+.warn{background:#fbf1e6;border:1px solid #e8d3b8;border-left-width:4px;border-left-style:solid;border-left-color:var(--amber);border-radius:6px;padding:11px 14px;font-size:13px;color:#6a5738;margin-bottom:16px}
+footer{margin-top:32px;padding-top:14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);line-height:1.8}
+@media(max-width:600px){h1{font-size:26px}.stats{grid-template-columns:1fr}.cnt{margin-left:0}.brtxt{font-size:10.5px}.wrap{padding:24px 14px 60px}}
+</style></head><body><div class="wrap">
+<header><div class="eyebrow">美股 · 全市場 sector 新聞分析</div>
+<h1>美股板塊新聞摘要<br>綠色好消息 · 紅色壞消息</h1>
+<div class="sub">最近 24 小時 · 476 條相關新聞 → 11 個板塊 · 生成於 2026-11-26 18:39 HKT</div></header>
+<div class="stats">
+<div class="stat"><div class="n">476</div><div class="l">相關新聞條目</div></div>
+<div class="stat"><div class="n">11</div><div class="l">有新聞嘅板塊</div></div>
+<div class="stat g"><div class="n">116</div><div class="l">合併後重點條目</div></div></div>
+<div class="sent"><div class="sl">板塊方向</div>
+<div class="legend">
+<span><i class="dot dot-g"></i>利好 0 個</span>
+<span><i class="dot dot-r"></i>不利 0 個</span>
+<span><i class="dot dot-m"></i>分歧 11 個</span>
+<span><i class="dot dot-n"></i>中性 0 個</span></div></div>
+<div class="chips" style="margin-bottom:18px"><span class="chip">NVDA ×14</span><span class="chip">AMZN ×8</span><span class="chip">Meta ×6</span><span class="chip">MU ×4</span><span class="chip">CoreWeave ×4</span><span class="chip">Anthropic ×4</span><span class="chip">納斯達克100 ×3</span><span class="chip">DELL ×3</span><span class="chip">Zscaler ×3</span><span class="chip">字節跳動 ×2</span></div>
+<div class="nav"><a href="#s-0">半導體</a><a href="#s-1">人工智能</a><a href="#s-2">科技</a><a href="#s-3">宏觀</a><a href="#s-4">地緣政治</a><a href="#s-5">監管</a><a href="#s-6">消費</a><a href="#s-7">金融</a><a href="#s-8">工業</a><a href="#s-9">能源</a><a href="#s-10">其他</a></div>
+<section class="blk" id="s-0" style="border-left-color:#9a7b3f">
+  <div class="hdr"><span class="ttl">半導體</span>
+    <span class="pill pm">分歧</span>
+    <span class="cnt">185 篇 → 15 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:33.3%"></div><div class="dr" style="width:66.7%"></div></div><span class="brtxt">好消息 33% · 壞消息 67%</span></div>
+  <p class="tr">過去24小時半導體板塊劇烈震盪，主軸圍繞<b class="ent">NVDA</b>治理風暴與美國對中晶片管制升級。黃仁勳辭職後經政治力量施壓復職，股價單日強彈31.5%後迅速回吐，標普將其列入信用負面觀察、市值排名退居第三，並傳出最先進晶片仍經美國子公司流向中資企業。AI估值、關稅、利率與出口管制四重壓力引發全面拋售，<b class="ent">AMD</b>、<b class="ent">MU</b>、<b class="ent">SNDK</b>、<b class="ent">LRCX</b>、<b class="ent">AVGO</b>同步重挫，亞洲AI資料中心融資受阻。正面亮點集中於<b class="ent">TSMC</b>德州226億美元擴廠、<b class="ent">Kioxia</b>與<b class="ent">NVDA</b>以SSD擴充GPU記憶體至PB級，以及<b class="ent">MU</b>獲關稅豁免與多檔個股獲分析師維持買進評等，基本面支撐仍在。</p>
+<ul class="nl">
+<li class="neg"><span class="tm">11-26 17:17 HKT</span><b class="ent">NVDA</b>因美國打擊中國取得尖端技術，停止向四個東南亞國家出貨強大AI伺服器。</li>
+<li class="neg"><span class="tm">11-26 12:22 HKT</span><b class="ent">NVDA</b>傳將最先進AI晶片售予至少兩家中資控制的美國公司，黃仁勳下週赴國會作證。</li>
+<li class="neg"><span class="tm">11-26 10:49 HKT</span>美國晶片管制使亞洲數十億美元AI資料中心融資停滯，貸款機構重估與<b class="ent">字節跳動</b>、<b class="ent">阿里巴巴</b>、<b class="ent">騰訊</b>相關交易。</li>
+<li class="neg"><span class="tm">11-26 03:26 HKT</span>標普將<b class="ent">NVDA</b>列入信用觀察負面名單，憂慮其管理與治理架構、過度依賴執行長（另有 3 篇同類報導）</li>
+<li class="pos"><span class="tm">11-26 07:39 HKT</span><b class="ent">Altimeter</b>的<b class="ent">Gerstner</b>稱<b class="ent">NVDA</b>先前定價反映2028至2029年負成長，黃仁勳復職後股價週一漲31.5%。</li>
+<li class="pos"><span class="tm">11-26 14:28 HKT</span><b class="ent">Kioxia</b>宣布與<b class="ent">NVDA</b>合作以SSD擴展GPU記憶體容量至PB級，股價飆14%帶動晶片股反彈。</li>
+<li class="pos"><span class="tm">11-26 15:12 HKT</span><b class="ent">MU</b>產品獲豁免於美國新關稅，伺服器、手機、PC與晶片免受額外關稅。</li>
+<li class="neg"><span class="tm">11-26 13:55 HKT</span><b class="ent">MU</b>台灣擴產計畫恐因勞資爭議升溫而生變，傳出可能將投資轉向其他地點。</li>
+<li class="neg"><span class="tm">11-25 23:48 HKT</span><b class="ent">MU</b>暴跌10.47%，BNP Paribas砍目標價至775美元，警告2027年中記憶體供需恐趨平衡。</li>
+<li class="neg"><span class="tm">11-25 23:49 HKT</span><b class="ent">AMD</b>重挫9.74%，晶片拋售與關稅威脅夾擊，儘管指引營收季增27%。</li>
+<li class="pos"><span class="tm">11-25 20:56 HKT</span><b class="ent">AMD</b>預期2027年伺服器營收翻倍，受EPYC需求與AI工作負載帶動。</li>
+<li class="pos"><span class="tm">11-26 03:29 HKT</span><b class="ent">TSMC</b>申請德州獎勵方案，評估在Aggieland約3000英畝土地興建226億美元晶片廠。</li>
+<li class="neg"><span class="tm">11-25 23:33 HKT</span><b class="ent">TSM</b> ADRs跌6.65%，台灣被列入美國新增過剩產能關稅清單。</li>
+<li class="neg"><span class="tm">11-26 05:14 HKT</span><b class="ent">SK hynix</b>單日跌約11%、近月跌約19%，估值與AI記憶體題材重新成為焦點。</li>
+<li class="neg"><span class="tm">11-25 23:45 HKT</span><b class="ent">LRCX</b>單日重挫10.6%，AI帶動的晶片股拋售加深，並無公司個別利空。</li>
+</ul>
+<div class="jd"><div class="jdhead">影響判斷</div>
+<div class="jg-line" style="border-left-color:var(--green)"><div class="jg-label" style="color:var(--green)">好消息</div><ul class="jl2"><li><b class="ent">TSMC</b>德州226億美元擴廠獲政治加持，在地化產能題材持續發酵</li><li><b class="ent">Kioxia</b>與<b class="ent">NVDA</b>以SSD擴充GPU有效記憶體至PB級，為記憶體族群開啟新增長敘事</li><li><b class="ent">MU</b>產品獲關稅豁免，高盛指DRAM長約違約門檻極高，定價權穩固</li><li><b class="ent">AMD</b>伺服器營收2027年翻倍指引與量子AI合作，提供中長期成長敘事</li></ul></div>
+<div class="jg-line" style="border-left-color:var(--red)"><div class="jg-label" style="color:var(--red)">壞消息</div><ul class="jl2"><li>美國對中晶片出口管制升級且執法漏洞浮現，<b class="ent">NVDA</b>東南亞出貨與亞洲AI資料中心融資同步受挫</li><li><b class="ent">NVDA</b>治理危機與標普信用觀察負面名單，加上死亡交叉與董事會訴訟，估值信心受壓</li><li>AI估值、關稅、利率與出口管制四重壓力同步發酵，晶片股全面拋售</li><li>記憶體供需恐於2027至2028年趨於平衡，<b class="ent">MU</b>、<b class="ent">SNDK</b>、<b class="ent">SK hynix</b>承壓，TrendForce下修預測</li></ul></div>
+</div>
+</section>
+<section class="blk" id="s-1" style="border-left-color:#9a7b3f">
+  <div class="hdr"><span class="ttl">人工智能</span>
+    <span class="pill pm">分歧</span>
+    <span class="cnt">31 篇 → 18 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:56.2%"></div><div class="dr" style="width:43.8%"></div></div><span class="brtxt">好消息 56% · 壞消息 44%</span></div>
+  <p class="tr">過去24小時AI板塊情緒急速惡化，<b class="ent">納斯達克100</b>瀕臨熊市，<b class="ent">NVDA</b>與<b class="ent">CoreWeave</b>信用風險創歷史新高，市場對AI建設債務融資憂慮重燃，標普500恐錄得2022年9月以來最差單月。惟基本面訊號分歧：<b class="ent">戴爾</b>AI伺服器積壓訂單達1,323億美元且無客戶延期，<b class="ent">摩根大通</b>維持AI超級週期不變並看標普500於2027年達8,200點。應用層方面，<b class="ent">Meta</b>與<b class="ent">Amazon</b>洽談解除Muse AI代理封鎖，<b class="ent">Grok</b>已佔代理訂單24%，代理式購物商業化加速；但<b class="ent">OpenAI</b>的ChatGPT付費用戶再傳中斷，<b class="ent">Anthropic</b>股價跌6.5%，市場對AI基建與應用前景看法分歧。</p>
+<ul class="nl">
+<li class="neg"><span class="tm">11-25 22:50 HKT</span><b class="ent">納斯達克100</b>因投資者拋售AI相關股票而勢將步入一年多來首個熊市。</li>
+<li class="neg"><span class="tm">11-26 00:44 HKT</span><b class="ent">CoreWeave</b>與<b class="ent">NVDA</b>信用風險指標齊創歷史新高，華爾街對科技板塊憂慮升溫。</li>
+<li class="neg"><span class="tm">11-26 01:57 HKT</span>AI建設債務融資憂慮重燃，<b class="ent">納斯達克100</b>跌2.5%、<b class="ent">NVDA</b>挫7%，標普500恐創2022年9月以來最差單月。</li>
+<li class="pos"><span class="tm">11-26 00:47 HKT</span><b class="ent">摩根大通</b>認為AI槓桿投資平倉或延長而非終結週期，並看標普500於2027年升至8,200點。</li>
+<li class="neg"><span class="tm">11-26 00:01 HKT</span>美國新晶片限制令<b class="ent">字節跳動</b>、<b class="ent">阿里巴巴</b>、<b class="ent">騰訊</b>相關的數十億美元資料中心貸款停擺。</li>
+<li class="pos"><span class="tm">11-25 23:16 HKT</span><b class="ent">戴爾</b>AI業務積壓訂單達1,323億美元創紀錄，但龐大需求恐考驗行業交付能力。</li>
+<li class="pos"><span class="tm">11-26 04:20 HKT</span><b class="ent">戴爾</b>副董事長<b class="ent">Jeff Clarke</b>稱並無客戶延期業務，對<b class="ent">NVDA</b>屬利好訊號。</li>
+<li class="pos"><span class="tm">11-26 03:20 HKT</span><b class="ent">Meta</b>稱Muse提升廣告轉化率，過去一週51%的AI代理下單由Meta促成。</li>
+<li class="neg"><span class="tm">11-25 19:26 HKT</span><b class="ent">Nebius</b>因延遲交付及資本開支飆升，一個月內股價瀉43%。</li>
+<li class="pos"><span class="tm">11-25 22:38 HKT</span><b class="ent">Google</b>以Gemini 4 Neon將AI性能化為價格戰，令<b class="ent">Anthropic</b>難以忽視。</li>
+<li class="pos"><span class="tm">11-25 22:10 HKT</span><b class="ent">亞馬遜</b>與<b class="ent">Meta</b>據報洽談解除對AI代理Muse長達兩個月的封鎖。</li>
+<li class="pos"><span class="tm">11-26 17:00 HKT</span><b class="ent">Cantor Fitzgerald</b>將<b class="ent">CoreWeave</b>目標價由100美元下調至96美元，維持增持評級，認為拋售過度。</li>
+<li class=""><span class="tm">11-26 13:21 HKT</span>亞洲AI相關股票反彈，此前華爾街削減跌幅，<b class="ent">NVDA</b>單日仍跌3%。</li>
+<li class=""><span class="tm">11-26 07:41 HKT</span><b class="ent">Modal</b>執行長稱<b class="ent">Anthropic</b>每瓦GPU年收80美元，但<b class="ent">Anthropic</b>股價週二跌6.5%。</li>
+<li class="pos"><span class="tm">11-26 02:24 HKT</span><b class="ent">馬斯克</b>稱<b class="ent">Grok</b>能找最佳黑五優惠，上週<b class="ent">Grok</b>佔AI代理訂單24%，落後<b class="ent">Meta</b>的Muse 51%。</li>
+<li class="neg"><span class="tm">11-26 00:17 HKT</span><b class="ent">IREN</b>週三跌約9%，AI基建股因<b class="ent">NVDA</b>前日重挫7.28%再現拋壓。</li>
+<li class="neg"><span class="tm">11-25 23:57 HKT</span><b class="ent">微軟</b>支持的<b class="ent">OpenAI</b>旗下ChatGPT付費用戶再遇中斷，數日內第二次故障。</li>
+<li class="pos"><span class="tm">11-25 23:00 HKT</span><b class="ent">Alphabet</b>、<b class="ent">NVDA</b>、<b class="ent">微軟</b>與<b class="ent">AWS</b>領跑AI科學發現市場，該市場至2030年複合成長21.9%。</li>
+</ul>
+<div class="jd"><div class="jdhead">影響判斷</div>
+<div class="jg-line" style="border-left-color:var(--green)"><div class="jg-label" style="color:var(--green)">好消息</div><ul class="jl2"><li><b class="ent">戴爾</b>1,323億美元AI訂單積壓且無客戶延期，顯示終端需求仍強勁</li><li><b class="ent">摩根大通</b>維持AI超級週期不變，長線看標普500於2027年達8,200點</li><li><b class="ent">Meta</b>、<b class="ent">Google</b>等應用層變現取得進展，AI代理商業化落地</li><li>AI代理購物商業化提速，<b class="ent">Amazon</b>與<b class="ent">Meta</b>洽談解封Muse，<b class="ent">Grok</b>已佔代理訂單24%。</li></ul></div>
+<div class="jg-line" style="border-left-color:var(--red)"><div class="jg-label" style="color:var(--red)">壞消息</div><ul class="jl2"><li><b class="ent">納斯達克100</b>瀕臨熊市，<b class="ent">NVDA</b>與<b class="ent">CoreWeave</b>信用風險創新高，AI債務融資憂慮主導市場</li><li>美國晶片限制令亞洲AI資料中心貸款停擺，<b class="ent">Nebius</b>等資本開支壓力浮現</li><li><b class="ent">NVDA</b>前日重挫7.28%拖累<b class="ent">IREN</b>等AI基建股，板塊拋壓未消。</li><li><b class="ent">OpenAI</b>的ChatGPT付費用戶再度中斷，<b class="ent">Anthropic</b>股價跌6.5%，應用層信心受挫。</li></ul></div>
+</div>
+</section>
+<section class="blk" id="s-2" style="border-left-color:#9a7b3f">
+  <div class="hdr"><span class="ttl">科技</span>
+    <span class="pill pm">分歧</span>
+    <span class="cnt">145 篇 → 18 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:55.6%"></div><div class="dr" style="width:44.4%"></div></div><span class="brtxt">好消息 56% · 壞消息 44%</span></div>
+  <p class="tr">過去24小時科技板塊主線是AI交易的劇烈回檔與估值爭議：<b class="ent">納斯達克100</b>連兩日重挫並一度跌破20%門檻進入熊市，<b class="ent">NVDA</b>、<b class="ent">GOOGL</b>、<b class="ent">AMZN</b>等權值股遭拋售，信用違約交換利差創高，反映市場對AI資本支出回報與自由現金流轉負的疑慮升溫。不過亞洲時段科技股回穩、關稅憂慮緩和，加上關稅豁免涵蓋晶片與伺服器，為硬體供應鏈提供緩衝。個股消息分歧：<b class="ent">DELL</b>AI伺服器積壓訂單達1,323億美元、營收倍增並上調指引，股價卻因庫存暴增與需求見頂疑慮重挫；<b class="ent">CRWD</b>宣布以439億美元收購<b class="ent">Zscaler</b>，資安整合題材升溫；<b class="ent">AAPL</b>以強勁自由現金流成資金避風港，<b class="ent">AMZN</b>與<b class="ent">META</b>洽談Muse購物代理接入則為平台變現帶來想像。整體而言，AI敘事未變，但估值、現金流與資本配置耐心主導短線情緒，板塊缺乏明確方向。</p>
+<ul class="nl">
+<li class="neg"><span class="tm">11-26 01:27 HKT</span><b class="ent">納斯達克100</b>連兩日重挫並進入熊市區間，全球科技股拋售潮加深。</li>
+<li class="neg"><span class="tm">11-25 23:45 HKT</span><b class="ent">GOOGL</b>跌5.56%，五年期CDS利差創紀錄，自由現金流因514億美元資本支出轉負。</li>
+<li class="neg"><span class="tm">11-25 23:41 HKT</span><b class="ent">AMZN</b>跌4.26%，AWS成長39%但自由現金流轉負424億美元，資本支出跑贏現金生成。</li>
+<li class="neg"><span class="tm">11-26 00:52 HKT</span><b class="ent">ORCL</b>跌向三年低點，<b class="ent">SNDK</b>、<b class="ent">MU</b>單日跌幅均超10%，AI概念股全面重挫。</li>
+<li class="neg"><span class="tm">11-26 02:04 HKT</span><b class="ent">DELL</b>營收549億美元、EPS 9.45美元遠超預期，但庫存近三倍增長致股價重挫8.69%。</li>
+<li class="pos"><span class="tm">11-26 02:15 HKT</span><b class="ent">DELL</b> AI伺服器積壓訂單達1,320億美元、年增619%，季度營收翻倍並宣布250億美元回購。</li>
+<li class="neg"><span class="tm">11-26 17:10 HKT</span><b class="ent">DELL</b>股價邁向2021年以來最差月份，Morningstar警告AI帶動的佳績背後增長或放緩。</li>
+<li class="neg"><span class="tm">11-26 16:29 HKT</span><b class="ent">CRWD</b>因439億美元全股票收購<b class="ent">Zscaler</b>，一週內股價下挫近12%。</li>
+<li class="pos"><span class="tm">11-25 21:05 HKT</span><b class="ent">CRWD</b>同意以439億美元股票收購<b class="ent">Zscaler</b>，目標每年約10億美元收入協同。</li>
+<li class="pos"><span class="tm">11-26 17:20 HKT</span>Truist維持<b class="ent">Zscaler</b>買入評級並上調目標價至340美元，隱含52%上行空間。</li>
+<li class="neg"><span class="tm">11-25 20:12 HKT</span><b class="ent">MSFT</b>經歷24小時全球服務中斷後宣布進入「紅色警戒」，力爭一小時內全面恢復。</li>
+<li class="pos"><span class="tm">11-26 01:10 HKT</span><b class="ent">MSFT</b>與Atos擴大合作，為歐洲公部門與受監管企業提供主權AI與雲端環境。</li>
+<li class="pos"><span class="tm">11-25 21:30 HKT</span><b class="ent">AAPL</b>擁有1,360億美元自由現金流且無AI資本支出負擔，成為AI軍備競賽外的現金流避風港。</li>
+<li class="pos"><span class="tm">11-26 13:38 HKT</span><b class="ent">AAPL</b>下月將在印度海得拉巴開設新店，持續擴張成長最快的海外市場零售網。</li>
+<li class="pos"><span class="tm">11-25 21:45 HKT</span><b class="ent">AMZN</b>與<b class="ent">META</b>傳洽談恢復Muse AI購物機器人接入市集，<b class="ent">Jassy</b>稱只要價值交換公平不排除第三方代理。</li>
+<li class="pos"><span class="tm">11-26 03:09 HKT</span>Jefferies看好<b class="ent">META</b>的Muse AI購物助手可推升Instagram廣告收入。</li>
+<li class="pos"><span class="tm">11-26 04:47 HKT</span>新關稅豁免涵蓋伺服器、智慧手機、PC與晶片，但耳機、鋰電池、印表機未獲豁免。</li>
+<li class="pos"><span class="tm">11-26 12:25 HKT</span>亞洲股市周四反彈，科技股回穩、關稅憂慮緩和，投資者消化新一輪美國關稅建議。</li>
+</ul>
+<div class="jd"><div class="jdhead">影響判斷</div>
+<div class="jg-line" style="border-left-color:var(--green)"><div class="jg-label" style="color:var(--green)">好消息</div><ul class="jl2"><li><b class="ent">DELL</b> AI伺服器積壓訂單達1,320億美元、年增619%，顯示企業AI硬體需求仍具實質支撐</li><li><b class="ent">CRWD</b>收購<b class="ent">Zscaler</b>若成事，或重塑AI安全與資安領域格局，長線題材獲分析師力挺</li><li><b class="ent">AAPL</b>無AI資本支出包袱、自由現金流強勁，成資金避風港，印度零售擴張持續</li><li><b class="ent">AMZN</b>與<b class="ent">META</b>洽談Muse接入，平台變現路徑可望擴大，<b class="ent">META</b> AI導購獲券商背書</li></ul></div>
+<div class="jg-line" style="border-left-color:var(--red)"><div class="jg-label" style="color:var(--red)">壞消息</div><ul class="jl2"><li><b class="ent">納斯達克100</b>進入熊市，AI交易全面瓦解，權值股信用風險指標創高</li><li><b class="ent">GOOGL</b>、<b class="ent">AMZN</b>自由現金流轉負，AI資本支出回報疑慮升溫，CDS利差創紀錄</li><li><b class="ent">DELL</b>財報亮眼卻因庫存暴增、目標價大砍與需求見頂疑慮暴跌，AI硬體鏈承壓</li><li><b class="ent">MSFT</b>全球服務中斷與<b class="ent">GOOGL</b>信貸成本創高，大型科技股承壓</li></ul></div>
+</div>
+</section>
+<section class="blk" id="s-3" style="border-left-color:#9a7b3f">
+  <div class="hdr"><span class="ttl">宏觀</span>
+    <span class="pill pm">分歧</span>
+    <span class="cnt">47 篇 → 18 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:31.2%"></div><div class="dr" style="width:68.8%"></div></div><span class="brtxt">好消息 31% · 壞消息 69%</span></div>
+  <p class="tr">過去24小時宏觀主線由「通脹偏熱、聯儲偏鷹」主導：聯準會偏好的PCE物價指數年增3.8%、核心PCE 3.3%，加上第三季GDP上修至4.3%，幾乎確立12月升息，並壓抑評價面與風險資產。川普政府同時對14個貿易夥伴提出新一輪關稅（印度17%起、未達協議升至25%；孟加拉、柬埔寨、泰國18%，中國與越南20%），以降低稅率換取貿易協議，市場憂慮「中國+1」供應鏈轉移受挫。通脹升溫、成長上修與關稅不確定性三重壓力下，美股重挫、那斯達克盤中跌逾4%，黃金因升息預期跌破3,500美元，比特幣跌破58,000美元。美元續強、殖利率因成長擔憂下滑，債券避險功能重新奏效，成為動盪中少數可倚賴的對沖工具。</p>
+<ul class="nl">
+<li class="neg"><span class="tm">11-25 21:34 HKT</span>聯準會偏好通脹指標PCE 10月年增3.8%、符合預期，幾乎確立12月升息。</li>
+<li class="neg"><span class="tm">11-26 09:55 HKT</span>核心PCE 10月報3.3%，通脹黏性支撐緊縮預期。</li>
+<li class="neg"><span class="tm">11-25 21:39 HKT</span>PCE符合預期之際，第三季GDP成長上修至4.3%，強化經濟過熱疑慮。</li>
+<li class="neg"><span class="tm">11-25 23:05 HKT</span>通脹超預期疊加關稅消息，<b class="ent">道瓊</b>暴跌逾千點、<b class="ent">那斯達克</b>跌4%，AI交易瓦解。</li>
+<li class="neg"><span class="tm">11-26 05:29 HKT</span><b class="ent">那斯達克</b>盤中重挫4.6%後戲劇性反彈，AI、通脹與川普關稅構成三重威脅。</li>
+<li class="neg"><span class="tm">11-26 01:20 HKT</span>升息預期與AI股拋售夾擊，<b class="ent">黃金</b>跌破3,500美元、盤中一度跌3.7%。</li>
+<li class="neg"><span class="tm">11-26 16:09 HKT</span>美國擬對14個貿易夥伴加徵關稅，並以較低稅率換取貿易協議施壓。</li>
+<li class="neg"><span class="tm">11-26 16:05 HKT</span>川普新關稅恐削弱美中貿易戰以來「中國+1」的供應鏈外移趨勢。</li>
+<li class="neg"><span class="tm">11-26 00:52 HKT</span><b class="ent">比特幣</b>跌破58,000美元，通脹、關稅與AI拋售共振。</li>
+<li class="pos"><span class="tm">11-25 20:10 HKT</span>債券與信用市場訊號顯示，聯儲的鷹派立場可能已過緊。</li>
+<li class=""><span class="tm">11-26 16:12 HKT</span>私營部門經濟增長強勁、通脹火熱，印證「加息經濟」格局。</li>
+<li class="pos"><span class="tm">11-25 23:49 HKT</span>白宮經濟顧問Hassett稱經濟呈「金髮女孩」狀態、通脹未加速。</li>
+<li class="neg"><span class="tm">11-26 14:28 HKT</span>美國擬對<b class="ent">印度</b>商品徵17%關稅，未達成協議則升至25%。</li>
+<li class="pos"><span class="tm">11-26 12:12 HKT</span>孟加拉、柬埔寨、泰國18%、中國與越南20%關稅，令<b class="ent">印度</b>出口商相對佔優。</li>
+<li class="neg"><span class="tm">11-25 22:04 HKT</span><b class="ent">SPY</b>盤前下跌1.8%，通膨數據公布前大盤ETF與股指期貨同步走低。</li>
+<li class=""><span class="tm">11-25 20:57 HKT</span><b class="ent">美債</b>殖利率因成長擔憂與避險需求下滑，呈牛陡走勢，PCE數據成關鍵。</li>
+<li class="pos"><span class="tm">11-26 15:46 HKT</span>感恩節前圖表顯示<b class="ent">美國經濟</b>成長強勁且通膨降溫，屬正面訊號。</li>
+<li class="pos"><span class="tm">11-26 01:23 HKT</span><b class="ent">美債</b>避險功能重新奏效，成為市場動盪中少數可倚賴的對沖工具。</li>
+</ul>
+<div class="jd"><div class="jdhead">影響判斷</div>
+<div class="jg-line" style="border-left-color:var(--green)"><div class="jg-label" style="color:var(--green)">好消息</div><ul class="jl2"><li>第三季GDP上修至4.3%顯示經濟動能仍強，短期無衰退風險。</li><li>債券與信用市場開始質疑聯儲過緊，若通脹見頂將打開政策轉鴿空間</li><li>關稅結構對印度出口商形成相對優勢，供應鏈重組帶來區域機會</li><li>債市避險功能恢復，成動盪中的有效對沖</li></ul></div>
+<div class="jg-line" style="border-left-color:var(--red)"><div class="jg-label" style="color:var(--red)">壞消息</div><ul class="jl2"><li>PCE與核心PCE雙雙高企，12月升息幾乎定調，壓抑評價面與風險資產。</li><li>新一輪關稅與貿易協議施壓恐擾亂供應鏈、推升成本並加深政策不確定性。</li><li>核心PCE 3.8%強化12月及之後加息押注，壓制黃金、比特幣與長天期資產</li><li>新一輪關稅覆蓋中國、越南及南亞多國，推升成本並加劇貿易不確定性</li></ul></div>
+</div>
+</section>
+<section class="blk" id="s-4" style="border-left-color:#9a7b3f">
+  <div class="hdr"><span class="ttl">地緣政治</span>
+    <span class="pill pm">分歧</span>
+    <span class="cnt">34 篇 → 15 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:7.7%"></div><div class="dr" style="width:92.3%"></div></div><span class="brtxt">好消息 8% · 壞消息 92%</span></div>
+  <p class="tr">過去24小時地緣政治由三條主線主導：美國在特朗普與習近平會晤僅一週後，對含中國、歐盟在內的14個經濟體提出新一輪20%關稅，北京斥為「政治操作」、巴西強烈反對，貿易休戰轉趨脆弱。美中科技與國安對抗同步升溫，<b class="ent">華為</b>遭陪審團裁定詐欺及違反伊朗制裁，國會就<b class="ent">NVDA</b>國安風險向黃仁勳施壓。俄烏戰事在海上與能源設施升級，烏克蘭以海軍無人機擊沉俄艦並打擊空軍基地，俄軍空襲致五區停電。中東風險未解，以色列與伊朗局勢及美國制裁擠壓伊朗電力持續發酵，台海與哥倫比亞議題亦多點開花。</p>
+<ul class="nl">
+<li class="neg"><span class="tm">11-25 22:03 HKT</span>美國於特習會一週後對含<b class="ent">中國</b>在內14個經濟體提出新一輪20%關稅。</li>
+<li class="neg"><span class="tm">11-25 18:51 HKT</span><b class="ent">中國</b>抨擊新關稅為「政治操作」，呼籲雙方共同維持貿易休戰。</li>
+<li class=""><span class="tm">11-26 17:09 HKT</span>市場質疑<b class="ent">特朗普</b>以40%關稅威脅能否真正取得對華籌碼。</li>
+<li class="neg"><span class="tm">11-25 21:21 HKT</span><b class="ent">美國</b>擬祭新關稅，特朗普再倚重其最愛貿易武器，最高法院此前已推翻更廣泛關稅。</li>
+<li class="neg"><span class="tm">11-26 03:52 HKT</span><b class="ent">哥倫比亞</b>議員團訪台遭北京正式抗議，稱觸及「第一條紅線」，哥國政府沉默兩日。</li>
+<li class="neg"><span class="tm">11-26 04:44 HKT</span><b class="ent">澤連斯基</b>稱若特朗普年底前無法促成普京停火，將轉向民主黨新國會加大施壓。</li>
+<li class="neg"><span class="tm">11-25 00:00 HKT</span>美國陪審團裁定<b class="ent">華為</b>詐欺及違反伊朗制裁，美中科技對抗再升溫。</li>
+<li class="neg"><span class="tm">11-25 00:00 HKT</span>共和黨議員要求<b class="ent">FBI</b>與<b class="ent">CIA</b>先交代對<b class="ent">NVDA</b>國安風險的掌握，才質詢黃仁勳。</li>
+<li class="pos"><span class="tm">11-25 00:00 HKT</span>以色列歡慶黃仁勳重返<b class="ent">NVDA</b>，凸顯以國科技經濟與晶片巨頭深度綁定。</li>
+<li class=""><span class="tm">11-25 00:00 HKT</span>烏方證實自母船放出七架海軍無人機，於利比亞外海擊沉俄艦<b class="ent">Merkury</b>。</li>
+<li class="neg"><span class="tm">11-25 00:00 HKT</span><b class="ent">烏克蘭</b>稱打擊俄羅斯下諾夫哥羅德空軍基地，擊中五架飛機。</li>
+<li class="neg"><span class="tm">11-25 00:00 HKT</span>俄軍空襲札波羅熱與第聶伯羅，五個地區停電、能源設施受損。</li>
+<li class="neg"><span class="tm">11-25 00:00 HKT</span>美國制裁與封鎖加劇，伊朗冬季能源危機惡化並開始限電。</li>
+<li class="neg"><span class="tm">11-25 00:00 HKT</span>外界關注納坦雅胡是否藉對伊朗開戰保住權位，以國政局與戰風險交織。</li>
+<li class="neg"><span class="tm">11-25 00:00 HKT</span><b class="ent">巴西</b>總統盧拉辦公室稱新關稅提案「不可接受」，不會屈服於威脅並尋求談判。</li>
+</ul>
+<div class="jd"><div class="jdhead">影響判斷</div>
+<div class="jg-line" style="border-left-color:var(--green)"><div class="jg-label" style="color:var(--green)">好消息</div><ul class="jl2"><li>以色列與<b class="ent">NVDA</b>的深度投資連結，為晶片與AI供應鏈提供區域性需求支撐。</li><li>中東與俄烏衝突升級，有利國防、無人機與能源安全相關題材。</li><li>關稅與台海緊張雖屬壓力，但市場已部分消化特朗普關稅工具受限於最高法院裁決的預期。</li></ul></div>
+<div class="jg-line" style="border-left-color:var(--red)"><div class="jg-label" style="color:var(--red)">壞消息</div><ul class="jl2"><li>美國對華及14個經濟體新關稅距特習會僅一週，貿易休戰脆弱，供應鏈與跨國企業風險升溫。</li><li>北京以「政治操作」回擊並在台灣、哥倫比亞議題上劃紅線，地緣摩擦多點開花。</li><li>巴西等貿易夥伴強硬反制，全球關稅報復風險擴大，美股承壓。</li><li>美中科技與國安對抗（<b class="ent">華為</b>定罪、<b class="ent">NVDA</b>遭質詢）升高半導體合規與出口風險。</li></ul></div>
+</div>
+</section>
+<section class="blk" id="s-5" style="border-left-color:#9a7b3f">
+  <div class="hdr"><span class="ttl">監管</span>
+    <span class="pill pm">分歧</span>
+    <span class="cnt">2 篇 → 2 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:0.0%"></div><div class="dr" style="width:100.0%"></div></div><span class="brtxt">好消息 0% · 壞消息 100%</span></div>
+  <p class="tr">過去24小時，監管相關消息集中於兩大事件：一是<b class="ent">Nvidia</b>（<b class="ent">NVDA</b>）執行長黃仁勳在白宮支持下回歸董事會，遭耶魯學者Sonnenfeld質疑對美國工業實力有害；二是美國法院裁定<b class="ent">華為</b>竊盜罪名成立，延續其在全球面臨的法律與貿易限制。整體而言，半導體與電信設備領域的監管與政治風險升溫，市場情緒偏分歧。</p>
+<ul class="nl">
+<li class="neg">耶魯學者<b class="ent">Sonnenfeld</b>警告<b class="ent">NVDA</b>黃仁勳回歸董事會恐成重大錯誤，讓董事面臨歷史性個人責任風險。</li>
+<li class="neg">美國法院裁定<b class="ent">華為</b>竊盜罪名成立，為其在全球貿易戰中的法律困境再添一筆。</li>
+</ul>
+<div class="jd"><div class="jdhead">影響判斷</div>
+<div class="jg-line" style="border-left-color:var(--green)"><div class="jg-label" style="color:var(--green)">好消息</div><ul class="jl2"><li>監管壓力有助加速合規與供應鏈透明化，長期利好守法龍頭</li></ul></div>
+<div class="jg-line" style="border-left-color:var(--red)"><div class="jg-label" style="color:var(--red)">壞消息</div><ul class="jl2"><li><b class="ent">NVDA</b>治理爭議與<b class="ent">華為</b>定罪反映政治與法律風險升高，短線壓抑相關類股評價</li></ul></div>
+</div>
+</section>
+<section class="blk" id="s-6" style="border-left-color:#9a7b3f">
+  <div class="hdr"><span class="ttl">消費</span>
+    <span class="pill pm">分歧</span>
+    <span class="cnt">9 篇 → 7 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:100.0%"></div><div class="dr" style="width:0.0%"></div></div><span class="brtxt">好消息 100% · 壞消息 0%</span></div>
+  <p class="tr">過去24小時消費板塊焦點集中在<b class="ent">AMZN</b>：其線上賣車業務首度走出美國、將於2027年初登陸英國，並公布美國已擴展至逾150個城市；同時<b class="ent">Walmart</b>客群出現分化，高收入家庭帶動其市佔增長，低收入消費者則轉向<b class="ent">AMZN</b>與一元店。另一方面，<b class="ent">GameStop</b>在假期消費旺季前的股票評級勝過<b class="ent">AMZN</b>，而ETF於週一淨賣出<b class="ent">AMZN</b>約1.025億美元，資金面偏弱。</p>
+<ul class="nl">
+<li class="pos"><span class="tm">11-26 00:30 HKT</span><b class="ent">AMZN</b>線上賣車業務首度走出美國，零售實驗進入新階段。</li>
+<li class="pos"><span class="tm">11-25 21:01 HKT</span><b class="ent">AMZN</b>將於2027年初在英國推出線上賣車，<b class="ent">Hyundai</b>與<b class="ent">Vertu Motors</b>為首批夥伴。</li>
+<li class="pos"><span class="tm">11-25 20:34 HKT</span><b class="ent">AMZN</b>汽車服務自2024年12月上線以來已覆蓋美國逾150個城市（另有 1 篇同類報導）</li>
+<li class=""><span class="tm">11-25 16:32 HKT</span><b class="ent">Walmart</b>上季市佔增長由高收入家庭帶動，低收入客群轉向<b class="ent">AMZN</b>與一元店。</li>
+<li class="pos"><span class="tm">11-25 20:54 HKT</span>假期零售銷售預估突破1兆美元，<b class="ent">GameStop</b>股票評級領先<b class="ent">AMZN</b>。</li>
+<li class="pos"><span class="tm">11-25 20:30 HKT</span><b class="ent">PG</b>、<b class="ent">KO</b>、<b class="ent">MCD</b>被列為可長抱數十年的高股息標的。</li>
+<li class="pos"><span class="tm">11-25 22:03 HKT</span><b class="ent">Duracell</b>攜手<b class="ent">AMZN</b>在芝加哥海軍碼頭打造免費假期體驗活動。</li>
+</ul>
+<div class="jd"><div class="jdhead">影響判斷</div>
+<div class="jg-line" style="border-left-color:var(--green)"><div class="jg-label" style="color:var(--green)">好消息</div><ul class="jl2"><li><b class="ent">AMZN</b>汽車電商國際化打開新增長空間，假期消費旺季銷售預估破1兆美元亦支撐板塊情緒</li></ul></div>
+<div class="jg-line" style="border-left-color:var(--red)"><div class="jg-label" style="color:var(--red)">壞消息</div><ul class="jl2"><li>低收入客群流向<b class="ent">AMZN</b>與一元店，<b class="ent">Walmart</b>客群結構分化；ETF淨賣出<b class="ent">AMZN</b>顯示短線資金審慎</li></ul></div>
+</div>
+</section>
+<section class="blk" id="s-7" style="border-left-color:#9a7b3f">
+  <div class="hdr"><span class="ttl">金融</span>
+    <span class="pill pm">分歧</span>
+    <span class="cnt">9 篇 → 8 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:66.7%"></div><div class="dr" style="width:33.3%"></div></div><span class="brtxt">好消息 67% · 壞消息 33%</span></div>
+  <p class="tr">過去24小時金融板塊消息集中於<b class="ent">CoreWeave</b>與<b class="ent">Meta</b>相關的45億美元GPU抵押貸款出售，顯示AI基建融資需求強勁、銀行承銷活躍；同時通脹數據偏熱推升利率與美元，比特幣跌破58,000美元，債券交易員開始對沖「先加息、後減息」的風險，資金流向高收益國債與市政債節稅工具。</p>
+<ul class="nl">
+<li class="pos"><span class="tm">11-26 01:25 HKT</span><b class="ent">摩根士丹利</b>與<b class="ent">三菱UFJ</b>為<b class="ent">CoreWeave</b>安排45億美元貸款出售，以GPU作抵押並掛鉤<b class="ent">Meta</b>合約。</li>
+<li class="pos"><span class="tm">11-26 02:30 HKT</span>承銷行最快下週啟動該筆45億美元債務發售，憑<b class="ent">CoreWeave</b>的AI基建合約作支撐。</li>
+<li class="neg"><span class="tm">11-26 01:23 HKT</span>通脹數據偏熱、美元走強，<b class="ent">比特幣</b>跌破58,000美元，被形容為加密貨幣最差組合。</li>
+<li class="neg"><span class="tm">11-25 19:47 HKT</span>債券交易員對沖「先加息、後減息」情境，憂慮高利率令經濟失足。</li>
+<li class="pos"><span class="tm">11-26 00:28 HKT</span><b class="ent">BUCK</b> 受惠於高企國債收益率加上期權收益增強策略。</li>
+<li class="pos"><span class="tm">11-25 23:00 HKT</span>收益率仍高，富裕投資者透過市政債尋求節稅，而非單純延稅。</li>
+<li class=""><span class="tm">11-25 20:36 HKT</span><b class="ent">Cathie Wood</b> 旗下ARK買入6,160萬美元<b class="ent">Anthropic</b>，同時減持<b class="ent">Meta</b>與<b class="ent">Palantir</b>。</li>
+<li class=""><span class="tm">11-25 19:00 HKT</span>ETF資金分化，<b class="ent">ARKQ</b>與<b class="ent">QQQ</b>遭贖回，<b class="ent">SPY</b>則錄得淨流入。</li>
+</ul>
+<div class="jd"><div class="jdhead">影響判斷</div>
+<div class="jg-line" style="border-left-color:var(--green)"><div class="jg-label" style="color:var(--green)">好消息</div><ul class="jl2"><li>AI基建抵押融資獲大行承銷，顯示信貸市場對科技相關資產需求穩健</li><li>高收益率環境利好國債與市政債等固定收益配置工具</li></ul></div>
+<div class="jg-line" style="border-left-color:var(--red)"><div class="jg-label" style="color:var(--red)">壞消息</div><ul class="jl2"><li>通脹偏熱推高利率與美元，風險資產（含加密貨幣）承壓</li><li>交易員對沖加息風險，反映市場憂慮政策路徑不確定性上升</li></ul></div>
+</div>
+</section>
+<section class="blk" id="s-8" style="border-left-color:#9a7b3f">
+  <div class="hdr"><span class="ttl">工業</span>
+    <span class="pill pm">分歧</span>
+    <span class="cnt">2 篇 → 3 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:0.0%"></div><div class="dr" style="width:100.0%"></div></div><span class="brtxt">好消息 0% · 壞消息 100%</span></div>
+  <p class="tr">最新24小時工業類股消息偏空且分歧。<b class="ent">Deere</b> 財報出爐後股價走低，投資人聚焦農業經濟能否走出長期低迷；<b class="ent">Dell</b> 雖有伺服器銷售支撐仍下跌。另一方面，<b class="ent">RTX</b> 關稅退款美化第三季表現，但股價仍較均值高出12.7%，估值偏貴。整體缺乏明確方向，個股各自受財報與評價面牽動。</p>
+<ul class="nl">
+<li class="neg"><span class="tm">11-26 00:06 HKT</span><b class="ent">Deere</b> 公布財報後股價走低，市場聚焦農業經濟能否擺脫長期低迷。</li>
+<li class="neg"><span class="tm">11-26 00:06 HKT</span><b class="ent">Dell</b> 伺服器銷售雖有支撐，股價仍走弱，顯示市場對其後市存疑。</li>
+<li class=""><span class="tm">11-25 22:32 HKT</span><b class="ent">RTX</b> 第三季受關稅退款美化，但股價仍較均值高12.7%，評價面偏貴。</li>
+</ul>
+<div class="jd"><div class="jdhead">影響判斷</div>
+<div class="jg-line" style="border-left-color:var(--green)"><div class="jg-label" style="color:var(--green)">好消息</div><ul class="jl2"><li><b class="ent">Dell</b> 伺服器需求仍具支撐，顯示資料中心相關工業需求未明顯轉弱。</li></ul></div>
+<div class="jg-line" style="border-left-color:var(--red)"><div class="jg-label" style="color:var(--red)">壞消息</div><ul class="jl2"><li><b class="ent">Deere</b> 財報後走低，反映農業機械景氣復甦仍不明朗。</li><li><b class="ent">RTX</b> 獲利受一次性關稅退款美化，股價高於均值，基本面品質受質疑。</li></ul></div>
+</div>
+</section>
+<section class="blk" id="s-9" style="border-left-color:#9a7b3f">
+  <div class="hdr"><span class="ttl">能源</span>
+    <span class="pill pm">分歧</span>
+    <span class="cnt">8 篇 → 8 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:57.1%"></div><div class="dr" style="width:42.9%"></div></div><span class="brtxt">好消息 57% · 壞消息 43%</span></div>
+  <p class="tr">過去24小時能源板塊消息多空交錯：胡塞武裝攻擊沙烏地紅海港口與煉油設施推升油價，卡達LNG出口攀至開戰以來新高、俄羅斯煉油開工率卻因烏克蘭打擊跌至數十年低點；同時歐洲柴油需求恐跌破疫情水準、俄油出口偏高加劇全球供給過剩，市場對中東風險的反應出現分歧。</p>
+<ul class="nl">
+<li class="pos"><span class="tm">11-26 14:31 HKT</span>胡塞武裝攻擊沙烏地<b class="ent">Ras Tanura</b>煉油廠及吉達、吉贊紅海港口，油價延續漲勢。</li>
+<li class="pos"><span class="tm">11-26 15:08 HKT</span><b class="ent">卡達</b>LNG出口升至美伊開戰以來最高，突破荷姆茲海峽干擾、挹注歐亞冬季供應。</li>
+<li class="pos"><span class="tm">11-26 00:38 HKT</span><b class="ent">俄羅斯</b>煉油開工率因烏克蘭持續打擊煉廠，降至逾二十年最低，國內燃料供應承壓。</li>
+<li class="neg"><span class="tm">11-25 20:02 HKT</span><b class="ent">俄羅斯</b>今年原油出口高於2022年全面入侵以來所有年均值，加劇全球供給過剩。</li>
+<li class="neg"><span class="tm">11-26 00:13 HKT</span>歐洲柴油需求今年料低於疫情期間，反映伊朗戰爭壓抑石油消費並擠壓消費者荷包。</li>
+<li class="neg"><span class="tm">11-25 21:24 HKT</span>歐洲天然氣交易商面臨震盪冬季，供應緩衝薄弱、天氣預報多變與中東戰事持續攪動市場。</li>
+<li class="pos"><span class="tm">11-26 03:35 HKT</span><b class="ent">Gulf Oil</b>顧問Tom Kloza稱荷姆茲海峽油流「永久改變」，預期油市出現「重大假動作」後迎來下一波漲勢。</li>
+<li class=""><span class="tm">11-25 19:10 HKT</span><b class="ent">Seeking Alpha</b>指出油價對中東緊張升溫反應冷淡，顯示市場對地緣風險鈍化。</li>
+</ul>
+<div class="jd"><div class="jdhead">影響判斷</div>
+<div class="jg-line" style="border-left-color:var(--green)"><div class="jg-label" style="color:var(--green)">好消息</div><ul class="jl2"><li>紅海與荷姆茲海峽地緣風險升溫，供給中斷疑慮支撐油價與LNG海運溢價。</li><li>卡達LNG出口回升、俄煉油受阻，短線有利替代供應商與煉油利差。</li></ul></div>
+<div class="jg-line" style="border-left-color:var(--red)"><div class="jg-label" style="color:var(--red)">壞消息</div><ul class="jl2"><li>俄油出口偏高與歐洲柴油需求疲弱，全球供給過剩與需求走弱壓抑油價上行空間。</li><li>歐洲天然氣供應緩衝薄弱，冬季波動風險偏高，交易商與公用事業承壓。</li></ul></div>
+</div>
+</section>
+<section class="blk" id="s-10" style="border-left-color:#9a7b3f">
+  <div class="hdr"><span class="ttl">其他</span>
+    <span class="pill pm">分歧</span>
+    <span class="cnt">4 篇 → 4 條</span></div>
+  <div class="brrow"><div class="dbar" style="height:5px"><div class="dg" style="width:50.0%"></div><div class="dr" style="width:50.0%"></div></div><span class="brtxt">好消息 50% · 壞消息 50%</span></div>
+  <p class="tr">過去24小時，其他板塊消息面偏向科技與市場情緒的混合訊號：<b class="ent">亞馬遜</b>無人機送貨發生墜機事故並遭FAA調查，顯示最後一哩物流商業化仍有安全與監管風險；同時美股因AI疑慮加深而全面下挫，<b class="ent">納斯達克</b>早盤一度跌近4%，交易員則押注波動率回落。個別層面，<b class="ent">Meta</b>的Muse AI代理被視為可提升Instagram廣告收入，為板塊帶來局部亮點。</p>
+<ul class="nl">
+<li class="neg"><b class="ent">亞馬遜</b>Prime Air無人機送貨後墜落民宅車庫，遭FAA調查，凸顯無人機物流安全與監管風險。</li>
+<li class="pos">交易員押注<b class="ent">VIX</b>回落，選擇權市場顯示投資人預期短期股市大幅波動可望降溫。</li>
+<li class="neg">AI疑慮升溫拖累美股三大指數走低，<b class="ent">納斯達克</b>早盤重挫近4%，科技板塊承壓。</li>
+<li class="pos"><span class="tm">11-25 18:20 HKT</span><b class="ent">Meta</b>旗下Muse個人AI代理被視為可透過Instagram提升廣告收入，為廣告科技帶來正面訊號。</li>
+</ul>
+<div class="jd"><div class="jdhead">影響判斷</div>
+<div class="jg-line" style="border-left-color:var(--green)"><div class="jg-label" style="color:var(--green)">好消息</div><ul class="jl2"><li>波動率押注回落，短線市場情緒有望回穩</li><li><b class="ent">Meta</b> AI代理變現潛力獲市場關注，廣告科技具想像空間</li></ul></div>
+<div class="jg-line" style="border-left-color:var(--red)"><div class="jg-label" style="color:var(--red)">壞消息</div><ul class="jl2"><li><b class="ent">亞馬遜</b>無人機事故引發FAA調查，最後一哩物流商業化受阻</li><li>AI疑慮擴散令<b class="ent">納斯達克</b>重挫，科技與成長股風險偏好降溫</li></ul></div>
+</div>
+</section>
+<footer>
+資料來源：Hermes news pipeline（Bloomberg / CNBC / MarketWatch / Seeking Alpha / Benzinga /
+SCMP / NYT / Fortune / Tom's Hardware 等 RSS）· 只計最近 24 小時、related=1、已去重嘅新聞。<br>
+公司名與好消息／壞消息判斷由 LLM 逐篇閱讀後產生，非死名單比對。數字為機器統計，投資判斷請自行覆核。
+<br>今日無相關新聞：醫療保健<br>
+生成於 2026-11-26 18:39 HKT · Hermes Agent</footer></div></body></html>
