@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#2681 — 研究報告 · 2026-11-28_00:31</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 2442 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">1596 項決策</span>
+      <span class="stat">129 項快照</span>
+      <span class="stat">717 項研究</span>
+      <span class="stat">55 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+    <a href="../sector-report.html" class="tab ">🧭 板塊</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-11-28 00:31 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>研究報告 · 2026-11-28_00:31</h1>
+    <div class="entry-tags"><span class="tag">research</span><span class="tag">sim-trader</span><span class="tag">auto</span></div>
+  </div>
+  <div class="reasoning">
+    <h2 class="md-h">研究報告 · 2026-11-28 00:30 HKT（美股 2026-11-27 11:30 EST 正規時段、半日市）</h2>
+<br>
+<h3 class="md-h">一、Bottom Line（先講結論）</h3>
+<li>今日係<strong>感恩節後半日市嘅報復性反彈</strong>，唔係制度轉向：半導體／記憶體由深度超賣彈起（SNDK +13.3%、MU +6.7%、STX +5.6%、WDC +5.3%、DELL +6.1%），但呢個反彈嘅燃料係「空頭回補 + 極度超賣 + 估值壓縮」，唔係新基本面。</li>
+<li>宏觀係<strong>鷹派 + 信貸受壓</strong>嘅組合：12 月 8-9 議息市場定價 97-98% 加息 25bp（部分官員講到 50bp）；HYG 距 60 日高位 −2.46%（過 −2% 門檻）→ 傳染測試判定 <strong>credit_contained = false</strong>（未包住）。</li>
+<li>所以今日嘅反彈要當<strong>減倉／換馬嘅窗口</strong>，唔係加倉嘅窗口。VIX 25.3（恐慌）+ 信貸壓力 = 四象限入面「回撤深但預期回報正」嘅矛盾格 — 恐慌係均值回歸訊號，但信貸壓力叫你要避險，兩者方向相反，唔可以混淆。</li>
+<li>組合現時現金 73,396（70%），股票 31,278（30%），9 隻持倉。今日冇必要追高；有兩隻要主動處理（GOOGL 趨勢 0/100 且倉位 8.6% 單一最大、MU 已反彈 6.7% 但 12/17 業績前風險高）。</li>
+<li>信心 78%（價格全部 Futu 即時；新聞有 T-2/T-3 來源；制度判斷來自 credit_regime.md 模型）。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">二、市場環境（Macro）</h3>
+<br>
+<h4 class="md-h">今日盤面</h4>
+<li>ES 期貨 +1.56%、NQ +2.24%（開市前數據，21:40 抓）→ 實際盤中：SPY +1.23%、QQQ +1.84%、DIA +1.01%、IWM +1.39%。</li>
+<li>今晚係半日市，13:00 EST（02:00 HKT）收市，成交薄 — 任何方向都唔可以當趨勢確認。</li>
+<li>VIX 25.48（-9.93%），但 20 日 +30.28%，MA20 23.90、MA50 19.46 → VIX 仍然喺長期均值之上，未回到平靜區。</li>
+<li>10Y 4.90%（+1.16%），Treasury 息口仍然係長端壓力來源。</li>
+<br>
+<h4 class="md-h">聯儲局（Tier-3：Reuters 11/10 民調、Yahoo Finance 11/27）</h4>
+<li>101 位經濟學家全部預測 12 月再加 25bp 到 4.00-4.25%（Reuters 11/6-10 民調）。</li>
+<li>CME FedWatch：12 月 8-9 會議加息 25bp 機率 97-98%（Yahoo Finance 引 CME）。</li>
+<li>Waller（Fed Governor）講到如果 10 月核心 PCE 係 0.3%，<strong>要考慮 50bp</strong>；10 月核心 PCE 實際 3.3% YoY（超預期 3.2%），headline 3.8%。</li>
+<li>第三季 GDP 修正為 +4.3%（經濟過熱 → 支持加息）。</li>
+<li>特朗普政府對 <strong>14 個貿易夥伴</strong>（含中國、日本、歐盟）提出新關稅，理由「產能過剩」→ 通脹上行風險，令聯儲局更難轉鴿。</li>
+<li><strong>判斷</strong>：利率係「higher for longer + 可能未止」；對長久期成長股（GOOGL/MSFT/AMZN）估值壓力最大，對銀行（JPM/GS/XLF）反而係 NII 順風（Tier-2：JPM Global Research 11/23）。</li>
+<br>
+<h4 class="md-h">11 月係 2008 年以來最差 11 月（Tier-3：Investing.com/Reuters、Benzinga）</h4>
+<li>上週 S&amp;P 500 單週 −8.57%（11/20 止），蒸發近 6 兆美元市值；Nasdaq-100 一度距歷史高 20%（技術性熊市）。</li>
+<li>民主黨中期選舉勝利 → 聯邦同州層面都有「減慢數據中心建設」候選人當選 → AI 監管風險上升（NPR 11/20）。</li>
+<li>散戶唔係今次反彈嘅買家：Vanda Research 指（剔除 NVDA/Anthropic）散戶 11/23 淨賣約 3.5 億美元單一股票，係 2020 年 3 月以來最大單日淨賣。</li>
+<li>Interactive Brokers 首席策略師 Steve Sosnick：「太早講係咪死貓彈……今次冇真正嘅政策轉向。」</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">三、信貸制度（Credit Regime — 實證框架）</h3>
+<br>
+<li><strong>HYG 距 60 日高位 −2.46%（🔴 受壓，門檻 −2%）</strong>；距 60 日低位只回升 +0.25%（解除訊號要 +2% 以上）→ <strong>仍然受壓，未解除</strong>。</li>
+<li>HY/IG 比率 0.7337（60 日高 0.7556）→ 高息相對投資級偏弱，信貸風險偏好未回來。</li>
+<li><strong>傳染測試：credit_contained = false</strong> → 按規則，板塊爆 + HY 擴闊 = contagious，歷史對應預期回撤 −11.70%（vs contained −3.83%，3 倍）。呢個係今晚最重要嘅一句：<strong>半導體板塊嘅壓力唔再係「金絲雀」，而係有機會傳去整體信貸。</strong></li>
+<li>對照：11 月中 CoreWeave CDS 爆嗰次 HY OAS 327bp 平靜 = 教科書級 contained，當時唔應該當系統性訊號。今次 HYG 已經跌穿門檻，唔同咗。</li>
+<li>模型預測 60 日回撤 −4.31%（基準 −3.58%）→ <strong>只做 risk budget（新倉要細、止蝕貼身），唔係倉位開關</strong>（該模型 rolling OOS 驗證 13 年只贏 3 年，冇交易價值）。</li>
+<li>出場 &gt; 入場（實證）：單靠出場規則可將 −56.8% 回撤變 −20.2%，仍保 99% CAGR。<strong>呢個制度下，寧願少賺，唔好加大風險。</strong></li>
+<li>200 日線係比任何信貸模型更好嘅單一規則（Calmar 0.60）— 現時 SPY 716.70 vs MA50 757.89，遠在 200 日線之上（估算 ~700 附近），所以唔係「全現金走佬」嘅環境，係「減高 beta、留防禦」嘅環境。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">四、組合現況（Futu 即時 vs portfolio.json）</h3>
+<br>
+<p>| 持倉 | 股數 | 均價 | 現價 | 市值 | 未實現 | 52週位置 | 趨勢分數 |</p>
+<p>|---|---|---|---|---|---|---|---|</p>
+<p>| GOOGL | 33 | 349.58 | 272.96 | 9,008 | <strong>−2,529（−21.9%）</strong> | 7.0% | 0/100 |</p>
+<p>| AMZN | 23 | 256.57 | 254.33 | 5,850 | −51 | 64.0% | 25/100 |</p>
+<p>| MSFT | 10 | 387.46 | 490.12 | 4,901 | +1,027 | 67.7% | 0/100 |</p>
+<p>| AAPL | 7 | 298.11 | 357.50 | 2,503 | +416 | 97.2% | 70/100 |</p>
+<p>| JPM | 7 | 343.31 | 324.07 | 2,268 | −135 | 54.7% | 0/100 |</p>
+<p>| MCD | 6 | 255.20 | 281.96 | 1,692 | +161 | 49.8% | 70/100 |</p>
+<p>| WMT | 12 | 118.64 | 131.97 | 1,584 | +160 | 91.2% | 70/100 |</p>
+<p>| NVDA | 15 | 205.19 | 148.85 | 2,233 | −845（−27.4%） | 20.5% | 0/100 |</p>
+<p>| MU | 2 | 907.81 | 641.70 | 1,283 | −532（−29.3%） | 40.7% | 0/100 |</p>
+<br>
+<li>現金 73,396.56；股票市值約 31,322；總值約 104,718。未實現 −2,328（比 21:40 快照 −2,373 改善 ~45 美元，全部嚟自今日反彈）。</li>
+<li>VaR95 −0.71%、VaR99 −0.94%，平均相關 0.272 → 組合層面風險唔算極端，因為現金 70%。</li>
+<li><strong>集中度問題</strong>：GOOGL 佔股票倉 28.8%、佔總值 8.6%，而且係最大浮虧（−2,529）＋趨勢分數 0/100＋52 週位置 7%。呢個係組合最弱嘅一環。</li>
+<li>MU 雖然只 2 股（1.2% 總值），但年化波動 88.1%、52 週位置 40.7%，係最高 beta 嘅倉（macro_beta mkt=3.65、vix=−0.32）。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">五、逐隻分析（重點倉位 + 今日異動）</h3>
+<br>
+<h4 class="md-h">NVDA — $148.85（−0.30%）｜52wk 20.5%｜量比 0.74｜B/A 2.17｜盤中位置 52.4%</h4>
+<li>技術：MA10 153.28 / MA20 172.48 / MA50 203.65，全部喺上面；20 日 −30.68%，趨勢 0/100。POC 166，支撐區 204-228（已經跌穿，變成阻力）。</li>
+<li>今日：隔夜 +4.75%、盤前 +1.56%，但開高 151.83 後回落，收喺 148.85，日內位置 52.4% — <strong>開高走低，反彈無力</strong>。</li>
+<li>消息（Tier-3）：Reuters 11/20 獨家 — SEC 調查 NVDA <strong>會計實務</strong>（CFO Colette Kress 被聚焦，Fortune 11/23）；加州 DOJ 查先進晶片／機密資料有冇流向中國、有冇誤導投資者（CNBC 11/24）。Bloomberg 11/27 揭上海一個同 Alice Huang 相關嘅數據中心有 GB300 Blackwell 機櫃（3 篇報導）。東南亞付運暫停（馬來西亞/新加坡/泰國/印尼）。S&amp;P Global Ratings 列入可能降評觀察名單（董事會獨立性）。2018 加密挖礦 GPU 案 2.9 億美元和解。</li>
+<li>正面（Tier-3）：Jensen Huang 11/22 被董事會復職（8-K 官方文件），股價本週 +15%；今日 CNBC/Yahoo 有「Huang 2.0 搵到地板」講法；AI 雲端營收近三倍增長。</li>
+<li>治理紅旗：董事會 5 日內 180 度轉彎（主席 Harvey Jones 上週才話唔會復職），治理專家質疑董事會獨立性；公司自己講明若查出「機密資料被分享」會「重開領導層問題」。</li>
+<li>判斷：<strong>HOLD，唔加。</strong> 52 週位置 20.5% 唔算貴，但會計調查 + 治理問題係「唔知幾時爆」嘅尾部風險，而且今日開高走低顯示反彈唔受力。如果跌破 145.39（今日低）就係下一個止蝕參考。</li>
+<li>信心 80%（價格+官方 8-K 確認；SEC 調查細節係匿名來源，屬 T-3 未經起訴證實）。</li>
+<br>
+<h4 class="md-h">GOOGL — $272.96（−0.05%）｜52wk 7.0%｜量比 0.88｜B/A 0.50｜盤中位置 30.9%</h4>
+<li>技術：MA10 281.30 / MA20 283.05 / MA50 318.24 全部上面；20 日 −15.94%，5 日 −3.31%，趨勢 0/100。POC 345，支撐 335-355 全部跌穿。</li>
+<li>今日：隔夜 +3.08%、盤前 +2.33%，開 279.28 高見 279.52 後插到 270.03，收 272.96 — <strong>又係開高走低，B/A 0.50（賣壓）</strong>。</li>
+<li>基本面（Tier-1 10-Q + Tier-3）：Q3 capex 514 億（+114% YoY），自由現金流 <strong>−91 億</strong>（上季 −59 億、去年同期 +245 億）；TTM FCF 197 億，按年跌 73%。2026 capex 指引 1,950-2,050 億，2027 會再顯著上升。S&amp;P Global Market Intelligence 共識：<strong>2029 年前都唔會再有正自由現金流</strong>。今年新增 780 億長期債（11 月賣咗 60 億歐元 + 60 億加元債），長期債近乎三倍。5 年 CDS 創歷史新高（同 Oracle、SpaceX、CoreWeave 一齊）。52 週高 402.62（5/13），現價距高 −32%。</li>
+<li>正面（Tier-3）：TPU 8t/8i 比上代訓練快 2.7 倍、推論性價比好 80%；Anthropic 持股 17.9 億股 ≈ 1,590 億、SpaceX 5.55 億股 ≈ 710 億（合計約 2,300 億 = 市值 7%）；遠期 PE 18.9x（剔除投資 17.6x）；Seeking Alpha 由賣出上調至持有。</li>
+<li>風險：2026 年 5 月 13 日高位 402.62 到今日 −32%；搜尋收入增長放緩 + AI 監管（民主黨中期勝利後加強監管預期）+ 洛杉磯校區封鎖 Google AI 搜尋（教育部門反彈）。</li>
+<li>判斷：<strong>呢隻係組合最大問題倉。</strong> 33 股 @ 349.58，現價 272.96，虧 21.9%。技術 0/100、FCF 2029 前都負、CDS 創高 — 三個獨立負面同時成立。雖然 52 週位置只 7%（表面便宜），但「便宜」係因為市場重估咗佢嘅現金流模型，唔係錯價。</li>
+<li>建議（研究角度，唔係指令）：如果反彈到 283-285（MA20 附近）應該考慮減一半（16-17 股），鎖住部分資金等 2027 年 2 月 Q4 業績（2027 capex 指引係最大變數）。呢個唔係「割肉」，係「唔好將 8.6% 組合集中度押喺一隻 FCF 三年負數嘅股身上」。</li>
+<li>信心 85%（10-Q + S&amp;P 共識都係一手/權威來源）。</li>
+<br>
+<h4 class="md-h">AMZN — $254.33（+4.05%）｜52wk 64.0%｜量比 0.78｜B/A 0.55｜盤中位置 97.2%</h4>
+<li>技術：MA10 257.38 / MA20 257.19 / MA50 255.12 — 現價剛好喺三條線下面；20 日 −3.99%，趨勢 25/100。今日一棍彈到接近 MA20/MA50 交匯（255-257），<strong>關鍵阻力就喺呢度</strong>。</li>
+<li>今日：隔夜 +3.17%、開 249.69、高 254.50（= 今日高位收），盤中位置 97.2% — 強勢收，但 B/A 0.55 顯示賣方掛單重。</li>
+<li>基本面（Tier-3，Q3 8-K + Bernstein）：Q3 淨銷售 2,019 億（+12%）、營運利潤 281 億（13.9% 歷史新高）、AWS 收入 460 億（+39%）、AWS 營運利潤 178 億（+55%，佔全公司 63%）。Jassy 指引 AWS 2027/2028 增長 &gt;40%。</li>
+<li>利淡（Tier-3，11/25）：Bernstein 指用量計費雲平台（含 AWS）11 月中至下旬 web activity 比 Q3 低約 <strong>16%</strong>，企業年底前凍結系統更新／關 workload → Q1 2027 AWS 收入增長可能慢幾百個基點。Q3 capex 773 億、TTM 2,152 億，TTM FCF <strong>−424 億</strong>（單季 −348 億），總債翻倍到 2,720 億。CFO/AWS CEO/Stores CEO 11/23 合共賣 1,660 萬美元（10b5-1 計劃）；short interest +7.25% 到 1.01 億股。</li>
+<li>正面（Tier-3）：Black Friday 網購創紀錄；AI 代理 Muse 談判（Amazon 兩個月前封 Meta Muse，現傾開放，Walmart 已經做）；AWS re:Invent 下週（拉斯維加斯）= 下一個催化劑。</li>
+<li>判斷：<strong>HOLD。</strong> 23 股 @ 256.57，現價 254.33，基本平手（−51）。今日 +4.05% 幫到，但 97.2% 盤中位置 + B/A 0.55 = 追高唔抵。真正嘅測試係下週 re:Invent 同 Q1 2027 AWS 增長數字。</li>
+<li>信心 82%。</li>
+<br>
+<h4 class="md-h">MSFT — $490.12（+0.04%）｜52wk 67.7%｜量比 0.50｜B/A 40.0｜盤中位置 11.1%</h4>
+<li>技術：MA10 504.08 / MA20 517.14 / MA50 519.55 全部上面；5 日 −3.61%、20 日 −7.74%，趨勢 0/100。支撐 490-500（今日正好喺 490 支撐上）；阻力 500、535。</li>
+<li>今日：隔夜 +2.31%、開 499.75（觸及 500 阻力）、高 500.465、低 488.83，收 490.12 — <strong>由 500 阻力插返落嚟，盤中位置 11.1%（貼近日低）</strong>。B/A 40.0 係掛單比例（買方 40 股 vs 賣方 1 股），薄 book 唔可以當真支撐。</li>
+<li>基本面（Tier-2/3）：FQ1 FY27 收入 923 億（+19%）、營運利潤 459 億（+21%）、營運利潤率 50%、Azure +48%、商業 RPO 6,770 億（+73%）。但 capex 452 億（含融資租賃），其中 3/4 係短命資產（CPU/GPU）；Microsoft Cloud 毛利率 66%，Q2 指引降到 ~65%；Q2 capex &gt;500 億、CY2026 capex 約 1,700 億。FCF 跌 27%。D&amp;A 由 FY26 385 億升到 FY28E 820 億。</li>
+<li>分歧（Tier-4 Seeking Alpha / Tier-2 Penmark）：Penmark 目標 545（Hold），base case 認為 FY28 營運利潤率 43.7% vs 市場 47%；最熊（OpenAI 縮減承諾）值 294（−45%）。另一邊 Bernstein/Strong Buy 目標 638。Seeking Alpha 11/26 有一篇直接降評到 Sell（「折舊食利潤」）。</li>
+<li>判斷：<strong>HOLD，倉位偏大要留意。</strong> 10 股 @ 387.46，現價 490.12，+1,027（+26.5%）係組合最大賺錢倉。今日由 500 阻力回落係典型阻力確認。建議：如果跌穿 488.83（今日低）考慮將止賺／止蝕移到 470（Seeking Alpha 講 470 係吸引入場位），唔好等佢返去 519 先算。</li>
+<li>信心 80%（capex/利潤率數字來自 8-K/10-Q 轉述；目標價係分析員意見，T-2/T-4 混合）。</li>
+<br>
+<h4 class="md-h">AAPL — $357.50（+0.54%）｜52wk 97.2%｜量比 0.57｜B/A 2.17｜盤中位置 48.2%</h4>
+<li>技術：MA10 351.88 / MA20 348.67 / MA50 343.05 全部下面（多頭排列）；5 日 +0.89%、20 日 +3.42%，趨勢 70/100。阻力 355（已過）、下一站 360.83 歷史高。支撐 345/340。</li>
+<li>今日：開 358.45、高 359.50（盤中新高接近歷史高 360.83）、收 357.50，盤中位置 48.2% — 沖高後回順，屬正常。</li>
+<li>基本面（Tier-3）：相對 AI 拋售抗跌，過去一年跑贏 Nasdaq；市場 cap 約 5.03-5.20 兆，一度超越 Nvidia。<strong>輕 AI capex（約收入 2%）+ FCF 1,360 億 + iPhone/晶片獲新關稅豁免</strong> = 相對強勢三大支柱。分析員：Morgan Stanley 目標 360（Overweight，AI 策略）、Bernstein 380（Outperform）、共識平均約 344（現價已高於共識）。</li>
+<li>風險：PE 39.8x、52 週位置 97.2%、現價高於共識目標 → <strong>估值已經 price in 咗</strong>。任何 AI 監管或關稅變數（豁免可被撤）都會放大回撤。另外 Talkie AI app 被下架（安全爭議）。</li>
+<li>判斷：<strong>HOLD，唔加。</strong> 7 股 @ 298.11，+416（+14.0%）。呢隻係組合最健康嘅一隻（唯一 52 週 &gt;95% 又趨勢 70/100），但正因為 97.2% 位置，加倉風險回報差。止賺可以考慮設喺 345（MA50 上面）— 即鎖住 ~15%。</li>
+<li>信心 85%。</li>
+<br>
+<h4 class="md-h">MU — $641.70（+6.73%）｜52wk 40.7%｜量比 1.17｜B/A 1.25｜盤中位置 99.5%</h4>
+<li>技術：MA10 693.72 / MA20 742.80 / MA50 895.48 全部上面；5 日 −14.75%、20 日 −38.85%，趨勢 0/100。今日收 641.70 = 全日高位附近（99.5%），由 607.27 低點反彈 5.7%。</li>
+<li>今日：隔夜 +6.59%、盤前 +4.40%、開 629.31、高 641.86 — 全日單邊向上，量比 1.17（略高於平均），成交金額大（換手 1.46%）。同 SNDK/WDC/STX 一齊彈，係板塊輪動。</li>
+<li>基本面（Tier-1/T-2 混合，全部有來源）：</li>
+<li>正面：CEO Mehrotra 11/18 講「2027 年 75% 產能已售出，而家同客戶傾 2028」；FY26 客戶付咗 127.5 億現金訂金鎖供應；26 份策略客戶協議覆蓋 2030 年前 &gt;35% 收入（好多有底價）；TrendForce 見 Q4 DRAM 合約價再升 10-15%、Q1 2027 +5-10%、Q2 2027 +3-8%；Citi 估算即使 Nvidia 完全停止融資客戶，DRAM 需求只跌 ~12%（NAND ~7%）；Goldman 指 DRAM 價格要跌 32-54%（兩年）買家才有誘因違約長約；FY26 收入 1,332 億（+256%）、調整 EPS 75.52、毛利率 81.1%。</li>
+<li>負面：BNP Paribas（Karl Ackerman）11/24 降評到中性，目標由 1,700 減到 775（−54%），認為 DRAM/NAND 供需 2027 年中就接近平衡（早過之前估 2028 年中），ASP 會跌；2028 淨利預測比市場共識低 45%、2029 EPS 谷底 86。Bank of America 指「半導體下修已開始」（針對 2028）。Goldman 都加深 2028 預測（DRAM −19%、NAND −21%）。TrendForce 亦下修 2027 記憶體預測。華為進軍 AI 記憶體 = 新威脅。中國雲端商減 2027 訂單。</li>
+<li>估值：現價 641.70、PE(TTM) 8.63x、遠期 ~3.4-3.6x。市場定價「深度衰退」，但 BNP 最熊 2029 EPS 86 × 8 倍都只係 688。</li>
+<li>業績：<strong>12 月 17 日 FQ1 2027</strong>（收入指引中值 615 億、非 GAAP 毛利率 ≥86.25%）— 呢個係最近嘅關鍵測試。</li>
+<li>判斷：<strong>HOLD，唔加。</strong> 2 股 @ 907.81，現價 641.70，−532（−29.3%）。今日 +6.73% 係好事，但：(1) 盤中位置 99.5% = 收喺最高，明日開盤容易 gap 回；(2) 12/17 業績係二元事件，BNP/BOA/Goldman 都喺度下修 2028；(3) 年化波動 88%、beta 3.65，係組合最高風險倉。如果想降低風險，641-650 係今日呢一棍嘅獲利／減倉位（但只有 2 股，賣 1 股意義有限，賣晒就係認 29% 蝕）。</li>
+<li>信心 82%（DRAM 價格趨勢有 TrendForce 二手來源轉述，屬 T-4 需 Tier-3 印證；Citi/Goldman/BNP 目標價係 T-2/T-4）。</li>
+<br>
+<h4 class="md-h">JPM — $324.07（+2.31%）｜52wk 54.7%｜量比 0.49｜B/A 0.88｜盤中位置 93.1%</h4>
+<li>技術：MA10 326.25 / MA20 333.66 / MA50 335.33 全部上面；20 日 −6.65%，趨勢 0/100。支撐 325/330；阻力 335（POC）。</li>
+<li>今日：隔夜 +1.42%、開 321.81、高 324.265、收 324.065（93.1% 位置）。量比 0.49（半日市，薄）。</li>
+<li>基本面（Tier-2/3）：Q3 NII 270.4 億（+13% YoY）、NII ex-Markets 246.8 億（+6%）；2026 全年 NII 指引 1,062 億（上調）；2027 初步 NII ex-Markets 約 1,070 億（+~10%，靠資產負債表增長 + 更高利率）。CET1 13.9%（去年 14.8%），回購放慢。Card Services 淨撇賬率 2026 約 3.2%。</li>
+<li>加息係順風（Tier-2 JPM Global Research 11/23）：大型銀行近端 NII 受惠，但存款競爭 + 資本市場活動會令板塊 choppy。ABiS Capital（11/10）中性，合理價 270-335，現價 324 喺 range 上半部，2027 年 1 月 14 日 Q4 業績係催化劑。</li>
+<li>判斷：<strong>HOLD。</strong> 7 股 @ 343.31，現價 324.07，−135（−5.6%）。呢隻係「加息受惠 + 唔受 AI capex 拖累」嘅對沖倉，喺信貸受壓環境下屬合理持有。阻力 335 就係之前均價附近，如果返到家鄉可以考慮平手走（資金換去更強嘅防禦股）。止蝕參考 316（今日前收市 316.74 附近）。</li>
+<li>信心 80%。</li>
+<br>
+<h4 class="md-h">WMT — $131.97（+0.02%）｜52wk 91.2%｜量比 0.48｜B/A 0.54｜盤中位置 43.8%</h4>
+<li>技術：MA10 128.54 / MA20 127.10 / MA50 118.03 全部下面（多頭）；5 日 +3.60%、20 日 +11.09%，趨勢 70/100。阻力 132.34（今日高）、134.83（52 週高）。支撐 127-128（MA20）。</li>
+<li>今日：窄幅橫行（振幅 0.49%），量比 0.48 — 半日市無人做嘢，屬正常。</li>
+<li>基本面（Tier-1 官方新聞稿 + Tier-3 CNBC 11/19）：Q3 FY27 收入 1,888 億（+5.2%）、營運利潤 +16%、電商 +17%、廣告 +25%；上調 FY27 指引：淨銷售 +4.9-5.2%（前 4.0-5.0%）、調整 EPS 2.84-2.89（前 2.80-2.87）。CEO Furner 講柴油成本飛升下仍然要壓價（8,000 件貨品降價）。管理層對假期消費「樂觀」，Q4 開局好。Walmart 已經做 Meta Muse 代理購物。</li>
+<li>判斷：<strong>HOLD。</strong> 12 股 @ 118.64，+160（+11.2%）。91.2% 52 週位置 + PE 50.4x 係貴，但佢係組合入面最直接嘅「消費防禦 + 假期旺季受惠」倉，而且係 11 月少數上升嘅股（20 日 +11.09%）。止賺可以設 127（MA20）鎖 ~7%。</li>
+<li>信心 85%。</li>
+<br>
+<h4 class="md-h">MCD — $281.96（−0.54%）｜52wk 49.8%｜量比 0.41｜B/A 25.3｜盤中位置 41.1%</h4>
+<li>技術：MA10 275.63 / MA20 273.68 / MA50 253.88 全部下面（多頭）；5 日 +3.46%、20 日 +13.17%，趨勢 70/100。阻力 283-285；支撐 275-280。</li>
+<li>今日：開 281.43、高 283.335（觸及阻力）、低 281.0，收 281.96 — 觸阻力回落。量比 0.41 極薄。</li>
+<li>基本面：冇新公司特定新聞（news_digest 只有 BROS 相關比較文章）。防禦性消費 + 2.64% 股息。</li>
+<li>判斷：<strong>HOLD。</strong> 6 股 @ 255.20，+161（+10.5%）。283-285 阻力確認，20 日 +13.17% 已經跑好多，唔加。</li>
+<li>信心 75%（缺公司特定催化劑，主要係技術 + 防禦定位）。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">六、可交易範圍（53 隻）— 今日異動與觀察名單</h3>
+<br>
+<h4 class="md-h">半導體／記憶體（今日最強，但全部 20 日大插）</h4>
+<li><strong>SNDK $83.37（+13.26%）</strong>：量比 2.17、換手 5.50%、B/A 4.15。Kioxia 展示 144 隻 NVMe SSD 可將 GB200 NVL72 機櫃記憶體擴到 ~1.1 PB（可支援 2 兆 AI 向量）；Mizuho Vijay Rakesh 維持 Buy、目標 237.50。RSI 曾低到 ~27、TTM PE ~4.72x（5 年歷史中位 21x 以上）。<strong>但</strong> NAND 現貨價 2027 年可能跌（BNP、Goldman 都講 NAND 跌 21%），SNDK 係 NAND 曝險最高嘅一隻。→ 觀察，唔追。</li>
+<li><strong>WDC $286.75（+5.25%）</strong>、<strong>STX $498.60（+5.56%）</strong>：同板塊彈。STX 5 日 −8.45%、20 日 −32.33%、MA50 686；UBS 話「升夠喇」（Seagate 一年仍 +86%）。→ 觀察，唔追。</li>
+<li><strong>SKHY $117.28（+5.52%）</strong>：52 週位置 15.7%（最殘），B/A 0.40（賣壓）。SK Hynix 將成為 Kioxia 最大股東、唔會賣持股，尋求「鬆散合作」。→ 觀察。</li>
+<li><strong>AMD $417.42（+2.81%）</strong>：20 日 −29.81%、5 日 −23.41%，MA50 548；Erste Group 降評（估值高）；3.37 億股轉售註冊。今日選擇權異常活躍（垂直買權價差 + LEAPS）。→ 觀察，唔接刀。</li>
+<li><strong>INTC $56.37（+3.49%）</strong>：52 週位置 19.9%（第二殘），20 日 −42.98%，MA50 87.70；死亡交叉報導；華為裁決 + AI 賣壓。→ 觀察。</li>
+<li><strong>TSM $351.30（+2.62%）</strong>：A14 1.4nm 節點可供設計（比 N2P 快 14% 或省電 23%），獲上調至強力買進；但 ETF 11/25 賣 3,450 萬美元。→ 觀察，質素最好嘅代工。</li>
+<li><strong>SOXX $132.33（+3.40%）</strong>：52 週位置 30.4%、20 日 −26.44%，量比 1.22。→ 板塊代理。</li>
+<li><strong>AMKR $33.62（+5.00%）</strong>：52 週位置 6.6%（最殘），B/A 0.24（賣壓），PE 13.6x。→ 觀察，深度超賣但冇催化劑。</li>
+<li><strong>DELL $315.18（+6.10%）</strong>：Q3 收入 549 億（+103%）、AI 伺服器收入 220 億（+291%）、積壓訂單 1,323 億（紀錄），但當日仍跌近 12%（美銀下調目標 100 美元，質疑可持續性）。今日 +6.1% 係 bounce。→ 觀察。</li>
+<br>
+<h4 class="md-h">大型科技</h4>
+<li><strong>META $630.96（+3.45%）</strong>：52 週位置 42.8%，趨勢 15/100，MA50 672。Amazon Muse 談判（Walmart 已做）；索羅斯等 65 檔基金上季買入、34 檔賣出（機構分歧）；印度 540 萬則內容訴訟。PE 21.5x 相對合理。→ 觀察，係大型科技入面估值最唔貴嘅一隻。</li>
+<li><strong>TSLA $398.56（+4.85%）</strong>：PE 438x、B/A 0.05（極薄 book）、52 週位置 50.2%。Robotaxi 達拉斯區擴張 83.5%；Gary Black 質疑（Waymo 會在里程/載客領先）。→ 唔掂（估值太極端）。</li>
+<li><strong>NET $292.35（+3.19%）</strong>：PE 負、PB 71.5x、52 週位置 63.1%。CrowdStrike 買 Zscaler（439 億）— 網絡安全整合題材。→ 觀察。</li>
+<li><strong>CRWD $213.90（+2.20%）</strong>：20 日 −21.51%、5 日 −11.70%、MA50 245；CrowdStrike 收購 Zscaler 係重大轉向（CEO 講「網上代理會多過人」）。Argus 仍見 67% 上行。→ 觀察（併購整合風險）。</li>
+<br>
+<h4 class="md-h">金融／工業／能源／醫療／防禦</h4>
+<li><strong>GS $815.10（+1.76%）</strong>：52 週位置 11.3%（殘）、20 日 −13.42%、MA50 895。→ 觀察。</li>
+<li><strong>XLF $57.16（+1.14%）</strong>：52 週位置 77.3%、20 日 +0.68% — 加息受惠。→ 防禦候選。</li>
+<li><strong>CAT $562.73（+3.50%）</strong>：52 週位置 9.7%（最殘大型股）、20 日 −23.79%、MA50 700。→ 深度超賣，但工業冇催化劑。</li>
+<li><strong>CVX $213.89（+1.39%）／XOM $160.73（+1.68%）</strong>：油價升（Brent 91 美元，Houthi 攻擊沙特能源設施）。XOM 20 日 −13.15%、MA50 168.85；CVX 52 週位置 77.9%、股息 3.3%。→ 能源係今日少數有實質催化劑（油價）嘅板塊。</li>
+<li><strong>UNH $352.03（+1.69%）</strong>：20 日 −14.96%、MA50 386；B/A 41（薄）。→ 觀察。</li>
+<li><strong>LLY $1,392.29（+0.01%）</strong>：52 週位置 86.8%、PE 45.2x、20 日 +8.07% — 係少數 11 月上升嘅大型股。→ 防禦候選。</li>
+<li><strong>COST $1,093.73（+0.64%）</strong>：52 週位置 98.2%（貼歷史高）、PE 52.7x、20 日 +10.59%。→ 貴，唔加。</li>
+<li><strong>RTX $196.78（+0.30%）</strong>：52 週位置 53.0%、20 日 +0.18%、MA20 197.03 — 橫行。→ 中性。</li>
+<li><strong>IBKR $77.46（+3.64%）</strong>：52 週位置 42.3%、20 日 −10.53%、趨勢 0/100、MA50 82.77；B/A 0.16（極薄）。今日 gap +3.95%（隔夜 +3.02%）。IBKR 係「市場活躍度」代理 — 波動大嘅月份成交量高係正面，但今日 B/A 0.16 顯示掛單一面倒。→ 觀察。</li>
+<li><strong>AAL $12.76（+1.50%）</strong>：PE 負、52 週位置 30.7%、MA20 13.08。油價升 = 航空成本升（負面）。→ 唔掂。</li>
+<li><strong>BE $161.55（+5.66%）</strong>：52 週位置 31.2%、20 日 −32.97%、MA50 227.84、B/A 0.02。燃料電池高 beta。→ 唔掂。</li>
+<li><strong>CRWV $43.06（+1.15%）</strong>：52 週位置 5.6%（最殘）、PE 負、PB 5.9x、20 日 −33.41%。CDS 隱含 5 年違約機率 68%（Tier-3）、債券收益率 18%、正尋求 45 億美元 Meta 支持貸款。<strong>呢隻就係信貸傳染嘅源頭。</strong> → 絕對唔掂。</li>
+<br>
+<h4 class="md-h">板塊 ETF（今日）</h4>
+<li>XLK +1.87%（52wk 42.1%、20 日 −18.43%）、XLI +1.20%（52wk 40.1%）、XLB +1.38%（52wk 77.5%、B/A 97.9）、XLY +1.80%（52wk 76.3%）、XLC +1.66%（52wk 39.0%）、XLRE +0.32%（52wk 71.6%）、XLU −0.02%（52wk 56.9%）、XLV −0.02%（52wk 83.2%）、XLP −0.01%（52wk 93.5%、20 日 +6.29%）。</li>
+<li><strong>留意 XLY</strong>：avg_price（VWAP）128.74 vs last 119.61 — 呢個 VWAP 明顯異常（可能數據問題），唔可以當「跌穿 VWAP 8%」用。</li>
+<li><strong>防禦輪動訊號</strong>：XLP 52 週位置 93.5% + 20 日 +6.29%、XLU 56.9%、XLV 83.2% — 資金 11 月去咗防禦。呢個同「信貸受壓 + 加息」環境一致。</li>
+<br>
+<h4 class="md-h">指數（只監察）</h4>
+<li>SPY 725.49（+1.23%、52wk 63.9%）、VOO 666.87（+1.21%）、QQQ 645.58（+1.84%、52wk 43.7%）、DIA 506.34（+1.01%）、IWM 272.62（+1.39%、52wk 52.5%）、MDY 659.71（+0.92%）、IBB 217.98（−0.13%、52wk 93.1%）。</li>
+<li><strong>IBB 係今日唯一跌嘅之一</strong>，但 5 日 +6.27%、52 週位置 93.1% — 生科 11 月強勢，係防禦輪動受益者。</li>
+<li>SPCX 131.33（+3.05%，只監察）、VIX 25.48（−9.93%，只監察）。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">七、風險因素／矛盾（Manager Gate）</h3>
+<br>
+<li><strong>[CONFLICT] 今日反彈嘅性質未確認</strong>：Sosnick（IBKR 首席策略師）明講「冇真正政策轉向」；散戶淨賣 3.5 億（Vanda）；成交係半日市薄量。反彈係機構回補 + 超賣修復，唔係新資金入場。任何「跟勢加倉」建議都要打折扣。</li>
+<li><strong>[NEWS TIMELINE] 記憶體三條正面消息已經被消化</strong>：Citi DRAM −12% 估算（11/23）、Goldman 長約保護（11/25 前）、Micron 75% 售罄（11/18）— 全部喺今日反彈之前已公開，今日係估值修復唔係新消息。下一個真正新資訊係 <strong>12/17 MU 業績</strong>。</li>
+<li><strong>[CONFLICT] 記憶體多空雙方都有一線分析員</strong>：Citi/Goldman 講長約保護（MU 2027 年 75% 售出、26 份協議有底價）vs BNP/BofA 講 2028 下修（BNP 2028 淨利比共識低 45%）。兩邊都係 T-2/T-3，唔可以單邊採信。<strong>結論：MU 係「12/17 業績前二元事件」，唔係趨勢倉。</strong></li>
+<li><strong>[STALE DATA] 冇</strong>：所有價格係今日 Futu 即時；財報數字來自 8-K/10-Q/官方新聞稿（Tier-1）；聯儲局定價來自 CME FedWatch（Tier-3 轉述）。</li>
+<li><strong>[HALLUCINATION RISK] 已處理</strong>：NVDA SEC 調查係 Reuters 匿名來源（T-3，未起訴），我標明咗「匿名來源」而唔係當事實。Alice Huang 數據中心係 Bloomberg 調查（T-3）。BNP 目標價 775 係 Investing.com/Seeking Alpha 轉述（T-4，但有兩處一致）。</li>
+<li><strong>[METRIC CONFLATION] 注意</strong>：MU 嘅「PE 8.63x」係 TTM（用 FY26 EPS 75.52 嘅一部分），而市場講嘅「3.4x forward」係用 FY27E EPS 176.67 計 — 兩個唔同 metric，唔可以混淆。</li>
+<li><strong>信貸傳染係最大系統性風險</strong>：credit_contained = false，歷史上對應 −11.70% 回撤。但同時 VIX 25.3 = 恐慌，歷史上恐慌格 fwd60 回報 +2.72%。呢兩個訊號相反 → 處理方法：<strong>唔加倉，但亦唔需要清倉</strong>。維持 70% 現金、30% 股票，將高 beta（MU 88%、NVDA 82%）嘅比重壓住。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">八、行動框架（研究結論，唔係指令）</h3>
+<br>
+<h4 class="md-h">今日（半日市，13:00 EST 收市）唔應該做嘅事</h4>
+<li>唔好追今日嘅半導體反彈（SNDK +13%、MU +6.7%、STX +5.6% 全部收喺日高附近，明日開盤 gap 風險高）。</li>
+<li>唔好喺半日市薄量之下改大倉 — 盤口（NVDA B/A 2.17 但 5 檔只得幾百股、MSFT ask 1 股）唔反映真實流動性。</li>
+<li>唔好因為 VIX 跌 9.93% 就當恐慌結束 — VIX 仍然高過 MA20（23.90）同 MA50（19.46）。</li>
+<br>
+<h4 class="md-h">值得優先處理（下個交易日／下週）</h4>
+<li class="num">1. <strong>GOOGL</strong>：最大浮虧 + 趨勢 0/100 + FCF 2029 前負 + CDS 創高。若反彈到 281-285（MA10/MA20），考慮減半（33 → 16-17 股），將組合集中度由 8.6% 降到 4.3%。保留一半等 2027 年 2 月 Q4 業績（2027 capex 指引）。</li>
+<li class="num">2. <strong>MSFT</strong>：由 500 阻力回落（盤中位置 11.1%）。若跌穿 488.83，止賺／止蝕移到 470。呢隻係 +26.5% 賺錢倉，唔好等回吐先算。</li>
+<li class="num">3. <strong>MU</strong>：12/17 業績前唔加、唔大減。如果 12/17 收入 ≥615 億 + 毛利率 ≥86.25% → 業績後可以考慮加；如果低於指引 → 減。</li>
+<li class="num">4. <strong>AAPL / WMT / MCD</strong>：三隻趨勢 70/100，係組合骨幹。止賺參考 AAPL 345、WMT 127、MCD 275（全部喺 MA20/MA50 之上，鎖 7-15%）。</li>
+<br>
+<h4 class="md-h">唔好掂嘅名單</h4>
+<li><strong>CRWV</strong>（CDS 隱含 68% 違約、債息 18%、PE 負）— 信貸傳染源頭。</li>
+<li><strong>AAL</strong>（油價升 = 成本升）、<strong>TSLA</strong>（PE 438x）、<strong>BE</strong>（B/A 0.02、20 日 −33%）。</li>
+<li><strong>AMD / INTC / AMKR</strong> — 深度超賣但係「接刀」（52 週位置 19.9%/6.6%、趨勢 0/100、冇新催化劑）。</li>
+<br>
+<h4 class="md-h">觀察名單（等訊號，唔急）</h4>
+<li><strong>記憶體三雄（SNDK/WDC/STX）</strong>：今日彈但 20 日仍然 −24% 至 −58%，要等 12/17 MU 業績定價方向。</li>
+<li><strong>IBB / XLP / XLV / LLY</strong>：防禦輪動受益者，11 月已經跑贏；IBB 5 日 +6.27%、52 週位置 93.1%，回踩 MA20（213）可以研究。</li>
+<li><strong>JPM / XLF / GS</strong>：加息受惠，但 ABiS 講 JPM 合理價 270-335（現價 324 喺上半部），唔算便宜。</li>
+<li><strong>CVX / XOM</strong>：油價（Brent 91）係今日實質催化劑，但兩隻都喺 MA20/MA50 之下（XOM MA50 168.85 vs 現價 160.73）。</li>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">九、Sources（Tier 標示）</h3>
+<br>
+<p>| 來源 | Tier | 日期 | 用途 |</p>
+<p>|---|---|---|---|</p>
+<p>| Futu OpenAPI 即時報價／盤口 | T-1（實時數據） | 2026-11-27 | 全部價格、量比、VWAP、B/A |</p>
+<p>| credit_regime.md（HYG/HY-IG 模型） | 內部模型 | 2026-11-27 | 信貸制度四象限、傳染測試 |</p>
+<p>| Reuters（Nvidia SEC 調查獨家） | T-3 | 2026-11-20 | NVDA 會計調查 |</p>
+<p>| Reuters（Huang 復職） | T-3 | 2026-11-23 | NVDA 治理 |</p>
+<p>| NVIDIA Form 8-K | T-1 | 2026-11-22/23 | Huang 復職官方確認 |</p>
+<p>| CNBC（Nvidia 調查未結束） | T-3 | 2026-11-24 | 加州 DOJ + 外國情報調查 |</p>
+<p>| Fortune（CFO Kress 聚焦） | T-3 | 2026-11-23 | NVDA 治理 |</p>
+<p>| Bloomberg（上海 Alice Huang 數據中心） | T-3 | 2026-11-27 | NVDA 出口管制 |</p>
+<p>| Alphabet Q3 10-Q（SEC） | T-1 | 2026-09-30 | capex 514 億、FCF −91 億 |</p>
+<p>| S&amp;P Global Market Intelligence 共識（Yahoo 轉述） | T-2 | 2026-11-25 | GOOGL FCF 2029 前負 |</p>
+<p>| Yahoo Finance（GOOGL CDS 創高） | T-3 | 2026-11-25 | GOOGL 信貸訊號 |</p>
+<p>| Amazon Q3 8-K / 業績 | T-1 | 2026-10-29 | AWS 460 億 +39% |</p>
+<p>| Bernstein（AWS −16% 用量） | T-2 | 2026-11-25 | AMZN Q1 2027 風險 |</p>
+<p>| MSFT FQ1 FY27 8-K/10-Q（Yahoo 轉述） | T-1/T-3 | 2026-11-27 | capex 452 億、毛利率 66% |</p>
+<p>| Penmark Research（MSFT 545 Hold） | T-2 | 2026-11-08 | MSFT 利潤率分歧 |</p>
+<p>| Seeking Alpha（MSFT 降評 Sell） | T-4 | 2026-11-26 | MSFT 熊方觀點 |</p>
+<p>| Morgan Stanley / Bernstein（AAPL 360/380） | T-2 | 2026-11 | AAPL 目標價 |</p>
+<p>| Micron CEO Mehrotra（75% 2027 售出） | T-1（公司發言） | 2026-11-18 | MU 長約 |</p>
+<p>| Citi（DRAM 需求只跌 12%） | T-2 | 2026-11-23 | MU 正面 |</p>
+<p>| Goldman Sachs（長約違約誘因） | T-2 | 2026-11-25 | MU 正面 |</p>
+<p>| BNP Paribas（Ackerman，降評 775） | T-2 | 2026-11-24 | MU 負面 |</p>
+<p>| Bank of America（半導體下修開始） | T-2 | 2026-11-26 | MU 負面 |</p>
+<p>| TrendForce（DRAM 合約價 +10-15%） | T-2/T-4 轉述 | 2026-11 | MU 價格趨勢 |</p>
+<p>| Reuters 民調（12 月加息 4.00-4.25%） | T-3 | 2026-11-10 | 聯儲局 |</p>
+<p>| CME FedWatch（97-98% 加息） | T-3 轉述 | 2026-11-27 | 聯儲局定價 |</p>
+<p>| Yahoo Finance（10 月核心 PCE 3.3%） | T-3 | 2026-11-27 | 通脹 |</p>
+<p>| JPM Global Research（加息利好銀行） | T-2 | 2026-11-23 | JPM/XLF |</p>
+<p>| Walmart Q3 FY27 官方新聞稿 | T-1 | 2026-11-19 | WMT 指引上調 |</p>
+<p>| CNBC（Walmart CEO 專訪） | T-3 | 2026-11-19 | WMT 消費 |</p>
+<p>| Investing.com（SNDK Kioxia 1.1 PB） | T-4 | 2026-11-27 | SNDK 催化劑 |</p>
+<p>| Benzinga（記憶體板塊反彈） | T-4 | 2026-11-27 | 板塊輪動 |</p>
+<p>| Yahoo Finance（S&amp;P 上週 −8.57%） | T-3 | 2026-11-27 | 市場背景 |</p>
+<p>| Vanda Research（散戶淨賣 3.5 億） | T-3 轉述 | 2026-11-27 | 資金流 |</p>
+<p>| NPR（民主黨中期勝利 → 數據中心監管） | T-3 | 2026-11-20 | AI 監管風險 |</p>
+<p>| Investing.com（CoreWeave CDS 68% 違約） | T-4 | 2026-11-26 | CRWV 風險 |</p>
+<p>| ABiS Capital（JPM 合理價 270-335） | T-2 | 2026-11-10 | JPM 估值 |</p>
+<br>
+<hr class="md-hr">
+<br>
+<h3 class="md-h">十、整體判斷與信心</h3>
+<br>
+<li><strong>整體信心 78%</strong>：價格 100% 實時；制度判斷 85%（內部模型有 OOS 警告）；個股催化劑 75-85%（大部分 T-2/T-3，MU 價格趨勢部分靠 TrendForce 轉述）。</li>
+<li><strong>一句總結</strong>：今日係半日市超賣反彈，唔係制度轉向；信貸受壓 + 12 月加息 = 唔加倉、減最弱嘅倉（GOOGL）、守賺錢倉（MSFT/AAPL/WMT/MCD），等 12/17 MU 業績同 12/8-9 聯儲局兩個真測試。</li>
+<br>
+<p>--- EN: Thanksgiving half-day bounce in beaten-down semis/memory (SNDK +13.3%, MU +6.7%) is short-covering plus oversold repair, not a regime shift. Credit regime still pressured (HYG −2.46% from 60d high, contagion test = NOT contained, historical −11.70% drawdown analog) while VIX 25.3 signals panic mean-reversion. December 8-9 Fed hike priced at 97-98% (possibly 50bp). Portfolio: 70% cash / 30% stock, 9 holdings. Priority actions: trim GOOGL on bounce to 281-285 (worst position: −21.9%, trend 0/100, negative FCF through 2029, record CDS), tighten MSFT stop to 470 below 488.83, hold MU flat into Dec 17 earnings (revenue ≥$61.5B / GM ≥86.25% is the test). Avoid CRWV (68% implied 5y default), TSLA (PE 438x), AAL (oil up), AMD/INTC/AMKR (falling knives). Overall confidence 78%.</p>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #2681 · 2026-11-28 00:31 HKT</p>
+</footer>
+</body>
+</html>
