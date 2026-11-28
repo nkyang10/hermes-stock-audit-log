@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#2694 — 隔夜檢查 · 20261128 13:00 HKT</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <h1>📊 股票審計記錄</h1>
+    <div class="hd-sub">模擬交易決策日誌 · 共 2455 條記錄</div>
+    <div class="hd-stats">
+      <span class="stat">1605 項決策</span>
+      <span class="stat">130 項快照</span>
+      <span class="stat">720 項研究</span>
+      <span class="stat">55 隻股票</span>
+    </div>
+    
+    <div class="hd-last">更新於 </div>
+  </div>
+  
+  <nav class="tabs">
+    <a href="../index.html" class="tab ">📋 時間線</a>
+    <a href="../holdings.html" class="tab ">💼 持倉</a>
+    <a href="../studies.html" class="tab ">📚 研究</a>
+    <a href="../sector-report.html" class="tab ">🧭 板塊</a>
+  </nav>
+</header>
+<main>
+
+  <a href="../index.html" class="back-link">← 返去時間線</a>
+  <div class="detail-entry">
+    <div class="detail-meta">
+      <div class="detail-time">2026-11-28 13:00 HKT</div>
+      <div class="entry-badges">
+        <span class="type-badge type-study">研究</span>
+        <span class="tkr" style="--tkr-c:#666">ALL</span>
+        
+      </div>
+    </div>
+    <h1>隔夜檢查 · 20261128 13:00 HKT</h1>
+    <div class="entry-tags"><span class="tag">overnight</span><span class="tag">analysis</span><span class="tag">auto</span></div>
+  </div>
+  <div class="reasoning">
+    <p>20261128美股隔夜報告</p>
+<br>
+<h4 class="md-h">▶️ 隔夜信號（Overnight）</h4>
+<li>週五（11/27）美股收市：SPX 7,297.49（+1.60%）、NASDAQ 24,129.50（+2.31%）、DJI 50,774.90（+1.18%）、費半 9,186.71（+4.69%）</li>
+<li>全部由 Yahoo Finance Chart API 直接讀取（Tier-1），數據時間 11/28 03:15–05:00 HKT</li>
+<li>費半 +4.69% 係全場最強，半導體係反彈主力</li>
+<li>⚠️ 今日係 2026-11-28 星期六，美股休市（us_market_state.py 確認 closed_weekend）</li>
+<li>所以「overnight BOATS」段全部 session=closed，overnight_price 等於收市價，overnight_change = +0.00</li>
+<li>即係：下面所有「隔夜變動」其實係週五正規時段收市數，唔係真夜盤成交</li>
+<li>ES/NQ 期貨：script 嘅 futures 段只抓到 Gold / Bitcoin / Crude 標題，冇攞到 ES/NQ 點數（Tier-4 sidebar 抓取失敗）</li>
+<li>判斷方向改用 ETF proxy：SPY 728.32（+1.62%）、QQQ 650.99（+2.69%）</li>
+<li>兩者收市都喺日內高位附近（SPY intraday position 91.3%、QQQ 97.6%）→ 收市買盤強，冇尾市派發</li>
+<li>VIX 23.81（-11.16%，-2.99 點），由日高 27.52 直插到日低收 → 恐慌快速消退（數據 11/28 02:15 HKT）</li>
+<br>
+<h4 class="md-h">▶️ 倉位相關催化劑</h4>
+<p>模擬組合現況（portfolio.json，現價為 11/27 收市附近）：</p>
+<li>NVDA 8 股 @ 205.19，現價 148.93，未實現 -1,886.41（-61.3%）</li>
+<li>隔夜新聞密集兼偏負：美國收緊中國 AI 晶片准入、上海出現 Blackwell 機櫃被當抵押品、對四個東南亞國家凍結晶片訂單、CoreWeave CDS 創新高 15.34%</li>
+<li>但股價只 +0.80%，相對 SOX +4.69% 嚴重落後 → 壞消息已被消化但缺乏買盤，係典型「弱於板塊」</li>
+<li>呢隻係組合最大單一虧損源，風險集中喺 NVDA 一隻</li>
+<li>GOOGL 33 股 @ 349.58，現價 273.72，未實現 -2,503.38（-21.7%）</li>
+<li>係第二大虧損倉，但 52 週位置只 8.4%（接近一年低位），反彈空間大、下行風險亦大</li>
+<li>隔夜 +0.68%，跑輸 QQQ +2.69% → 未跟上半導體反彈，資金唔喺呢邊</li>
+<li>AAPL 7 股 @ 298.11，現價 358.37，未實現 +421.82（+20.2%）</li>
+<li>52 週位置 98.1%，貼近一年高位 360.83，隔夜 +0.83%，動能放緩</li>
+<li>已經接近阻力，鎖利窗口開始出現</li>
+<li>MSFT 10 股 @ 387.46，現價 491.70，未實現 +1,042.40（+26.9%）</li>
+<li>隔夜 +0.60%，但日內由開市 499.76 回落至 492.85，intraday position 只 34.6% → 高開低走，短線偏弱</li>
+<li>AMZN 23 股 @ 256.57，現價 255.18，未實現 -31.97（幾乎打和）</li>
+<li>隔夜 +3.96%，係持倉中第二強；AWS 利潤升 55% 但 capex 達 2,200 億美元係隱憂</li>
+<li>bid/ask ratio 4.5（買盤佔優），收市喺日內 83.1% 位置</li>
+<li>MU 2 股 @ 907.81，現價 638.26，未實現 -539.10（-29.7%）</li>
+<li>隔夜 +7.60%（記憶體板塊全面爆上：SNDK +15.96%、STX +7.90%、WDC +7.22%、SKHY +7.52%）</li>
+<li>但 52 週位置只 41.2%，即係由高位 1,254 回落咗近半 → 反彈仍然係「死貓彈」格局</li>
+<li>WMT 12 股 @ 118.64，現價 132.97，未實現 +171.96（+12.1%）</li>
+<li>隔夜 -0.22%，係持倉中少數下跌；52 週位置 94.8%，貼近一年高位，防禦倉已充分反映</li>
+<li>MCD 6 股 @ 255.20，現價 283.40，未實現 +169.20（+11.1%）</li>
+<li>隔夜 -0.31%，同 WMT 一齊走弱 → 典型防禦股被換馬去科技/半導體</li>
+<li>JPM 7 股 @ 343.31，現價 323.95，未實現 -135.52（-4.0%）</li>
+<li>隔夜 +1.96%，跟隨 XLF +1.15% 但跑贏；bid/ask ratio 0.14 即賣盤掛單多，短線有壓力</li>
+<br>
+<h4 class="md-h">▶️ 關鍵事件</h4>
+<li>今日（11/28 星期六）美國無經濟數據，經濟日曆全部係其他國家（韓國 CPI/PPI、俄羅斯 PPI、愛爾蘭消費者信心、尼日利亞 GDP、印度 GDP）</li>
+<li>下一個美國數據要等 12 月 1 日（星期一）開市，屆時 ISM 製造業與 Black Friday 零售數據會係焦點</li>
+<li>Yahoo 頭條重點：「Black Friday is about to deliver a reality check to the retail bears」→ 假期消費係下週零售股（AMZN、WMT、COST）主要變數</li>
+<li>半導體政策風險持續發酵：Blackwell 機櫃流去上海 + 東南亞四國凍結訂單，係 NVDA 下週開市要面對嘅政策面壓力</li>
+<li>日經 58,711.11（+2.11%）、KOSPI 4,915.68（+4.34%）、上證 3,606.49（+3.73%）、恒指 22,694.77（+2.11%）— 全部為 11/27 收市數（age_days=1）</li>
+<li>亞洲同步大升，特別韓國 +4.34% 同 SKHY +7.52% 互相印證，記憶體/半導體係全球性反彈</li>
+<br>
+<h4 class="md-h">▶️ 信貸制度（Credit Regime）</h4>
+<li>HYG 76.61，距 60 日高位 78.45 = -2.35%（門檻 -2%）→ <strong>信貸壓力成立（credit_stressed = true）</strong></li>
+<li>四象限 = <code>credit_stress_high_vix</code>（信貸壓力 × VIX 恐慌）</li>
+<li>注意：VIX 23.81 高於兩年 P75（19.62），但 VIX 單日 -11.16% 急速回落中</li>
+<li>歷史上「信貸壓力 + VIX 高」係次差格，預測 60 日前向回撤 -4.15%（只作 risk budget，唔係方向預測）</li>
+<li>傳染測試：credit_contained = false</li>
+<li>但實際讀數有分歧 — 板塊層面（SOX +4.69%、QQQ +2.69%）完全冇爆倉跡象，HY 卻仍喺 60 日低位區（距低位只 +0.37%）</li>
+<li>即係：股市反彈但信貸未跟 → 呢個反彈缺乏信貸確認，屬「股市先行、債市未信」</li>
+<li>已連續 40 日信貸受壓（was_stressed_40d = true），release_signal = <strong>false</strong> → 未解封，唔會今日返場</li>
+<li>風險預算應用：呢個格嘅 -4.15% 預測回撤只可以用嚟決定倉位上限，唔可以當跌市預言</li>
+<br>
+<h4 class="md-h">▶️ 明確 Bias</h4>
+<p><strong>neutral 偏審慎（neutral-tilted-cautious）</strong></p>
+<li>理由 1：週五收市極強（費半 +4.69%、QQQ +2.69%、VIX -11%），但全部係「收市高位」，週末冇夜盤可以驗證買盤有無延續</li>
+<li>理由 2：信貸制度仍係 stressed、冇 release signal，HYG 仲喺 60 日低位區 → 股市反彈未獲債市確認</li>
+<li>理由 3：VIX 由 27.52 插到 23.81 一日完成，恐慌消退太快，通常伴隨後續波動回升</li>
+<li>理由 4：半導體政策風險（中國 Blackwell、東南亞凍結訂單）係實質新增負面，同 SOX +4.69% 嘅樂觀完全脫鈎</li>
+<li>結論：星期一開市方向取決於 Black Friday 零售數據同半導體政策跟進，現階段唔應該因為週五大升而加倉</li>
+<br>
+<h4 class="md-h">風險提示</h4>
+<li><strong>持倉集中風險</strong>：NVDA（-1,886）+ GOOGL（-2,503）+ MU（-539）三隻合共未實現 -4,929，佔組合股票市值 ~16%，係最大風險敞口</li>
+<li><strong>AAPL / WMT / COST 貼一年高位</strong>：AAPL 52 週位置 98.1%、WMT 94.8%、COST 98.8% — 高位倉一旦回調，回吐幅度會大過帳面利潤</li>
+<li><strong>MSFT 高開低走</strong>：開 499.76 收 492.85，intraday 只 34.6%，顯示 500 有明顯阻力</li>
+<li><strong>數據可信度</strong>：ES/NQ 期貨點數抓取失敗（futures 段只有商品標題），方向判斷改用 SPY/QQQ proxy，confidence 約 70%；VIX 來自 yfinance，change_pct 欄位異常（-15.84 vs macro 段 -11.16），本報告採用 macro 段 -11.16%</li>
+<li><strong>今日無交易機會</strong>：週末休市，所有數據為 11/27 收市數，唔可以當即時報價用；下週一開市前需重跑一次 collector 攞 Black Friday 後嘅真實 premarket 數據</li>
+<li><strong>信貸未解封</strong>：release_signal = false，按既定紀律唔會今日返場，等下週 HYG 重回 60 日高位 -2% 以內先算解封</li>
+  </div>
+  
+</main>
+<footer>
+  <p>📊 <a href="../index.html">返回時間線</a> · 記錄 #2694 · 2026-11-28 13:00 HKT</p>
+</footer>
+</body>
+</html>
